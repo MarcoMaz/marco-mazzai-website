@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+
+  return posts.map((post: { data: { slug: string; }; }) => ({
+    params: { slug: post.data.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props as { post: CollectionEntry<'blog'> };
+const { Content } = await post.render();
+---
+
+<BaseLayout>
+  <h1>{post.data.title}</h1>
+  <article>
+    <Content /> <!-- ✅ this renders your markdown -->
+  </article>
+</BaseLayout>
