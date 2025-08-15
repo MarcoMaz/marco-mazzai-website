@@ -1,0 +1,6 @@
+@import './_variables.css';
+@import './components/wa-button.css';
+
+body {
+    background-color: red;
+}

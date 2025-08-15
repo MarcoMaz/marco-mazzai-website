@@ -1,0 +1,8 @@
+wa-button button {
+  background-color: var(--sd-global-primary);
+  color: var(--sd-global-white);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
