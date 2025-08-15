@@ -1,8 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+import ProjectIframe from '../components/ProjectIframe.astro';
 ---
 
 <BaseLayout>
   <h1>About page</h1>
   <p>about me</p>
+
+  <h2>Live Project Demo</h2>
+  <ProjectIframe
+    src='https://wa11y-storybook.netlify.app/?path=/docs/atoms-button--buttoninfo'
+    width='50%'
+  />
 </BaseLayout>

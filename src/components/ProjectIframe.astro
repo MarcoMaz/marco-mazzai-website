@@ -1,0 +1,12 @@
+---
+const { src, width = '100%', height = '600px' } = Astro.props;
+if (!src) throw new Error('ProjectIframe: "src" prop is required');
+---
+
+<iframe
+  src={src}
+  width={width}
+  height={height}
+  style="border: 1px solid #ccc; border-radius: 4px;"
+  allowfullscreen
+></iframe>
