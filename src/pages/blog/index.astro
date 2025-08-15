@@ -9,13 +9,18 @@ const posts = await getCollection('blog');
 <BaseLayout>
   <h1>Blog</h1>
   <p>Lists of blog</p>
+  <wa-button label='hello world!'></wa-button>
+
   <ul>
     {
-      posts.map((post: { data: { slug: any; title: unknown; }; }) => (
+      posts.map((post: { data: { slug: any; title: unknown } }) => (
         <li>
           <a href={`/blog/${post.data.slug}`}>{post.data.title}</a>
         </li>
       ))
     }
   </ul>
+  <script type='module'>
+    import '../../node_modules/wa11y-ui/dist/wa-button.es.js';
+  </script>
 </BaseLayout>
