@@ -1,11 +1,14 @@
 ---
 import Navigation from '../components/Navigation.astro';
+
+const { title } = Astro.props;
+
 ---
 
 <html lang='en'>
   <head>
     <meta charset='UTF-8' />
-    <title>Marco Mazzai Website</title>
+    <title>{title ?? 'Marco Mazzai Website'}</title>
   </head>
   <body>
     <Navigation />
