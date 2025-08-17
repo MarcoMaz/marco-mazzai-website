@@ -1,16 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-import ProjectIframe from '../components/ProjectIframe.astro';
+import { getEntryBySlug } from 'astro:content';
+
+const about = await getEntryBySlug('copy', 'about');
+
+const { Content } = await about.render();
 ---
 
 <BaseLayout>
-  <h1>About page</h1>
-  <p>about me</p>
-
-  <h2>Live Project Demo</h2>
-  <ProjectIframe
-    src='https://wa11y-storybook.netlify.app/?path=/docs/atoms-button--buttoninfo'
-    width='50%'
-  />
+  <h1>{about.data.headline}</h1>
+  <Content />
+  <img src='/path/to/image.jpg' alt={about.data.image.alt} />
 </BaseLayout>

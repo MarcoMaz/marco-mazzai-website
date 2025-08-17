@@ -1,38 +1,4 @@
 {
-  "navigation": [
-    {
-      "label": "Hi!",
-      "url": ""
-    },
-    {
-      "label": "about",
-      "url": "about"
-    },
-    {
-      "label": "blog",
-      "url": "blog"
-    },
-    {
-      "label": "let's talk",
-      "url": "#contact"
-    }
-  ],
-  "hi": {
-    "headline": "Hi!",
-    "paragraphs": [
-      {
-        "text": "I'm Marco, a certified Accessibility and Front End Developer.",
-        "boldify": ["certified Accessibility", "Front End Developer"]
-      },
-      {
-        "text": "I specialize in creating beautiful accessible web products and system designs for clients worldwide.",
-        "boldify": ["beautiful accessible web products", "system designs"]
-      }
-    ],
-    "image": {
-      "alt": "avatar Marco Mazzai"
-    }
-  },
   "selectedWorks": {
     "headline": "Selected Works", 
     "items": [
