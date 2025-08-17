@@ -1,0 +1,94 @@
+{
+  "navigation": [
+    {
+      "label": "Hi!",
+      "url": ""
+    },
+    {
+      "label": "about",
+      "url": "about"
+    },
+    {
+      "label": "blog",
+      "url": "blog"
+    },
+    {
+      "label": "let's talk",
+      "url": "#contact"
+    }
+  ],
+  "hi": {
+    "headline": "Hi!",
+    "paragraphs": [
+      {
+        "text": "I'm Marco, a certified Accessibility and Front End Developer.",
+        "boldify": ["certified Accessibility", "Front End Developer"]
+      },
+      {
+        "text": "I specialize in creating beautiful accessible web products and system designs for clients worldwide.",
+        "boldify": ["beautiful accessible web products", "system designs"]
+      }
+    ],
+    "image": {
+      "alt": "avatar Marco Mazzai"
+    }
+  },
+  "selectedWorks": {
+    "headline": "Selected Works", 
+    "items": [
+      {
+        "id": "1",
+        "headline": "RenatoDoList",
+        "children": "<em>PWA</em><p>Basic metronome with tempo and time signature customisation.</p><div class=\"chip-group\"><span class=\"chip\">JS</span><span class=\"chip\">React</span><span class=\"chip\">HTML</span></div><a href=\"#\" target=\"_blank\" class=\"external-link\">Sample Text</a>"
+      },
+      {
+        "id": "2",
+        "headline": "Polyrhythmic Metronome",
+        "children": "<em>Web App</em><p>Something somtehing...</p><div class=\"chip-group\"><span class=\"chip\">JS</span><span class=\"chip\">React</span><span class=\"chip\">HTML</span></div><a href=\"#\" target=\"_blank\" class=\"external-link\">Sample Text</a>"
+      },
+      {
+        "id": "3",
+        "headline": "Picker",
+        "children": "<em>Web Component</em><p>LALALALLALALALAalllala</p><div class=\"chip-group\"><span class=\"chip\">JS</span><span class=\"chip\">React</span><span class=\"chip\">HTML</span></div><a href=\"#\" target=\"_blank\" class=\"external-link\">Sample Text</a>"
+      }
+    ],
+    "nda": {
+      "headline": "Nda work:",
+      "images": [
+        {
+          "alt": "bosch logo",
+          "src": "/assets/images/bosch-logo.png"
+        },
+        {
+          "alt": "mercedes logo",
+          "src": "/assets/images/mercedes-logo.png"
+        },
+        {
+          "alt": "olymp logo",
+          "src": "/assets/images/olymp-logo.png"
+        }
+      ]
+    },
+    "knowMore": {
+      "headline": "Know more:",
+      "CTA": [
+        {
+          "label": "Github",
+          "url": "https://github.com/marcomaz"
+        },
+        {
+          "label": "Linkedin",
+          "url": "https://www.linkedin.com/in/marcomazzai/"
+        }
+      ]
+    }
+  },
+  "writeMe": {
+    "headline": "Write me",
+    "CTA": {
+      "ariaLabel": "send me an email",
+      "label": "here",
+      "url": "mailto:mazzai.marco@gmail.com"
+    }
+  }
+}

@@ -1,17 +1,25 @@
 ---
+import { getEntryBySlug } from 'astro:content';
 
+const nav = await getEntryBySlug('copy', 'navigation');
+const items = nav.data.items;
 ---
-
 <nav>
   <ul>
-    <li><a href='/'>Home</a></li>
-    <li><a href='/about'>About</a></li>
-    <li><a href='/blog'>Blog</a></li>
+    {
+      items.map(
+        (item: { url: string | URL | null | undefined; label: unknown }) => (
+          <li>
+            <a href={item.url}>{item.label}</a>
+          </li>
+        )
+      )
+    }
   </ul>
 </nav>
 
 <style>
   nav {
-    background: pink
+    background: pink;
   }
 </style>
