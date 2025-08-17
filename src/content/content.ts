@@ -9,5 +9,5 @@ const blogCollection = defineCollection({
 });
 
 export const collections = {
-  blog: blogCollection, // 👈 must match the string in getCollection('blog')
+  blog: blogCollection,
 };
