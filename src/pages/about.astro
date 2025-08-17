@@ -12,4 +12,57 @@ const { Content } = await about.render();
   <h1>{about.data.headline}</h1>
   <Content />
   <img src='/path/to/image.jpg' alt={about.data.image.alt} />
+  <h2>{about.data.selectedWorks.headline}</h2>
+  <ul>
+    {
+      about.data.selectedWorks.items.map(
+        (item: {
+          headline: unknown;
+          type: unknown;
+          description: unknown;
+          tags: any[];
+          link: { url: string | URL | null | undefined; label: unknown };
+        }) => (
+          <li>
+            <h3>{item.headline}</h3>
+            <em>{item.type}</em>
+            <p>{item.description}</p>
+            <div class='chip-group'>
+              {item.tags.map((tag: unknown) => (
+                <span class='chip'>{tag}</span>
+              ))}
+            </div>
+            <a href={item.link.url} target='_blank'>
+              {item.link.label}
+            </a>
+          </li>
+        )
+      )
+    }
+  </ul>
+
+  <h3>{about.data.selectedWorks.nda.headline}</h3>
+  <div class='logos'>
+    {
+      about.data.selectedWorks.nda.images.map(
+        (img: {
+          src: string | null | undefined;
+          alt: string | null | undefined;
+        }) => <img src={img.src} alt={img.alt} />
+      )
+    }
+  </div>
+
+  <h3>{about.data.selectedWorks.knowMore.headline}</h3>
+  <ul>
+    {
+      about.data.selectedWorks.knowMore.CTA.map(
+        (cta: { url: string | URL | null | undefined; label: unknown }) => (
+          <li>
+            <a href={cta.url}>{cta.label}</a>
+          </li>
+        )
+      )
+    }
+  </ul>
 </BaseLayout>
