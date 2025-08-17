@@ -2,12 +2,17 @@
 import { getEntryBySlug } from 'astro:content';
 
 const footer = await getEntryBySlug('copy', 'footer');
+
+const {
+  headline,
+  CTA: { label, url },
+} = footer.data;
 ---
 
 <footer class='footer-section' id='contact'>
-  <h2 class='heading'>{footer.data.headline}</h2><a
-    href={footer.data.CTA.url}
+  <h2 class='heading'>{headline}</h2><a
+    href={url}
     target='_blank'
-    class='external-link'>{footer.data.CTA.label}</a
+    class='external-link'>{label}</a
   >
 </footer>
