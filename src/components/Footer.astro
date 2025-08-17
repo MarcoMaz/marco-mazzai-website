@@ -1,0 +1,13 @@
+---
+import { getEntryBySlug } from 'astro:content';
+
+const footer = await getEntryBySlug('copy', 'footer');
+---
+
+<footer class='footer-section' id='contact'>
+  <h2 class='heading'>{footer.data.headline}</h2><a
+    href={footer.data.CTA.url}
+    target='_blank'
+    class='external-link'>{footer.data.CTA.label}</a
+  >
+</footer>
