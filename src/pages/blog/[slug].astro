@@ -22,10 +22,21 @@ const nextPost = allPosts[currentIndex + 1];
 
 const { Content } = await post.render();
 const pageTitle = post.data.title;
+
+// parse date from DD-MM-YYYY
+const [day, month, year] = post.data.date.split('-').map(Number);
+const postDate = new Date(year, month - 1, day);
+
+const formattedDate = new Intl.DateTimeFormat('en-GB', {
+  day: '2-digit',
+  month: 'short',
+  year: 'numeric',
+}).format(postDate);
 ---
 
 <BaseLayout title={pageTitle}>
   <h1>{pageTitle}</h1>
+  <p class='post-date'>{formattedDate}</p>
   <article>
     <Content />
   </article>
