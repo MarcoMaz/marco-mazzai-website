@@ -1,30 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-
-import { getCollection } from 'astro:content';
-
-const posts = await getCollection('blog');
+import BlogList from '../../components/BlogList.astro';
 ---
 
 <BaseLayout>
-  <h1>Blog</h1>
-  <p>Lists of blog</p>
-  <wa-button label='hello world!'></wa-button>
-
-  <ul>
-    {
-      posts.map((post: { data: { slug: string; title: string } }) => {
-        const { slug, title } = post.data;
-
-        return (
-          <li>
-            <a href={`/blog/${slug}`}>{title}</a>
-          </li>
-        );
-      })
-    }
-  </ul>
-  <script>
-    import 'wa11y-ui/wa-button';
-  </script>
+  <BlogList />
 </BaseLayout>

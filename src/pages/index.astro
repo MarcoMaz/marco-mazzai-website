@@ -1,4 +1,5 @@
 ---
+import BlogList from '../components/BlogList.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 import { getEntryBySlug } from 'astro:content';
@@ -14,4 +15,5 @@ const { Content } = await home.render();
   <h1>{headline}</h1>
   <Content />
   <img src='/path/to/image.jpg' alt={image.alt} />
+  <BlogList />
 </BaseLayout>
