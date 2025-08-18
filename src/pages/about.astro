@@ -5,11 +5,7 @@ import { getEntryBySlug } from 'astro:content';
 
 const about = await getEntryBySlug('copy', 'about');
 
-const { Content } = await about.render();
-
 const {
-  headline,
-  image,
   selectedWorks: {
     headline: selectedWorksHeadline,
     items,
@@ -20,9 +16,6 @@ const {
 ---
 
 <BaseLayout>
-  <h1>{headline}</h1>
-  <Content />
-  <img src='/path/to/image.jpg' alt={image.alt} />
   <h2>{selectedWorksHeadline}</h2>
   <ul>
     {

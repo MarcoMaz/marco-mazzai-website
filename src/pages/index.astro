@@ -1,7 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+import { getEntryBySlug } from 'astro:content';
+
+const home = await getEntryBySlug('copy', 'home');
+
+const { headline, image } = home.data;
+
+const { Content } = await home.render();
 ---
 
 <BaseLayout>
-  <h2>Index</h2>
+  <h1>{headline}</h1>
+  <Content />
+  <img src='/path/to/image.jpg' alt={image.alt} />
 </BaseLayout>
