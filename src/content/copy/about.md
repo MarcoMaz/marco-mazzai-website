@@ -31,11 +31,11 @@ selectedWorks:
     headline: "Nda work:"
     images:
       - alt: "bosch logo"
-        src: "/assets/images/bosch-logo.png"
+        src: "/images/bosch-logo.png"
       - alt: "mercedes logo"
-        src: "/assets/images/mercedes-logo.png"
+        src: "/images/mercedes-logo.png"
       - alt: "olymp logo"
-        src: "/assets/images/olymp-logo.png"
+        src: "/images/olymp-logo.png"
 
   knowMore:
     headline: "Know more:"

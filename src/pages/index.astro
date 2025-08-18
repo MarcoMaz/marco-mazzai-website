@@ -6,7 +6,10 @@ import { getEntryBySlug } from 'astro:content';
 
 const home = await getEntryBySlug('copy', 'home');
 
-const { headline, image } = home.data;
+const {
+  headline,
+  image: { alt, src },
+} = home.data;
 
 const { Content } = await home.render();
 ---
@@ -14,6 +17,6 @@ const { Content } = await home.render();
 <BaseLayout>
   <h1>{headline}</h1>
   <Content />
-  <img src='/path/to/image.jpg' alt={image.alt} />
+  <img src={src} alt={alt} />
   <BlogList />
 </BaseLayout>
