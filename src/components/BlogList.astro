@@ -1,15 +1,31 @@
 ---
-import { getCollection, getEntryBySlug } from 'astro:content';
+import {
+  getCollection,
+  getEntryBySlug,
+  type CollectionEntry,
+} from 'astro:content';
 
-const posts = await getCollection('blog');
+const posts: CollectionEntry<'blog'>[] = await getCollection('blog');
 const blog = await getEntryBySlug('copy', 'blog');
 const { headline } = blog.data;
+
+const sortedPosts: CollectionEntry<'blog'>[] = posts.sort(
+  (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => {
+    const [dayA, monthA, yearA] = a.data.date.split('-').map(Number);
+    const [dayB, monthB, yearB] = b.data.date.split('-').map(Number);
+
+    const dateA = new Date(yearA, monthA - 1, dayA);
+    const dateB = new Date(yearB, monthB - 1, dayB);
+
+    return dateB.getTime() - dateA.getTime();
+  }
+);
 ---
 
 <h2>{headline}</h2>
 <ul>
   {
-    posts.map((post: { data: { slug: string; title: string } }) => {
+    sortedPosts.map((post: { data: { slug: string; title: string } }) => {
       const { slug, title } = post.data;
 
       return (
