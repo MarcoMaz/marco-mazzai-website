@@ -17,7 +17,7 @@ const {
 
 <BaseLayout>
   <h2>{selectedWorksHeadline}</h2>
-  <!-- Accordion // Carousel -->
+  <!-- Accordion (Desktop Navigation) -->
   <ul>
     {
       items.map(
@@ -54,6 +54,71 @@ const {
       )
     }
   </ul>
+  <!-- Carousel (Mobile Navigation) -->
+  <section class='carousel' aria-label='Main Topic'>
+    <ul class='carousel__cards'>
+      {
+        items?.map(
+          (item: {
+            type: unknown;
+            description: unknown;
+            chips: any[];
+            link: string | URL | null | undefined;
+          }) => (
+            <li class='carousel__card'>
+              <em>{item.type}</em>
+              <p>{item.description}</p>
+              <div class='chip-group'>
+                {item.chips?.map((chip: unknown) => (
+                  <span class='chip'>{chip}</span>
+                ))}
+              </div>
+              <a href={item.link} target='_blank' class='external-link'>
+                Sample Text
+              </a>
+            </li>
+          )
+        )
+      }
+    </ul>
+    <ul class='carousel__controls'>
+      <li>
+        <button type='button' aria-label='Previous item'>
+          <!-- BUTTON PREV -->
+        </button>
+      </li>
+      <li>
+        <button type='button' aria-label='Next item'>
+          <!-- BUTTON NEXT -->
+        </button>
+      </li>
+    </ul>
+    <ul class='carousel__navigation'>
+      {
+        items.map((_: any, index: number) => (
+          <li>
+            <button
+              type='button'
+              aria-label={`Topic ${index + 1}`}
+              class={index === 0 ? '-full' : ''}
+              data-slide={index}
+              >
+              <!-- LITTLE DOT -->
+              </button>
+            
+          </li>
+        ))
+      }
+    </ul>
+    <div
+      role='status'
+      aria-live='polite'
+      aria-atomic='true'
+      aria-label={`Item 1 of ${items.length}`}
+    >
+    </div>
+  </section>
+  <!-- NDA -->
   <h3>{ndaHeadline}</h3>
   <div class='logos'>
     {
