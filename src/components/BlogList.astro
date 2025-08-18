@@ -4,8 +4,8 @@ import { getCollection, getEntryBySlug } from 'astro:content';
 const posts = await getCollection('blog');
 const blog = await getEntryBySlug('copy', 'blog');
 const { headline } = blog.data;
-
 ---
+
 <h2>{headline}</h2>
 <ul>
   {

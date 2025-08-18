@@ -7,11 +7,19 @@ export async function getStaticPaths() {
 
   return posts.map((post: { data: { slug: string } }) => ({
     params: { slug: post.data.slug },
-    props: { post },
+    props: { post, allPosts: posts },
   }));
 }
 
-const { post } = Astro.props as { post: CollectionEntry<'blog'> };
+const { post, allPosts } = Astro.props as {
+  post: CollectionEntry<'blog'>;
+  allPosts: CollectionEntry<'blog'>[];
+};
+// use filesystem order directly
+const currentIndex = allPosts.findIndex((p) => p.id === post.id);
+const prevPost = allPosts[currentIndex - 1];
+const nextPost = allPosts[currentIndex + 1];
+
 const { Content } = await post.render();
 const pageTitle = post.data.title;
 ---
@@ -21,4 +29,8 @@ const pageTitle = post.data.title;
   <article>
     <Content />
   </article>
+  <nav>
+    {prevPost && <a href={`/blog/${prevPost.slug}`}>← {prevPost.data.title}</a>}
+    {nextPost && <a href={`/blog/${nextPost.slug}`}>{nextPost.data.title} →</a>}
+  </nav>
 </BaseLayout>
