@@ -13,11 +13,15 @@ const posts = await getCollection('blog');
 
   <ul>
     {
-      posts.map((post: { data: { slug: any; title: unknown } }) => (
-        <li>
-          <a href={`/blog/${post.data.slug}`}>{post.data.title}</a>
-        </li>
-      ))
+      posts.map((post: { data: { slug: string; title: string } }) => {
+        const { slug, title } = post.data;
+
+        return (
+          <li>
+            <a href={`/blog/${slug}`}>{title}</a>
+          </li>
+        );
+      })
     }
   </ul>
   <script>

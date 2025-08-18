@@ -6,62 +6,89 @@ import { getEntryBySlug } from 'astro:content';
 const about = await getEntryBySlug('copy', 'about');
 
 const { Content } = await about.render();
+
+const {
+  headline,
+  image,
+  selectedWorks: {
+    headline: selectedWorksHeadline,
+    items,
+    nda: { headline: ndaHeadline, images },
+    knowMore: { headline: knowMoreHeadline, CTA },
+  },
+} = about.data;
 ---
 
 <BaseLayout>
-  <h1>{about.data.headline}</h1>
+  <h1>{headline}</h1>
   <Content />
-  <img src='/path/to/image.jpg' alt={about.data.image.alt} />
-  <h2>{about.data.selectedWorks.headline}</h2>
+  <img src='/path/to/image.jpg' alt={image.alt} />
+  <h2>{selectedWorksHeadline}</h2>
   <ul>
     {
-      about.data.selectedWorks.items.map(
+      items.map(
         (item: {
           headline: unknown;
           type: unknown;
           description: unknown;
           tags: any[];
           link: { url: string | URL | null | undefined; label: unknown };
-        }) => (
-          <li>
-            <h3>{item.headline}</h3>
-            <em>{item.type}</em>
-            <p>{item.description}</p>
-            <div class='chip-group'>
-              {item.tags.map((tag: unknown) => (
-                <span class='chip'>{tag}</span>
-              ))}
-            </div>
-            <a href={item.link.url} target='_blank'>
-              {item.link.label}
-            </a>
-          </li>
-        )
+        }) => {
+          const {
+            headline,
+            type,
+            description,
+            tags,
+            link: { url, label },
+          } = item;
+          return (
+            <li>
+              <h3>{headline}</h3>
+              <em>{type}</em>
+              <p>{description}</p>
+              <div class='chip-group'>
+                {tags.map((tag: unknown) => (
+                  <span class='chip'>{tag}</span>
+                ))}
+              </div>
+              <a href={url} target='_blank'>
+                {label}
+              </a>
+            </li>
+          );
+        }
       )
     }
   </ul>
 
-  <h3>{about.data.selectedWorks.nda.headline}</h3>
+  <h3>{ndaHeadline}</h3>
   <div class='logos'>
     {
-      about.data.selectedWorks.nda.images.map(
-        (img: {
+      images.map(
+        ({
+          src,
+          alt,
+        }: {
           src: string | null | undefined;
           alt: string | null | undefined;
-        }) => <img src={img.src} alt={img.alt} />
+        }) => <img src={src} alt={alt} />
       )
     }
   </div>
 
-  <h3>{about.data.selectedWorks.knowMore.headline}</h3>
+  <h3>{knowMoreHeadline}</h3>
   <ul>
     {
-      about.data.selectedWorks.knowMore.CTA.map(
-        (cta: { url: string | URL | null | undefined; label: unknown }) => (
-          <li>
-            <a href={cta.url}>{cta.label}</a>
-          </li>
-        )
+      CTA.map(
+        (cta: { url: string | URL | null | undefined; label: unknown }) => {
+          const { url, label } = cta;
+
+          return (
+            <li>
+              <a href={url}>{label}</a>
+            </li>
+          );
+        }
       )
     }
   </ul>
