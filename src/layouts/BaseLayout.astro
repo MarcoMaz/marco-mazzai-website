@@ -5,13 +5,22 @@ import Navigation from '../components/Navigation.astro';
 const { title } = Astro.props;
 
 import '../styles/global.css';
-
 ---
 
 <html lang='en'>
   <head>
     <meta charset='UTF-8' />
     <title>{title ?? 'Marco Mazzai Website'}</title>
+
+    <!-- SEO + Social Meta -->
+    <meta name='keywords' content='' />
+    <meta name='description' content='' />
+    <meta property='og:title' content='' />
+    <meta property='og:url' content='' />
+    <meta property='og:image' content='' />
+    <meta property='og:type' content='' />
+    <meta property='og:description' content='' />
+    <meta property='og:locale' content='' />
   </head>
   <body>
     <Navigation />

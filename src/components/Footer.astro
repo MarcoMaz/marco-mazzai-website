@@ -7,6 +7,8 @@ const {
   headline,
   CTA: { label, url },
 } = footer.data;
+
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class='footer-section' id='contact'>
@@ -15,4 +17,5 @@ const {
     target='_blank'
     class='external-link'>{label}</a
   >
+  <p>&copy; {currentYear} Marco Mazzai. All rights reserved.</p>
 </footer>
