@@ -21,7 +21,8 @@ const prevPost = allPosts[currentIndex - 1];
 const nextPost = allPosts[currentIndex + 1];
 
 const { Content } = await post.render();
-const pageTitle = `${post.data.title} | Blog | Marco Mazzai`;
+const heading = post.data.title; // the <h1>
+const pageTitle = `${heading} | Blog | Marco Mazzai`; // reuse heading
 
 // parse date from DD-MM-YYYY
 const [day, month, year] = post.data.date.split('-').map(Number);
@@ -35,7 +36,7 @@ const formattedDate = new Intl.DateTimeFormat('en-GB', {
 ---
 
 <BaseLayout title={pageTitle}>
-  <h1>{pageTitle}</h1>
+  <h1>{heading}</h1>
   <p class='post-date'>{formattedDate}</p>
   <article>
     <Content />
