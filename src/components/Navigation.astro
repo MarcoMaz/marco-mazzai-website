@@ -1,7 +1,11 @@
 ---
-import { getEntryBySlug } from 'astro:content';
+import { getEntry } from 'astro:content';
 
-const nav = await getEntryBySlug('copy', 'navigation');
+const nav = await getEntry('copy', 'navigation');
+
+if (!nav) {
+  throw new Error('Navigation not found in copy collection');
+}
 
 const items = nav.data.items;
 ---

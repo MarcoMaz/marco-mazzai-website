@@ -1,9 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-import { getEntryBySlug } from 'astro:content';
+import { getEntry } from 'astro:content';
 
-const about = await getEntryBySlug('copy', 'about');
+const about = await getEntry('copy', 'about');
+
+if (!about) {
+  throw new Error('About page not found in copy collection');
+}
+
 
 const {
   selectedWorks: {

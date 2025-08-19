@@ -1,4 +1,3 @@
 ---
 headline: "Latest posts"
 ---
-

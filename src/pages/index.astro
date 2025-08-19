@@ -2,9 +2,13 @@
 import BlogList from '../components/BlogList.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-import { getEntryBySlug } from 'astro:content';
+import { getEntry } from 'astro:content';
 
-const home = await getEntryBySlug('copy', 'home');
+const home = await getEntry('copy', 'home');
+
+if (!home) {
+  throw new Error('Home page not found in copy collection');
+}
 
 const {
   headline,
