@@ -21,7 +21,7 @@ const prevPost = allPosts[currentIndex - 1];
 const nextPost = allPosts[currentIndex + 1];
 
 const { Content } = await post.render();
-const pageTitle = post.data.title;
+const pageTitle = `${post.data.title} | Blog | Marco Mazzai`;
 
 // parse date from DD-MM-YYYY
 const [day, month, year] = post.data.date.split('-').map(Number);
