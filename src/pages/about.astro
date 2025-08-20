@@ -1,27 +1,26 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-import { getEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 
-const about = await getEntry('copy', 'about');
+const aboutCollection = await getCollection('about');
 
-if (!about) {
+if (aboutCollection.length === 0) {
   throw new Error('About page not found in copy collection');
 }
 
+const about = aboutCollection[0];
 
 const {
-  selectedWorks: {
-    headline: selectedWorksHeadline,
-    items,
-    nda: { headline: ndaHeadline, images },
-    knowMore: { headline: knowMoreHeadline, CTA },
-  },
+  headline,
+  nda: { headline: ndaHeadline, images },
+  knowMore: { headline: knowMoreHeadline, CTA },
+  items,
 } = about.data;
 ---
 
-<BaseLayout title="About | Marco Mazzai">
-  <h2>{selectedWorksHeadline}</h2>
+<BaseLayout title='About | Marco Mazzai'>
+  <h2>{headline}</h2>
   <!-- Accordion (Desktop Navigation) -->
   <ul>
     {
@@ -63,39 +62,28 @@ const {
   <section class='carousel' aria-label='Main Topic'>
     <ul class='carousel__cards'>
       {
-        items?.map(
-          (item: {
-            type: unknown;
-            description: unknown;
-            chips: any[];
-            link: string | URL | null | undefined;
-          }) => (
-            <li class='carousel__card'>
-              <em>{item.type}</em>
-              <p>{item.description}</p>
-              <div class='chip-group'>
-                {item.chips?.map((chip: unknown) => (
-                  <span class='chip'>{chip}</span>
-                ))}
-              </div>
-              <a href={item.link} target='_blank' class='external-link'>
-                Sample Text
-              </a>
-            </li>
-          )
-        )
+        items?.map((item) => (
+          <li class='carousel__card'>
+            <em>{item.type}</em>
+            <p>{item.description}</p>
+            <div class='chip-group'>
+              {item.tags?.map((chip: unknown) => (
+                <span class='chip'>{chip}</span>
+              ))}
+            </div>
+            <a href={item.link.url} target='_blank' class='external-link'>
+              {item.link.label}
+            </a>
+          </li>
+        ))
       }
     </ul>
     <ul class='carousel__controls'>
       <li>
-        <button type='button' aria-label='Previous item'>
-          <!-- BUTTON PREV -->
-        </button>
+        <button type='button' aria-label='Previous item'> </button>
       </li>
       <li>
-        <button type='button' aria-label='Next item'>
-          <!-- BUTTON NEXT -->
-        </button>
+        <button type='button' aria-label='Next item'> </button>
       </li>
     </ul>
     <ul class='carousel__navigation'>
@@ -107,10 +95,7 @@ const {
               aria-label={`Topic ${index + 1}`}
               class={index === 0 ? '-full' : ''}
               data-slide={index}
-              >
-              <!-- LITTLE DOT -->
-              </button>
-            
+            />
           </li>
         ))
       }
@@ -123,7 +108,6 @@ const {
     >
     </div>
   </section>
-  <!-- NDA -->
   <h2>{ndaHeadline}</h2>
   <div class='logos'>
     {
