@@ -14,11 +14,17 @@ const homeCollection = defineCollection({
   loader: glob({ pattern: 'home.md', base: './src/content/copy' }),
   schema: z.object({
     headline: z.string(),
-    content: z.string(),
     image: z.object({
       alt: z.string(),
       src: z.string(),
     }),
+  }),
+});
+
+const blogPageCollection = defineCollection({
+  loader: glob({ pattern: 'blog.md', base: './src/content/copy' }),
+  schema: z.object({
+    headline: z.string(),
   }),
 });
 
@@ -116,6 +122,7 @@ const navigationCollection = defineCollection({
 export const collections = {
   blog: blogCollection,
   home: homeCollection,
-  navigation: navigationCollection,
+  blogPage: blogPageCollection,
   footer: footerCollection,
+  navigation: navigationCollection,
 };

@@ -1,17 +1,17 @@
 ---
-import {
-  getCollection,
-  getEntry,
-  type CollectionEntry,
-} from 'astro:content';
+import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
 
 const posts: CollectionEntry<'blog'>[] = await getCollection('blog');
-const blog = await getEntry('copy', 'blog');
-if (!blog) {
+
+const blogPageCollection = await getCollection('blogPage');
+
+if (blogPageCollection.length === 0) {
   throw new Error('Blog list not found in copy collection');
 }
 
-const { headline } = blog.data;
+const blogPage = blogPageCollection[0];
+
+const { headline } = blogPage.data;
 
 const sortedPosts: CollectionEntry<'blog'>[] = posts.sort(
   (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => {
