@@ -19,6 +19,14 @@ const {
   knowMore: { headline: knowMoreHeadline, CTA },
   items,
 } = about.data;
+
+type AboutItem = {
+  headline: string;
+  type: string;
+  description: string;
+  tags: string[];
+  link: { url: string; label: string };
+};
 ---
 
 <BaseLayout title='About | Marco Mazzai'>
@@ -26,56 +34,43 @@ const {
   <!-- Accordion (Desktop Navigation) -->
   <ul>
     {
-      items.map(
-        (item: {
-          headline: unknown;
-          type: unknown;
-          description: unknown;
-          tags: any[];
-          link: { url: string | URL | null | undefined; label: unknown };
-        }) => {
-          const {
-            headline,
-            type,
-            description,
-            tags,
-            link: { url, label },
-          } = item;
-          return (
-            <li>
-              <h3>{headline}</h3>
-              <em>{type}</em>
-              <p>{description}</p>
-              <div class='chip-group'>
-                {tags.map((tag: unknown) => (
-                  <span class='chip'>{tag}</span>
-                ))}
-              </div>
-              <a href={url} target='_blank'>
-                {label}
-              </a>
-            </li>
-          );
-        }
-      )
+      items.map((item: AboutItem) => (
+        <li>
+          <h3>{item.headline}</h3>
+          <em>{item.type}</em>
+          <p>{item.description}</p>
+          <div class='chip-group'>
+            {item.tags.map((tag) => (
+              <span class='chip'>{tag}</span>
+            ))}
+          </div>
+          {item.link.url && (
+            <a href={item.link.url} target='_blank'>
+              {item.link.label}
+            </a>
+          )}
+        </li>
+      ))
     }
   </ul>
   <!-- Carousel (Mobile Navigation) -->
   <section class='carousel' aria-label='Main Topic'>
     <ul class='carousel__cards'>
       {
-        items?.map((item) => (
+        items.map((item: AboutItem) => (
           <li class='carousel__card'>
             <em>{item.type}</em>
             <p>{item.description}</p>
             <div class='chip-group'>
-              {item.tags?.map((chip: unknown) => (
+              {item.tags.map((chip) => (
                 <span class='chip'>{chip}</span>
               ))}
             </div>
-            <a href={item.link.url} target='_blank' class='external-link'>
-              {item.link.label}
-            </a>
+            {item.link.url && (
+              <a href={item.link.url} target='_blank' class='external-link'>
+                {item.link.label}
+              </a>
+            )}
           </li>
         ))
       }
@@ -90,7 +85,7 @@ const {
     </ul>
     <ul class='carousel__navigation'>
       {
-        items.map((_: any, index: number) => (
+        items.map((_, index) => (
           <li>
             <button
               type='button'
@@ -113,32 +108,13 @@ const {
   <h2>{ndaHeadline}</h2>
   <div class='logos'>
     {
-      images.map(
-        ({
-          src,
-          alt,
-        }: {
-          src: string | null | undefined;
-          alt: string | null | undefined;
-        }) => <img src={src} alt={alt} />
-      )
+      images.map((image) => (
+        <img src={image.src ?? undefined} alt={image.alt ?? ''} />
+      ))
     }
   </div>
-
   <h2>{knowMoreHeadline}</h2>
   <ul>
-    {
-      CTA.map(
-        (cta: { url: string | URL | null | undefined; label: unknown }) => {
-          const { url, label } = cta;
-
-          return (
-            <li>
-              <a href={url}>{label}</a>
-            </li>
-          );
-        }
-      )
-    }
+    {CTA.map((cta) => <li>{cta.url && <a href={cta.url}>{cta.label}</a>}</li>)}
   </ul>
 </BaseLayout>
