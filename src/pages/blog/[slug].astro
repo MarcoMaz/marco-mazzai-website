@@ -2,33 +2,42 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 
-export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+type BlogPost = CollectionEntry<'blog'>;
 
-  return posts.map((post: { data: { slug: string } }) => ({
+export async function getStaticPaths(): Promise<
+  {
+    params: { slug: string };
+    props: { post: BlogPost; allPosts: BlogPost[] };
+  }[]
+> {
+  const posts: BlogPost[] = await getCollection('blog');
+
+  return posts.map((post) => ({
     params: { slug: post.data.slug },
     props: { post, allPosts: posts },
   }));
 }
 
 const { post, allPosts } = Astro.props as {
-  post: CollectionEntry<'blog'>;
-  allPosts: CollectionEntry<'blog'>[];
+  post: BlogPost;
+  allPosts: BlogPost[];
 };
+
 // use filesystem order directly
-const currentIndex = allPosts.findIndex((p) => p.id === post.id);
-const prevPost = allPosts[currentIndex - 1];
-const nextPost = allPosts[currentIndex + 1];
+const currentIndex: number = allPosts.findIndex((p) => p.id === post.id);
+const prevPost: BlogPost | undefined = allPosts[currentIndex - 1];
+const nextPost: BlogPost | undefined = allPosts[currentIndex + 1];
 
 const { Content } = await render(post);
-const heading = post.data.title; // the <h1>
-const pageTitle = `${heading} | Blog | Marco Mazzai`; // reuse heading
+const heading: string = post.data.title;
+const pageTitle: string = `${heading} | Blog | Marco Mazzai`;
 
 // parse date from DD-MM-YYYY
-const [day, month, year] = post.data.date.split('-').map(Number);
-const postDate = new Date(year, month - 1, day);
+const dateParts: number[] = post.data.date.split('-').map(Number);
+const [day, month, year] = dateParts;
+const postDate: Date = new Date(year, month - 1, day);
 
-const formattedDate = new Intl.DateTimeFormat('en-GB', {
+const formattedDate: string = new Intl.DateTimeFormat('en-GB', {
   day: '2-digit',
   month: 'short',
   year: 'numeric',
@@ -42,7 +51,15 @@ const formattedDate = new Intl.DateTimeFormat('en-GB', {
     <Content />
   </article>
   <nav>
-    {prevPost && <a href={`/blog/${prevPost.data.slug}`}>← {prevPost.data.title}</a>}
-    {nextPost && <a href={`/blog/${nextPost.data.slug}`}>{nextPost.data.title} →</a>}
+    {
+      prevPost && (
+        <a href={`/blog/${prevPost.data.slug}`}>← {prevPost.data.title}</a>
+      )
+    }
+    {
+      nextPost && (
+        <a href={`/blog/${nextPost.data.slug}`}>{nextPost.data.title} →</a>
+      )
+    }
   </nav>
 </BaseLayout>

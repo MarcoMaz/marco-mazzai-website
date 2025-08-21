@@ -1,15 +1,17 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BlogList from '../components/BlogList.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const homeCollection = await getCollection('home');
+type HomeEntry = CollectionEntry<'home'>;
+
+const homeCollection: HomeEntry[] = await getCollection('home');
 
 if (homeCollection.length === 0) {
   throw new Error('Home page not found in copy collection');
 }
 
-const home = homeCollection[0];
+const home: HomeEntry = homeCollection[0];
 
 const {
   headline,

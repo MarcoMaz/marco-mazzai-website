@@ -1,15 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
-const aboutCollection = await getCollection('about');
+type AboutEntry = CollectionEntry<'about'>;
+
+const aboutCollection: AboutEntry[] = await getCollection('about');
 
 if (aboutCollection.length === 0) {
   throw new Error('About page not found in copy collection');
 }
 
-const about = aboutCollection[0];
+const about: AboutEntry = aboutCollection[0];
 
 const {
   headline,
