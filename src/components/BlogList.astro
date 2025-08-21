@@ -1,19 +1,20 @@
 ---
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
 
-const posts: CollectionEntry<'blog'>[] = await getCollection('blog');
+type BlogEntry = CollectionEntry<'blog'>;
+type BlogPageEntry = CollectionEntry<'blogPage'>;
 
-const blogPageCollection = await getCollection('blogPage');
+const posts: BlogEntry[] = await getCollection('blog');
+const blogPageCollection: BlogPageEntry[] = await getCollection('blogPage');
 
 if (blogPageCollection.length === 0) {
   throw new Error('Blog list not found in copy collection');
 }
 
 const blogPage = blogPageCollection[0];
-
 const { headline } = blogPage.data;
 
-const sortedPosts: CollectionEntry<'blog'>[] = posts.sort(
+const sortedPosts: BlogEntry[] = posts.sort(
   (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => {
     const [dayA, monthA, yearA] = a.data.date.split('-').map(Number);
     const [dayB, monthB, yearB] = b.data.date.split('-').map(Number);
@@ -29,7 +30,7 @@ const sortedPosts: CollectionEntry<'blog'>[] = posts.sort(
 <h2>{headline}</h2>
 <ul>
   {
-    sortedPosts.map((post: { data: { slug: string; title: string } }) => {
+    sortedPosts.map((post) => {
       const { slug, title } = post.data;
 
       return (

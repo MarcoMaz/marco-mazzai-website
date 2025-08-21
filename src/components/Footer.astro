@@ -1,13 +1,15 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
-const footerCollection = await getCollection('footer');
+type FooterEntry = CollectionEntry<'footer'>;
+
+const footerCollection: FooterEntry[] = await getCollection('footer');
 
 if (footerCollection.length === 0) {
   throw new Error('Footer not found in copy collection');
 }
 
-const footer = footerCollection[0];
+const footer: FooterEntry = footerCollection[0];
 
 const {
   headline,
