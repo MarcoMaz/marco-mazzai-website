@@ -1,11 +1,14 @@
 ---
+interface BaseLayoutProps {
+  title?: string;
+}
+
 import Footer from '../components/Footer.astro';
 import Navigation from '../components/Navigation.astro';
 
-const { title } = Astro.props;
+const { title } = Astro.props as BaseLayoutProps;
 
 import '../styles/global.css';
-
 ---
 
 <html lang='en'>

@@ -1,13 +1,16 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
-const navigationCollection = await getCollection('navigation');
+type NavigationEntry = CollectionEntry<'navigation'>;
+
+const navigationCollection: NavigationEntry[] =
+  await getCollection('navigation');
 
 if (navigationCollection.length === 0) {
   throw new Error('Navigation not found in copy collection');
 }
 
-const nav = navigationCollection[0];
+const nav: NavigationEntry = navigationCollection[0];
 
 const items = nav.data.items;
 ---
@@ -15,19 +18,14 @@ const items = nav.data.items;
 <nav>
   <ul>
     {
-      items.map(
-        ({
-          url,
-          label,
-        }: {
-          url: string | URL | null | undefined;
-          label: unknown;
-        }) => (
+      items.map((item) => {
+        const { url, label } = item;
+        return (
           <li>
             <a href={url}>{label}</a>
           </li>
-        )
-      )
+        );
+      })
     }
   </ul>
 </nav>
