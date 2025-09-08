@@ -17,6 +17,8 @@ const {
 } = footer.data;
 
 const currentYear = new Date().getFullYear();
+
+const COPYRIGHT_TEXT: string = 'Marco Mazzai. All rights reserved.';
 ---
 
 <footer class='footer-section' id='contact'>
@@ -25,5 +27,5 @@ const currentYear = new Date().getFullYear();
     target='_blank'
     class='external-link'>{label}</a
   >
-  <p>&copy; {currentYear} Marco Mazzai. All rights reserved.</p>
+  <p>&copy; {currentYear} {COPYRIGHT_TEXT}</p>
 </footer>

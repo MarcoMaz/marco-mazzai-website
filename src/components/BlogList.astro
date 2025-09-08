@@ -30,6 +30,8 @@ const getReadingTime = (content: string, wordsPerMinute = 200): number => {
   const wordCount = content.trim().split(/\s+/).length;
   return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
 };
+
+const MIN_READ_TEXT: string = 'min read';
 ---
 
 <h2>{headline}</h2>
@@ -41,7 +43,7 @@ const getReadingTime = (content: string, wordsPerMinute = 200): number => {
 
       return (
         <li>
-          <a href={`/blog/${slug}`}>{title}</a> — {readingTime} min read
+          <a href={`/blog/${slug}`}>{title}</a> — {readingTime} {MIN_READ_TEXT}
         </li>
       );
     })
