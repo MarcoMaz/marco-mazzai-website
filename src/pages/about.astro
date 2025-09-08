@@ -106,13 +106,13 @@ const ABOUT_TITLE: string = 'About | Marco Mazzai';
   <h2>{ndaHeadline}</h2>
   <div class='logos'>
     {
-      images.map((image) => (
-        <img src={image.src ?? undefined} alt={image.alt ?? ''} />
+      images.map(({ src, alt }) => (
+        <img src={src ?? undefined} alt={alt ?? ''} />
       ))
     }
   </div>
   <h2>{knowMoreHeadline}</h2>
   <ul>
-    {CTA.map((cta) => <li>{cta.url && <a href={cta.url}>{cta.label}</a>}</li>)}
+    {CTA.map(({ url, label }) => <li>{url && <a href={url}>{label}</a>}</li>)}
   </ul>
 </BaseLayout>

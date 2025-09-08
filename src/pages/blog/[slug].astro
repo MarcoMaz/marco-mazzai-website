@@ -41,6 +41,11 @@ const formattedDate: string = new Intl.DateTimeFormat('en-GB', {
   month: 'short',
   year: 'numeric',
 }).format(postDate);
+
+const { slug: prevSlug, title: prevTitle }: { slug?: string; title?: string } =
+  prevPost?.data ?? {};
+const { slug: nextSlug, title: nextTitle }: { slug?: string; title?: string } =
+  nextPost?.data ?? {};
 ---
 
 <BaseLayout title={pageTitle}>
@@ -50,15 +55,7 @@ const formattedDate: string = new Intl.DateTimeFormat('en-GB', {
     <Content />
   </article>
   <nav>
-    {
-      prevPost && (
-        <a href={`/blog/${prevPost.data.slug}`}>← {prevPost.data.title}</a>
-      )
-    }
-    {
-      nextPost && (
-        <a href={`/blog/${nextPost.data.slug}`}>{nextPost.data.title} →</a>
-      )
-    }
+    {prevSlug && <a href={`/blog/${prevSlug}`}>← {prevTitle}</a>}
+    {nextSlug && <a href={`/blog/${nextSlug}`}>{nextTitle} →</a>}
   </nav>
 </BaseLayout>
