@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogList from '../../components/BlogList.astro';
+
+const INDEX_TITLE: string = 'Blog | Marco Mazzai';
 ---
 
-<BaseLayout title="Blog | Marco Mazzai">
+<BaseLayout title={INDEX_TITLE}>
   <BlogList />
 </BaseLayout>

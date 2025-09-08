@@ -23,20 +23,19 @@ const { post, allPosts } = Astro.props as {
   allPosts: BlogPost[];
 };
 
-// use filesystem order directly
 const currentIndex: number = allPosts.findIndex((p) => p.id === post.id);
 const prevPost: BlogPost | undefined = allPosts[currentIndex - 1];
 const nextPost: BlogPost | undefined = allPosts[currentIndex + 1];
 
 const { Content } = await render(post);
+
+const SLUG_TITLE: string = '| Blog | Marco Mazzai';
 const heading: string = post.data.title;
-const pageTitle: string = `${heading} | Blog | Marco Mazzai`;
+const pageTitle: string = `${heading} ${SLUG_TITLE}`;
 
 // parse date from DD-MM-YYYY
-const dateParts: number[] = post.data.date.split('-').map(Number);
-const [day, month, year] = dateParts;
+const [day, month, year]: number[] = post.data.date.split('-').map(Number);
 const postDate: Date = new Date(year, month - 1, day);
-
 const formattedDate: string = new Intl.DateTimeFormat('en-GB', {
   day: '2-digit',
   month: 'short',
