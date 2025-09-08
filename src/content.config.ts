@@ -1,6 +1,9 @@
 import { glob } from 'astro/loaders';
 import { defineCollection, z } from 'astro:content';
 
+// -------------------------
+// Collections
+// -------------------------
 const blogCollection = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({
@@ -97,3 +100,31 @@ export const collections = {
   footer: footerCollection,
   navigation: navigationCollection,
 };
+
+// -------------------------
+// Page Titles
+// -------------------------
+export const PAGE_TITLES = {
+  default: 'Marco Mazzai | Portfolio & Blog',
+  about: 'About | Marco Mazzai',
+  blog: 'Blog | Marco Mazzai',
+  blogSuffix: '| Blog | Marco Mazzai',
+};
+
+// -------------------------
+// Meta
+// -------------------------
+export const META = {
+  keywords: '',
+  description: '',
+  title: '',
+  og: {
+    title: '',
+    url: '',
+    image: '',
+    type: '',
+    description: '',
+    locale: '',
+  },
+};
+

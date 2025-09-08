@@ -1,6 +1,7 @@
 ---
 import Footer from '../components/Footer.astro';
 import Navigation from '../components/Navigation.astro';
+import { PAGE_TITLES, META } from '../content.config';
 import '../styles/global.css';
 
 interface BaseLayoutProps {
@@ -9,32 +10,36 @@ interface BaseLayoutProps {
 
 const { title } = Astro.props as BaseLayoutProps;
 
-const DEFAULT_TITLE: string = 'Marco Mazzai | Portfolio & Blog';
-const META_KEYWORDS: string = '';
-const META_DESCRIPTION: string = '';
-const OG_TITLE: string = '';
-const OG_URL: string = '';
-const OG_IMAGE: string = '';
-const OG_TYPE: string = '';
-const OG_DESCRIPTION: string = '';
-const OG_LOCALE: string = '';
+const pageTitle = PAGE_TITLES.default;
+const {
+  keywords,
+  description,
+  title: metaTitle,
+  og: {
+    url: ogUrl,
+    image: ogImage,
+    type: ogType,
+    description: ogDescription,
+    locale: ogLocale,
+  },
+} = META;
 ---
 
 <html lang='en'>
   <head>
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <title>{title ?? DEFAULT_TITLE}</title>
+    <title>{title ?? pageTitle}</title>
 
     <!-- SEO + Social Meta -->
-    <meta name='keywords' content={META_KEYWORDS} />
-    <meta name='description' content={META_DESCRIPTION} />
-    <meta property='og:title' content={OG_TITLE} />
-    <meta property='og:url' content={OG_URL} />
-    <meta property='og:image' content={OG_IMAGE} />
-    <meta property='og:type' content={OG_TYPE} />
-    <meta property='og:description' content={OG_DESCRIPTION} />
-    <meta property='og:locale' content={OG_LOCALE} />
+    <meta name='keywords' content={keywords} />
+    <meta name='description' content={description} />
+    <meta property='og:title' content={metaTitle} />
+    <meta property='og:url' content={ogUrl} />
+    <meta property='og:image' content={ogImage} />
+    <meta property='og:type' content={ogType} />
+    <meta property='og:description' content={ogDescription} />
+    <meta property='og:locale' content={ogLocale} />
   </head>
   <body>
     <Navigation />

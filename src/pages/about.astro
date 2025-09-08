@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { PAGE_TITLES } from '../content.config';
 
 type AboutEntry = CollectionEntry<'about'>;
 type AboutItem = {
@@ -24,10 +25,10 @@ const {
   items,
 } = about.data;
 
-const ABOUT_TITLE: string = 'About | Marco Mazzai';
+const pageTitle = PAGE_TITLES.about;
 ---
 
-<BaseLayout title={ABOUT_TITLE}>
+<BaseLayout title={pageTitle}>
   <h2>{headline}</h2>
   <!-- Accordion (Desktop Navigation) -->
   <ul>
