@@ -1,25 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 type AboutEntry = CollectionEntry<'about'>;
-
-const aboutCollection: AboutEntry[] = await getCollection('about');
-
-if (aboutCollection.length === 0) {
-  throw new Error('About page not found in copy collection');
-}
-
-const about: AboutEntry = aboutCollection[0];
-
-const {
-  headline,
-  nda: { headline: ndaHeadline, images },
-  knowMore: { headline: knowMoreHeadline, CTA },
-  items,
-} = about.data;
-
 type AboutItem = {
   headline: string;
   type: string;
@@ -27,9 +10,24 @@ type AboutItem = {
   tags: string[];
   link: { url: string; label: string };
 };
+
+const aboutCollection: AboutEntry[] = await getCollection('about');
+if (aboutCollection.length === 0) {
+  throw new Error('About page not found in copy collection');
+}
+
+const about: AboutEntry = aboutCollection[0];
+const {
+  headline,
+  nda: { headline: ndaHeadline, images },
+  knowMore: { headline: knowMoreHeadline, CTA },
+  items,
+} = about.data;
+
+const ABOUT_TITLE: string = 'About | Marco Mazzai';
 ---
 
-<BaseLayout title='About | Marco Mazzai'>
+<BaseLayout title={ABOUT_TITLE}>
   <h2>{headline}</h2>
   <!-- Accordion (Desktop Navigation) -->
   <ul>
