@@ -1,31 +1,40 @@
 ---
+import Footer from '../components/Footer.astro';
+import Navigation from '../components/Navigation.astro';
+import '../styles/global.css';
+
 interface BaseLayoutProps {
   title?: string;
 }
 
-import Footer from '../components/Footer.astro';
-import Navigation from '../components/Navigation.astro';
-
 const { title } = Astro.props as BaseLayoutProps;
 
-import '../styles/global.css';
+const DEFAULT_TITLE: string = 'Marco Mazzai | Portfolio & Blog';
+const META_KEYWORDS: string = '';
+const META_DESCRIPTION: string = '';
+const OG_TITLE: string = '';
+const OG_URL: string = '';
+const OG_IMAGE: string = '';
+const OG_TYPE: string = '';
+const OG_DESCRIPTION: string = '';
+const OG_LOCALE: string = '';
 ---
 
 <html lang='en'>
   <head>
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <title>{title ?? 'Marco Mazzai | Portfolio & Blog'}</title>
+    <title>{title ?? DEFAULT_TITLE}</title>
 
     <!-- SEO + Social Meta -->
-    <meta name='keywords' content='' />
-    <meta name='description' content='' />
-    <meta property='og:title' content='' />
-    <meta property='og:url' content='' />
-    <meta property='og:image' content='' />
-    <meta property='og:type' content='' />
-    <meta property='og:description' content='' />
-    <meta property='og:locale' content='' />
+    <meta name='keywords' content={META_KEYWORDS} />
+    <meta name='description' content={META_DESCRIPTION} />
+    <meta property='og:title' content={OG_TITLE} />
+    <meta property='og:url' content={OG_URL} />
+    <meta property='og:image' content={OG_IMAGE} />
+    <meta property='og:type' content={OG_TYPE} />
+    <meta property='og:description' content={OG_DESCRIPTION} />
+    <meta property='og:locale' content={OG_LOCALE} />
   </head>
   <body>
     <Navigation />
