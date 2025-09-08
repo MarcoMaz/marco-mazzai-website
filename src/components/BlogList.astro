@@ -11,8 +11,15 @@ if (blogPageCollection.length === 0) {
   throw new Error('Blog list not found in copy collection');
 }
 
-const blogPage = blogPageCollection[0];
+const blogPage: BlogPageEntry = blogPageCollection[0];
 const { headline } = blogPage.data;
+
+const getReadingTime = (content: string, wordsPerMinute = 200): number => {
+  const wordCount = content.trim().split(/\s+/).length;
+  return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
+};
+
+const MIN_READ_TEXT: string = 'min read';
 
 const sortedPosts: BlogEntry[] = posts.sort(
   (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => {
@@ -25,13 +32,6 @@ const sortedPosts: BlogEntry[] = posts.sort(
     return dateB.getTime() - dateA.getTime();
   }
 );
-
-const getReadingTime = (content: string, wordsPerMinute = 200): number => {
-  const wordCount = content.trim().split(/\s+/).length;
-  return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
-};
-
-const MIN_READ_TEXT: string = 'min read';
 ---
 
 <h2>{headline}</h2>
@@ -43,7 +43,8 @@ const MIN_READ_TEXT: string = 'min read';
 
       return (
         <li>
-          <a href={`/blog/${slug}`}>{title}</a> — {readingTime} {MIN_READ_TEXT}
+          <a href={`/blog/${slug}`}>{title}</a> —{' '}
+          {`${readingTime} ${MIN_READ_TEXT}`}
         </li>
       );
     })

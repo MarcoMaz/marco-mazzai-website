@@ -5,14 +5,11 @@ type NavigationEntry = CollectionEntry<'navigation'>;
 
 const navigationCollection: NavigationEntry[] =
   await getCollection('navigation');
-
 if (navigationCollection.length === 0) {
   throw new Error('Navigation not found in copy collection');
 }
 
-const nav: NavigationEntry = navigationCollection[0];
-
-const items = nav.data.items;
+const { items } = navigationCollection[0].data;
 ---
 
 <nav>

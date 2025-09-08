@@ -4,11 +4,9 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 type FooterEntry = CollectionEntry<'footer'>;
 
 const footerCollection: FooterEntry[] = await getCollection('footer');
-
 if (footerCollection.length === 0) {
   throw new Error('Footer not found in copy collection');
 }
-
 const footer: FooterEntry = footerCollection[0];
 
 const {
@@ -17,7 +15,6 @@ const {
 } = footer.data;
 
 const currentYear = new Date().getFullYear();
-
 const COPYRIGHT_TEXT: string = 'Marco Mazzai. All rights reserved.';
 ---
 
@@ -27,5 +24,5 @@ const COPYRIGHT_TEXT: string = 'Marco Mazzai. All rights reserved.';
     target='_blank'
     class='external-link'>{label}</a
   >
-  <p>&copy; {currentYear} {COPYRIGHT_TEXT}</p>
+  <p>&copy; {`${currentYear} ${COPYRIGHT_TEXT}`}</p>
 </footer>
