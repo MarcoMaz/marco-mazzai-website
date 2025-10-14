@@ -2503,10 +2503,10 @@ vitefu@^1.0.6:
   resolved "https://registry.yarnpkg.com/vitefu/-/vitefu-1.1.1.tgz#c39b7e4c91bf2f6c590fb96e0758f394dff5795b"
   integrity sha512-B/Fegf3i8zh0yFbpzZ21amWzHmuNlLlmJT6n7bu5e+pCHUKQIfXSYokrqOBGEMMe9UG2sostKQF9mml/vYaWJQ==
 
-wa11y-ui@^0.0.10:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/wa11y-ui/-/wa11y-ui-0.0.10.tgz#a8e8ecd0e3dabd32bfe3ed6e070a004255e12492"
-  integrity sha512-7FvykBRyla3WcyrxrDmbCgmD+u91s1k2/QvyksPyktK3kh4aOOK9FKcjin8QykF2KpmVP0mHb4I5cjJQ14DCRw==
+wa11y-ui@^0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/wa11y-ui/-/wa11y-ui-0.0.11.tgz#143f17688efe453ecd57fa83c71361066af5c933"
+  integrity sha512-62+KBtAAvhaidiwB3wOpWjZcc5SS3F80e7tDRt0ZOZwHSXs8764v7bN4+27QXUlgpiaB7FLHC5ylLRiaGQojtg==
   dependencies:
     lit "^3.1.4"
 
