@@ -31,27 +31,27 @@ const pageTitle = PAGE_TITLES.about;
 <BaseLayout title={pageTitle}>
   <h2>{headline}</h2>
   <!-- Accordion (Desktop Navigation) -->
-  <ul>
+  <wa-accordion collapseOthers>
     {
-      items.map((item: AboutItem) => (
-        <li>
-          <h3>{item.headline}</h3>
-          <em>{item.type}</em>
-          <p>{item.description}</p>
-          <div class='chip-group'>
-            {item.tags.map((tag) => (
-              <span class='chip'>{tag}</span>
-            ))}
+      items.map(({headline, type, description, tags, link}: AboutItem) => (
+          <h3>{headline}</h3>
+          <div>
+            <em>{type}</em>
+            <p>{description}</p>
+            <div>
+              {tags.map((tag) => (
+                <span>{tag}</span>
+              ))}
+            </div>
+            {link.url && (
+              <a href={link.url} target='_blank'>
+                {link.label}
+              </a>
+            )}
           </div>
-          {item.link.url && (
-            <a href={item.link.url} target='_blank'>
-              {item.link.label}
-            </a>
-          )}
-        </li>
       ))
     }
-  </ul>
+  </wa-accordion>
   <!-- Carousel (Mobile Navigation) -->
   <section class='carousel' aria-label='Main Topic'>
     <ul class='carousel__cards'>
@@ -117,3 +117,7 @@ const pageTitle = PAGE_TITLES.about;
     {CTA.map(({ url, label }) => <li>{url && <a href={url}>{label}</a>}</li>)}
   </ul>
 </BaseLayout>
+
+<script>
+  import 'wa11y-ui/wa-accordion';
+</script>
