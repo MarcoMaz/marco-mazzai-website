@@ -53,57 +53,29 @@ const pageTitle = PAGE_TITLES.about;
     }
   </wa-accordion>
   <!-- Carousel (Mobile Navigation) -->
-  <section class='carousel' aria-label='Main Topic'>
-    <ul class='carousel__cards'>
-      {
-        items.map((item: AboutItem) => (
-          <li class='carousel__card'>
-            <em>{item.type}</em>
-            <p>{item.description}</p>
-            <div class='chip-group'>
-              {item.tags.map((chip) => (
-                <span class='chip'>{chip}</span>
+  <wa-carousel ariaLabel="Main Topic">
+    {
+      items.map(({headline, type, description, tags, link}: AboutItem) => (
+          <h3>{headline}</h3>
+          <div>
+            <em>{type}</em>
+            <p>{description}</p>
+            <div>
+              {tags.map((tag) => (
+                <span>{tag}</span>
               ))}
             </div>
-            {item.link.url && (
-              <a href={item.link.url} target='_blank' class='external-link'>
-                {item.link.label}
+            {link.url && (
+              <a href={link.url} target='_blank'>
+                {link.label}
               </a>
             )}
-          </li>
-        ))
-      }
-    </ul>
-    <ul class='carousel__controls'>
-      <li>
-        <button type='button' aria-label='Previous item'> </button>
-      </li>
-      <li>
-        <button type='button' aria-label='Next item'> </button>
-      </li>
-    </ul>
-    <ul class='carousel__navigation'>
-      {
-        items.map((_, index) => (
-          <li>
-            <button
-              type='button'
-              aria-label={`Topic ${index + 1}`}
-              class={index === 0 ? '-full' : ''}
-              data-slide={index}
-            />
-          </li>
-        ))
-      }
-    </ul>
-    <div
-      role='status'
-      aria-live='polite'
-      aria-atomic='true'
-      aria-label={`Item 1 of ${items.length}`}
-    >
-    </div>
-  </section>
+          </div>
+          <p>CAPTION GOES HERE</p>
+      ))
+    }
+  </wa-carousel>
+
   <h2>{ndaHeadline}</h2>
   <div class='logos'>
     {
@@ -120,4 +92,5 @@ const pageTitle = PAGE_TITLES.about;
 
 <script>
   import 'wa11y-ui/wa-accordion';
+  import 'wa11y-ui/wa-carousel';
 </script>
