@@ -83,7 +83,7 @@ const footerCollection = defineCollection({
 const navigationCollection = defineCollection({
   loader: glob({ pattern: 'navigation.md', base: './src/content/copy' }),
   schema: z.object({
-    items: z.array(
+    navigationItems: z.array(
       z.object({
         label: z.string(),
         url: z.string(),

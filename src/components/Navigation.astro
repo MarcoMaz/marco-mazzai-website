@@ -9,14 +9,14 @@ if (navigationCollection.length === 0) {
   throw new Error('Navigation not found in copy collection');
 }
 
-const { items } = navigationCollection[0].data;
+const { navigationItems } = navigationCollection[0].data;
 ---
 
 <nav>
   <ul>
     {
-      items.map((item) => {
-        const { url, label } = item;
+      navigationItems.map((navigationItem) => {
+        const { url, label } = navigationItem;
         return (
           <li>
             <a href={url}>{label}</a>
