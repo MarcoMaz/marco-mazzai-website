@@ -1,26 +1,32 @@
 ---
 headline: 'Selected Works'
 petProjects:
-  - id: '1'
-    headline: 'RenatoDoList'
+  - headline: 'RenatoDoList'
     type: 'PWA'
     description: 'Basic metronome with tempo and time signature customisation.'
+    date:
+      from: 2024-07-01
+      to: 2024-07-08
     tags: ['JS', 'React', 'HTML']
     link:
       label: 'Sample Text'
       url: '#'
-  - id: '2'
-    headline: 'Polyrhythmic Metronome'
+  - headline: 'Polyrhythmic Metronome'
     type: 'Web App'
     description: 'Something somtehing...'
+    date:
+      from: 2024-07-01
+      to: 2024-07-08
     tags: ['JS', 'React', 'HTML']
     link:
       label: 'Sample Text'
       url: '#'
-  - id: '3'
-    headline: 'Picker'
+  - headline: 'Picker'
     type: 'Web Component'
     description: 'LALALALLALALALAalllala'
+    date:
+      from: 2024-07-01
+      to: 2024-07-08
     tags: ['JS', 'React', 'HTML']
     link:
       label: 'Sample Text'

@@ -32,6 +32,10 @@ const aboutCollection = defineCollection({
       z.object({
         type: z.string(),
         description: z.string(),
+        date: z.object({
+          from: z.date(),
+          to: z.date(),
+        }),
         headline: z.string(),
         tags: z.array(z.string()),
         link: z.object({

@@ -8,6 +8,10 @@ type AboutItem = {
   headline: string;
   type: string;
   description: string;
+  date: {
+    from: Date;
+    to?: Date | 'Present';
+  };
   tags: string[];
   link: { url: string; label: string };
 };
@@ -33,11 +37,12 @@ const pageTitle = PAGE_TITLES.about;
   <!-- Accordion (Desktop Navigation) -->
   <wa-accordion collapseOthers>
     {
-      petProjects.map(({headline, type, description, tags, link}: AboutItem) => (
+      petProjects.map(({headline, type, description, date, tags, link}: AboutItem) => (
           <h3>{headline}</h3>
           <div>
             <em>{type}</em>
             <p>{description}</p>
+            <span>{date.from} - {date.to}</span>
             <div>
               {tags.map((tag) => (
                 <span>{tag}</span>
@@ -55,11 +60,12 @@ const pageTitle = PAGE_TITLES.about;
   <!-- Carousel (Mobile Navigation) -->
   <wa-carousel ariaLabel="Main Topic">
     {
-      petProjects.map(({headline, type, description, tags, link}: AboutItem) => (
+      petProjects.map(({headline, type, description, date, tags, link}: AboutItem) => (
           <h3>{headline}</h3>
           <div>
             <em>{type}</em>
             <p>{description}</p>
+            <span>{date.from} - {date.to}</span>
             <div>
               {tags.map((tag) => (
                 <span>{tag}</span>
