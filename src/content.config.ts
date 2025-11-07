@@ -115,16 +115,18 @@ export const PAGE_TITLES = {
 // Meta
 // -------------------------
 export const META = {
-  keywords: '',
-  description: '',
-  title: '',
+  keywords:
+    'Marco Mazzai, frontend developer, accessibility expert, a11y, design systems, web accessibility, React developer, UI engineer, WCAG, web performance, web site',
+  description:
+    'Marco Mazzai is a frontend developer specialized in web accessibility and design systems. He creates scalable, inclusive, and high-performance user interfaces that meet WCAG standards and deliver exceptional user experiences.',
+  title: 'Marco Mazzai | Frontend Developer — Accessibility & Design Systems',
   og: {
-    title: '',
+    title: 'Marco Mazzai | Frontend Developer — Accessibility & Design Systems',
     url: '',
     image: '',
-    type: '',
-    description: '',
-    locale: '',
+    type: 'website',
+    description:
+      'Portfolio and blog by Marco Mazzai, frontend developer focused on accessibility and design systems — crafting inclusive, scalable web experiences.',
+    locale: 'en_US',
   },
 };
-
