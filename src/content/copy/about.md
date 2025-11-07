@@ -1,6 +1,6 @@
 ---
 headline: 'Selected Works'
-items:
+petProjects:
   - id: '1'
     headline: 'RenatoDoList'
     type: 'PWA'

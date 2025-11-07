@@ -22,7 +22,7 @@ const {
   headline,
   nda: { headline: ndaHeadline, images },
   knowMore: { headline: knowMoreHeadline, CTA },
-  items,
+  petProjects,
 } = about.data;
 
 const pageTitle = PAGE_TITLES.about;
@@ -33,7 +33,7 @@ const pageTitle = PAGE_TITLES.about;
   <!-- Accordion (Desktop Navigation) -->
   <wa-accordion collapseOthers>
     {
-      items.map(({headline, type, description, tags, link}: AboutItem) => (
+      petProjects.map(({headline, type, description, tags, link}: AboutItem) => (
           <h3>{headline}</h3>
           <div>
             <em>{type}</em>
@@ -55,7 +55,7 @@ const pageTitle = PAGE_TITLES.about;
   <!-- Carousel (Mobile Navigation) -->
   <wa-carousel ariaLabel="Main Topic">
     {
-      items.map(({headline, type, description, tags, link}: AboutItem) => (
+      petProjects.map(({headline, type, description, tags, link}: AboutItem) => (
           <h3>{headline}</h3>
           <div>
             <em>{type}</em>

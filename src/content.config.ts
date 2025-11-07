@@ -28,7 +28,7 @@ const aboutCollection = defineCollection({
   loader: glob({ pattern: 'about.md', base: './src/content/copy' }),
   schema: z.object({
     headline: z.string(),
-    items: z.array(
+    petProjects: z.array(
       z.object({
         id: z.string(),
         type: z.string(),
