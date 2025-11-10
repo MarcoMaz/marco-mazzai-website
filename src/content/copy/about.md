@@ -43,6 +43,28 @@ petProjects:
     preview:
       url: 'http://alice-marchetto.com/'
       title: 'Alice Marchetto live demo'
+  - headline: "Moody"
+    type: 'PWA'
+    description: 'Mock-up creating a playlist based on the user’s mood'
+    date:
+      from: 2021
+      to: 2021
+    tags: ['React', 'React Router', 'Scss', 'React Testing Library', 'Jest']
+    githubUrl: 'https://github.com/MarcoMaz/moody-app'
+    preview:
+      url: 'https://marcomaz.github.io/moody-app/#/'
+      title: 'Moody live demo'
+  - headline: "Renatodolist"
+    type: 'PWA'
+    description: 'To-do list with swipe touch event'
+    date:
+      from: 2021
+      to: 2022
+    tags: ['React', 'Typescript', 'Redux', 'React Router', 'Scss', 'React Testing Library', 'Jest']
+    githubUrl: 'https://github.com/MarcoMaz/renato-do-list'
+    preview:
+      url: 'https://marcomaz.github.io/renato-do-list/'
+      title: 'Renatodolist live demo'
 nda:
   headline: 'Nda work:'
   images:
