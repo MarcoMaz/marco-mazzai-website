@@ -14,7 +14,7 @@ type AboutItem = {
   description: string;
   date: { from: PartialDate; to?: PartialDate };
   tags: string[];
-  link: { url: string; };
+  githubUrl: string; 
   preview?: { title?: string; url: string; };
 };
 
@@ -74,7 +74,7 @@ const formatDateRange = (from: PartialDate, to?: PartialDate) => {
   <!-- Accordion (Desktop Navigation) -->
   <wa-accordion collapseOthers>
     {
-      petProjects.map(({headline, type, description, date, tags, link, preview}: AboutItem) => (
+      petProjects.map(({headline, type, description, date, tags, githubUrl, preview}: AboutItem) => (
           <h3>{headline}</h3>
           <div>
             <em>{type}</em>
@@ -85,8 +85,8 @@ const formatDateRange = (from: PartialDate, to?: PartialDate) => {
                 <span>{tag}</span>
               ))}
             </div>
-            {link.url && (
-              <a href={link.url} target='_blank'>
+            {githubUrl && (
+              <a href={githubUrl} target='_blank'>
                 Github
               </a>
             )}
@@ -100,7 +100,7 @@ const formatDateRange = (from: PartialDate, to?: PartialDate) => {
   <!-- Carousel (Mobile Navigation) -->
   <wa-carousel ariaLabel="Main Topic">
     {
-      petProjects.map(({headline, type, description, date, tags, link, preview}: AboutItem) => (
+      petProjects.map(({headline, type, description, date, tags, githubUrl, preview}: AboutItem) => (
           <h3>{headline}</h3>
           <div>
             <em>{type}</em>
@@ -111,8 +111,8 @@ const formatDateRange = (from: PartialDate, to?: PartialDate) => {
                 <span>{tag}</span>
               ))}
             </div>
-            {link.url && (
-              <a href={link.url} target='_blank'>
+            {githubUrl && (
+              <a href={githubUrl} target='_blank'>
                 Github
               </a>
             )}

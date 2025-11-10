@@ -8,8 +8,7 @@ petProjects:
       from: 2024-07-01
       to: Present
     tags: ['Lit', 'Typescript', 'Storybook', 'Vitest']
-    link:
-      url: 'https://github.com/MarcoMaz/wa11y'
+    githubUrl: 'https://github.com/MarcoMaz/wa11y'
     preview:
       url: 'https://wa11y-storybook.netlify.app/?path=/docs/atoms-button--buttoninfo'
       title: 'RenatoDoList live demo'
@@ -20,8 +19,7 @@ petProjects:
       from: 2024-07-01
       to: Present
     tags: ['JS', 'React', 'HTML']
-    link:
-      url: '#'
+    githubUrl: 'https://github.com/MarcoMaz/wa11y'
   - headline: 'Picker'
     type: 'Web Component'
     description: 'LALALALLALALALAalllala'
@@ -29,8 +27,7 @@ petProjects:
       from: 2024-07-01
       to: 2024-07-08
     tags: ['JS', 'React', 'HTML']
-    link:
-      url: '#'
+    githubUrl: 'https://github.com/MarcoMaz/wa11y'
 nda:
   headline: 'Nda work:'
   images:

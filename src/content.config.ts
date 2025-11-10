@@ -63,9 +63,7 @@ const aboutCollection = defineCollection({
         }),
         headline: z.string(),
         tags: z.array(z.string()),
-        link: z.object({
-          url: z.string(),
-        }),
+        githubUrl: z.string().url(),
         preview: z
           .object({
             title: z.string(),
