@@ -2,6 +2,31 @@ import { glob } from 'astro/loaders';
 import { defineCollection, z } from 'astro:content';
 
 // -------------------------
+// Helpers
+// -------------------------
+const partialDate = z.preprocess(
+  (v) => {
+    // pass through Date
+    if (v instanceof Date) return v;
+
+    // number year -> "YYYY"
+    if (typeof v === 'number') return String(v);
+
+    // keep strings as-is
+    if (typeof v === 'string') return v;
+
+    return v;
+  },
+  z.union([
+    z.literal('Present'),
+    z.date(),
+    z.string().regex(/^\d{4}$/), // YYYY
+    z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/), // YYYY-MM
+    z.string().regex(/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/), // YYYY-MM-DD
+  ])
+);
+
+// -------------------------
 // Collections
 // -------------------------
 const blogCollection = defineCollection({
@@ -33,8 +58,8 @@ const aboutCollection = defineCollection({
         type: z.string(),
         description: z.string(),
         date: z.object({
-          from: z.date(),
-          to: z.union([z.date(), z.literal('Present')]).optional(),
+          from: partialDate,
+          to: partialDate.optional(),
         }),
         headline: z.string(),
         tags: z.array(z.string()),
@@ -45,7 +70,7 @@ const aboutCollection = defineCollection({
         preview: z
           .object({
             title: z.string(),
-            url: z.string(), 
+            url: z.string(),
           })
           .optional(),
       })

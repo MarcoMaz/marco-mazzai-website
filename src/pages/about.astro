@@ -4,15 +4,15 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import { PAGE_TITLES } from '../content.config';
 import ProjectIframe from '../components/ProjectIframe.astro';
 
+type PartialDate = Date | 'Present' | string;
+
 type AboutEntry = CollectionEntry<'about'>;
+
 type AboutItem = {
   headline: string;
   type: string;
   description: string;
-  date: {
-    from: Date;
-    to?: Date | 'Present';
-  };
+  date: { from: PartialDate; to?: PartialDate };
   tags: string[];
   link: { url: string; label: string };
   preview?: { title?: string; url: string; };
@@ -33,24 +33,38 @@ const {
 
 const pageTitle = PAGE_TITLES.about;
 
-const formatDate = (value: Date | 'Present' | string | undefined): string => {
-  if (value === 'Present') return 'Present';
-  if (!value) return '';
-  const date = value instanceof Date ? value : new Date(value);
-  // Output: 8 July 1984
-  return date.toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
+const monthName = (m: number) =>
+  new Date(2000, m - 1, 1).toLocaleString('en-GB', { month: 'long' });
+
+const formatPartialDate = (v: PartialDate | undefined): string => {
+  if (v === 'Present') return 'Present';
+  if (!v) return '';
+
+  if (v instanceof Date) {
+    return v.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  // v is string at this point (numbers were coerced)
+  if (/^\d{4}$/.test(v)) return v; // "2024"
+
+  const ym = v.match(/^(\d{4})-(\d{2})$/);
+  if (ym) {
+    const [, y, m] = ym;
+    return `${monthName(Number(m))} ${y}`; // "July 2024"
+  }
+
+  const ymd = v.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (ymd) {
+    const d = new Date(v);
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  return String(v); // fallback
 };
 
-const formatDateRange = (
-  from: Date | string,
-  to?: Date | 'Present' | string
-): string => {
-  const start = formatDate(from);
-  const end = formatDate(to);
+const formatDateRange = (from: PartialDate, to?: PartialDate) => {
+  const start = formatPartialDate(from);
+  const end = formatPartialDate(to);
   return end ? `${start} – ${end}` : start;
 };
 ---
