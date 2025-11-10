@@ -34,7 +34,7 @@ const aboutCollection = defineCollection({
         description: z.string(),
         date: z.object({
           from: z.date(),
-          to: z.date(),
+          to: z.union([z.date(), z.literal('Present')]).optional(),
         }),
         headline: z.string(),
         tags: z.array(z.string()),

@@ -16,7 +16,7 @@ petProjects:
     description: 'Something somtehing...'
     date:
       from: 2024-07-01
-      to: 2024-07-08
+      to: Present
     tags: ['JS', 'React', 'HTML']
     link:
       label: 'Sample Text'

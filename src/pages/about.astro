@@ -30,6 +30,27 @@ const {
 } = about.data;
 
 const pageTitle = PAGE_TITLES.about;
+
+const formatDate = (value: Date | 'Present' | string | undefined): string => {
+  if (value === 'Present') return 'Present';
+  if (!value) return '';
+  const date = value instanceof Date ? value : new Date(value);
+  // Output: 8 July 1984
+  return date.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+};
+
+const formatDateRange = (
+  from: Date | string,
+  to?: Date | 'Present' | string
+): string => {
+  const start = formatDate(from);
+  const end = formatDate(to);
+  return end ? `${start} – ${end}` : start;
+};
 ---
 
 <BaseLayout title={pageTitle}>
@@ -42,7 +63,7 @@ const pageTitle = PAGE_TITLES.about;
           <div>
             <em>{type}</em>
             <p>{description}</p>
-            <span>{date.from} - {date.to}</span>
+            <span>{formatDateRange(date.from, date.to)}</span>
             <div>
               {tags.map((tag) => (
                 <span>{tag}</span>
@@ -65,7 +86,7 @@ const pageTitle = PAGE_TITLES.about;
           <div>
             <em>{type}</em>
             <p>{description}</p>
-            <span>{date.from} - {date.to}</span>
+            <span>{formatDateRange(date.from, date.to)}</span>
             <div>
               {tags.map((tag) => (
                 <span>{tag}</span>
