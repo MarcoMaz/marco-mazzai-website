@@ -105,6 +105,8 @@ const footerCollection = defineCollection({
   loader: glob({ pattern: 'footer.md', base: './src/content/copy' }),
   schema: z.object({
     headline: z.string(),
+    builtWith: z.string(),
+    copyright: z.string(),
     CTA: z.object({
       label: z.string(),
       url: z.string().url(),
