@@ -1,16 +1,16 @@
 ---
 headline: 'Selected Works'
 petProjects:
-  - headline: 'RenatoDoList'
-    type: 'PWA'
-    description: 'Basic metronome with tempo and time signature customisation.'
+  - headline: 'Wa11y'
+    type: 'Component Library'
+    description: 'Unstyled UI library of Lit’s Web Components I built to showcase my expertise in frontend and accessibility.'
     date:
       from: 2024-07-01
-      to: 2024-07-08
-    tags: ['JS', 'React', 'HTML']
+      to: Present
+    tags: ['Lit', 'Typescript', 'Storybook', 'Vitest']
     link:
-      label: 'Sample Text'
-      url: '#'
+      label: 'Github Link'
+      url: 'https://github.com/MarcoMaz/wa11y'
     preview:
       url: 'https://wa11y-storybook.netlify.app/?path=/docs/atoms-button--buttoninfo'
       title: 'RenatoDoList live demo'
