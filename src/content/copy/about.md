@@ -11,6 +11,9 @@ petProjects:
     link:
       label: 'Sample Text'
       url: '#'
+    preview:
+      url: 'https://wa11y-storybook.netlify.app/?path=/docs/atoms-button--buttoninfo'
+      title: 'RenatoDoList live demo'
   - headline: 'Polyrhythmic Metronome'
     type: 'Web App'
     description: 'Something somtehing...'

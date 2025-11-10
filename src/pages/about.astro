@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { PAGE_TITLES } from '../content.config';
+import ProjectIframe from '../components/ProjectIframe.astro';
 
 type AboutEntry = CollectionEntry<'about'>;
 type AboutItem = {
@@ -14,6 +15,7 @@ type AboutItem = {
   };
   tags: string[];
   link: { url: string; label: string };
+  preview?: { title?: string; url: string; };
 };
 
 const aboutCollection: AboutEntry[] = await getCollection('about');
@@ -58,7 +60,7 @@ const formatDateRange = (
   <!-- Accordion (Desktop Navigation) -->
   <wa-accordion collapseOthers>
     {
-      petProjects.map(({headline, type, description, date, tags, link}: AboutItem) => (
+      petProjects.map(({headline, type, description, date, tags, link, preview}: AboutItem) => (
           <h3>{headline}</h3>
           <div>
             <em>{type}</em>
@@ -74,6 +76,9 @@ const formatDateRange = (
                 {link.label}
               </a>
             )}
+            {
+              preview && <ProjectIframe src={preview.url} title={preview.title}/>
+            }
           </div>
       ))
     }
@@ -81,7 +86,7 @@ const formatDateRange = (
   <!-- Carousel (Mobile Navigation) -->
   <wa-carousel ariaLabel="Main Topic">
     {
-      petProjects.map(({headline, type, description, date, tags, link}: AboutItem) => (
+      petProjects.map(({headline, type, description, date, tags, link, preview}: AboutItem) => (
           <h3>{headline}</h3>
           <div>
             <em>{type}</em>
@@ -97,6 +102,9 @@ const formatDateRange = (
                 {link.label}
               </a>
             )}
+            {
+              preview && <ProjectIframe src={preview.url} title={preview.title}/>
+            }
           </div>
           <p>{description}</p>
       ))

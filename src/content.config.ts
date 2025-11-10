@@ -42,6 +42,12 @@ const aboutCollection = defineCollection({
           label: z.string(),
           url: z.string(),
         }),
+        preview: z
+          .object({
+            title: z.string(),
+            url: z.string(), 
+          })
+          .optional(),
       })
     ),
     nda: z.object({
