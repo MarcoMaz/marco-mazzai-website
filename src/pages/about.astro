@@ -63,10 +63,15 @@ const formatPartialDate = (v: PartialDate | undefined): string => {
   return String(v); // fallback
 };
 
-const formatDateRange = (from: PartialDate, to?: PartialDate) => {
+const formatDateRange = (from: PartialDate, to?: PartialDate): string => {
   const start = formatPartialDate(from);
   const end = formatPartialDate(to);
-  return end ? `${start} – ${end}` : start;
+
+  // Normalize both values to plain strings for comparison
+  const same = start === end || !end;
+
+  if (same) return start; // show only one
+  return `${start} – ${end}`;
 };
 ---
 
