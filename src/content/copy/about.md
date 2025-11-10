@@ -1,5 +1,6 @@
 ---
 headline: 'Selected Works'
+githubLabel: 'GitHub'
 petProjects:
   - headline: 'Wa11y'
     type: 'Component Library'

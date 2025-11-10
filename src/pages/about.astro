@@ -26,6 +26,7 @@ if (aboutCollection.length === 0) {
 const about: AboutEntry = aboutCollection[0];
 const {
   headline,
+  githubLabel,
   nda: { headline: ndaHeadline, images },
   knowMore: { headline: knowMoreHeadline, CTA },
   petProjects,
@@ -87,7 +88,7 @@ const formatDateRange = (from: PartialDate, to?: PartialDate) => {
             </div>
             {githubUrl && (
               <a href={githubUrl} target='_blank'>
-                Github
+                {githubLabel}
               </a>
             )}
             {
@@ -113,7 +114,7 @@ const formatDateRange = (from: PartialDate, to?: PartialDate) => {
             </div>
             {githubUrl && (
               <a href={githubUrl} target='_blank'>
-                Github
+                {githubLabel}
               </a>
             )}
             {
