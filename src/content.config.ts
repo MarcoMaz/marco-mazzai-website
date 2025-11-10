@@ -64,7 +64,6 @@ const aboutCollection = defineCollection({
         headline: z.string(),
         tags: z.array(z.string()),
         link: z.object({
-          label: z.string(),
           url: z.string(),
         }),
         preview: z

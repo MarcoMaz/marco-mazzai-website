@@ -9,7 +9,6 @@ petProjects:
       to: Present
     tags: ['Lit', 'Typescript', 'Storybook', 'Vitest']
     link:
-      label: 'Github Link'
       url: 'https://github.com/MarcoMaz/wa11y'
     preview:
       url: 'https://wa11y-storybook.netlify.app/?path=/docs/atoms-button--buttoninfo'
@@ -22,7 +21,6 @@ petProjects:
       to: Present
     tags: ['JS', 'React', 'HTML']
     link:
-      label: 'Sample Text'
       url: '#'
   - headline: 'Picker'
     type: 'Web Component'
@@ -32,7 +30,6 @@ petProjects:
       to: 2024-07-08
     tags: ['JS', 'React', 'HTML']
     link:
-      label: 'Sample Text'
       url: '#'
 nda:
   headline: 'Nda work:'

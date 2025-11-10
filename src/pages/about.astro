@@ -14,7 +14,7 @@ type AboutItem = {
   description: string;
   date: { from: PartialDate; to?: PartialDate };
   tags: string[];
-  link: { url: string; label: string };
+  link: { url: string; };
   preview?: { title?: string; url: string; };
 };
 
@@ -87,7 +87,7 @@ const formatDateRange = (from: PartialDate, to?: PartialDate) => {
             </div>
             {link.url && (
               <a href={link.url} target='_blank'>
-                {link.label}
+                Github
               </a>
             )}
             {
@@ -113,7 +113,7 @@ const formatDateRange = (from: PartialDate, to?: PartialDate) => {
             </div>
             {link.url && (
               <a href={link.url} target='_blank'>
-                {link.label}
+                Github
               </a>
             )}
             {
