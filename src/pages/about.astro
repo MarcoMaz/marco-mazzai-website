@@ -18,19 +18,31 @@ type AboutItem = {
   preview?: { title?: string; url: string; };
 };
 
+type SocialLinksEntry = CollectionEntry<'socialLinks'>;
+
 const aboutCollection: AboutEntry[] = await getCollection('about');
 if (aboutCollection.length === 0) {
   throw new Error('About page not found in copy collection');
 }
-
 const about: AboutEntry = aboutCollection[0];
 const {
   headline,
   githubLabel,
   nda: { headline: ndaHeadline, images },
-  knowMore: { headline: knowMoreHeadline, CTA },
   petProjects,
 } = about.data;
+
+
+const socialLinksCollection: SocialLinksEntry[] = await getCollection('socialLinks');
+if (socialLinksCollection.length === 0) {
+  throw new Error('Social links not found in copy collection');
+}
+const socialLinks: SocialLinksEntry = socialLinksCollection[0];
+const {
+  headline: socialLinksHeadline,
+  CTA: socialLinksCTA,
+} = socialLinks.data;
+
 
 const pageTitle = PAGE_TITLES.about;
 
@@ -139,9 +151,9 @@ const formatDateRange = (from: PartialDate, to?: PartialDate): string => {
       ))
     }
   </div>
-  <h2>{knowMoreHeadline}</h2>
+  <h2>{socialLinksHeadline}</h2>
   <ul>
-    {CTA.map(({ url, label }) => <li>{url && <a href={url}>{label}</a>}</li>)}
+    {socialLinksCTA.map(({ url, label }) => <li>{url && <a href={url}>{label}</a>}</li>)}
   </ul>
 </BaseLayout>
 
