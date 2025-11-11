@@ -32,7 +32,6 @@ const {
   petProjects,
 } = about.data;
 
-
 const socialLinksCollection: SocialLinksEntry[] = await getCollection('socialLinks');
 if (socialLinksCollection.length === 0) {
   throw new Error('Social links not found in copy collection');
@@ -42,7 +41,6 @@ const {
   headline: socialLinksHeadline,
   CTA: socialLinksCTA,
 } = socialLinks.data;
-
 
 const pageTitle = PAGE_TITLES.about;
 
