@@ -12,7 +12,7 @@ if (blogPageCollection.length === 0) {
 }
 
 const blogPage: BlogPageEntry = blogPageCollection[0];
-const { headline } = blogPage.data;
+const { headline, description } = blogPage.data;
 
 const getReadingTime = (content: string, wordsPerMinute = 200): number => {
   const wordCount = content.trim().split(/\s+/).length;
@@ -35,6 +35,7 @@ const sortedPosts: BlogEntry[] = posts.sort(
 ---
 
 <h2>{headline}</h2>
+<p>{description}</p>
 <ul>
   {
     sortedPosts.map((post) => {

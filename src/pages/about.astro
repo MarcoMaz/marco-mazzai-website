@@ -8,7 +8,7 @@ type PartialDate = Date | 'Present' | string;
 
 type AboutEntry = CollectionEntry<'about'>;
 
-type AboutItem = {
+type ProjectItem = {
   headline: string;
   type: string;
   description: string;
@@ -17,8 +17,6 @@ type AboutItem = {
   githubUrl: string; 
   preview?: { title?: string; url: string; };
 };
-
-type SocialLinksEntry = CollectionEntry<'socialLinks'>;
 
 const aboutCollection: AboutEntry[] = await getCollection('about');
 if (aboutCollection.length === 0) {
@@ -29,8 +27,18 @@ const {
   headline,
   githubLabel,
   nda: { headline: ndaHeadline, images },
-  petProjects,
 } = about.data;
+
+type PetProjectsEntry = CollectionEntry<'petProjects'>;
+
+const petProjectsCollection: PetProjectsEntry[] = await getCollection('petProjects');
+if (petProjectsCollection.length === 0) {
+  throw new Error('Pet Projects not found in copy collection');
+}
+const petProjectsDoc: PetProjectsEntry = petProjectsCollection[0];
+const petProjects = petProjectsDoc.data.petProjectsItems as ProjectItem[];
+
+type SocialLinksEntry = CollectionEntry<'socialLinks'>;
 
 const socialLinksCollection: SocialLinksEntry[] = await getCollection('socialLinks');
 if (socialLinksCollection.length === 0) {
@@ -90,7 +98,7 @@ const formatDateRange = (from: PartialDate, to?: PartialDate): string => {
   <!-- Accordion (Desktop Navigation) -->
   <wa-accordion collapseOthers>
     {
-      petProjects.map(({headline, type, description, date, tags, githubUrl, preview}: AboutItem) => (
+      petProjects.map(({headline, type, description, date, tags, githubUrl, preview}: ProjectItem) => (
           <h3>{headline}</h3>
           <div>
             <em>{type}</em>
@@ -116,7 +124,7 @@ const formatDateRange = (from: PartialDate, to?: PartialDate): string => {
   <!-- Carousel (Mobile Navigation) -->
   <wa-carousel ariaLabel="Main Topic">
     {
-      petProjects.map(({headline, type, description, date, tags, githubUrl, preview}: AboutItem) => (
+      petProjects.map(({headline, type, description, date, tags, githubUrl, preview}: ProjectItem) => (
           <h3>{headline}</h3>
           <div>
             <em>{type}</em>

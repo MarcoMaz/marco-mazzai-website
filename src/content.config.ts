@@ -54,25 +54,6 @@ const aboutCollection = defineCollection({
   schema: z.object({
     headline: z.string(),
     githubLabel: z.string(),
-    petProjects: z.array(
-      z.object({
-        type: z.string(),
-        description: z.string(),
-        date: z.object({
-          from: partialDate,
-          to: partialDate.optional(),
-        }),
-        headline: z.string(),
-        tags: z.array(z.string()),
-        githubUrl: z.string().url(),
-        preview: z
-          .object({
-            title: z.string(),
-            url: z.string(),
-          })
-          .optional(),
-      })
-    ),
     nda: z.object({
       headline: z.string(),
       images: z.array(
@@ -85,10 +66,36 @@ const aboutCollection = defineCollection({
   }),
 });
 
+const petProjectsCollection = defineCollection({
+  loader: glob({ pattern: 'petProjects.md', base: './src/content/copy' }),
+  schema: z.object({
+    petProjectsItems: z.array(
+      z.object({
+        headline: z.string(),
+        type: z.string(),
+        description: z.string(),
+        date: z.object({
+          from: partialDate,
+          to: partialDate.optional(),
+        }),
+        tags: z.array(z.string()),
+        githubUrl: z.string().url(),
+        preview: z
+          .object({
+            title: z.string().optional(),
+            url: z.string(),
+          })
+          .optional(),
+      })
+    ),
+  }),
+});
+
 const blogPageCollection = defineCollection({
   loader: glob({ pattern: 'blog.md', base: './src/content/copy' }),
   schema: z.object({
     headline: z.string(),
+    description: z.string(),
   }),
 });
 
@@ -135,6 +142,7 @@ export const collections = {
   blog: blogCollection,
   home: homeCollection,
   about: aboutCollection,
+  petProjects: petProjectsCollection,
   blogPage: blogPageCollection,
   footer: footerCollection,
   navigation: navigationCollection,
