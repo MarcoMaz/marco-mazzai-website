@@ -1,0 +1,19 @@
+---
+tagsCodingLanguages:
+  - React and Vue
+  - Web Components and Lit
+  - React Router and TanStack (React Query, React Table)
+  - Javscript, Typescript and Node.js
+  - Scss, Css3 and Tailwind
+  - Astro, NextJS and Gatsby
+  - GraphQL and Zod
+  - Storybook
+  - PWA, Canvas API and WebAudio API
+  - Redux, Zustand and MobX
+  - Vite and Webpack
+  - Jest, Vitest, React Testing Library and Cypress
+  - BackstopJs and Argos
+  - Git, Github and Gitlab
+  - Docker
+  - Slack and Jira
+---

@@ -66,6 +66,16 @@ const aboutCollection = defineCollection({
   }),
 });
 
+const tagsCodingLanguagesCollection = defineCollection({
+  loader: glob({
+    pattern: 'tagsCodingLanguages.md',
+    base: './src/content/copy',
+  }),
+  schema: z.object({
+    tagsCodingLanguages: z.array(z.string()),
+  }),
+});
+
 const petProjectsCollection = defineCollection({
   loader: glob({ pattern: 'petProjects.md', base: './src/content/copy' }),
   schema: z.object({
@@ -118,7 +128,11 @@ const educationCollection = defineCollection({
         category: z.enum(['Frontend', 'Accessibility']),
         sections: z.array(
           z.object({
-            type: z.enum(['Certifications', 'Advanced Courses', 'Conferences and Webinars']),
+            type: z.enum([
+              'Certifications',
+              'Advanced Courses',
+              'Conferences and Webinars',
+            ]),
             date: z
               .object({
                 from: partialDate.optional(),
@@ -184,6 +198,7 @@ export const collections = {
   blog: blogCollection,
   home: homeCollection,
   about: aboutCollection,
+  tagsCodingLanguages: tagsCodingLanguagesCollection,
   petProjects: petProjectsCollection,
   workExperiences: workExperiencesCollection,
   education: educationCollection,
