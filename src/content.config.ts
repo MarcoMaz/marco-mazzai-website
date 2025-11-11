@@ -97,6 +97,7 @@ const footerCollection = defineCollection({
   schema: z.object({
     headline: z.string(),
     builtWith: z.string(),
+    orFindMe: z.string(),
     copyright: z.string(),
     CTA: z.object({
       label: z.string(),

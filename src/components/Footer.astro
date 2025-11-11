@@ -12,6 +12,7 @@ const footer: FooterEntry = footerCollection[0];
 const {
   headline,
   builtWith,
+  orFindMe,
   copyright,
   CTA: { label, url },
 } = footer.data;
@@ -25,5 +26,6 @@ const currentYear: number = new Date().getFullYear();
     target='_blank'
     class='external-link'>{label}</a
   >
+  {orFindMe}
   <p>{builtWith} &copy; {`${currentYear} ${copyright}`}</p>
 </footer>
