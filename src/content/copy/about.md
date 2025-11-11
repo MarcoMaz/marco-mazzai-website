@@ -72,8 +72,6 @@ nda:
       src: '/images/bosch-logo.png'
     - alt: 'mercedes logo'
       src: '/images/mercedes-logo.png'
-    - alt: 'olymp logo'
-      src: '/images/olymp-logo.png'
 knowMore:
   headline: 'Know more:'
   CTA:
