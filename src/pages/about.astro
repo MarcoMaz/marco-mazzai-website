@@ -18,6 +18,15 @@ type ProjectItem = {
   preview?: { title?: string; url: string; };
 };
 
+type WorkExperienceItem = {
+  headline: string;
+  description: string;
+  role: string;
+  date: { from: PartialDate; to?: PartialDate };
+  location: string;
+  tasks: string[];
+};
+
 const aboutCollection: AboutEntry[] = await getCollection('about');
 if (aboutCollection.length === 0) {
   throw new Error('About page not found in copy collection');
@@ -37,6 +46,15 @@ if (petProjectsCollection.length === 0) {
 }
 const petProjectsDoc: PetProjectsEntry = petProjectsCollection[0];
 const petProjects = petProjectsDoc.data.petProjectsItems as ProjectItem[];
+
+type WorkExperiencesEntry = CollectionEntry<'workExperiences'>;
+
+const workExperiencesCollection: WorkExperiencesEntry[] = await getCollection('workExperiences');
+if (workExperiencesCollection.length === 0) {
+  throw new Error('Pet Projects not found in copy collection');
+}
+const workExperiencesDoc: WorkExperiencesEntry = workExperiencesCollection[0];
+const workExperiences = workExperiencesDoc.data.workExperiencesItems as WorkExperienceItem[];
 
 type SocialLinksEntry = CollectionEntry<'socialLinks'>;
 
@@ -148,6 +166,24 @@ const formatDateRange = (from: PartialDate, to?: PartialDate): string => {
       ))
     }
   </wa-carousel>
+  <ul>
+
+    {
+      workExperiences.map(({ headline, description, role, date, location, tasks }) => (
+        <li>
+          <h3>{headline}</h3>
+          <div>
+            <em>{role}</em> — <span>{location}</span>
+            <p>{description}</p>
+            <span>{formatDateRange(date.from, date.to)}</span>
+            <ul>
+              {tasks.map((t) => <li>{t}</li>)}
+            </ul>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
 
   <h2>{ndaHeadline}</h2>
   <div class='logos'>

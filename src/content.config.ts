@@ -91,6 +91,25 @@ const petProjectsCollection = defineCollection({
   }),
 });
 
+const workExperiencesCollection = defineCollection({
+  loader: glob({ pattern: 'workExperiences.md', base: './src/content/copy' }),
+  schema: z.object({
+    workExperiencesItems: z.array(
+      z.object({
+        headline: z.string(),
+        description: z.string(),
+        role: z.string(),
+        date: z.object({
+          from: partialDate,
+          to: partialDate.optional(),
+        }),
+        location: z.string(),
+        tasks: z.array(z.string()),
+      })
+    ),
+  }),
+});
+
 const blogPageCollection = defineCollection({
   loader: glob({ pattern: 'blog.md', base: './src/content/copy' }),
   schema: z.object({
@@ -143,6 +162,7 @@ export const collections = {
   home: homeCollection,
   about: aboutCollection,
   petProjects: petProjectsCollection,
+  workExperiences: workExperiencesCollection,
   blogPage: blogPageCollection,
   footer: footerCollection,
   navigation: navigationCollection,
