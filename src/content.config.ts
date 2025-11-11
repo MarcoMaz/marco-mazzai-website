@@ -110,6 +110,29 @@ const workExperiencesCollection = defineCollection({
   }),
 });
 
+const educationCollection = defineCollection({
+  loader: glob({ pattern: 'education.md', base: './src/content/copy' }),
+  schema: z.object({
+    educationItems: z.array(
+      z.object({
+        category: z.enum(['Frontend', 'Accessibility']),
+        sections: z.array(
+          z.object({
+            type: z.enum(['Certifications', 'Advanced Courses', 'Conferences and Webinars']),
+            date: z
+              .object({
+                from: partialDate.optional(),
+                to: partialDate.optional(),
+              })
+              .optional(),
+            items: z.array(z.string()),
+          })
+        ),
+      })
+    ),
+  }),
+});
+
 const blogPageCollection = defineCollection({
   loader: glob({ pattern: 'blog.md', base: './src/content/copy' }),
   schema: z.object({
@@ -163,6 +186,7 @@ export const collections = {
   about: aboutCollection,
   petProjects: petProjectsCollection,
   workExperiences: workExperiencesCollection,
+  education: educationCollection,
   blogPage: blogPageCollection,
   footer: footerCollection,
   navigation: navigationCollection,

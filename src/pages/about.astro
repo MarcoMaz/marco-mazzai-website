@@ -56,6 +56,25 @@ if (workExperiencesCollection.length === 0) {
 const workExperiencesDoc: WorkExperiencesEntry = workExperiencesCollection[0];
 const workExperiences = workExperiencesDoc.data.workExperiencesItems as WorkExperienceItem[];
 
+type EducationItem = {
+  category: 'Frontend' | 'Accessibility';
+  sections: Array<{
+    type: 'Certifications' | 'Advanced Courses' | 'Conferences and Webinars';
+    date?: { from?: PartialDate; to?: PartialDate };
+    items: string[];
+  }>;
+};
+
+type EducationEntry = CollectionEntry<'education'>;
+
+const educationCollection: EducationEntry[] = await getCollection('education');
+if (educationCollection.length === 0) {
+  throw new Error('Education not found in copy collection');
+}
+const educationDoc: EducationEntry = educationCollection[0];
+const educationItems = educationDoc.data.educationItems as EducationItem[];
+
+
 type SocialLinksEntry = CollectionEntry<'socialLinks'>;
 
 const socialLinksCollection: SocialLinksEntry[] = await getCollection('socialLinks');
@@ -184,6 +203,30 @@ const formatDateRange = (from: PartialDate, to?: PartialDate): string => {
       ))
     }
   </ul>
+  <ul>
+
+    {educationItems.map(({ category, sections }) => (
+    <li>
+      <h3>{category}</h3>
+
+      {sections.map(({ type, date, items }) => (
+        <article>
+          <h4>
+            {type}
+            {date && (formatDateRange(date.from ?? '', date.to ?? '') && (
+              <span> — {formatDateRange(date.from ?? '', date.to ?? '')}</span>
+            ))}
+          </h4>
+
+          <ul>
+            {items.map((label) => <li>{label}</li>)}
+          </ul>
+        </article>
+      ))}
+    </li>
+  ))}
+  </ul>
+
 
   <h2>{ndaHeadline}</h2>
   <div class='logos'>
