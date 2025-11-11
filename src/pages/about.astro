@@ -37,7 +37,6 @@ const { Content } = await render(about);
 
 const {
   headline,
-  githubLabel,
   nda: { headline: ndaHeadline, images },
 } = about.data;
 
@@ -140,6 +139,8 @@ const formatDateRange = (from: PartialDate, to?: PartialDate): string => {
   if (same) return start; // show only one
   return `${start} – ${end}`;
 };
+
+const GITHUB_LABEL: string = 'Github'
 ---
 
 <BaseLayout title={pageTitle}>
@@ -162,7 +163,7 @@ const formatDateRange = (from: PartialDate, to?: PartialDate): string => {
             </div>
             {githubUrl && (
               <a href={githubUrl} target='_blank'>
-                {githubLabel}
+                {GITHUB_LABEL}
               </a>
             )}
             {
@@ -188,7 +189,7 @@ const formatDateRange = (from: PartialDate, to?: PartialDate): string => {
             </div>
             {githubUrl && (
               <a href={githubUrl} target='_blank'>
-                {githubLabel}
+                {GITHUB_LABEL}
               </a>
             )}
             {

@@ -53,7 +53,6 @@ const aboutCollection = defineCollection({
   loader: glob({ pattern: 'about.md', base: './src/content/copy' }),
   schema: z.object({
     headline: z.string(),
-    githubLabel: z.string(),
     nda: z.object({
       headline: z.string(),
       images: z.array(
