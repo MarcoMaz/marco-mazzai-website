@@ -2,22 +2,12 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import { PAGE_TITLES } from '../../content.config';
-import ProjectIframe from '../../components/ProjectIframe.astro';
-import { formatDateRange, type PartialDate } from '../../lib/date';
+
 import WorkExperiencesSection from './parts/WorkExperiencesSection.astro';
 import EducationSection from './parts/EducationSection.astro';
+import PetProjectsSection from './parts/PetProjectsSection.astro';
 
 type AboutEntry = CollectionEntry<'about'>;
-
-type ProjectItem = {
-  headline: string;
-  type: string;
-  description: string;
-  date: { from: PartialDate; to?: PartialDate };
-  tags: string[];
-  githubUrl: string; 
-  preview?: { title?: string; url: string; };
-};
 
 const aboutCollection: AboutEntry[] = await getCollection('about');
 if (aboutCollection.length === 0) {
@@ -32,38 +22,28 @@ const {
   nda: { headline: ndaHeadline, images },
 } = about.data;
 
-type PetProjectsEntry = CollectionEntry<'petProjects'>;
-
-const petProjectsCollection: PetProjectsEntry[] = await getCollection('petProjects');
-if (petProjectsCollection.length === 0) {
-  throw new Error('Pet Projects not found in copy collection');
-}
-const petProjectsDoc: PetProjectsEntry = petProjectsCollection[0];
-const petProjects = petProjectsDoc.data.petProjectsItems as ProjectItem[];
-
 type TagsCodingLanguagesEntry = CollectionEntry<'tagsCodingLanguages'>;
 
-const tagsCodingDocs: TagsCodingLanguagesEntry[] = await getCollection('tagsCodingLanguages');
+const tagsCodingDocs: TagsCodingLanguagesEntry[] = await getCollection(
+  'tagsCodingLanguages'
+);
 if (tagsCodingDocs.length === 0) {
   throw new Error('Tags & coding languages not found in copy collection');
 }
-const tagsCodingLanguages = tagsCodingDocs[0].data.tagsCodingLanguages as string[];
+const tagsCodingLanguages = tagsCodingDocs[0].data
+  .tagsCodingLanguages as string[];
 
 type SocialLinksEntry = CollectionEntry<'socialLinks'>;
 
-const socialLinksCollection: SocialLinksEntry[] = await getCollection('socialLinks');
+const socialLinksCollection: SocialLinksEntry[] =
+  await getCollection('socialLinks');
 if (socialLinksCollection.length === 0) {
   throw new Error('Social links not found in copy collection');
 }
 const socialLinks: SocialLinksEntry = socialLinksCollection[0];
-const {
-  headline: socialLinksHeadline,
-  CTA: socialLinksCTA,
-} = socialLinks.data;
+const { headline: socialLinksHeadline, CTA: socialLinksCTA } = socialLinks.data;
 
 const pageTitle = PAGE_TITLES.about;
-
-const GITHUB_LABEL: string = 'Github'
 ---
 
 <BaseLayout title={pageTitle}>
@@ -72,60 +52,15 @@ const GITHUB_LABEL: string = 'Github'
 
   <!-- Accordion (Desktop Navigation) -->
   <wa-accordion collapseOthers>
-    {
-      petProjects.map(({headline, type, description, date, tags, githubUrl, preview}: ProjectItem) => (
-          <h3>{headline}</h3>
-          <div>
-            <em>{type}</em>
-            <p>{description}</p>
-            <span>{formatDateRange(date.from, date.to)}</span>
-            <div>
-              {tags.map((tag) => (
-                <span>{tag}</span>
-              ))}
-            </div>
-            {githubUrl && (
-              <a href={githubUrl} target='_blank'>
-                {GITHUB_LABEL}
-              </a>
-            )}
-            {
-              preview && <ProjectIframe src={preview.url} title={preview.title}/>
-            }
-          </div>
-      ))
-    }
+    <PetProjectsSection />
   </wa-accordion>
   <!-- Carousel (Mobile Navigation) -->
-  <wa-carousel ariaLabel="Main Topic">
-    {
-      petProjects.map(({headline, type, description, date, tags, githubUrl, preview}: ProjectItem) => (
-          <h3>{headline}</h3>
-          <div>
-            <em>{type}</em>
-            <p>{description}</p>
-            <span>{formatDateRange(date.from, date.to)}</span>
-            <div>
-              {tags.map((tag) => (
-                <span>{tag}</span>
-              ))}
-            </div>
-            {githubUrl && (
-              <a href={githubUrl} target='_blank'>
-                {GITHUB_LABEL}
-              </a>
-            )}
-            {
-              preview && <ProjectIframe src={preview.url} title={preview.title}/>
-            }
-          </div>
-          <p>{description}</p>
-      ))
-    }
+  <wa-carousel ariaLabel='Main Topic'>
+    <PetProjectsSection />
   </wa-carousel>
   <ul>
-  {tagsCodingLanguages.map((item) => <li>{item}</li>)}
-</ul>
+    {tagsCodingLanguages.map((item) => <li>{item}</li>)}
+  </ul>
 
   <WorkExperiencesSection />
   <EducationSection />
@@ -140,7 +75,11 @@ const GITHUB_LABEL: string = 'Github'
   </div>
   <h2>{socialLinksHeadline}</h2>
   <ul>
-    {socialLinksCTA.map(({ url, label }) => <li>{url && <a href={url}>{label}</a>}</li>)}
+    {
+      socialLinksCTA.map(({ url, label }) => (
+        <li>{url && <a href={url}>{label}</a>}</li>
+      ))
+    }
   </ul>
 </BaseLayout>
 

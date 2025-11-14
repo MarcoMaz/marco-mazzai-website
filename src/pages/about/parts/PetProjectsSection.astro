@@ -1,0 +1,49 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import ProjectIframe from '../../../components/ProjectIframe.astro';
+import { formatDateRange, type PartialDate } from '../../../lib/date';
+
+type PetProjectItem = {
+  headline: string;
+  type: string;
+  description: string;
+  date: { from: PartialDate; to?: PartialDate };
+  tags: string[];
+  githubUrl: string; 
+  preview?: { title?: string; url: string; };
+};
+
+type PetProjectsEntry = CollectionEntry<'petProjects'>;
+
+const petProjectsCollection: PetProjectsEntry[] = await getCollection('petProjects');
+if (petProjectsCollection.length === 0) {
+  throw new Error('Pet Projects not found in copy collection');
+}
+const petProjectsDoc: PetProjectsEntry = petProjectsCollection[0];
+const petProjects = petProjectsDoc.data.petProjectsItems as PetProjectItem[];
+
+const GITHUB_LABEL: string = 'Github'
+---
+{
+  petProjects.map(({headline, type, description, date, tags, githubUrl, preview}: PetProjectItem) => (
+      <h3>{headline}</h3>
+      <div>
+        <em>{type}</em>
+        <p>{description}</p>
+        <span>{formatDateRange(date.from, date.to)}</span>
+        <div>
+          {tags.map((tag) => (
+            <span>{tag}</span>
+          ))}
+        </div>
+        {githubUrl && (
+          <a href={githubUrl} target='_blank'>
+            {GITHUB_LABEL}
+          </a>
+        )}
+        {
+          preview && <ProjectIframe src={preview.url} title={preview.title}/>
+        }
+      </div>
+  ))
+
