@@ -11,10 +11,13 @@ const { showHeadline = true } = Astro.props as socialLinksProps;
 
 const socialLinksCollection: SocialLinksEntry[] =
   await getCollection('socialLinks');
+
 if (socialLinksCollection.length === 0) {
   throw new Error('Social links not found in copy collection');
 }
+
 const socialLinks: SocialLinksEntry = socialLinksCollection[0];
+
 const { headline: socialLinksHeadline, CTA: socialLinksCTA } = socialLinks.data;
 ---
 

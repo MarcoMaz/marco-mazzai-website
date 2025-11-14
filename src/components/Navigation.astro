@@ -5,6 +5,7 @@ type NavigationEntry = CollectionEntry<'navigation'>;
 
 const navigationCollection: NavigationEntry[] =
   await getCollection('navigation');
+
 if (navigationCollection.length === 0) {
   throw new Error('Navigation not found in copy collection');
 }
