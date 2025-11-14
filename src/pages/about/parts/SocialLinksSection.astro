@@ -1,0 +1,22 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+type SocialLinksEntry = CollectionEntry<'socialLinks'>;
+
+const socialLinksCollection: SocialLinksEntry[] =
+  await getCollection('socialLinks');
+if (socialLinksCollection.length === 0) {
+  throw new Error('Social links not found in copy collection');
+}
+const socialLinks: SocialLinksEntry = socialLinksCollection[0];
+const { headline: socialLinksHeadline, CTA: socialLinksCTA } = socialLinks.data;
+---
+
+<h2>{socialLinksHeadline}</h2>
+<ul>
+  {
+    socialLinksCTA.map(({ url, label }) => (
+      <li>{url && <a href={url}>{label}</a>}</li>
+    ))
+  }
+</ul>
