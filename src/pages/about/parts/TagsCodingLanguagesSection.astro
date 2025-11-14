@@ -14,6 +14,11 @@ if (tagsCodingDocs.length === 0) {
 const tagsCodingLanguages = tagsCodingDocs[0].data
   .tagsCodingLanguages as string[];
 ---
+
 <ul>
-  {tagsCodingLanguages.map((item) => <li>{item}</li>)}
+  {
+    tagsCodingLanguages.map((tagsCodingLanguage) => (
+      <li>{tagsCodingLanguage}</li>
+    ))
+  }
 </ul>
