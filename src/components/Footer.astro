@@ -5,17 +5,22 @@ type FooterEntry = CollectionEntry<'footer'>;
 type SocialLinksEntry = CollectionEntry<'socialLinks'>;
 
 const footerCollection: FooterEntry[] = await getCollection('footer');
+
 if (footerCollection.length === 0) {
   throw new Error('Footer not found in copy collection');
 }
+
 const footer: FooterEntry = footerCollection[0];
 
 const socialLinksCollection: SocialLinksEntry[] =
   await getCollection('socialLinks');
-if (socialLinksCollection.length === 0) {
+
+  if (socialLinksCollection.length === 0) {
   throw new Error('Social links not found in copy collection');
 }
+
 const socialLinks: SocialLinksEntry = socialLinksCollection[0];
+
 const { CTA: socialLinksCTA } = socialLinks.data;
 
 const {
