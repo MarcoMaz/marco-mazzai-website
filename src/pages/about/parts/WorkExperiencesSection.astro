@@ -1,0 +1,50 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { formatDateRange, type PartialDate } from '../../../lib/date';
+
+type WorkExperienceItem = {
+  headline: string;
+  description: string;
+  role: string;
+  date: { from: PartialDate; to?: PartialDate };
+  location: string;
+  tasks: string[];
+};
+
+type WorkExperiencesEntry = CollectionEntry<'workExperiences'>;
+
+const workExperiencesCollection: WorkExperiencesEntry[] =
+  await getCollection('workExperiences');
+
+if (workExperiencesCollection.length === 0) {
+  throw new Error('Work experiences not found');
+}
+
+const workExperiences = workExperiencesCollection[0].data
+  .workExperiencesItems as WorkExperienceItem[];
+---
+
+<section aria-labelledby='work-experience-heading'>
+  <h2 id='work-experience-heading'>Work experiences</h2>
+  <ul>
+    {
+      workExperiences.map(
+        ({ headline, description, role, date, location, tasks }) => (
+          <li>
+            <h3>{headline}</h3>
+            <div>
+              <em>{role}</em> — <span>{location}</span>
+              <p>{description}</p>
+              <span>{formatDateRange(date.from, date.to)}</span>
+              <ul>
+                {tasks.map((t) => (
+                  <li>{t}</li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        )
+      )
+    }
+  </ul>
+</section>

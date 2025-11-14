@@ -1,9 +1,10 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
-import { PAGE_TITLES } from '../content.config';
-import ProjectIframe from '../components/ProjectIframe.astro';
-import { formatDateRange, type PartialDate } from '../lib/date';
+import { PAGE_TITLES } from '../../content.config';
+import ProjectIframe from '../../components/ProjectIframe.astro';
+import { formatDateRange, type PartialDate } from '../../lib/date';
+import WorkExperiencesSection from './parts/WorkExperiencesSection.astro';
 
 type AboutEntry = CollectionEntry<'about'>;
 
@@ -15,15 +16,6 @@ type ProjectItem = {
   tags: string[];
   githubUrl: string; 
   preview?: { title?: string; url: string; };
-};
-
-type WorkExperienceItem = {
-  headline: string;
-  description: string;
-  role: string;
-  date: { from: PartialDate; to?: PartialDate };
-  location: string;
-  tasks: string[];
 };
 
 const aboutCollection: AboutEntry[] = await getCollection('about');
@@ -55,16 +47,6 @@ if (tagsCodingDocs.length === 0) {
   throw new Error('Tags & coding languages not found in copy collection');
 }
 const tagsCodingLanguages = tagsCodingDocs[0].data.tagsCodingLanguages as string[];
-
-
-type WorkExperiencesEntry = CollectionEntry<'workExperiences'>;
-
-const workExperiencesCollection: WorkExperiencesEntry[] = await getCollection('workExperiences');
-if (workExperiencesCollection.length === 0) {
-  throw new Error('Pet Projects not found in copy collection');
-}
-const workExperiencesDoc: WorkExperiencesEntry = workExperiencesCollection[0];
-const workExperiences = workExperiencesDoc.data.workExperiencesItems as WorkExperienceItem[];
 
 type EducationItem = {
   category: 'Frontend' | 'Accessibility';
@@ -98,9 +80,6 @@ const {
 } = socialLinks.data;
 
 const pageTitle = PAGE_TITLES.about;
-
-
-
 
 const GITHUB_LABEL: string = 'Github'
 ---
@@ -166,24 +145,7 @@ const GITHUB_LABEL: string = 'Github'
   {tagsCodingLanguages.map((item) => <li>{item}</li>)}
 </ul>
 
-  <ul>
-
-    {
-      workExperiences.map(({ headline, description, role, date, location, tasks }) => (
-        <li>
-          <h3>{headline}</h3>
-          <div>
-            <em>{role}</em> — <span>{location}</span>
-            <p>{description}</p>
-            <span>{formatDateRange(date.from, date.to)}</span>
-            <ul>
-              {tasks.map((t) => <li>{t}</li>)}
-            </ul>
-          </div>
-        </li>
-      ))
-    }
-  </ul>
+  <WorkExperiencesSection />
   <ul>
 
     {educationItems.map(({ category, sections }) => (
