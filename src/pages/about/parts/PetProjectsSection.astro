@@ -19,7 +19,9 @@ const petProjectsCollection: PetProjectsEntry[] = await getCollection('petProjec
 if (petProjectsCollection.length === 0) {
   throw new Error('Pet Projects not found in copy collection');
 }
+
 const petProjectsDoc: PetProjectsEntry = petProjectsCollection[0];
+
 const petProjects = petProjectsDoc.data.petProjectsItems as PetProjectItem[];
 
 const GITHUB_LABEL: string = 'Github'

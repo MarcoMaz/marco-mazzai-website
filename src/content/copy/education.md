@@ -56,5 +56,3 @@ educationItems:
           - 'Knowledge session: Accessible iOS apps'
           - 'Knowledge session: Accessible Android apps'
 ---
-
-
