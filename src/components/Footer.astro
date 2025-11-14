@@ -1,8 +1,8 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
+import SocialLinksSection from './SocialLinksSection.astro';
 
 type FooterEntry = CollectionEntry<'footer'>;
-type SocialLinksEntry = CollectionEntry<'socialLinks'>;
 
 const footerCollection: FooterEntry[] = await getCollection('footer');
 
@@ -11,17 +11,6 @@ if (footerCollection.length === 0) {
 }
 
 const footer: FooterEntry = footerCollection[0];
-
-const socialLinksCollection: SocialLinksEntry[] =
-  await getCollection('socialLinks');
-
-  if (socialLinksCollection.length === 0) {
-  throw new Error('Social links not found in copy collection');
-}
-
-const socialLinks: SocialLinksEntry = socialLinksCollection[0];
-
-const { CTA: socialLinksCTA } = socialLinks.data;
 
 const {
   headline,
@@ -41,12 +30,7 @@ const currentYear: number = new Date().getFullYear();
     class='external-link'>{label}</a
   >
   {orFindMe}
-  <ul>
-    {
-      socialLinksCTA.map(({ url, label }) => (
-        <li>{url && <a href={url}>{label}</a>}</li>
-      ))
-    }
-  </ul>
+  <SocialLinksSection showHeadline={false} />
+
   <p>{builtWith} &copy; {`${currentYear} ${copyright}`}</p>
 </footer>

@@ -3,6 +3,12 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 
 type SocialLinksEntry = CollectionEntry<'socialLinks'>;
 
+type socialLinksProps = {
+  showHeadline?: boolean;
+};
+
+const { showHeadline = true } = Astro.props as socialLinksProps;
+
 const socialLinksCollection: SocialLinksEntry[] =
   await getCollection('socialLinks');
 if (socialLinksCollection.length === 0) {
@@ -12,7 +18,7 @@ const socialLinks: SocialLinksEntry = socialLinksCollection[0];
 const { headline: socialLinksHeadline, CTA: socialLinksCTA } = socialLinks.data;
 ---
 
-<h2>{socialLinksHeadline}</h2>
+{showHeadline && <h2>{socialLinksHeadline}</h2>}
 <ul>
   {
     socialLinksCTA.map(({ url, label }) => (
