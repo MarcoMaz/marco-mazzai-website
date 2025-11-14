@@ -12,18 +12,19 @@ import SocialLinksSection from './parts/SocialLinksSection.astro';
 type AboutEntry = CollectionEntry<'about'>;
 
 const aboutCollection: AboutEntry[] = await getCollection('about');
+
 if (aboutCollection.length === 0) {
   throw new Error('About page not found in copy collection');
 }
+
 const about: AboutEntry = aboutCollection[0];
 
 const { Content } = await render(about);
 
 const {
   headline,
-  nda: { headline: ndaHeadline, images },
+  nda: { headline: ndaHeadline, images: ndaImages },
 } = about.data;
-
 
 const pageTitle = PAGE_TITLES.about;
 ---
@@ -36,6 +37,7 @@ const pageTitle = PAGE_TITLES.about;
   <wa-accordion collapseOthers>
     <PetProjectsSection />
   </wa-accordion>
+
   <!-- Carousel (Mobile Navigation) -->
   <wa-carousel ariaLabel='Main Topic'>
     <PetProjectsSection />
@@ -50,7 +52,7 @@ const pageTitle = PAGE_TITLES.about;
   <h2>{ndaHeadline}</h2>
   <div class='logos'>
     {
-      images.map(({ src, alt }) => (
+      ndaImages.map(({ src, alt }) => (
         <img src={src ?? undefined} alt={alt ?? ''} />
       ))
     }
