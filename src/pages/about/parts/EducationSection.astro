@@ -19,9 +19,8 @@ if (educationCollection.length === 0) {
   throw new Error('Education not found');
 }
 
-const educationDoc: EducationEntry = educationCollection[0];
-
-const educationItems = educationDoc.data.educationItems as EducationItem[];
+const educationItems = educationCollection[0].data
+  .educationItems as EducationItem[];
 ---
 
 <section aria-labelledby='education-heading'>
