@@ -1,14 +1,16 @@
 ---
-interface ProjectIFrameProps {
+type ProjectIFrameProps = {
   height?: string;
   src: string;
+  title: string;
   width?: string;
 }
 
 const {
-  height = '600px',
-  width = '100%',
+  height = '400px',
+  width = '600px',
   src,
+  title
 } = Astro.props as ProjectIFrameProps;
 
 if (!src) throw new Error('ProjectIframe: "src" prop is required');
@@ -19,4 +21,5 @@ if (!src) throw new Error('ProjectIframe: "src" prop is required');
   width={width}
   height={height}
   style='border: 1px solid #ccc; border-radius: 4px;'
+  title={title}
   allowfullscreen></iframe>

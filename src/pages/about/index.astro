@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { PAGE_TITLES } from '../../content.config';
+
+import WorkExperiencesSection from './parts/WorkExperiencesSection.astro';
+import EducationSection from './parts/EducationSection.astro';
+import PetProjectsSection from './parts/PetProjectsSection.astro';
+import TagsCodingLanguagesSection from './parts/TagsCodingLanguagesSection.astro';
+import SocialLinksSection from '../../components/SocialLinksSection.astro';
+
+type AboutEntry = CollectionEntry<'about'>;
+
+const aboutCollection: AboutEntry[] = await getCollection('about');
+
+if (aboutCollection.length === 0) {
+  throw new Error('About page not found in copy collection');
+}
+
+const about: AboutEntry = aboutCollection[0];
+
+const { Content } = await render(about);
+
+const {
+  headline,
+  nda: { headline: ndaHeadline, images: ndaImages },
+} = about.data;
+
+const pageTitle = PAGE_TITLES.about;
+---
+
+<BaseLayout title={pageTitle}>
+  <Content />
+  <h2>{headline}</h2>
+
+  <!-- Accordion (Desktop Navigation) -->
+  <wa-accordion collapseOthers>
+    <PetProjectsSection />
+  </wa-accordion>
+
+  <!-- Carousel (Mobile Navigation) -->
+  <wa-carousel ariaLabel='Main Topic'>
+    <PetProjectsSection />
+  </wa-carousel>
+
+  <TagsCodingLanguagesSection />
+
+  <WorkExperiencesSection />
+
+  <EducationSection />
+
+  <h2>{ndaHeadline}</h2>
+  <div class='logos'>
+    {
+      ndaImages.map(({ src, alt }) => (
+        <img src={src ?? undefined} alt={alt ?? ''} />
+      ))
+    }
+  </div>
+
+  <SocialLinksSection />
+</BaseLayout>
+
+<script>
+  import 'wa11y-ui/wa-accordion';
+  import 'wa11y-ui/wa-carousel';
+</script>

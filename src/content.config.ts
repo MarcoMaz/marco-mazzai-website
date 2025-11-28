@@ -2,6 +2,31 @@ import { glob } from 'astro/loaders';
 import { defineCollection, z } from 'astro:content';
 
 // -------------------------
+// Helpers
+// -------------------------
+const partialDate = z.preprocess(
+  (v) => {
+    // pass through Date
+    if (v instanceof Date) return v;
+
+    // number year -> "YYYY"
+    if (typeof v === 'number') return String(v);
+
+    // keep strings as-is
+    if (typeof v === 'string') return v;
+
+    return v;
+  },
+  z.union([
+    z.literal('Present'),
+    z.date(),
+    z.string().regex(/^\d{4}$/), // YYYY
+    z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/), // YYYY-MM
+    z.string().regex(/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/), // YYYY-MM-DD
+  ])
+);
+
+// -------------------------
 // Collections
 // -------------------------
 const blogCollection = defineCollection({
@@ -28,19 +53,6 @@ const aboutCollection = defineCollection({
   loader: glob({ pattern: 'about.md', base: './src/content/copy' }),
   schema: z.object({
     headline: z.string(),
-    items: z.array(
-      z.object({
-        id: z.string(),
-        type: z.string(),
-        description: z.string(),
-        headline: z.string(),
-        tags: z.array(z.string()),
-        link: z.object({
-          label: z.string(),
-          url: z.string(),
-        }),
-      })
-    ),
     nda: z.object({
       headline: z.string(),
       images: z.array(
@@ -50,15 +62,87 @@ const aboutCollection = defineCollection({
         })
       ),
     }),
-    knowMore: z.object({
-      headline: z.string(),
-      CTA: z.array(
-        z.object({
-          label: z.string(),
-          url: z.string(),
-        })
-      ),
-    }),
+  }),
+});
+
+const tagsCodingLanguagesCollection = defineCollection({
+  loader: glob({
+    pattern: 'tagsCodingLanguages.md',
+    base: './src/content/copy',
+  }),
+  schema: z.object({
+    tagsCodingLanguages: z.array(z.string()),
+  }),
+});
+
+const petProjectsCollection = defineCollection({
+  loader: glob({ pattern: 'petProjects.md', base: './src/content/copy' }),
+  schema: z.object({
+    petProjectsItems: z.array(
+      z.object({
+        headline: z.string(),
+        type: z.string(),
+        description: z.string(),
+        date: z.object({
+          from: partialDate,
+          to: partialDate.optional(),
+        }),
+        tags: z.array(z.string()),
+        githubUrl: z.string().url(),
+        preview: z
+          .object({
+            title: z.string().optional(),
+            url: z.string(),
+          })
+          .optional(),
+      })
+    ),
+  }),
+});
+
+const workExperiencesCollection = defineCollection({
+  loader: glob({ pattern: 'workExperiences.md', base: './src/content/copy' }),
+  schema: z.object({
+    workExperiencesItems: z.array(
+      z.object({
+        headline: z.string(),
+        description: z.string(),
+        role: z.string(),
+        date: z.object({
+          from: partialDate,
+          to: partialDate.optional(),
+        }),
+        location: z.string(),
+        tasks: z.array(z.string()),
+      })
+    ),
+  }),
+});
+
+const educationCollection = defineCollection({
+  loader: glob({ pattern: 'education.md', base: './src/content/copy' }),
+  schema: z.object({
+    educationItems: z.array(
+      z.object({
+        category: z.enum(['Frontend', 'Accessibility']),
+        sections: z.array(
+          z.object({
+            type: z.enum([
+              'Certifications',
+              'Advanced Courses',
+              'Conferences and Webinars',
+            ]),
+            date: z
+              .object({
+                from: partialDate.optional(),
+                to: partialDate.optional(),
+              })
+              .optional(),
+            items: z.array(z.string()),
+          })
+        ),
+      })
+    ),
   }),
 });
 
@@ -66,6 +150,7 @@ const blogPageCollection = defineCollection({
   loader: glob({ pattern: 'blog.md', base: './src/content/copy' }),
   schema: z.object({
     headline: z.string(),
+    description: z.string(),
   }),
 });
 
@@ -73,6 +158,9 @@ const footerCollection = defineCollection({
   loader: glob({ pattern: 'footer.md', base: './src/content/copy' }),
   schema: z.object({
     headline: z.string(),
+    builtWith: z.string(),
+    orFindMe: z.string(),
+    copyright: z.string(),
     CTA: z.object({
       label: z.string(),
       url: z.string().url(),
@@ -83,10 +171,23 @@ const footerCollection = defineCollection({
 const navigationCollection = defineCollection({
   loader: glob({ pattern: 'navigation.md', base: './src/content/copy' }),
   schema: z.object({
-    items: z.array(
+    navigationItems: z.array(
       z.object({
         label: z.string(),
         url: z.string(),
+      })
+    ),
+  }),
+});
+
+const socialLinksCollection = defineCollection({
+  loader: glob({ pattern: 'socialLinks.md', base: './src/content/copy' }),
+  schema: z.object({
+    headline: z.string().optional(),
+    CTA: z.array(
+      z.object({
+        label: z.string(),
+        url: z.string().url(),
       })
     ),
   }),
@@ -96,9 +197,14 @@ export const collections = {
   blog: blogCollection,
   home: homeCollection,
   about: aboutCollection,
+  tagsCodingLanguages: tagsCodingLanguagesCollection,
+  petProjects: petProjectsCollection,
+  workExperiences: workExperiencesCollection,
+  education: educationCollection,
   blogPage: blogPageCollection,
   footer: footerCollection,
   navigation: navigationCollection,
+  socialLinks: socialLinksCollection,
 };
 
 // -------------------------
@@ -115,16 +221,18 @@ export const PAGE_TITLES = {
 // Meta
 // -------------------------
 export const META = {
-  keywords: '',
-  description: '',
-  title: '',
+  keywords:
+    'Marco Mazzai, frontend developer, accessibility expert, a11y, design systems, web accessibility, React developer, UI engineer, WCAG, web performance, web site',
+  description:
+    'Marco Mazzai is a frontend developer specialized in web accessibility and design systems. He creates scalable, inclusive, and high-performance user interfaces that meet WCAG standards and deliver exceptional user experiences.',
+  title: 'Marco Mazzai | Frontend Developer — Accessibility & Design Systems',
   og: {
-    title: '',
+    title: 'Marco Mazzai | Frontend Developer — Accessibility & Design Systems',
     url: '',
     image: '',
-    type: '',
-    description: '',
-    locale: '',
+    type: 'website',
+    description:
+      'Portfolio and blog by Marco Mazzai, frontend developer focused on accessibility and design systems — crafting inclusive, scalable web experiences.',
+    locale: 'en_US',
   },
 };
-

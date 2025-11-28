@@ -1,21 +1,26 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
+import SocialLinksSection from './SocialLinksSection.astro';
 
 type FooterEntry = CollectionEntry<'footer'>;
 
 const footerCollection: FooterEntry[] = await getCollection('footer');
+
 if (footerCollection.length === 0) {
   throw new Error('Footer not found in copy collection');
 }
+
 const footer: FooterEntry = footerCollection[0];
 
 const {
   headline,
+  builtWith,
+  orFindMe,
+  copyright,
   CTA: { label, url },
 } = footer.data;
 
 const currentYear: number = new Date().getFullYear();
-const COPYRIGHT_TEXT: string = 'Marco Mazzai. All rights reserved.';
 ---
 
 <footer class='footer-section' id='contact'>
@@ -24,5 +29,10 @@ const COPYRIGHT_TEXT: string = 'Marco Mazzai. All rights reserved.';
     target='_blank'
     class='external-link'>{label}</a
   >
-  <p>&copy; {`${currentYear} ${COPYRIGHT_TEXT}`}</p>
+
+  {orFindMe}
+
+  <SocialLinksSection showHeadline={false} />
+
+  <p>{builtWith} &copy; {`${currentYear} ${copyright}`}</p>
 </footer>

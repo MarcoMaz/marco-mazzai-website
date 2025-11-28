@@ -1,0 +1,57 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { formatDateRange, type PartialDate } from '../../../lib/date';
+
+type EducationItem = {
+  category: 'Frontend' | 'Accessibility';
+  sections: Array<{
+    type: 'Certifications' | 'Advanced Courses' | 'Conferences and Webinars';
+    date?: { from?: PartialDate; to?: PartialDate };
+    items: string[];
+  }>;
+};
+
+type EducationEntry = CollectionEntry<'education'>;
+
+const educationCollection: EducationEntry[] = await getCollection('education');
+
+if (educationCollection.length === 0) {
+  throw new Error('Education not found');
+}
+
+const educationItems = educationCollection[0].data
+  .educationItems as EducationItem[];
+---
+
+<section aria-labelledby='education-heading'>
+  <h2 id='education-heading'>Education</h2>
+  <ul>
+    {
+      educationItems.map(({ category, sections }) => (
+        <li>
+          <h3>{category}</h3>
+
+          {sections.map(({ type, date, items }) => (
+            <article>
+              <h4>
+                {type}
+                {date && formatDateRange(date.from ?? '', date.to ?? '') && (
+                  <span>
+                    {' '}
+                    — {formatDateRange(date.from ?? '', date.to ?? '')}
+                  </span>
+                )}
+              </h4>
+
+              <ul>
+                {items.map((label) => (
+                  <li>{label}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </li>
+      ))
+    }
+  </ul>
+</section>

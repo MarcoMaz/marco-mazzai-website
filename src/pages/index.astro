@@ -6,6 +6,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 type HomeEntry = CollectionEntry<'home'>;
 
 const homeCollection: HomeEntry[] = await getCollection('home');
+
 if (homeCollection.length === 0) {
   throw new Error('Home page not found in copy collection');
 }
