@@ -42,6 +42,8 @@ const homeCollection = defineCollection({
   loader: glob({ pattern: 'home.md', base: './src/content/copy' }),
   schema: z.object({
     headline: z.string(),
+    kicker: z.string(),
+    summary: z.string(),
     image: z.object({
       alt: z.string(),
       src: z.string(),
