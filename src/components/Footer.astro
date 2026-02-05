@@ -12,25 +12,16 @@ if (footerCollection.length === 0) {
 
 const footer: FooterEntry = footerCollection[0];
 
-const {
-  headline,
-  builtWith,
-  orFindMe,
-  copyright,
-  CTA: { label, url },
-} = footer.data;
+const { headline, builtWith, collaboration, copyright } = footer.data;
 
 const currentYear: number = new Date().getFullYear();
 ---
 
 <footer class='footer-section' id='contact'>
-  <h2 class='heading'>{headline}</h2><a
-    href={url}
-    target='_blank'
-    class='external-link'>{label}</a
+  <h2 class='heading'>{headline}</h2>
   >
 
-  {orFindMe}
+  {collaboration}
 
   <SocialLinksSection showHeadline={false} />
 
