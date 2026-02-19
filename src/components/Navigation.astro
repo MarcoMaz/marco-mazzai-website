@@ -15,8 +15,27 @@ const { navigationItems } = navigationCollection[0].data;
 ---
 
 <nav>
-  <ListIcon size={32} />
-  <XIcon size={32} />
+  <style>
+    /* inline: show only on mobile (<=799px) */
+    #mobile-icons {
+      display: none;
+    }
+    @media (max-width: 799px) {
+      #mobile-icons {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+    }
+  </style>
+  <div id='mobile-icons'>
+    <button type='button'>
+      <ListIcon size={32} />
+    </button>
+    <button type='button'>
+      <XIcon size={32} />
+    </button>
+  </div>
 
   <ul>
     {
