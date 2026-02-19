@@ -1,6 +1,6 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { ListIcon, XIcon } from '@phosphor-icons/react';
+import NavigationClient from './NavigationClient';
 
 type NavigationEntry = CollectionEntry<'navigation'>;
 
@@ -14,30 +14,13 @@ if (navigationCollection.length === 0) {
 const { navigationItems } = navigationCollection[0].data;
 ---
 
-<nav>
-  <style>
-    /* inline: show only on mobile (<=799px) */
-    #mobile-icons {
-      display: none;
-    }
-    @media (max-width: 799px) {
-      #mobile-icons {
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
-      }
-    }
-  </style>
-  <div id='mobile-icons'>
-    <button type='button'>
-      <ListIcon size={32} />
-    </button>
-    <button type='button'>
-      <XIcon size={32} />
-    </button>
-  </div>
+<!-- Server-rendered desktop nav for immediate visibility -->
+<!-- Client React component handles mobile hamburger and toggle -->
+<NavigationClient client:load items={navigationItems} />
 
-  <ul>
+
+<nav class="Navigation__desktop">
+  <ul id="nav-list">
     {
       navigationItems.map((navigationItem) => {
         const { url, label } = navigationItem;
@@ -50,3 +33,4 @@ const { navigationItems } = navigationCollection[0].data;
     }
   </ul>
 </nav>
+
