@@ -1,5 +1,6 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { ListIcon, XIcon } from '@phosphor-icons/react';
 
 type NavigationEntry = CollectionEntry<'navigation'>;
 
@@ -14,6 +15,9 @@ const { navigationItems } = navigationCollection[0].data;
 ---
 
 <nav>
+  <ListIcon size={32} />
+  <XIcon size={32} />
+
   <ul>
     {
       navigationItems.map((navigationItem) => {
