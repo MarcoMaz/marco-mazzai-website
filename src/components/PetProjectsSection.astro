@@ -1,0 +1,11 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import PetProjectItem from './PetProjectItem.astro';
+
+type PetProjectEntry = CollectionEntry<'petProjects'>;
+
+const entries: PetProjectEntry[] = await getCollection('petProjects');
+
+const sortedEntries = entries.sort((a, b) => a.data.order - b.data.order);
+---
+{sortedEntries.map((entry) => <PetProjectItem entry={entry} />)}
