@@ -1,11 +1,11 @@
 ---
 navigationItems:
-  - label: 'Hi!'
-    url: '/'
   - label: 'About'
     url: '/about'
   - label: 'Blog'
     url: '/blog'
-  - label: "let's talk"
+  - label: 'Pet Projects'
+    url: '/projects'
+  - label: "Let's Talk"
     url: '#contact'
 ---
