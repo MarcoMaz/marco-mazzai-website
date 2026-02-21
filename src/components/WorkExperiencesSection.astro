@@ -23,27 +23,25 @@ if (workExperiencesCollection.length === 0) {
 const workExperiences = workExperiencesCollection[0].data
   .workExperiencesItems as WorkExperienceItem[];
 ---
-<section aria-labelledby='work-experience-heading'>
-  <h2 id='work-experience-heading'>Work experiences</h2>
-  <ul>
-    {
-      workExperiences.map(
-        ({ headline, description, role, date, location, tasks }) => (
-          <li>
-            <h3>{headline}</h3>
-            <div>
-              <em>{role}</em> — <span>{location}</span>
-              <p>{description}</p>
-              <span>{formatDateRange(date.from, date.to)}</span>
-              <ul>
-                {tasks.map((t) => (
-                  <li>{t}</li>
-                ))}
-              </ul>
-            </div>
-          </li>
-        )
+<h2>Work experiences</h2>
+<ul>
+  {
+    workExperiences.map(
+      ({ headline, description, role, date, location, tasks }) => (
+        <li>
+          <h3>{headline}</h3>
+          <div>
+            <em>{role}</em> — <span>{location}</span>
+            <p>{description}</p>
+            <span>{formatDateRange(date.from, date.to)}</span>
+            <ul>
+              {tasks.map((t) => (
+                <li>{t}</li>
+              ))}
+            </ul>
+          </div>
+        </li>
       )
-    }
-  </ul>
-</section>
+    )
+  }
+</ul>

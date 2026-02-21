@@ -5,7 +5,6 @@ import { PAGE_TITLES } from '../../content.config';
 
 import WorkExperiencesSection from '../../components/WorkExperiencesSection.astro';
 import EducationSection from '../../components/EducationSection.astro';
-import PetProjectsSection from '../../components/PetProjectsSection.astro';
 import TagsCodingLanguagesSection from '../../components/TagsCodingLanguagesSection.astro';
 
 type AboutEntry = CollectionEntry<'about'>;
@@ -32,21 +31,15 @@ const pageTitle = PAGE_TITLES.about;
   <Content />
   <h2>{headline}</h2>
 
-  <!-- Accordion (Desktop Navigation) -->
-  <wa-accordion collapseOthers>
-    <PetProjectsSection />
-  </wa-accordion>
-
-  <!-- Carousel (Mobile Navigation) -->
-  <wa-carousel ariaLabel='Main Topic'>
-    <PetProjectsSection />
-  </wa-carousel>
-
   <TagsCodingLanguagesSection />
 
-  <WorkExperiencesSection />
+  <wa-accordion>
+    <WorkExperiencesSection />
+  </wa-accordion>
 
-  <EducationSection />
+  <wa-accordion>
+    <EducationSection />
+  </wa-accordion>
 
   <h2>{ndaHeadline}</h2>
   <div class='logos'>
@@ -60,5 +53,4 @@ const pageTitle = PAGE_TITLES.about;
 
 <script>
   import 'wa11y-ui/wa-accordion';
-  import 'wa11y-ui/wa-carousel';
 </script>
