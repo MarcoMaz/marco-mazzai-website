@@ -149,7 +149,6 @@ const blogPageCollection = defineCollection({
   loader: glob({ pattern: 'blog.md', base: './src/content/copy' }),
   schema: z.object({
     headline: z.string(),
-    description: z.string(),
   }),
 });
 
