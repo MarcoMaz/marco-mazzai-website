@@ -1,12 +1,5 @@
 ---
 headline: 'Selected Works'
-nda:
-  headline: 'Nda work:'
-  images:
-    - alt: 'bosch logo'
-      src: '/images/bosch-logo.png'
-    - alt: 'mercedes logo'
-      src: '/images/mercedes-logo.png'
 ---
 
 I'm Marco, a **certified Accessibility** and **Front End Developer**.

@@ -19,10 +19,7 @@ const about: AboutEntry = aboutCollection[0];
 
 const { Content } = await render(about);
 
-const {
-  headline,
-  nda: { headline: ndaHeadline, images: ndaImages },
-} = about.data;
+const { headline } = about.data;
 
 const pageTitle = PAGE_TITLES.about;
 ---
@@ -41,14 +38,6 @@ const pageTitle = PAGE_TITLES.about;
     <EducationSection />
   </wa-accordion>
 
-  <h2>{ndaHeadline}</h2>
-  <div class='logos'>
-    {
-      ndaImages.map(({ src, alt }) => (
-        <img src={src ?? undefined} alt={alt ?? ''} />
-      ))
-    }
-  </div>
 </BaseLayout>
 
 <script>
