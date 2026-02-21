@@ -40,13 +40,19 @@ const { Content: AboutContent } = await render(about);
   <p set:html={summary} />
   <Content />
   <img src={src} alt={alt} />
-  <BlogList />
+  <BlogList showLink />
   <section>
-    <h2>Pet Projects</h2>
+    <div>
+      <h2>Pet Projects</h2>
+      <a href="/about">See all projects</a>
+    </div>
     <PetProjectsSection />
   </section>
   <section>
-    <h2>About Me</h2>
+    <div>
+      <h2>About Me</h2>
+      <a href="/about">About page</a>
+    </div>
     <AboutContent />
   </section>
 </BaseLayout>
