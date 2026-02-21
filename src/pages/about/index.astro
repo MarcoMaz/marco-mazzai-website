@@ -3,10 +3,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import { PAGE_TITLES } from '../../content.config';
 
-import WorkExperiencesSection from './parts/WorkExperiencesSection.astro';
-import EducationSection from './parts/EducationSection.astro';
+import WorkExperiencesSection from '../../components/WorkExperiencesSection.astro';
+import EducationSection from '../../components/EducationSection.astro';
 import PetProjectsSection from '../../components/PetProjectsSection.astro';
-import TagsCodingLanguagesSection from './parts/TagsCodingLanguagesSection.astro';
+import TagsCodingLanguagesSection from '../../components/TagsCodingLanguagesSection.astro';
 
 type AboutEntry = CollectionEntry<'about'>;
 
