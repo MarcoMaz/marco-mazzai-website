@@ -1,9 +1,11 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BlogList from '../components/BlogList.astro';
+import PetProjectsSection from './about/parts/PetProjectsSection.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 type HomeEntry = CollectionEntry<'home'>;
+type AboutEntry = CollectionEntry<'about'>;
 
 const homeCollection: HomeEntry[] = await getCollection('home');
 
@@ -21,6 +23,15 @@ const {
 } = home.data;
 
 const { Content } = await render(home);
+
+const aboutCollection: AboutEntry[] = await getCollection('about');
+
+if (aboutCollection.length === 0) {
+  throw new Error('About page not found in copy collection');
+}
+
+const about: AboutEntry = aboutCollection[0];
+const { Content: AboutContent } = await render(about);
 ---
 
 <BaseLayout>
@@ -30,4 +41,12 @@ const { Content } = await render(home);
   <Content />
   <img src={src} alt={alt} />
   <BlogList />
+  <section>
+    <h2>Pet Projects</h2>
+    <PetProjectsSection />
+  </section>
+  <section>
+    <h2>About Me</h2>
+    <AboutContent />
+  </section>
 </BaseLayout>
