@@ -7,5 +7,5 @@ navigationItems:
   - label: 'Blog'
     url: '/blog'
   - label: "let's talk"
-    url: '/#contact'
+    url: '#contact'
 ---
