@@ -1,0 +1,32 @@
+---
+import { type CollectionEntry } from 'astro:content';
+import ProjectIframe from './ProjectIframe.astro';
+import { formatDateRange } from '../lib/date';
+
+type PetProjectItemProps = {
+  entry: CollectionEntry<'petProjects'>;
+};
+
+const { entry } = Astro.props as PetProjectItemProps;
+const { headline, type, description, date, tags, githubUrl, preview } = entry.data;
+
+const GITHUB_LABEL: string = 'Github';
+---
+
+<a href={`/projects/${entry.id}`}>
+  <h3>{headline}</h3>
+</a>
+<div>
+  <em>{type}</em>
+  <p>{description}</p>
+  <span>{formatDateRange(date.from, date.to)}</span>
+  <div>
+    {tags.map((tag) => <span>{tag}</span>)}
+  </div>
+  {githubUrl && (
+    <a href={githubUrl} target='_blank'>
+      {GITHUB_LABEL}
+    </a>
+  )}
+  {preview && <ProjectIframe src={preview.url} title={preview.title} />}
+</div>

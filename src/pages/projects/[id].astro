@@ -1,0 +1,65 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectIframe from '../../components/ProjectIframe.astro';
+import { formatDateRange } from '../../lib/date';
+import { PAGE_TITLES } from '../../content.config';
+
+type PetProjectEntry = CollectionEntry<'petProjects'>;
+
+export const getStaticPaths = async () => {
+  const entries: PetProjectEntry[] = await getCollection('petProjects');
+  const sorted = entries.sort((a, b) => a.data.order - b.data.order);
+
+  return sorted.map((entry, index) => ({
+    params: { id: entry.id },
+    props: {
+      entry,
+      prevEntry: sorted[index - 1],
+      nextEntry: sorted[index + 1],
+    },
+  }));
+};
+
+const { entry, prevEntry, nextEntry } = Astro.props as {
+  entry: PetProjectEntry;
+  prevEntry: PetProjectEntry | undefined;
+  nextEntry: PetProjectEntry | undefined;
+};
+
+const { Content } = await render(entry);
+const { headline, type, description, date, tags, githubUrl, preview } = entry.data;
+
+const pageTitle = `${headline} ${PAGE_TITLES.blogSuffix}`;
+
+const GITHUB_LABEL: string = 'Github';
+---
+
+<BaseLayout title={pageTitle}>
+  <h1>{headline}</h1>
+  <em>{type}</em>
+  <p>{description}</p>
+  <span>{formatDateRange(date.from, date.to)}</span>
+  <div>
+    {tags.map((tag) => (
+      <span>{tag}</span>
+    ))}
+  </div>
+  {githubUrl && (
+    <a href={githubUrl} target='_blank'>
+      {GITHUB_LABEL}
+    </a>
+  )}
+  {preview && <ProjectIframe src={preview.url} title={preview.title} />}
+  <article>
+    <Content />
+  </article>
+  <nav>
+    {prevEntry && (
+      <a href={`/projects/${prevEntry.id}`}>← {prevEntry.data.headline}</a>
+    )}
+    {nextEntry && (
+      <a href={`/projects/${nextEntry.id}`}>{nextEntry.data.headline} →</a>
+    )}
+  </nav>
+</BaseLayout>

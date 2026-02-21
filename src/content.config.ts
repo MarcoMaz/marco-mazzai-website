@@ -78,27 +78,24 @@ const tagsCodingLanguagesCollection = defineCollection({
 });
 
 const petProjectsCollection = defineCollection({
-  loader: glob({ pattern: 'petProjects.md', base: './src/content/copy' }),
+  loader: glob({ pattern: '**/*.md', base: './src/content/petProjects' }),
   schema: z.object({
-    petProjectsItems: z.array(
-      z.object({
-        headline: z.string(),
-        type: z.string(),
-        description: z.string(),
-        date: z.object({
-          from: partialDate,
-          to: partialDate.optional(),
-        }),
-        tags: z.array(z.string()),
-        githubUrl: z.string().url(),
-        preview: z
-          .object({
-            title: z.string().optional(),
-            url: z.string(),
-          })
-          .optional(),
+    order: z.number(),
+    headline: z.string(),
+    type: z.string(),
+    description: z.string(),
+    date: z.object({
+      from: partialDate,
+      to: partialDate.optional(),
+    }),
+    tags: z.array(z.string()),
+    githubUrl: z.string().url(),
+    preview: z
+      .object({
+        title: z.string().optional(),
+        url: z.string(),
       })
-    ),
+      .optional(),
   }),
 });
 
