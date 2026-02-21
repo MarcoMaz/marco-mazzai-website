@@ -1,6 +1,5 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
-import NavigationClient from './NavigationClient';
 
 type NavigationEntry = CollectionEntry<'navigation'>;
 
@@ -14,23 +13,66 @@ if (navigationCollection.length === 0) {
 const { navigationItems } = navigationCollection[0].data;
 ---
 
-<!-- Server-rendered desktop nav for immediate visibility -->
-<!-- Client React component handles mobile hamburger and toggle -->
-<NavigationClient client:load items={navigationItems} />
-
+<div class="Navigation__mobile">
+  <button
+    aria-label="Open navigation"
+    aria-expanded="false"
+    aria-controls="nav-list"
+    class="Navigation__mobile__hamburger"
+  >
+    <!-- List icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" aria-hidden="true" class="icon-list">
+      <path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"/>
+    </svg>
+    <!-- X icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" aria-hidden="true" class="icon-x">
+      <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/>
+    </svg>
+  </button>
+</div>
 
 <nav class="Navigation__desktop">
   <ul id="nav-list">
     {
-      navigationItems.map((navigationItem) => {
-        const { url, label } = navigationItem;
-        return (
-          <li>
-            <a href={url}>{label}</a>
-          </li>
-        );
-      })
+      navigationItems.map(({ url, label }) => (
+        <li>
+          <a href={url}>{label}</a>
+        </li>
+      ))
     }
   </ul>
 </nav>
 
+<style>
+  @media (min-width: 800px) {
+    .Navigation__mobile { display: none !important; }
+  }
+
+  .icon-x { display: none; }
+  .Navigation__mobile__hamburger[aria-expanded="true"] .icon-x { display: block; }
+  .Navigation__mobile__hamburger[aria-expanded="true"] .icon-list { display: none; }
+</style>
+
+<script>
+  const MOBILE_MQ = window.matchMedia('(max-width: 799px)');
+
+  const button = document.querySelector<HTMLButtonElement>('.Navigation__mobile__hamburger');
+  const navList = document.getElementById('nav-list');
+
+  const setOpen = (open: boolean) => {
+    if (!navList || !button) return;
+    navList.style.display = open ? 'block' : (MOBILE_MQ.matches ? 'none' : 'block');
+    button.setAttribute('aria-expanded', String(open));
+    button.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    document.body.classList.toggle('blocked', open);
+  };
+
+  // Initial state
+  if (navList) navList.style.display = MOBILE_MQ.matches ? 'none' : 'block';
+
+  button?.addEventListener('click', () => {
+    setOpen(button.getAttribute('aria-expanded') !== 'true');
+  });
+
+  window.addEventListener('resize', () => setOpen(false));
+</script>
