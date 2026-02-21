@@ -35,6 +35,8 @@ const blogCollection = defineCollection({
     slug: z.string(),
     title: z.string(),
     date: z.string(),
+    kicker: z.string(),
+    tags: z.array(z.string()),
   }),
 });
 

@@ -14,29 +14,41 @@ if (blogPageCollection.length === 0) {
 }
 
 const blogPage: BlogPageEntry = blogPageCollection[0];
-
 const { headline } = blogPage.data;
 const { showLink = false } = Astro.props;
+
+const stripMarkdown = (text: string): string =>
+  text
+    .replace(/#{1,6}\s+/g, '')
+    .replace(/\*\*|__|\*|_|~~|`/g, '')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/!\[[^\]]*\]\([^)]+\)/g, '')
+    .trim();
 
 const getReadingTime = (content: string, wordsPerMinute = 200): number => {
   const wordCount = content.trim().split(/\s+/).length;
   return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
 };
 
-const MIN_READ_TEXT: string = 'min read';
+const formatDate = (dateStr: string): string => {
+  const [day, month, year] = dateStr.split('-').map(Number);
+  return new Date(year, month - 1, day).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+};
 
-const sortedPosts: BlogEntry[] = posts.sort(
-  (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => {
-    const [dayA, monthA, yearA] = a.data.date.split('-').map(Number);
-    const [dayB, monthB, yearB] = b.data.date.split('-').map(Number);
-
-    const dateA = new Date(yearA, monthA - 1, dayA);
-    const dateB = new Date(yearB, monthB - 1, dayB);
-
-    return dateB.getTime() - dateA.getTime();
-  }
-);
+const sortedPosts: BlogEntry[] = posts.sort((a, b) => {
+  const [dayA, monthA, yearA] = a.data.date.split('-').map(Number);
+  const [dayB, monthB, yearB] = b.data.date.split('-').map(Number);
+  return (
+    new Date(yearB, monthB - 1, dayB).getTime() -
+    new Date(yearA, monthA - 1, dayA).getTime()
+  );
+});
 ---
+
 <div>
   <h2>{headline}</h2>
   {showLink && <a href="/blog">See all posts</a>}
@@ -44,15 +56,39 @@ const sortedPosts: BlogEntry[] = posts.sort(
 <ul>
   {
     sortedPosts.map((post) => {
-      const { slug, title } = post.data;
+      const { slug, title, date, kicker, tags } = post.data;
       const readingTime = getReadingTime(post.body ?? '');
+      const preview = stripMarkdown(post.body ?? '');
 
       return (
         <li>
-          <a href={`/blog/${slug}`}>{title}</a> —{' '}
-          {`${readingTime} ${MIN_READ_TEXT}`}
+          <h3>
+            <a href={`/blog/${slug}`}>{title}</a>
+          </h3>
+          <span>
+            {formatDate(date)} · {readingTime} min read
+          </span>
+          <p>{kicker}</p>
+          <p class="preview">{preview}</p>
+          {tags.length > 0 && (
+            <ul>
+              {tags.map((tag) => (
+                <li>{tag}</li>
+              ))}
+            </ul>
+          )}
+          <a href={`/blog/${slug}`}>Read more</a>
         </li>
       );
     })
   }
 </ul>
+
+<style>
+  .preview {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
