@@ -43,16 +43,6 @@ const { navigationItems } = navigationCollection[0].data;
   </ul>
 </nav>
 
-<style>
-  @media (min-width: 800px) {
-    .Navigation__mobile { display: none !important; }
-  }
-
-  .icon-x { display: none; }
-  .Navigation__mobile__hamburger[aria-expanded="true"] .icon-x { display: block; }
-  .Navigation__mobile__hamburger[aria-expanded="true"] .icon-list { display: none; }
-</style>
-
 <script>
   const MOBILE_MQ = window.matchMedia('(max-width: 799px)');
 

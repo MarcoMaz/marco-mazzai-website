@@ -36,11 +36,10 @@ const { CTA: socialLinksCTA } = socialLinksCollection[0].data;
   <p class='mm-footer__collaboration'>
     {collaboration}
   </p>
-
-  <ul class='mm-social-links'>
+  <ul class='mm-footer__social-links-list'>
     {
       socialLinksCTA.map(({ url, label }) => (
-        <li class='mm-social-link'>
+        <li class='mm-footer__social-link'>
           {url && (
             <a href={url}>
               {url.startsWith('mailto:') && <PaperPlaneTiltIcon size={20} />}
