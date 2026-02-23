@@ -50,13 +50,15 @@ const { slug: nextSlug, title: nextTitle }: { slug?: string; title?: string } =
 ---
 
 <BaseLayout title={pageTitle}>
-  <h1>{heading}</h1>
-  <p class='post-date'>{formattedDate}</p>
-  <article>
-    <Content />
-  </article>
-  <nav>
-    {prevSlug && <a href={`/blog/${prevSlug}`}>← {prevTitle}</a>}
-    {nextSlug && <a href={`/blog/${nextSlug}`}>{nextTitle} →</a>}
-  </nav>
+  <section class='mm-blog-post'>
+    <h1>{heading}</h1>
+    <p class='post-date'>{formattedDate}</p>
+    <article>
+      <Content />
+    </article>
+    <nav>
+      {prevSlug && <a href={`/blog/${prevSlug}`}>← {prevTitle}</a>}
+      {nextSlug && <a href={`/blog/${nextSlug}`}>{nextTitle} →</a>}
+    </nav>
+  </section>
 </BaseLayout>

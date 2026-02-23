@@ -38,33 +38,35 @@ const GITHUB_LABEL: string = 'Github';
 ---
 
 <BaseLayout title={pageTitle}>
-  <h1>{headline}</h1>
-  <em>{type}</em>
-  <p>{description}</p>
-  <span>{formatDateRange(date.from, date.to)}</span>
-
-  <TagList tags={tags} />
-  {
-    githubUrl && (
-      <a href={githubUrl} target='_blank'>
-        {GITHUB_LABEL}
-      </a>
-    )
-  }
-  {preview && <ProjectIframe src={preview.url} title={preview.title} />}
-  <article>
-    <Content />
-  </article>
-  <nav>
+  <section class="mm-pet-project">
+    <h1>{headline}</h1>
+    <em>{type}</em>
+    <p>{description}</p>
+    <span>{formatDateRange(date.from, date.to)}</span>
+  
+    <TagList tags={tags} />
     {
-      prevEntry && (
-        <a href={`/projects/${prevEntry.id}`}>← {prevEntry.data.headline}</a>
+      githubUrl && (
+        <a href={githubUrl} target='_blank'>
+          {GITHUB_LABEL}
+        </a>
       )
     }
-    {
-      nextEntry && (
-        <a href={`/projects/${nextEntry.id}`}>{nextEntry.data.headline} →</a>
-      )
-    }
-  </nav>
+    {preview && <ProjectIframe src={preview.url} title={preview.title} />}
+    <article>
+      <Content />
+    </article>
+    <nav>
+      {
+        prevEntry && (
+          <a href={`/projects/${prevEntry.id}`}>← {prevEntry.data.headline}</a>
+        )
+      }
+      {
+        nextEntry && (
+          <a href={`/projects/${nextEntry.id}`}>{nextEntry.data.headline} →</a>
+        )
+      }
+    </nav>
+  </section>
 </BaseLayout>

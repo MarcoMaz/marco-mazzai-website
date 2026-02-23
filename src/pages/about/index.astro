@@ -25,18 +25,20 @@ const pageTitle = PAGE_TITLES.about;
 ---
 
 <BaseLayout title={pageTitle}>
-  <Content />
-  <h2>{headline}</h2>
-
-  <TagsCodingLanguagesSection />
-
-  <wa-accordion>
-    <WorkExperiencesSection />
-  </wa-accordion>
-
-  <wa-accordion>
-    <EducationSection />
-  </wa-accordion>
+  <section class='mm-about'>
+    <Content />
+    <h2>{headline}</h2>
+  
+    <TagsCodingLanguagesSection />
+  
+    <wa-accordion>
+      <WorkExperiencesSection />
+    </wa-accordion>
+  
+    <wa-accordion>
+      <EducationSection />
+    </wa-accordion>
+  </section>
 
 </BaseLayout>
 
