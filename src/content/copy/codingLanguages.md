@@ -1,5 +1,5 @@
 ---
-tagsCodingLanguages:
+codingLanguages:
   - React and Vue
   - Web Components and Lit
   - React Router and TanStack (React Query, React Table)

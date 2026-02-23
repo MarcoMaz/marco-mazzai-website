@@ -60,13 +60,13 @@ const aboutCollection = defineCollection({
   }),
 });
 
-const tagsCodingLanguagesCollection = defineCollection({
+const codingLanguagesCollection = defineCollection({
   loader: glob({
-    pattern: 'tagsCodingLanguages.md',
+    pattern: 'codingLanguages.md',
     base: './src/content/copy',
   }),
   schema: z.object({
-    tagsCodingLanguages: z.array(z.string()),
+    codingLanguages: z.array(z.string()),
   }),
 });
 
@@ -184,7 +184,7 @@ export const collections = {
   blog: blogCollection,
   home: homeCollection,
   about: aboutCollection,
-  tagsCodingLanguages: tagsCodingLanguagesCollection,
+  codingLanguages: codingLanguagesCollection,
   petProjects: petProjectsCollection,
   workExperiences: workExperiencesCollection,
   education: educationCollection,

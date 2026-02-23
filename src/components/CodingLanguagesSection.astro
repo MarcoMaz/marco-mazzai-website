@@ -1,0 +1,18 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+type CodingLanguagesEntry = CollectionEntry<'codingLanguages'>;
+
+const codingDocs: CodingLanguagesEntry[] =
+  await getCollection('codingLanguages');
+
+if (codingDocs.length === 0) {
+  throw new Error('Tags & coding languages not found in copy collection');
+}
+
+const codingLanguages = codingDocs[0].data.codingLanguages as string[];
+---
+
+<ul>
+  {codingLanguages.map((codingLanguage) => <li>{codingLanguage}</li>)}
+</ul>
