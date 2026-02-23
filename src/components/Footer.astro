@@ -1,8 +1,13 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
-import SocialLinksSection from './SocialLinksSection.astro';
+import {
+  PaperPlaneTiltIcon,
+  GitlabLogoSimpleIcon,
+  LinkedinLogoIcon,
+} from '@phosphor-icons/react';
 
 type FooterEntry = CollectionEntry<'footer'>;
+type SocialLinksEntry = CollectionEntry<'socialLinks'>;
 
 const footerCollection: FooterEntry[] = await getCollection('footer');
 
@@ -15,14 +20,41 @@ const footer: FooterEntry = footerCollection[0];
 const { headline, builtWith, collaboration, copyright } = footer.data;
 
 const currentYear: number = new Date().getFullYear();
+
+const socialLinksCollection: SocialLinksEntry[] =
+  await getCollection('socialLinks');
+
+if (socialLinksCollection.length === 0) {
+  throw new Error('Social links not found in copy collection');
+}
+
+const { CTA: socialLinksCTA } = socialLinksCollection[0].data;
 ---
 
 <footer class='mm-footer' id='contact'>
   <h2 class='mm-footer__heading'>{headline}</h2>
+  <p class='mm-footer__collaboration'>
+    {collaboration}
+  </p>
 
-  {collaboration}
-
-  <SocialLinksSection showHeadline={false} />
+  <ul class='mm-social-links'>
+    {
+      socialLinksCTA.map(({ url, label }) => (
+        <li class='mm-social-link'>
+          {url && (
+            <a href={url}>
+              {url.startsWith('mailto:') && <PaperPlaneTiltIcon size={20} />}
+              {(url.includes('gitlab') || url.includes('github')) && (
+                <GitlabLogoSimpleIcon size={20} />
+              )}
+              {url.includes('linkedin') && <LinkedinLogoIcon size={20} />}
+              {label}
+            </a>
+          )}
+        </li>
+      ))
+    }
+  </ul>
 
   <p class='mm-footer__built-with'>
     {builtWith} &copy; {`${currentYear} ${copyright}`}
