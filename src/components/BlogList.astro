@@ -50,34 +50,34 @@ const sortedPosts: BlogEntry[] = posts.sort((a, b) => {
 });
 ---
 
-<div>
+<section class='mm-blog-list'>
   <h2>{headline}</h2>
   {showLink && <a href="/blog">See all posts</a>}
-</div>
-<ul>
-  {
-    sortedPosts.map((post) => {
-      const { slug, title, date, kicker, tags } = post.data;
-      const readingTime = getReadingTime(post.body ?? '');
-      const preview = stripMarkdown(post.body ?? '');
-
-      return (
-        <li>
-          <h3>
-            <a href={`/blog/${slug}`}>{title}</a>
-          </h3>
-          <span>
-            {formatDate(date)} · {readingTime} min read
-          </span>
-          <p>{kicker}</p>
-          <p class="preview">{preview}</p>
-          <TagList tags={tags} />
-          <a href={`/blog/${slug}`}>Read more</a>
-        </li>
-      );
-    })
-  }
-</ul>
+  <ul>
+    {
+      sortedPosts.map((post) => {
+        const { slug, title, date, kicker, tags } = post.data;
+        const readingTime = getReadingTime(post.body ?? '');
+        const preview = stripMarkdown(post.body ?? '');
+  
+        return (
+          <li>
+            <h3>
+              <a href={`/blog/${slug}`}>{title}</a>
+            </h3>
+            <span>
+              {formatDate(date)} · {readingTime} min read
+            </span>
+            <p>{kicker}</p>
+            <p class="preview">{preview}</p>
+            <TagList tags={tags} />
+            <a href={`/blog/${slug}`}>Read more</a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</section>
 
 <style>
   .preview {

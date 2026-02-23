@@ -35,23 +35,25 @@ const { Content: AboutContent } = await render(about);
 ---
 
 <BaseLayout>
-  <h1>{headline}</h1>
-  <h2 set:html={kicker} />
-  <p set:html={summary} />
-  <Content />
-  <img src={src} alt={alt} />
+  <section class='mm-hero'>
+    <h1>{headline}</h1>
+    <h2 set:html={kicker} />
+    <p set:html={summary} />
+    <Content />
+    <img src={src} alt={alt} />
+  </section>
   <BlogList showLink />
-  <section>
+  <section class='mm-pet-projects'>
     <div>
       <h2>Pet Projects</h2>
-      <a href="/about">See all projects</a>
+      <a href='/about'>See all projects</a>
     </div>
     <PetProjectsSection />
   </section>
-  <section>
+  <section class='mm-about'>
     <div>
       <h2>About Me</h2>
-      <a href="/about">About page</a>
+      <a href='/about'>About page</a>
     </div>
     <AboutContent />
   </section>

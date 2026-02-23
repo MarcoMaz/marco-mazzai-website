@@ -54,6 +54,24 @@ $backgroundLight: #FFFCF7;
 }
 
 
+/* hero */
+.mm-hero {
+  background-color: $backgroundDark;
+  color: #FFFCF7;
+}
+
+.mm-blog-list {
+  background-color: $backgroundLight;
+}
+
+.mm-pet-projects {
+  background-color: $backgroundLight;
+}
+
+.mm-about {
+  background-color: $backgroundLight;
+}
+
 /* Footer */
 .mm-footer {
   background-color: $backgroundDark;
