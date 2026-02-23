@@ -17,7 +17,7 @@ const { headline, builtWith, collaboration, copyright } = footer.data;
 const currentYear: number = new Date().getFullYear();
 ---
 
-<footer class='footer-section' id='contact'>
+<footer class='mm-footer' id='contact'>
   <h2 class='heading'>{headline}</h2>
   >
 
@@ -25,5 +25,7 @@ const currentYear: number = new Date().getFullYear();
 
   <SocialLinksSection showHeadline={false} />
 
-  <p>{builtWith} &copy; {`${currentYear} ${copyright}`}</p>
+  <p class='mm-footer__built-with'>
+    {builtWith} &copy; {`${currentYear} ${copyright}`}
+  </p>
 </footer>
