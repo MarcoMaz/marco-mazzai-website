@@ -1,7 +1,7 @@
 ---
 import { type CollectionEntry } from 'astro:content';
 import ProjectIframe from './ProjectIframe.astro';
-import TagList from './TagList.astro';
+import ChipList from './ChipList.astro';
 import { formatDateRange } from '../lib/date';
 
 type PetProjectItemProps = {
@@ -9,7 +9,7 @@ type PetProjectItemProps = {
 };
 
 const { entry } = Astro.props as PetProjectItemProps;
-const { headline, type, description, date, tags, githubUrl, preview } = entry.data;
+const { headline, type, description, date, chips, githubUrl, preview } = entry.data;
 
 const GITHUB_LABEL: string = 'Github';
 ---
@@ -22,7 +22,7 @@ const GITHUB_LABEL: string = 'Github';
   <p>{description}</p>
   <span>{formatDateRange(date.from, date.to)}</span>
 
-  <TagList tags={tags} />
+  <ChipList chips={chips} />
   {githubUrl && (
     <a href={githubUrl} target='_blank'>
       {GITHUB_LABEL}

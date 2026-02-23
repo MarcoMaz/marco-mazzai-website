@@ -6,7 +6,7 @@ description: "Unstyled UI library of Lit's Web Components I built to showcase my
 date:
   from: 2024
   to: Present
-tags: ['Lit', 'Typescript', 'Storybook', 'Vitest']
+chips: ['Lit', 'Typescript', 'Storybook', 'Vitest']
 githubUrl: 'https://github.com/MarcoMaz/wa11y'
 preview:
   url: 'https://wa11y-storybook.netlify.app/?path=/docs/atoms-button--buttoninfo'

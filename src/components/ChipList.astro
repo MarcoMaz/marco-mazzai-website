@@ -1,0 +1,15 @@
+---
+type ChipListProps = { chips: string[] };
+
+const { chips } = Astro.props as ChipListProps;
+---
+
+{
+  chips.length > 0 && (
+    <ul class='mm-chip-list'>
+      {chips.map((chip) => (
+        <li class='mm-chip'>{chip}</li>
+      ))}
+    </ul>
+  )
+}

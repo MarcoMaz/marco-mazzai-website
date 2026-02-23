@@ -34,15 +34,15 @@ $backgroundLight: #FFFCF7;
 
 /* Components */
 
-/* TAG */
+/* CHIP */
 /* --- */
-.mm-tag-list {
+.mm-chip-list {
   display: flex;
   gap: rem(8);
   margin-bottom: rem(16);
 }
 
-.mm-tag {
+.mm-chip {
   border-radius: 2px;
   border: rem(1) solid #e0d8cc;
   color: #5a4e43;

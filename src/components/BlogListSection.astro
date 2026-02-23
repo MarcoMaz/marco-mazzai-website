@@ -1,6 +1,6 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
-import TagList from './TagList.astro';
+import ChipList from './ChipList.astro';
 
 type BlogEntry = CollectionEntry<'blog'>;
 type BlogPageEntry = CollectionEntry<'blogPage'>;
@@ -56,7 +56,7 @@ const sortedPosts: BlogEntry[] = posts.sort((a, b) => {
   <ul>
     {
       sortedPosts.map((post) => {
-        const { slug, title, date, kicker, tags } = post.data;
+        const { slug, title, date, kicker, chips } = post.data;
         const readingTime = getReadingTime(post.body ?? '');
         const preview = stripMarkdown(post.body ?? '');
   
@@ -70,7 +70,7 @@ const sortedPosts: BlogEntry[] = posts.sort((a, b) => {
             </span>
             <p>{kicker}</p>
             <p class="preview">{preview}</p>
-            <TagList tags={tags} />
+            <ChipList chips={chips} />
             <a href={`/blog/${slug}`}>Read more</a>
           </li>
         );

@@ -6,7 +6,7 @@ description: 'This website you are browsing'
 date:
   from: 2025
   to: Present
-tags: ['Astro', 'Zod', 'Wa11y']
+chips: ['Astro', 'Zod', 'Wa11y']
 githubUrl: 'https://github.com/MarcoMaz/marco-mazzai-website'
 ---
 

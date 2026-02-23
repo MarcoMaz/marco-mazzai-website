@@ -6,7 +6,7 @@ description: 'Interactive polyrhythmic metronome made with the Web Audio API'
 date:
   from: 2021
   to: Present
-tags: ['Pwa', 'Typescript', 'Scss', 'Web Audio API', 'Canvas API']
+chips: ['Pwa', 'Typescript', 'Scss', 'Web Audio API', 'Canvas API']
 githubUrl: 'https://github.com/MarcoMaz/poly-metronome-app'
 preview:
   url: 'https://marcomaz.github.io/poly-metronome-app/'

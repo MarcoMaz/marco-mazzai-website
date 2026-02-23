@@ -36,7 +36,7 @@ const blogCollection = defineCollection({
     title: z.string(),
     date: z.string(),
     kicker: z.string(),
-    tags: z.array(z.string()),
+    chips: z.array(z.string()),
   }),
 });
 
@@ -81,7 +81,7 @@ const petProjectsCollection = defineCollection({
       from: partialDate,
       to: partialDate.optional(),
     }),
-    tags: z.array(z.string()),
+    chips: z.array(z.string()),
     githubUrl: z.string().url(),
     preview: z
       .object({

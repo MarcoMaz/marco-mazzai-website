@@ -4,7 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectIframe from '../../components/ProjectIframe.astro';
 import { formatDateRange } from '../../lib/date';
 import { PAGE_TITLES } from '../../content.config';
-import TagList from '../../components/TagList.astro';
+import ChipList from '../../components/ChipList.astro';
 
 type PetProjectEntry = CollectionEntry<'petProjects'>;
 
@@ -29,7 +29,7 @@ const { entry, prevEntry, nextEntry } = Astro.props as {
 };
 
 const { Content } = await render(entry);
-const { headline, type, description, date, tags, githubUrl, preview } =
+const { headline, type, description, date, chips, githubUrl, preview } =
   entry.data;
 
 const pageTitle = `${headline} ${PAGE_TITLES.blogSuffix}`;
@@ -44,7 +44,7 @@ const GITHUB_LABEL: string = 'Github';
     <p>{description}</p>
     <span>{formatDateRange(date.from, date.to)}</span>
   
-    <TagList tags={tags} />
+    <ChipList chips={chips} />
     {
       githubUrl && (
         <a href={githubUrl} target='_blank'>
