@@ -152,6 +152,12 @@ const footerCollection = defineCollection({
     builtWith: z.string(),
     collaboration: z.string(),
     copyright: z.string(),
+    CTA: z.array(
+      z.object({
+        label: z.string(),
+        url: z.string(),
+      })
+    ),
   }),
 });
 
@@ -167,18 +173,6 @@ const navigationCollection = defineCollection({
   }),
 });
 
-const socialLinksCollection = defineCollection({
-  loader: glob({ pattern: 'socialLinks.md', base: './src/content/copy' }),
-  schema: z.object({
-    headline: z.string().optional(),
-    CTA: z.array(
-      z.object({
-        label: z.string(),
-        url: z.string().url(),
-      })
-    ),
-  }),
-});
 
 export const collections = {
   blog: blogCollection,
@@ -191,7 +185,6 @@ export const collections = {
   blogPage: blogPageCollection,
   footer: footerCollection,
   navigation: navigationCollection,
-  socialLinks: socialLinksCollection,
 };
 
 // -------------------------

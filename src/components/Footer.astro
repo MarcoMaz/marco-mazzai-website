@@ -7,7 +7,6 @@ import {
 } from '@phosphor-icons/react';
 
 type FooterEntry = CollectionEntry<'footer'>;
-type SocialLinksEntry = CollectionEntry<'socialLinks'>;
 
 const footerCollection: FooterEntry[] = await getCollection('footer');
 
@@ -15,20 +14,10 @@ if (footerCollection.length === 0) {
   throw new Error('Footer not found in copy collection');
 }
 
-const footer: FooterEntry = footerCollection[0];
-
-const { headline, builtWith, collaboration, copyright } = footer.data;
+const { headline, builtWith, collaboration, copyright, CTA } =
+  footerCollection[0].data;
 
 const currentYear: number = new Date().getFullYear();
-
-const socialLinksCollection: SocialLinksEntry[] =
-  await getCollection('socialLinks');
-
-if (socialLinksCollection.length === 0) {
-  throw new Error('Social links not found in copy collection');
-}
-
-const { CTA: socialLinksCTA } = socialLinksCollection[0].data;
 ---
 
 <footer class='mm-footer' id='contact'>
@@ -39,7 +28,7 @@ const { CTA: socialLinksCTA } = socialLinksCollection[0].data;
     </p>
     <ul class='mm-footer__social-links-list'>
       {
-        socialLinksCTA.map(({ url, label }) => (
+        CTA.map(({ url, label }) => (
           <li class='mm-footer__social-link'>
             {url && (
               <a href={url}>
