@@ -90,11 +90,42 @@ $backgroundLight: #FFFCF7;
 
 /* Footer */
 .mm-footer {
+  align-items: center;
   background-color: $backgroundDark;
   color: #FFFCF7;
+  display: flex;
+  flex-direction: column;
+
+  &__heading {
+    text-transform: uppercase;
+  }
 
   &__built-with {
     background-color: #E0D8CC;
     color: #5A4E43;
+    text-align: center;
+    width: 100%;
   }
+}
+
+.mm-social-links {
+  display: flex;
+  gap: rem(32);
+}
+
+.mm-social-link,
+.mm-social-link a {
+  color: #E69A87;
+}
+
+.mm-social-link {
+  align-items: center;
+  display: flex;
+  font-size: rem(20);
+  gap: 2px;
+}
+
+.mm-social-link a {
+  text-decoration: none;
+  text-transform: uppercase;
 }
