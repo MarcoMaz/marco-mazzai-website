@@ -1,7 +1,7 @@
 @use 'sass:math';
 
-@import './variables';
-@import './components/wa-button';
+@use './variables';
+@use './components/wa-button';
 
 @function rem($px) {
   @return math.div($px, 16) * 1rem;
