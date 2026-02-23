@@ -106,26 +106,23 @@ $backgroundLight: #FFFCF7;
     text-align: center;
     width: 100%;
   }
-}
-
-.mm-social-links {
-  display: flex;
-  gap: rem(32);
-}
-
-.mm-social-link,
-.mm-social-link a {
-  color: #E69A87;
-}
-
-.mm-social-link {
-  align-items: center;
-  display: flex;
-  font-size: rem(20);
-  gap: 2px;
-}
-
-.mm-social-link a {
-  text-decoration: none;
-  text-transform: uppercase;
+  
+  &__social-links-list {
+    display: flex;
+    gap: rem(32);
+  }
+  
+  &__social-link,
+  &__social-link a {
+    color: #E69A87;
+  }
+    
+  &__social-link a {
+    align-items: center;
+    display: flex;
+    font-size: rem(20);
+    gap: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
 }
