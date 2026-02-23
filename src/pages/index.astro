@@ -1,11 +1,11 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
-import BlogList from '../components/BlogList.astro';
+import AboutSection from '../components/AboutSection.astro';
+import BlogListSection from '../components/BlogListSection.astro';
 import PetProjectsSection from '../components/PetProjectsSection.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 type HomeEntry = CollectionEntry<'home'>;
-type AboutEntry = CollectionEntry<'about'>;
 
 const homeCollection: HomeEntry[] = await getCollection('home');
 
@@ -23,15 +23,6 @@ const {
 } = home.data;
 
 const { Content } = await render(home);
-
-const aboutCollection: AboutEntry[] = await getCollection('about');
-
-if (aboutCollection.length === 0) {
-  throw new Error('About page not found in copy collection');
-}
-
-const about: AboutEntry = aboutCollection[0];
-const { Content: AboutContent } = await render(about);
 ---
 
 <BaseLayout>
@@ -42,19 +33,7 @@ const { Content: AboutContent } = await render(about);
     <Content />
     <img src={src} alt={alt} />
   </section>
-  <BlogList showLink />
-  <section class='mm-pet-projects-teaser'>
-    <div>
-      <h2>Pet Projects</h2>
-      <a href='/about'>See all projects</a>
-    </div>
-    <PetProjectsSection />
-  </section>
-  <section class='mm-about-teaser'>
-    <div>
-      <h2>About Me</h2>
-      <a href='/about'>About page</a>
-    </div>
-    <AboutContent />
-  </section>
+  <BlogListSection showLink />
+  <PetProjectsSection showLink />
+  <AboutSection showLink />
 </BaseLayout>

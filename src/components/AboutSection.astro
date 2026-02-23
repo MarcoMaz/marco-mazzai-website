@@ -1,0 +1,22 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+
+type AboutEntry = CollectionEntry<'about'>;
+type Props = { showLink?: boolean };
+
+const aboutCollection: AboutEntry[] = await getCollection('about');
+
+if (aboutCollection.length === 0) {
+  throw new Error('About page not found in copy collection');
+}
+
+const about: AboutEntry = aboutCollection[0];
+const { Content } = await render(about);
+const { showLink = false } = Astro.props;
+---
+
+<section class='mm-about-teaser'>
+  <h2>About Me</h2>
+  {showLink && <a href='/about'>About page</a>}
+  <Content />
+</section>

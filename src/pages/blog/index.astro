@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import BlogList from '../../components/BlogList.astro';
+import BlogListSection from '../../components/BlogListSection.astro';
 import { PAGE_TITLES } from '../../content.config';
 
 const pageTitle = PAGE_TITLES.blog;
 ---
 
 <BaseLayout title={pageTitle}>
-  <BlogList />
+  <BlogListSection />
 </BaseLayout>
