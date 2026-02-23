@@ -1,5 +1,6 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
+import TagList from './TagList.astro';
 
 type BlogEntry = CollectionEntry<'blog'>;
 type BlogPageEntry = CollectionEntry<'blogPage'>;
@@ -70,13 +71,7 @@ const sortedPosts: BlogEntry[] = posts.sort((a, b) => {
           </span>
           <p>{kicker}</p>
           <p class="preview">{preview}</p>
-          {tags.length > 0 && (
-            <ul>
-              {tags.map((tag) => (
-                <li>{tag}</li>
-              ))}
-            </ul>
-          )}
+          <TagList tags={tags} />
           <a href={`/blog/${slug}`}>Read more</a>
         </li>
       );

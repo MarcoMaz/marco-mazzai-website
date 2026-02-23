@@ -1,6 +1,7 @@
 ---
 import { type CollectionEntry } from 'astro:content';
 import ProjectIframe from './ProjectIframe.astro';
+import TagList from './TagList.astro';
 import { formatDateRange } from '../lib/date';
 
 type PetProjectItemProps = {
@@ -20,9 +21,8 @@ const GITHUB_LABEL: string = 'Github';
   <em>{type}</em>
   <p>{description}</p>
   <span>{formatDateRange(date.from, date.to)}</span>
-  <div>
-    {tags.map((tag) => <span>{tag}</span>)}
-  </div>
+
+  <TagList tags={tags} />
   {githubUrl && (
     <a href={githubUrl} target='_blank'>
       {GITHUB_LABEL}
