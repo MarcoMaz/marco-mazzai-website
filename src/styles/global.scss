@@ -12,24 +12,27 @@ body {
   font-family: 'Space Grotesk', sans-serif;
 }
 
-
-/* TAG */
-/* --- */
-.mm-tag-list {
-  /* reset */
+/* Resets */
+ul {
   list-style-type: none;
   margin: 0;
   padding-left: 0;
 
+  li {
+    padding: 0;
+  }
+}
+
+
+/* TAG */
+/* --- */
+.mm-tag-list {
   display: flex;
   gap: rem(8);
   margin-bottom: rem(16);
 }
 
 .mm-tag {
-  /* reset */
-  padding: 0;
-
   border-radius: 2px;
   border: rem(1) solid #e0d8cc;
   color: #5a4e43;
