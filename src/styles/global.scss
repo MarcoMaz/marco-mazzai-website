@@ -51,6 +51,10 @@ $backgroundLight: #fffcf7;
 // BASE / RESETS
 // ============================================================
 
+* {
+  box-sizing: border-box;
+}
+
 body,
 p,
 h1,
