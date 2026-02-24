@@ -5,8 +5,6 @@ import ChipList from './ChipList.astro';
 type BlogEntry = CollectionEntry<'blog'>;
 type BlogPageEntry = CollectionEntry<'blogPage'>;
 
-type Props = { showLink?: boolean };
-
 const posts: BlogEntry[] = await getCollection('blog');
 const blogPageCollection: BlogPageEntry[] = await getCollection('blogPage');
 
@@ -16,7 +14,7 @@ if (blogPageCollection.length === 0) {
 
 const blogPage: BlogPageEntry = blogPageCollection[0];
 const { headline } = blogPage.data;
-const { showLink = false } = Astro.props;
+const showLink = Astro.url.pathname === '/';
 
 const stripMarkdown = (text: string): string =>
   text
