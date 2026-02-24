@@ -77,8 +77,16 @@ ul {
 $backgroundDark: #1a1a1a;
 $backgroundLight: #fffcf7;
 
-/* Components */
+main {
+  position: relative;
+  top: rem(112);
 
+  @include desktop() {
+    top: unset;
+  }
+}
+
+/* Components */
 /* CHIP */
 .mm-chip-list {
   display: flex;
@@ -97,31 +105,18 @@ $backgroundLight: #fffcf7;
   text-transform: uppercase;
 }
 
-/* 32 20
-
 /* NAVIGATION */
 .mm-navigation {
-  // background-color: $backgroundDark;
-  background-color: red;
+  background-color: $backgroundDark;
+  display: flex;
+  flex-direction: column;
   padding: rem(32) rem(20);
+  position: absolute;
+  width: 100%;
+  z-index: 999;
 
-  // &__mobile {
-  //   margin-bottom: rem(32);
-  // }
-
-  &__list {
-    gap: rem(12);
-    flex-direction: column;
-  }
-
-  &__list-item a {
-    color: #fffcf7;
-    text-decoration: none;
-    text-transform: uppercase;
-  }
-
-  &__icon-x {
-    display: none;
+  &__mobile:has(&__hamburger[aria-expanded='true']) {
+    margin-bottom: rem(32);
   }
 
   &__hamburger {
@@ -134,10 +129,6 @@ $backgroundLight: #fffcf7;
     width: rem(48);
   }
 
-  &__mobile:has(&__hamburger[aria-expanded='true']) {
-    margin-bottom: 32px;
-  }
-
   &__hamburger[aria-expanded='true'] {
     .mm-navigation__icon-x {
       display: block;
@@ -148,7 +139,28 @@ $backgroundLight: #fffcf7;
     }
   }
 
+  &__hamburger[aria-expanded='false'] {
+    .mm-navigation__icon-x {
+      display: none;
+    }
+  }
+
+  &__list {
+    flex-direction: column;
+    gap: rem(12);
+  }
+
+  &__list-item a {
+    color: #fffcf7;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
   @include tablet {
+    padding: rem(32) rem(40);
+  }
+
+  @include desktop {
     &__mobile {
       display: none !important;
     }
