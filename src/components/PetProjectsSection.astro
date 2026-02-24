@@ -1,6 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
 import PetProjectItem from './PetProjectItem.astro';
+import Button from './Button.astro';
 
 type PetProjectEntry = CollectionEntry<'petProjects'>;
 
@@ -11,6 +12,6 @@ const isHome = Astro.url.pathname === '/';
 
 <section class='mm-pet-projects'>
   <h2>Pet Projects</h2>
-  {isHome && <a href='/about'>See all projects</a>}
+  {isHome && <Button href='/about'>See all projects</Button>}
   {sortedEntries.map((entry) => <PetProjectItem entry={entry} />)}
 </section>

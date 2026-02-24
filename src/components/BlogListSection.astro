@@ -1,6 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
 import ChipList from './ChipList.astro';
+import Button from './Button.astro';
 
 type BlogEntry = CollectionEntry<'blog'>;
 type BlogPageEntry = CollectionEntry<'blogPage'>;
@@ -50,7 +51,7 @@ const sortedPosts: BlogEntry[] = posts.sort((a, b) => {
 
 <section class='mm-blog-list'>
   <h2>{headline}</h2>
-  {isHome && <a href="/blog">See all posts</a>}
+  {isHome && <Button href="/blog">See all posts</Button>}
   <ul>
     {
       sortedPosts.map((post) => {
@@ -69,7 +70,7 @@ const sortedPosts: BlogEntry[] = posts.sort((a, b) => {
             <p>{kicker}</p>
             <p class="preview">{preview}</p>
             <ChipList chips={chips} />
-            <a href={`/blog/${slug}`}>Read more</a>
+            <Button href={`/blog/${slug}`}>Read more</Button>
           </li>
         );
       })
