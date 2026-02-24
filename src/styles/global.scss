@@ -1,53 +1,28 @@
+// ============================================================
+// IMPORTS & UTILITIES
+// ============================================================
+
 @use 'sass:math';
 
 @use './variables';
 @use './components/wa-button';
 
+// Convert px to rem, assuming a 16px base font size
 @function rem($px) {
   @return math.div($px, 16) * 1rem;
 }
 
-body {
-  font-size: rem(16);
-  font-family: 'Space Grotesk', sans-serif;
-}
+// ============================================================
+// VARIABLES
+// ============================================================
 
-/* Resets */
-body,
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-  padding: 0;
-}
+$backgroundDark: #1a1a1a;
+$backgroundLight: #fffcf7;
 
-button {
-  border-radius: 0;
-  text-align: inherit;
-  background: none;
-  box-shadow: none;
-  padding: 0;
-  cursor: pointer;
-  border: none;
-  color: inherit;
-  font: inherit;
-}
+// ============================================================
+// BREAKPOINTS
+// ============================================================
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding-left: 0;
-
-  li {
-    padding: 0;
-  }
-}
-
-/* Breakpoints */
 @mixin mobile {
   @media (min-width: 480px) {
     @content;
@@ -72,10 +47,54 @@ ul {
   }
 }
 
-/* Variables */
-$backgroundDark: #1a1a1a;
-$backgroundLight: #fffcf7;
+// ============================================================
+// BASE / RESETS
+// ============================================================
 
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: rem(16);
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+button {
+  border-radius: 0;
+  text-align: inherit;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  cursor: pointer;
+  border: none;
+  color: inherit;
+  font: inherit;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
+
+  li {
+    padding: 0;
+  }
+}
+
+// ============================================================
+// LAYOUT
+// ============================================================
+
+// Offset main content and footer below the fixed mobile nav
 main,
 footer {
   position: relative;
@@ -86,8 +105,27 @@ footer {
   }
 }
 
-/* Components */
+// Default section padding, responsive
+section {
+  padding: rem(40) rem(16);
+
+  @include tablet() {
+    padding: rem(60) rem(40);
+  }
+}
+
+// ============================================================
+// COMPONENTS
+// ============================================================
+
+/* AVATAR */
+
+.mm-avatar {
+  border-radius: 50%;
+}
+
 /* CHIP */
+
 .mm-chip-list {
   display: flex;
   gap: rem(8);
@@ -106,9 +144,6 @@ footer {
 }
 
 /* NAVIGATION */
-.mm-avatar {
-  border-radius: 50%;
-}
 
 .mm-navigation {
   background-color: $backgroundDark;
@@ -129,6 +164,7 @@ footer {
     justify-content: space-between;
   }
 
+  // Add spacing below the mobile header when the menu is open
   &__mobile:has(&__hamburger[aria-expanded='true']) {
     margin-bottom: rem(32);
   }
@@ -143,6 +179,7 @@ footer {
     width: rem(48);
   }
 
+  // Toggle icon visibility based on expanded state
   &__hamburger[aria-expanded='true'] {
     .mm-navigation__icon-x {
       display: block;
@@ -174,6 +211,7 @@ footer {
     padding: rem(32) rem(40);
   }
 
+  // On desktop, nav items are pinned to the four corners of the viewport
   @include desktop {
     background-color: transparent;
     position: fixed;
@@ -209,42 +247,29 @@ footer {
   }
 }
 
-/* hero */
+/* HERO */
+
 .mm-hero {
   background-color: $backgroundDark;
   color: #fffcf7;
   height: 100vh;
 }
 
-.mm-blog-list {
-  background-color: $backgroundLight;
-}
+/* SECTIONS */
 
-.mm-blog-post {
-  background-color: $backgroundLight;
-}
-
-.mm-pet-projects {
-  background-color: $backgroundLight;
-}
-
-.mm-pet-project {
-  background-color: $backgroundLight;
-}
-
-.mm-pet-projects-teaser {
-  background-color: $backgroundLight;
-}
-
-.mm-about {
-  background-color: $backgroundLight;
-}
-
+// All light-background page sections
+.mm-blog-list,
+.mm-blog-post,
+.mm-pet-projects,
+.mm-pet-project,
+.mm-pet-projects-teaser,
+.mm-about,
 .mm-about-teaser {
   background-color: $backgroundLight;
 }
 
-/* Footer */
+/* FOOTER */
+
 .mm-footer {
   background-color: $backgroundDark;
   color: #fffcf7;
@@ -252,7 +277,6 @@ footer {
   .mm-avatar {
     height: rem(120);
     width: rem(120);
-
     margin-bottom: rem(48);
   }
 
@@ -334,13 +358,5 @@ footer {
       height: rem(222);
       width: rem(222);
     }
-  }
-}
-
-section {
-  padding: rem(40) rem(16);
-
-  @include tablet() {
-    padding: rem(60) rem(40);
   }
 }
