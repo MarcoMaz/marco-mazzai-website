@@ -67,7 +67,6 @@ $backgroundLight: #fffcf7;
 /* Components */
 
 /* CHIP */
-/* --- */
 .mm-chip-list {
   display: flex;
   gap: rem(8);
@@ -85,21 +84,27 @@ $backgroundLight: #fffcf7;
   text-transform: uppercase;
 }
 
-/* Navigation */
-@include tablet {
-  .Navigation__mobile {
-    display: none !important;
+/* NAVIGATION */
+.mm-navigation {
+  &__icon-x {
+    display: none;
   }
-}
 
-.icon-x {
-  display: none;
-}
-.Navigation__mobile__hamburger[aria-expanded='true'] .icon-x {
-  display: block;
-}
-.Navigation__mobile__hamburger[aria-expanded='true'] .icon-list {
-  display: none;
+  &__hamburger[aria-expanded='true'] {
+    .mm-navigation__icon-x {
+      display: block;
+    }
+
+    .mm-navigation__icon-list {
+      display: none;
+    }
+  }
+
+  @include tablet {
+    &__mobile {
+      display: none !important;
+    }
+  }
 }
 
 /* hero */
