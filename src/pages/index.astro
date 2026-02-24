@@ -16,16 +16,13 @@ if (homeCollection.length === 0) {
 const home: HomeEntry = homeCollection[0];
 
 const { headline, kicker, summary } = home.data;
-
-const { Content } = await render(home);
 ---
 
 <BaseLayout>
   <section class='mm-hero'>
-    <h1>{headline}</h1>
-    <h2 set:html={kicker} />
-    <p set:html={summary} />
-    <Content />
+    <h1 class='mm-hero__headline'>{headline}</h1>
+    <h2 class='mm-hero__kicker' set:html={kicker} />
+    <p class='mm-hero__summary' set:html={summary} />
   </section>
   <BlogListSection showLink />
   <PetProjectsSection showLink />
