@@ -14,33 +14,34 @@ if (navigationCollection.length === 0) {
 const { navigationItems } = navigationCollection[0].data;
 ---
 
-<div class='mm-navigation__mobile'>
-  <button
-    aria-label='Open navigation'
-    aria-expanded='false'
-    aria-controls='mm-navigation__list'
-    class='mm-navigation__hamburger'
-  >
-    <ListIcon
-      size={24}
-      aria-hidden={true}
-      className='mm-navigation__icon-list'
-    />
-    <XIcon size={24} aria-hidden={true} className='mm-navigation__icon-x' />
-  </button>
+<div class='mm-navigation'>
+  <div class='mm-navigation__mobile'>
+    <button
+      aria-label='Open navigation'
+      aria-expanded='false'
+      aria-controls='mm-navigation__list'
+      class='mm-navigation__hamburger'
+    >
+      <ListIcon
+        size={24}
+        aria-hidden={true}
+        className='mm-navigation__icon-list'
+      />
+      <XIcon size={24} aria-hidden={true} className='mm-navigation__icon-x' />
+    </button>
+  </div>
+  <nav class='mm-navigation__nav'>
+    <ul id='mm-navigation__list' class='mm-navigation__list'>
+      {
+        navigationItems.map(({ url, label }) => (
+          <li class='mm-navigation__list-item'>
+            <a href={url}>{label}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
 </div>
-
-<nav class='mm-navigation__desktop'>
-  <ul id='mm-navigation__list' class='mm-navigation__list'>
-    {
-      navigationItems.map(({ url, label }) => (
-        <li>
-          <a href={url}>{label}</a>
-        </li>
-      ))
-    }
-  </ul>
-</nav>
 
 <script>
   const MOBILE_MQ = window.matchMedia('(max-width: 768px)');
@@ -53,10 +54,10 @@ const { navigationItems } = navigationCollection[0].data;
   const setOpen = (open: boolean) => {
     if (!navList || !button) return;
     navList.style.display = open
-      ? 'block'
+      ? 'flex'
       : MOBILE_MQ.matches
         ? 'none'
-        : 'block';
+        : 'flex';
     button.setAttribute('aria-expanded', String(open));
     button.setAttribute(
       'aria-label',

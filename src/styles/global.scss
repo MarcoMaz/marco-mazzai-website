@@ -25,6 +25,19 @@ h6 {
   padding: 0;
 }
 
+button {
+  -webkit-appearance: none;
+  border-radius: 0;
+  text-align: inherit;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  cursor: pointer;
+  border: none;
+  color: inherit;
+  font: inherit;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -84,10 +97,40 @@ $backgroundLight: #fffcf7;
   text-transform: uppercase;
 }
 
+/* 32 20
+
 /* NAVIGATION */
 .mm-navigation {
+  background-color: $backgroundDark;
+  padding: rem(32) rem(20);
+
+  &__mobile {
+    margin-bottom: rem(32);
+  }
+
+  &__list {
+    gap: rem(12);
+    flex-direction: column;
+  }
+
+  &__list-item a {
+    color: #fffcf7;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
   &__icon-x {
     display: none;
+  }
+
+  &__hamburger {
+    align-items: center;
+    background: $backgroundDark;
+    color: #fffcf7;
+    display: flex;
+    height: rem(48);
+    justify-content: center;
+    width: rem(48);
   }
 
   &__hamburger[aria-expanded='true'] {
