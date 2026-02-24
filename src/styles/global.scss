@@ -101,12 +101,13 @@ $backgroundLight: #fffcf7;
 
 /* NAVIGATION */
 .mm-navigation {
-  background-color: $backgroundDark;
+  // background-color: $backgroundDark;
+  background-color: red;
   padding: rem(32) rem(20);
 
-  &__mobile {
-    margin-bottom: rem(32);
-  }
+  // &__mobile {
+  //   margin-bottom: rem(32);
+  // }
 
   &__list {
     gap: rem(12);
@@ -131,6 +132,10 @@ $backgroundLight: #fffcf7;
     height: rem(48);
     justify-content: center;
     width: rem(48);
+  }
+
+  &__mobile:has(&__hamburger[aria-expanded='true']) {
+    margin-bottom: 32px;
   }
 
   &__hamburger[aria-expanded='true'] {
