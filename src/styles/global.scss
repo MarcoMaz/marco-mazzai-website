@@ -110,7 +110,9 @@ footer {
 }
 
 // Default section padding, responsive
-section {
+.mm-about,
+.mm-pet-projects,
+.mm-blog-list {
   padding: rem(40) rem(16);
 
   @include tablet() {
@@ -225,23 +227,23 @@ section {
       position: fixed;
 
       &:nth-of-type(1) {
-        top: rem(32);
-        left: rem(32);
+        top: rem(80);
+        left: rem(120);
       }
 
       &:nth-of-type(2) {
-        top: rem(32);
-        right: rem(32);
+        top: rem(80);
+        right: rem(120);
       }
 
       &:nth-of-type(3) {
-        bottom: rem(32);
-        left: rem(32);
+        bottom: rem(80);
+        left: rem(120);
       }
 
       &:nth-of-type(4) {
-        bottom: rem(32);
-        right: rem(32);
+        bottom: rem(80);
+        right: rem(120);
       }
     }
 
@@ -256,7 +258,12 @@ section {
 .mm-hero {
   background-color: $backgroundDark;
   color: #fffcf7;
-  height: 100vh;
+  padding: 0 rem(16) rem(64);
+  text-align: center;
+
+  .mm-avatar {
+    display: none;
+  }
 
   &__headline,
   &__kicker {
@@ -277,6 +284,8 @@ section {
   }
 
   @include tablet() {
+    padding: rem(84) rem(64);
+
     &__headline {
       font-size: rem(64);
     }
@@ -291,6 +300,22 @@ section {
   }
 
   @include desktop() {
+    display: flex;
+    height: 100vh;
+    padding: rem(128) rem(176);
+
+    .mm-avatar {
+      display: block;
+      height: rem(317);
+      width: rem(317);
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+    }
+
     &__headline {
       font-size: rem(92);
     }
