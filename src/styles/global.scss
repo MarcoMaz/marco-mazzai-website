@@ -154,7 +154,7 @@ section {
   display: flex;
   flex-direction: column;
   padding: rem(32) rem(20);
-  position: absolute;
+  position: fixed;
   width: 100%;
   z-index: 999;
 
