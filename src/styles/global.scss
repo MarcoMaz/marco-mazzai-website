@@ -161,8 +161,37 @@ main {
   }
 
   @include desktop {
+    background-color: transparent;
+    position: fixed;
+    z-index: 999;
+
+    .mm-navigation__list-item {
+      position: fixed;
+
+      &:nth-of-type(1) {
+        top: rem(32);
+        left: rem(32);
+      }
+  
+      &:nth-of-type(2) {
+        top: rem(32);
+        right: rem(32);
+      }
+  
+      &:nth-of-type(3) {
+        bottom: rem(32);
+        left: rem(32);
+      }
+  
+      &:nth-of-type(4) {
+        bottom: rem(32);
+        right: rem(32);
+      }
+    }
+
+
     &__mobile {
-      display: none !important;
+      display: none;
     }
   }
 }
@@ -171,6 +200,7 @@ main {
 .mm-hero {
   background-color: $backgroundDark;
   color: #fffcf7;
+  height: 100vh;
 }
 
 .mm-blog-list {
