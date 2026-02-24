@@ -1,6 +1,7 @@
 ---
 import { ListIcon, XIcon } from '@phosphor-icons/react';
 import { getCollection, type CollectionEntry } from 'astro:content';
+import Avatar from './Avatar.astro';
 
 type NavigationEntry = CollectionEntry<'navigation'>;
 
@@ -16,6 +17,7 @@ const { navigationItems } = navigationCollection[0].data;
 
 <div class='mm-navigation'>
   <div class='mm-navigation__mobile'>
+    <Avatar />
     <button
       aria-label='Open navigation'
       aria-expanded='false'

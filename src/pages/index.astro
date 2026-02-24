@@ -15,12 +15,7 @@ if (homeCollection.length === 0) {
 
 const home: HomeEntry = homeCollection[0];
 
-const {
-  headline,
-  kicker,
-  summary,
-  image: { alt, src },
-} = home.data;
+const { headline, kicker, summary } = home.data;
 
 const { Content } = await render(home);
 ---
@@ -31,7 +26,6 @@ const { Content } = await render(home);
     <h2 set:html={kicker} />
     <p set:html={summary} />
     <Content />
-    <img src={src} alt={alt} />
   </section>
   <BlogListSection showLink />
   <PetProjectsSection showLink />

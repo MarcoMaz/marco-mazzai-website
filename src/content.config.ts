@@ -46,10 +46,14 @@ const homeCollection = defineCollection({
     headline: z.string(),
     kicker: z.string(),
     summary: z.string(),
-    image: z.object({
-      alt: z.string(),
-      src: z.string(),
-    }),
+  }),
+});
+
+const avatarCollection = defineCollection({
+  loader: glob({ pattern: 'avatar.md', base: './src/content/copy' }),
+  schema: z.object({
+    alt: z.string(),
+    src: z.string(),
   }),
 });
 
@@ -177,6 +181,7 @@ const navigationCollection = defineCollection({
 export const collections = {
   blog: blogCollection,
   home: homeCollection,
+  avatar: avatarCollection,
   about: aboutCollection,
   codingLanguages: codingLanguagesCollection,
   petProjects: petProjectsCollection,

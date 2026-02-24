@@ -1,0 +1,13 @@
+---
+import { getCollection } from 'astro:content';
+
+const avatarCollection = await getCollection('avatar');
+
+if (avatarCollection.length === 0) {
+  throw new Error('Avatar not found in copy collection');
+}
+
+const { alt, src } = avatarCollection[0].data;
+---
+
+<img class="mm-avatar" src={src} alt={alt} />

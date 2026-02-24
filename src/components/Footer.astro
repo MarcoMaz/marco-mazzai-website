@@ -5,6 +5,7 @@ import {
   GitlabLogoSimpleIcon,
   LinkedinLogoIcon,
 } from '@phosphor-icons/react';
+import Avatar from './Avatar.astro';
 
 type FooterEntry = CollectionEntry<'footer'>;
 
@@ -22,6 +23,7 @@ const currentYear: number = new Date().getFullYear();
 
 <footer class='mm-footer' id='contact'>
   <div class='mm-footer__body'>
+    <Avatar />
     <h2 class='mm-footer__heading'>{headline}</h2>
     <p class='mm-footer__collaboration'>
       {collaboration}
