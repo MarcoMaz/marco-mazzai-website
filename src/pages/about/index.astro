@@ -1,53 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection, render, type CollectionEntry } from 'astro:content';
+import AboutSection from '../../components/AboutSection.astro';
 import { PAGE_TITLES } from '../../content.config';
-
-import WorkExperiencesSection from '../../components/WorkExperiencesSection.astro';
-import EducationSection from '../../components/EducationSection.astro';
-import ChipList from '../../components/ChipList.astro';
-
-type AboutEntry = CollectionEntry<'about'>;
-
-const aboutCollection: AboutEntry[] = await getCollection('about');
-
-if (aboutCollection.length === 0) {
-  throw new Error('About page not found in copy collection');
-}
-
-const about: AboutEntry = aboutCollection[0];
-
-const { Content } = await render(about);
-
-const { headline } = about.data;
-
-const codingDocs = await getCollection('codingLanguages');
-if (codingDocs.length === 0) {
-  throw new Error('Tags & coding languages not found in copy collection');
-}
-const codingLanguages = codingDocs[0].data.codingLanguages as string[];
-
-const pageTitle = PAGE_TITLES.about;
 ---
 
-<BaseLayout title={pageTitle}>
-  <section class='mm-about'>
-    <Content />
-    <h2>{headline}</h2>
-  
-    <ChipList chips={codingLanguages} />
-  
-    <wa-accordion>
-      <WorkExperiencesSection />
-    </wa-accordion>
-  
-    <wa-accordion>
-      <EducationSection />
-    </wa-accordion>
-  </section>
-
+<BaseLayout title={PAGE_TITLES.about}>
+  <AboutSection />
 </BaseLayout>
-
-<script>
-  import 'wa11y-ui/wa-accordion';
-</script>

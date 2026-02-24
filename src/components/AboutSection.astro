@@ -1,8 +1,10 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
+import WorkExperiencesSection from './WorkExperiencesSection.astro';
+import EducationSection from './EducationSection.astro';
+import ChipList from './ChipList.astro';
 
 type AboutEntry = CollectionEntry<'about'>;
-type Props = { showLink?: boolean };
 
 const aboutCollection: AboutEntry[] = await getCollection('about');
 
@@ -12,11 +14,35 @@ if (aboutCollection.length === 0) {
 
 const about: AboutEntry = aboutCollection[0];
 const { Content } = await render(about);
-const { showLink = false } = Astro.props;
+const { headline } = about.data;
+
+const isHome = Astro.url.pathname === '/';
+
+const codingDocs = await getCollection('codingLanguages');
+if (codingDocs.length === 0) {
+  throw new Error('Tags & coding languages not found in copy collection');
+}
+const codingLanguages = codingDocs[0].data.codingLanguages as string[];
 ---
 
-<section class='mm-about-teaser'>
+<section class='mm-about'>
   <h2>About Me</h2>
-  {showLink && <a href='/about'>About page</a>}
+  {isHome && <a href='/about'>About page</a>}
   <Content />
+  {!isHome && (
+    <>
+      <h2>{headline}</h2>
+      <ChipList chips={codingLanguages} />
+      <wa-accordion>
+        <WorkExperiencesSection />
+      </wa-accordion>
+      <wa-accordion>
+        <EducationSection />
+      </wa-accordion>
+    </>
+  )}
 </section>
+
+<script>
+  import 'wa11y-ui/wa-accordion';
+</script>
