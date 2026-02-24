@@ -3,15 +3,15 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import PetProjectItem from './PetProjectItem.astro';
 
 type PetProjectEntry = CollectionEntry<'petProjects'>;
-type Props = { showLink?: boolean };
 
 const entries: PetProjectEntry[] = await getCollection('petProjects');
 const sortedEntries = entries.sort((a, b) => a.data.order - b.data.order);
-const { showLink = false } = Astro.props;
+const isHome = Astro.url.pathname === '/';
+const showLink = isHome;
 ---
 
-<section class='mm-pet-projects-teaser'>
-  <h2>Pet Projects</h2>
+<section class='mm-pet-projects'>
+  {isHome ? <h2>Pet Projects</h2> : <h1>Pet Projects</h1>}
   {showLink && <a href='/about'>See all projects</a>}
   {sortedEntries.map((entry) => <PetProjectItem entry={entry} />)}
 </section>
