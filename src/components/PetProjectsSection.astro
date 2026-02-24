@@ -7,11 +7,10 @@ type PetProjectEntry = CollectionEntry<'petProjects'>;
 const entries: PetProjectEntry[] = await getCollection('petProjects');
 const sortedEntries = entries.sort((a, b) => a.data.order - b.data.order);
 const isHome = Astro.url.pathname === '/';
-const showLink = isHome;
 ---
 
 <section class='mm-pet-projects'>
-  {isHome ? <h2>Pet Projects</h2> : <h1>Pet Projects</h1>}
-  {showLink && <a href='/about'>See all projects</a>}
+  <h2>Pet Projects</h2>
+  {isHome && <a href='/about'>See all projects</a>}
   {sortedEntries.map((entry) => <PetProjectItem entry={entry} />)}
 </section>
