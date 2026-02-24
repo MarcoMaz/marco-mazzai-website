@@ -21,13 +21,17 @@ const { navigationItems } = navigationCollection[0].data;
     aria-controls='mm-navigation__list'
     class='mm-navigation__hamburger'
   >
-    <ListIcon size={24} aria-hidden={true} className='mm-navigation__icon-list' />
+    <ListIcon
+      size={24}
+      aria-hidden={true}
+      className='mm-navigation__icon-list'
+    />
     <XIcon size={24} aria-hidden={true} className='mm-navigation__icon-x' />
   </button>
 </div>
 
 <nav class='mm-navigation__desktop'>
-  <ul id='mm-navigation__list'>
+  <ul id='mm-navigation__list' class='mm-navigation__list'>
     {
       navigationItems.map(({ url, label }) => (
         <li>
