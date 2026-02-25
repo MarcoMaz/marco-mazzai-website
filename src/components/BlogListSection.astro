@@ -70,7 +70,7 @@ const sortedPosts: BlogEntry[] = posts.sort((a, b) => {
             <p>{kicker}</p>
             <p class="preview">{preview}</p>
             <ChipList chips={chips} />
-            <Button href={`/blog/${slug}`}>Read more</Button>
+            <a href={`/blog/${slug}`}>Read more</a>
           </li>
         );
       })
