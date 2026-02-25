@@ -68,32 +68,27 @@ const sortedPosts: BlogEntry[] = posts.sort((a, b) => {
         const preview = stripMarkdown(post.body ?? '');
 
         return (
-          <li>
-            <span>
-              {formatDate(date)} · {readingTime} min read
-            </span>
-            <p>{kicker}</p>
-            <h3>
+          <li class='mm-blog-item'>
+            <div class='mm-blog-item__time'>
+              <span class='mm-blog-item__time--date'>{formatDate(date)}</span>
+              <span class='mm-blog-item__time--reading-time'>
+                {readingTime} min. read
+              </span>
+            </div>
+            <p class='mm-blog-item__kicker'>{kicker}</p>
+            <h3 class='mm-blog-item__heading'>
               <a href={`/blog/${slug}`}>{title}</a>
             </h3>
-            <p class='preview'>{preview}</p>
             <ChipList chips={chips} />
+            <p class='mm-blog-item__preview'>{preview}</p>
             <IconLink href={`/blog/${slug}`}>
               Read more
               <CaretRightIcon slot='icon-right' />
             </IconLink>
           </li>
+          <hr class='mm-blog-item__divider'/>
         );
       })
     }
   </ul>
 </section>
-
-<style>
-  .preview {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-</style>
