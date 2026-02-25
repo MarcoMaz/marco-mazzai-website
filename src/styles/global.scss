@@ -356,6 +356,7 @@ footer {
   background-color: $backgroundLight;
 }
 
+/* TODO: BlogList, Pet Projects and About can be simplified. They share a lot of CSS logic */
 /* BLOG LIST */
 .mm-blog-list {
   display: grid;
