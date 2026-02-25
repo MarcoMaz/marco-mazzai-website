@@ -11,7 +11,9 @@ const isHome = Astro.url.pathname === '/';
 ---
 
 <section class='mm-pet-projects'>
-  <h2>Pet Projects</h2>
-  {isHome && <Button href='/about'>See all projects</Button>}
-  {sortedEntries.map((entry) => <PetProjectItem entry={entry} />)}
+  <h2 class='mm-pet-projects__headline'>Pet Projects</h2>
+  {isHome && <Button class='mm-pet-projects__button' href='/about'>See all projects</Button>}
+  <div class='mm-pet-projects__content'>
+    {sortedEntries.map((entry) => <PetProjectItem entry={entry} />)}
+  </div>
 </section>
