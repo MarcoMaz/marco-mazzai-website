@@ -69,13 +69,13 @@ const sortedPosts: BlogEntry[] = posts.sort((a, b) => {
 
         return (
           <li>
-            <h3>
-              <a href={`/blog/${slug}`}>{title}</a>
-            </h3>
             <span>
               {formatDate(date)} · {readingTime} min read
             </span>
             <p>{kicker}</p>
+            <h3>
+              <a href={`/blog/${slug}`}>{title}</a>
+            </h3>
             <p class='preview'>{preview}</p>
             <ChipList chips={chips} />
             <IconLink href={`/blog/${slug}`}>
