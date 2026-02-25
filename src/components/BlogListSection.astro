@@ -2,6 +2,8 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import ChipList from './ChipList.astro';
 import Button from './Button.astro';
+import IconLink from './IconLink.astro';
+import { CaretRightIcon } from '@phosphor-icons/react';
 
 type BlogEntry = CollectionEntry<'blog'>;
 type BlogPageEntry = CollectionEntry<'blogPage'>;
@@ -76,7 +78,10 @@ const sortedPosts: BlogEntry[] = posts.sort((a, b) => {
             <p>{kicker}</p>
             <p class='preview'>{preview}</p>
             <ChipList chips={chips} />
-            <a href={`/blog/${slug}`}>Read more</a>
+            <IconLink href={`/blog/${slug}`}>
+              Read more
+              <CaretRightIcon slot='icon-right' />
+            </IconLink>
           </li>
         );
       })

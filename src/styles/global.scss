@@ -148,7 +148,9 @@ footer {
 
   @include desktop() {
     position: absolute;
-    right: rem(40); /* TODO: this is the padding from Default section.. can be a variable */
+    right: rem(
+      40
+    ); /* TODO: this is the padding from Default section.. can be a variable */
     padding-right: rem(20);
     padding-left: rem(20);
   }
@@ -170,6 +172,19 @@ footer {
   line-height: rem(12);
   padding: rem(4) rem(8);
   text-transform: uppercase;
+}
+
+/* ICON LINK */
+.mm-icon-link {
+  color: #8a311b;
+  display: inline-flex;
+  font-size: rem(16);
+  gap: 2px;
+
+  svg {
+    height: rem(20);
+    width: rem(20);
+  }
 }
 
 /* NAVIGATION */
