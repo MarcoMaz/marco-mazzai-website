@@ -145,6 +145,13 @@ footer {
     align-self: center;
     display: flex;
   }
+
+  @include desktop() {
+    position: absolute;
+    right: rem(40); /* TODO: this is the padding from Default section.. can be a variable */
+    padding-right: rem(20);
+    padding-left: rem(20);
+  }
 }
 
 /* CHIP */
@@ -359,6 +366,13 @@ footer {
 
   &__headline {
     grid-area: heading;
+
+    border-bottom: 2px solid #e0d8cc;
+    color: #3d3530;
+    font-size: rem(32);
+    margin-bottom: rem(24);
+    padding-bottom: rem(8);
+    text-transform: uppercase;
   }
 
   &__button {
@@ -374,6 +388,10 @@ footer {
       'heading'
       'button'
       'content';
+
+    &__headline {
+      font-size: rem(40);
+    }
   }
 }
 
@@ -387,6 +405,13 @@ footer {
 
   &__headline {
     grid-area: heading;
+
+    border-bottom: 2px solid #e0d8cc;
+    color: #3d3530;
+    font-size: rem(32);
+    margin-bottom: rem(24);
+    padding-bottom: rem(8);
+    text-transform: uppercase;
   }
 
   &__button {
@@ -402,6 +427,10 @@ footer {
       'heading'
       'button'
       'content';
+
+    &__headline {
+      font-size: rem(40);
+    }
   }
 }
 
@@ -415,6 +444,13 @@ footer {
 
   &__headline {
     grid-area: heading;
+
+    border-bottom: 2px solid #e0d8cc;
+    color: #3d3530;
+    font-size: rem(32);
+    margin-bottom: rem(24);
+    padding-bottom: rem(8);
+    text-transform: uppercase;
   }
 
   &__button {
@@ -430,6 +466,10 @@ footer {
       'heading'
       'button'
       'content';
+
+    &__headline {
+      font-size: rem(40);
+    }
   }
 }
 
