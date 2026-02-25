@@ -356,7 +356,7 @@ footer {
     'heading'
     'content'
     'button';
-    
+
   &__headline {
     grid-area: heading;
   }
@@ -379,6 +379,34 @@ footer {
 
 /* PET PROJECTS */
 .mm-pet-projects {
+  display: grid;
+  grid-template-areas:
+    'heading'
+    'content'
+    'button';
+
+  &__headline {
+    grid-area: heading;
+  }
+
+  &__button {
+    grid-area: button;
+  }
+
+  &__content {
+    grid-area: content;
+  }
+
+  @include tablet() {
+    grid-template-areas:
+      'heading'
+      'button'
+      'content';
+  }
+}
+
+/* ABOUT */
+.mm-about {
   display: grid;
   grid-template-areas:
     'heading'

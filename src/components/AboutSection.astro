@@ -27,21 +27,30 @@ const codingLanguages = codingDocs[0].data.codingLanguages as string[];
 ---
 
 <section class='mm-about'>
-  <h2>About Me</h2>
-  {isHome && <Button href='/about'>About page</Button>}
-  <Content />
-  {!isHome && (
-    <>
-      <h2>{headline}</h2>
-      <ChipList chips={codingLanguages} />
-      <wa-accordion>
-        <WorkExperiencesSection />
-      </wa-accordion>
-      <wa-accordion>
-        <EducationSection />
-      </wa-accordion>
-    </>
-  )}
+  <h2 class='mm-about__headline'>{headline}</h2>
+  {
+    isHome && (
+      <Button class='mm-about__button' href='/about'>
+        About page
+      </Button>
+    )
+  }
+  <div class='mm-about__content'>
+    <Content />
+    {
+      !isHome && (
+        <>
+          <ChipList chips={codingLanguages} />
+          <wa-accordion>
+            <WorkExperiencesSection />
+          </wa-accordion>
+          <wa-accordion>
+            <EducationSection />
+          </wa-accordion>
+        </>
+      )
+    }
+  </div>
 </section>
 
 <script>
