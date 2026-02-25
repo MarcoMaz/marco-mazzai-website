@@ -3,12 +3,13 @@ import { CaretRightIcon } from '@phosphor-icons/react';
 
 interface Props {
   href: string;
+  class?: string;
 }
 
-const { href } = Astro.props;
+const { href, class: className } = Astro.props;
 ---
 
-<a class='mm-button' href={href}
+<a class:list={['mm-button', className]} href={href}
   ><slot />
   <span class='mm-button__icon'>
     <CaretRightIcon />

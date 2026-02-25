@@ -50,15 +50,14 @@ const sortedPosts: BlogEntry[] = posts.sort((a, b) => {
 ---
 
 <section class='mm-blog-list'>
-  <h2>{headline}</h2>
-  {isHome && <Button href="/blog">See all posts</Button>}
-  <ul>
+  <h2 class='mm-blog-list__headline'>{headline}</h2>
+  <ul class='mm-blog-list__content'>
     {
       sortedPosts.map((post) => {
         const { slug, title, date, kicker, chips } = post.data;
         const readingTime = getReadingTime(post.body ?? '');
         const preview = stripMarkdown(post.body ?? '');
-  
+
         return (
           <li>
             <h3>
@@ -68,7 +67,7 @@ const sortedPosts: BlogEntry[] = posts.sort((a, b) => {
               {formatDate(date)} · {readingTime} min read
             </span>
             <p>{kicker}</p>
-            <p class="preview">{preview}</p>
+            <p class='preview'>{preview}</p>
             <ChipList chips={chips} />
             <a href={`/blog/${slug}`}>Read more</a>
           </li>
@@ -76,6 +75,13 @@ const sortedPosts: BlogEntry[] = posts.sort((a, b) => {
       })
     }
   </ul>
+  {
+    isHome && (
+      <Button class='mm-blog-list__button' href='/blog'>
+        See all posts
+      </Button>
+    )
+  }
 </section>
 
 <style>

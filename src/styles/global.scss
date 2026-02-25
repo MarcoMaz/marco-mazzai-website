@@ -349,8 +349,34 @@ footer {
   background-color: $backgroundLight;
 }
 
-/* FOOTER */
+/* BLOG LIST */
+.mm-blog-list {
+  display: grid;
+  grid-template-areas:
+    'heading'
+    'content'
+    'button';
+  &__headline {
+    grid-area: heading;
+  }
 
+  &__button {
+    grid-area: button;
+  }
+
+  &__content {
+    grid-area: content;
+  }
+
+  @include tablet() {
+    grid-template-areas:
+      'heading'
+      'button'
+      'content';
+  }
+}
+
+/* FOOTER */
 .mm-footer {
   background-color: $backgroundDark;
   color: #fffcf7;
