@@ -1,5 +1,5 @@
 ---
-title: "Batman"
+heading: "Batman"
 slug: "batman"
 date: "08-07-2025"
 kicker: "Everything you need to know about the Dark Knight"

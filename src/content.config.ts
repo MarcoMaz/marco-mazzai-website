@@ -33,7 +33,7 @@ const blogCollection = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({
     slug: z.string(),
-    title: z.string(),
+    heading: z.string(),
     date: z.string(),
     kicker: z.string(),
     chips: z.array(z.string()),
@@ -110,7 +110,7 @@ const workExperiencesCollection = defineCollection({
         }),
         location: z.string(),
         tasks: z.array(z.string()),
-      })
+      }),
     ),
   }),
 });
@@ -135,9 +135,9 @@ const educationCollection = defineCollection({
               })
               .optional(),
             items: z.array(z.string()),
-          })
+          }),
         ),
-      })
+      }),
     ),
   }),
 });
@@ -160,7 +160,7 @@ const footerCollection = defineCollection({
       z.object({
         label: z.string(),
         url: z.string(),
-      })
+      }),
     ),
   }),
 });
@@ -172,11 +172,10 @@ const navigationCollection = defineCollection({
       z.object({
         label: z.string(),
         url: z.string(),
-      })
+      }),
     ),
   }),
 });
-
 
 export const collections = {
   blog: blogCollection,

@@ -49,6 +49,8 @@ const sortedPosts: BlogEntry[] = posts.sort((a, b) => {
     new Date(yearA, monthA - 1, dayA).getTime()
   );
 });
+
+const MIN_READ_TEXT: string = "min. read"
 ---
 
 <section class='mm-blog-list'>
@@ -63,7 +65,7 @@ const sortedPosts: BlogEntry[] = posts.sort((a, b) => {
   <ul class='mm-blog-list__content'>
     {
       sortedPosts.map((post) => {
-        const { slug, title, date, kicker, chips } = post.data;
+        const { slug, heading, date, kicker, chips } = post.data;
         const readingTime = getReadingTime(post.body ?? '');
         const preview = stripMarkdown(post.body ?? '');
 
@@ -72,12 +74,12 @@ const sortedPosts: BlogEntry[] = posts.sort((a, b) => {
             <div class='mm-blog-item__time'>
               <span class='mm-blog-item__time--date'>{formatDate(date)}</span>
               <span class='mm-blog-item__time--reading-time'>
-                {readingTime} min. read
+                {readingTime} {MIN_READ_TEXT}
               </span>
             </div>
             <p class='mm-blog-item__kicker'>{kicker}</p>
             <h3 class='mm-blog-item__heading'>
-              <a href={`/blog/${slug}`}>{title}</a>
+              <a href={`/blog/${slug}`}>{heading}</a>
             </h3>
             <ChipList chips={chips} />
             <p class='mm-blog-item__preview'>{preview}</p>
