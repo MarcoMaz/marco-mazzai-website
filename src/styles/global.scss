@@ -410,7 +410,66 @@ footer {
     }
   }
 }
+
 .mm-blog-item {
+  padding: rem(20) 0;
+
+  &__time {
+    color: #8a311b;
+    display: flex;
+    font-size: rem(14);
+    gap: rem(12);
+    margin-bottom: rem(8);
+  }
+
+  &__kicker {
+    color: #5a4e43;
+    font-size: rem(16);
+    margin-bottom: rem(8);
+  }
+
+  &__heading {
+    font-size: rem(24);
+    text-transform: uppercase;
+    margin-bottom: rem(16);
+
+    a {
+      color: #3d3530;
+      text-decoration: none;
+    }
+  }
+
+  &__preview {
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    color: #5a4e43;
+    display: -webkit-box;
+    font-size: rem(16);
+    line-clamp: 3;
+    margin-bottom: rem(16);
+    overflow: hidden;
+  }
+
+  &__divider {
+    display: none;
+    border: 1px solid #E0D8CC;
+
+    &:last-of-type {
+      display: none;
+    }
+  }
+
+  @include tablet() {
+    padding: rem(32) 0;
+
+    &__divider {
+      display: flex;
+      width: 100%;
+    }
+  }
+}
+
+.mm-pet-project-item {
   padding: rem(20) 0;
 
   &__time {
