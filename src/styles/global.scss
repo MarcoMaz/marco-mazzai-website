@@ -606,6 +606,11 @@ footer {
       text-transform: uppercase;
     }
 
+    &--list {
+      list-style-type: disc;
+      padding-left: rem(16);
+    }
+
     :last-of-type {
       margin-bottom: rem(40);
     }
