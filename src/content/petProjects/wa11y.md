@@ -1,7 +1,7 @@
 ---
 order: 1
 headline: 'Wa11y'
-type: 'Component Library'
+kicker: 'Component Library'
 description: "Unstyled UI library of Lit's Web Components I built to showcase my expertise in frontend and accessibility"
 date:
   from: 2024

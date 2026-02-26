@@ -1,7 +1,7 @@
 ---
 order: 5
 headline: 'Moody'
-type: 'PWA'
+kicker: 'PWA'
 description: "Mock-up creating a playlist based on the user's mood"
 date:
   from: 2021

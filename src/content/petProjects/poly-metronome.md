@@ -1,7 +1,7 @@
 ---
 order: 2
 headline: 'Polyrhythmic Metronome'
-type: 'PWA'
+kicker: 'PWA'
 description: 'Interactive polyrhythmic metronome made with the Web Audio API'
 date:
   from: 2021

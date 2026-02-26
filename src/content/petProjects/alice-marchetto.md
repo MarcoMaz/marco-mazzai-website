@@ -1,7 +1,7 @@
 ---
 order: 4
 headline: "Alice Marchetto's Website"
-type: 'Website'
+kicker: 'Website'
 description: 'Personal website for Italian psychologist Alice Marchetto'
 date:
   from: 2021

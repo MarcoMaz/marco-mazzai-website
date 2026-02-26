@@ -79,7 +79,7 @@ const petProjectsCollection = defineCollection({
   schema: z.object({
     order: z.number(),
     headline: z.string(),
-    type: z.string(),
+    kicker: z.string(),
     description: z.string(),
     date: z.object({
       from: partialDate,

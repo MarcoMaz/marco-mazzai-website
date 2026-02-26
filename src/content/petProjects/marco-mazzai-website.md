@@ -1,7 +1,7 @@
 ---
 order: 3
 headline: "Marco Mazzai's Website"
-type: 'Website'
+kicker: 'Website'
 description: 'This website you are browsing'
 date:
   from: 2025

@@ -1,7 +1,7 @@
 ---
 order: 6
 headline: 'Renatodolist'
-type: 'PWA'
+kicker: 'PWA'
 description: 'To-do list with swipe touch event'
 date:
   from: 2021
