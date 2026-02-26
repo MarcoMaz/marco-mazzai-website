@@ -51,6 +51,8 @@ const sortedPosts: BlogEntry[] = posts.sort((a, b) => {
 });
 
 const MIN_READ_TEXT: string = "min. read"
+const SEE_ALL_POSTS_TEXT: string = "See all posts"
+const READ_MORE_TEXT: string = "Read more"
 ---
 
 <section class='mm-blog-list'>
@@ -58,7 +60,7 @@ const MIN_READ_TEXT: string = "min. read"
   {
     isHome && (
       <Button class='mm-blog-list__button' href='/blog'>
-        See all posts
+        {SEE_ALL_POSTS_TEXT}
       </Button>
     )
   }
@@ -84,7 +86,7 @@ const MIN_READ_TEXT: string = "min. read"
             <ChipList chips={chips} />
             <p class='mm-blog-item__preview'>{preview}</p>
             <IconLink href={`/blog/${slug}`}>
-              Read more
+              {READ_MORE_TEXT}
               <CaretRightIcon slot='icon-right' />
             </IconLink>
           </li>
