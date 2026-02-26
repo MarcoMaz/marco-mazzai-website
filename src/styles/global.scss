@@ -453,7 +453,7 @@ footer {
 
   &__divider {
     display: none;
-    border: 1px solid #E0D8CC;
+    border: 1px solid #e0d8cc;
 
     &:last-of-type {
       display: none;
@@ -510,7 +510,7 @@ footer {
 
   &__divider {
     display: none;
-    border: 1px solid #E0D8CC;
+    border: 1px solid #e0d8cc;
 
     &:last-of-type {
       display: none;
@@ -579,7 +579,7 @@ footer {
 
     border-bottom: 2px solid #e0d8cc;
     color: #3d3530;
-    font-size: rem(32);
+    font-size: rem(28);
     margin-bottom: rem(24);
     padding-bottom: rem(8);
     text-transform: uppercase;
@@ -593,6 +593,24 @@ footer {
     grid-area: content;
   }
 
+  &__intro {
+    margin-bottom: rem(20);
+  }
+
+  &__section {
+    padding: rem(20) 0;
+
+    &--heading {
+      font-size: rem(28);
+      margin-bottom: rem(16);
+      text-transform: uppercase;
+    }
+
+    :last-of-type {
+      margin-bottom: rem(40);
+    }
+  }
+
   @include tablet() {
     grid-template-areas:
       'heading'
@@ -601,6 +619,30 @@ footer {
 
     &__headline {
       font-size: rem(40);
+    }
+
+    &__intro {
+      margin-bottom: rem(32);
+    }
+
+    &__section {
+      padding: rem(32) 0;
+
+      :last-of-type {
+        margin-bottom: unset;
+      }
+    }
+  }
+
+  @include desktop() {
+    &__headline {
+      font-size: rem(32);
+    }
+
+    &__section {
+      &--heading {
+        font-size: rem(32);
+      }
     }
   }
 }

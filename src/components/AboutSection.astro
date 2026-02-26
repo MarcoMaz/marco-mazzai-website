@@ -1,5 +1,5 @@
 ---
-import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import WorkExperiencesSection from './WorkExperiencesSection.astro';
 import EducationSection from './EducationSection.astro';
 import ChipList from './ChipList.astro';
@@ -14,8 +14,7 @@ if (aboutCollection.length === 0) {
 }
 
 const about: AboutEntry = aboutCollection[0];
-const { Content } = await render(about);
-const { headline } = about.data;
+const { headline, intro, sections } = about.data;
 
 const isHome = Astro.url.pathname === '/';
 
@@ -24,6 +23,7 @@ if (codingDocs.length === 0) {
   throw new Error('Tags & coding languages not found in copy collection');
 }
 const codingLanguages = codingDocs[0].data.codingLanguages as string[];
+const SEE_ABOUT_PAGE_TEXT: string = 'About Page';
 ---
 
 <section class='mm-about'>
@@ -31,12 +31,29 @@ const codingLanguages = codingDocs[0].data.codingLanguages as string[];
   {
     isHome && (
       <Button class='mm-about__button' href='/about'>
-        About page
+        {SEE_ABOUT_PAGE_TEXT}
       </Button>
     )
   }
   <div class='mm-about__content'>
-    <Content />
+    <p class='mm-about__intro' set:html={intro} />
+    {
+      sections.map((section) => (
+        <div class='mm-about__section'>
+          <h3 class='mm-about__section--heading'>{section.heading}</h3>
+          {section.content && (
+            <p class='mm-about__section--content'>{section.content}</p>
+          )}
+          {section.items && (
+            <ul class='mm-about__section--list'>
+              {section.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))
+    }
     {
       !isHome && (
         <>
