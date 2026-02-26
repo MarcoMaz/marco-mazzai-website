@@ -1,19 +1,50 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
-import PetProjectItem from './PetProjectItem.astro';
+import ProjectIframe from './ProjectIframe.astro';
+import ChipList from './ChipList.astro';
+import IconLink from './IconLink.astro';
 import Button from './Button.astro';
+import { GithubLogoIcon } from '@phosphor-icons/react';
+import { formatDateRange } from '../lib/date';
 
 type PetProjectEntry = CollectionEntry<'petProjects'>;
 
 const entries: PetProjectEntry[] = await getCollection('petProjects');
 const sortedEntries = entries.sort((a, b) => a.data.order - b.data.order);
 const isHome = Astro.url.pathname === '/';
+
+const GITHUB_LABEL: string = 'Github';
 ---
 
 <section class='mm-pet-projects'>
   <h2 class='mm-pet-projects__headline'>Pet Projects</h2>
   {isHome && <Button class='mm-pet-projects__button' href='/about'>See all projects</Button>}
   <div class='mm-pet-projects__content'>
-    {sortedEntries.map((entry) => <PetProjectItem entry={entry} />)}
+    {
+      sortedEntries.map((entry) => {
+        const { headline, type, description, date, chips, githubUrl, preview } = entry.data;
+
+        return (
+          <>
+            <a href={`/projects/${entry.id}`}>
+              <h3>{headline}</h3>
+            </a>
+            <div>
+              <em>{type}</em>
+              <p>{description}</p>
+              <span>{formatDateRange(date.from, date.to)}</span>
+              <ChipList chips={chips} />
+              {githubUrl && (
+                <IconLink href={githubUrl} target='_blank'>
+                  {GITHUB_LABEL}
+                  <GithubLogoIcon slot='icon-left' />
+                </IconLink>
+              )}
+              {preview && <ProjectIframe src={preview.url} title={preview.title} />}
+            </div>
+          </>
+        );
+      })
+    }
   </div>
 </section>
