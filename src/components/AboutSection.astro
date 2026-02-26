@@ -58,10 +58,8 @@ const SEE_ABOUT_PAGE_TEXT: string = 'About Page';
       !isHome && (
         <>
           <ChipList chips={codingLanguages} />
-          <wa-accordion>
+          <wa-accordion openIndex="0">
             <WorkExperiencesSection />
-          </wa-accordion>
-          <wa-accordion>
             <EducationSection />
           </wa-accordion>
         </>

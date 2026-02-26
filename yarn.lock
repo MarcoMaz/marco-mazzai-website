@@ -2602,10 +2602,10 @@ vitefu@^1.1.1:
   resolved "https://registry.npmjs.org/vitefu/-/vitefu-1.1.1.tgz"
   integrity sha512-B/Fegf3i8zh0yFbpzZ21amWzHmuNlLlmJT6n7bu5e+pCHUKQIfXSYokrqOBGEMMe9UG2sostKQF9mml/vYaWJQ==
 
-wa11y-ui@^0.0.12:
-  version "0.0.12"
-  resolved "https://registry.npmjs.org/wa11y-ui/-/wa11y-ui-0.0.12.tgz"
-  integrity sha512-ZqqFxQaAAQIOW5SvbfR7CQV21tInnogxmqkWzwCSHtFgTHAaKbJHo5fihwqIGN60M2V2m8Z2YsKes/Da9+CGXQ==
+wa11y-ui@^0.0.13:
+  version "0.0.13"
+  resolved "https://registry.npmjs.org/wa11y-ui/-/wa11y-ui-0.0.13.tgz"
+  integrity sha512-ZTyYdCOTHYGGEtHPjfjckn4KZDVKDWx9qXeAMrX0wW4XcDaN/+RxIn9fWx9oHGDkY99hTTZbEd/F7E5NobHTUg==
   dependencies:
     lit "^3.1.4"
 

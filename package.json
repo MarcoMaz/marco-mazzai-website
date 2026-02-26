@@ -17,7 +17,7 @@
     "astro": "^5.13.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "wa11y-ui": "^0.0.12"
+    "wa11y-ui": "^0.0.13"
   },
   "devDependencies": {
     "sass": "^1.97.3"
