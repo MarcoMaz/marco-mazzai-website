@@ -159,6 +159,7 @@ footer {
 /* CHIP */
 .mm-chip-list {
   display: flex;
+  flex-wrap: wrap;
   gap: rem(8);
   margin-bottom: rem(16);
 }
@@ -472,11 +473,10 @@ footer {
 .mm-pet-project-item {
   padding: rem(20) 0;
 
-  &__time {
+  &__date {
     color: #8a311b;
     display: flex;
     font-size: rem(14);
-    gap: rem(12);
     margin-bottom: rem(8);
   }
 
