@@ -1,5 +1,14 @@
 export type PartialDate = Date | 'Present' | string;
 
+export const formatDate = (dateStr: string): string => {
+  const [day, month, year] = dateStr.split('-').map(Number);
+  return new Date(year, month - 1, day).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+};
+
 const monthName = (m: number) =>
   new Date(2000, m - 1, 1).toLocaleString('en-GB', { month: 'long' });
 

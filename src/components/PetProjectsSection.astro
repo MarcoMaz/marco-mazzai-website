@@ -5,6 +5,7 @@ import ChipList from './ChipList.astro';
 import IconLink from './IconLink.astro';
 import Button from './Button.astro';
 import { GithubLogoIcon } from '@phosphor-icons/react';
+import { formatDateRange } from '../lib/date';
 
 type PetProjectEntry = CollectionEntry<'petProjects'>;
 
@@ -42,7 +43,7 @@ const GITHUB_LABEL: string = 'Github';
 
         return (
           <li class='mm-pet-project-item'>
-            <span class='mm-pet-project-item__date'>DATE</span>
+            <span class='mm-pet-project-item__date'>{formatDateRange(date.from, date.to)}</span>
             <p class='mm-pet-project-item__kicker'>{kicker}</p>
             <h3 class='mm-pet-project-item__heading'>
               <a href={`/projects/${entry.id}`}>{headline}</a>

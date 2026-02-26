@@ -4,6 +4,7 @@ import ChipList from './ChipList.astro';
 import Button from './Button.astro';
 import IconLink from './IconLink.astro';
 import { CaretRightIcon } from '@phosphor-icons/react';
+import { formatDate } from '../lib/date';
 
 type BlogEntry = CollectionEntry<'blog'>;
 type BlogPageEntry = CollectionEntry<'blogPage'>;
@@ -32,14 +33,6 @@ const getReadingTime = (content: string, wordsPerMinute = 200): number => {
   return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
 };
 
-const formatDate = (dateStr: string): string => {
-  const [day, month, year] = dateStr.split('-').map(Number);
-  return new Date(year, month - 1, day).toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
-};
 
 const sortedPosts: BlogEntry[] = posts.sort((a, b) => {
   const [dayA, monthA, yearA] = a.data.date.split('-').map(Number);
