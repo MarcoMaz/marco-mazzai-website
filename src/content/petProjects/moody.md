@@ -12,5 +12,3 @@ preview:
   url: 'https://marcomaz.github.io/moody-app/#/'
   title: 'Moody live demo'
 ---
-
-<!-- Add your project details here -->

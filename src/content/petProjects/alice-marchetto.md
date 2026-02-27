@@ -12,5 +12,3 @@ preview:
   url: 'http://alice-marchetto.com/'
   title: 'Alice Marchetto live demo'
 ---
-
-<!-- Add your project details here -->

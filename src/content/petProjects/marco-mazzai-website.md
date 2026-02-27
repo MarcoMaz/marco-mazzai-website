@@ -9,5 +9,3 @@ date:
 chips: ['Astro', 'Zod', 'Wa11y']
 githubUrl: 'https://github.com/MarcoMaz/marco-mazzai-website'
 ---
-
-<!-- Add your project details here -->

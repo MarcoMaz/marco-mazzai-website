@@ -12,5 +12,3 @@ preview:
   url: 'https://wa11y-storybook.netlify.app/?path=/docs/atoms-button--buttoninfo'
   title: 'Wa11y live demo'
 ---
-
-<!-- Add your project details here -->

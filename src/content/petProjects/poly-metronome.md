@@ -12,5 +12,3 @@ preview:
   url: 'https://marcomaz.github.io/poly-metronome-app/'
   title: 'Polyrhythmic Metronome live demo'
 ---
-
-<!-- Add your project details here -->

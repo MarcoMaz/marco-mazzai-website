@@ -29,7 +29,7 @@ const { entry, prevEntry, nextEntry } = Astro.props as {
 };
 
 const { Content } = await render(entry);
-const { headline, type, description, date, chips, githubUrl, preview } =
+const { headline, kicker, description, date, chips, githubUrl, preview } =
   entry.data;
 
 const pageTitle = `${headline} ${PAGE_TITLES.blogSuffix}`;
@@ -39,12 +39,14 @@ const GITHUB_LABEL: string = 'Github';
 
 <BaseLayout title={pageTitle}>
   <section class="mm-pet-project">
-    <h1>{headline}</h1>
-    <em>{type}</em>
-    <p>{description}</p>
     <span>{formatDateRange(date.from, date.to)}</span>
-  
+    <em>{kicker}</em>
+    <h1>{headline}</h1>
     <ChipList chips={chips} />
+
+    <h2>About the project</h2>
+    <p>{description}</p>
+  
     {
       githubUrl && (
         <a href={githubUrl} target='_blank'>
@@ -52,10 +54,9 @@ const GITHUB_LABEL: string = 'Github';
         </a>
       )
     }
+
     {preview && <ProjectIframe src={preview.url} title={preview.title} />}
-    <article>
-      <Content />
-    </article>
+    
     <nav>
       {
         prevEntry && (

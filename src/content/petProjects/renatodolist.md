@@ -12,5 +12,3 @@ preview:
   url: 'https://marcomaz.github.io/renato-do-list/'
   title: 'Renatodolist live demo'
 ---
-
-<!-- Add your project details here -->
