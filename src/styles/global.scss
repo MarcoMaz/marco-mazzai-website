@@ -527,6 +527,54 @@ footer {
   }
 }
 
+.mm-pet-project-single {
+  &__date {
+    color: #8a311b;
+    font-size: rem(14);
+    margin-bottom: rem(8);
+  }
+
+  &__kicker {
+    color: #5a4e43;
+    font-size: rem(16);
+    margin-bottom: rem(8);
+  }
+
+  &__heading {
+    color: #3d3530;
+    font-size: rem(24);
+    margin-bottom: rem(16);
+    text-transform: uppercase;
+  }
+
+  &__content {
+    padding: rem(20) 0;
+
+    &--heading {
+      color: #3D3530;
+      font-size: rem(28);
+      margin-bottom: rem(16);
+      text-transform: uppercase;
+    }
+
+    &--description {
+      color: #5a4e43;
+      font-size: rem(16);
+      margin-bottom: rem(16);
+    }
+  }
+
+
+
+  &__divider {
+    border: 1px solid #e0d8cc;
+
+    &:last-of-type {
+      display: none;
+    }
+  }
+}
+
 /* PET PROJECTS */
 .mm-pet-projects {
   display: grid;

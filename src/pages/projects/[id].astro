@@ -5,6 +5,8 @@ import ProjectIframe from '../../components/ProjectIframe.astro';
 import { formatDateRange } from '../../lib/date';
 import { PAGE_TITLES } from '../../content.config';
 import ChipList from '../../components/ChipList.astro';
+import IconLink from '../../components/IconLink.astro';
+import { GithubLogoIcon } from '@phosphor-icons/react';
 
 type PetProjectEntry = CollectionEntry<'petProjects'>;
 
@@ -40,26 +42,24 @@ const ABOUT_THE_PROJECT_TITLE: string = 'About the project';
 
 <BaseLayout title={pageTitle}>
   <section class='mm-pet-project-single'>
-    <span class='mm-pet-project-single__date'
-      >{formatDateRange(date.from, date.to)}</span
-    >
-    <span class='mm-pet-project-single__kicker'>{kicker}</span>
+    <div class='mm-pet-project-single__date'>
+      {formatDateRange(date.from, date.to)}
+    </div>
+    <div class='mm-pet-project-single__kicker'>{kicker}</div>
     <h1 class='mm-pet-project-single__heading'>{heading}</h1>
     <ChipList chips={chips} />
-
-    <h2>{ABOUT_THE_PROJECT_TITLE}</h2>
-    <p>{description}</p>
-
-    {
-      githubUrl && (
-        <a href={githubUrl} target='_blank'>
-          {GITHUB_LABEL}
-        </a>
-      )
-    }
-
+    <div class='mm-pet-project-single__content'>
+      <h2 class='mm-pet-project-single__content--heading'>
+        {ABOUT_THE_PROJECT_TITLE}
+      </h2>
+      <p class='mm-pet-project-single__content--description'>{description}</p>
+      <IconLink href={githubUrl} target='_blank'>
+        {GITHUB_LABEL}
+        <GithubLogoIcon slot='icon-left' />
+      </IconLink>      
+    </div>
     {preview && <ProjectIframe src={preview.url} title={preview.title} />}
-
+    <hr class='mm-pet-project-single__divider' />
     <nav>
       {
         prevEntry && (
