@@ -1,7 +1,9 @@
 ---
 import { PAGE_TITLES } from '../../content.config';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ChipList from '../../components/ChipList.astro';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { formatDate } from '../../lib/date';
 
 type BlogPost = CollectionEntry<'blog'>;
 
@@ -31,28 +33,31 @@ const nextPost: BlogPost | undefined = allPosts[currentIndex + 1];
 const { Content } = await render(post);
 
 const blogSuffix = PAGE_TITLES.blogSuffix;
-const heading: string = post.data.title;
+const { heading, kicker, date, chips } = post.data;
 const pageTitle: string = `${heading} ${blogSuffix}`;
+const formattedDate: string = formatDate(date);
 
-// parse date from DD-MM-YYYY
-const [day, month, year]: number[] = post.data.date.split('-').map(Number);
-const postDate: Date = new Date(year, month - 1, day);
-const formattedDate: string = new Intl.DateTimeFormat('en-GB', {
-  day: '2-digit',
-  month: 'short',
-  year: 'numeric',
-}).format(postDate);
+const getReadingTime = (content: string, wordsPerMinute = 200): number => {
+  const wordCount = content.trim().split(/\s+/).length;
+  return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
+};
+const readingTime: number = getReadingTime(post.body ?? '');
 
-const { slug: prevSlug, title: prevTitle }: { slug?: string; title?: string } =
+const { slug: prevSlug, heading: prevTitle }: { slug?: string; heading?: string } =
   prevPost?.data ?? {};
-const { slug: nextSlug, title: nextTitle }: { slug?: string; title?: string } =
+const { slug: nextSlug, heading: nextTitle }: { slug?: string; heading?: string } =
   nextPost?.data ?? {};
 ---
 
 <BaseLayout title={pageTitle}>
   <section class='mm-blog-post'>
+    <p class='mm-blog-post__kicker'>{kicker}</p>
     <h1>{heading}</h1>
-    <p class='post-date'>{formattedDate}</p>
+    <div class='mm-blog-post__meta'>
+      <span class='mm-blog-post__date'>{formattedDate}</span>
+      <span class='mm-blog-post__reading-time'>{readingTime} min. read</span>
+    </div>
+    <ChipList chips={chips} />
     <article>
       <Content />
     </article>
