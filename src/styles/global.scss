@@ -562,6 +562,26 @@ footer {
       font-size: rem(16);
       margin-bottom: rem(16);
     }
+
+    @include tablet(){
+      &__heading {
+        font-size: rem(32);
+      }
+
+      &__content{
+        padding: rem(32) 0;
+
+        &--heading {
+          font-size: rem(32);
+        }
+      }
+    }
+
+    @include desktop(){
+      &__heading {
+        font-size: rem(40);
+      }
+    }
   }
 
 
