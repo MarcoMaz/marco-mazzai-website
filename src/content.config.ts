@@ -86,7 +86,7 @@ const petProjectsCollection = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/petProjects' }),
   schema: z.object({
     order: z.number(),
-    headline: z.string(),
+    heading: z.string(),
     kicker: z.string(),
     description: z.string(),
     date: z.object({

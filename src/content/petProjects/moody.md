@@ -1,6 +1,6 @@
 ---
 order: 5
-headline: 'Moody'
+heading: 'Moody'
 kicker: 'PWA'
 description: "Mock-up creating a playlist based on the user's mood"
 date:

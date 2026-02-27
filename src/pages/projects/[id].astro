@@ -28,25 +28,28 @@ const { entry, prevEntry, nextEntry } = Astro.props as {
   nextEntry: PetProjectEntry | undefined;
 };
 
-const { Content } = await render(entry);
-const { headline, kicker, description, date, chips, githubUrl, preview } =
+const { heading, kicker, description, date, chips, githubUrl, preview } =
   entry.data;
 
-const pageTitle = `${headline} ${PAGE_TITLES.blogSuffix}`;
+const pageTitle = `${heading} ${PAGE_TITLES.blogSuffix}`;
 
 const GITHUB_LABEL: string = 'Github';
+
+const ABOUT_THE_PROJECT_TITLE: string = 'About the project';
 ---
 
 <BaseLayout title={pageTitle}>
-  <section class="mm-pet-project">
-    <span>{formatDateRange(date.from, date.to)}</span>
-    <em>{kicker}</em>
-    <h1>{headline}</h1>
+  <section class='mm-pet-project-single'>
+    <span class='mm-pet-project-single__date'
+      >{formatDateRange(date.from, date.to)}</span
+    >
+    <span class='mm-pet-project-single__kicker'>{kicker}</span>
+    <h1 class='mm-pet-project-single__heading'>{heading}</h1>
     <ChipList chips={chips} />
 
-    <h2>About the project</h2>
+    <h2>{ABOUT_THE_PROJECT_TITLE}</h2>
     <p>{description}</p>
-  
+
     {
       githubUrl && (
         <a href={githubUrl} target='_blank'>
@@ -56,16 +59,16 @@ const GITHUB_LABEL: string = 'Github';
     }
 
     {preview && <ProjectIframe src={preview.url} title={preview.title} />}
-    
+
     <nav>
       {
         prevEntry && (
-          <a href={`/projects/${prevEntry.id}`}>← {prevEntry.data.headline}</a>
+          <a href={`/projects/${prevEntry.id}`}>← {prevEntry.data.heading}</a>
         )
       }
       {
         nextEntry && (
-          <a href={`/projects/${nextEntry.id}`}>{nextEntry.data.headline} →</a>
+          <a href={`/projects/${nextEntry.id}`}>{nextEntry.data.heading} →</a>
         )
       }
     </nav>

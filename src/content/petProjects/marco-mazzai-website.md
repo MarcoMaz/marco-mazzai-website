@@ -1,6 +1,6 @@
 ---
 order: 3
-headline: "Marco Mazzai's Website"
+heading: "Marco Mazzai's Website"
 kicker: 'Website'
 description: 'This website you are browsing'
 date:

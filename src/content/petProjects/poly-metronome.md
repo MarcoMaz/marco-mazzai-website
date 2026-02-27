@@ -1,6 +1,6 @@
 ---
 order: 2
-headline: 'Polyrhythmic Metronome'
+heading: 'Polyrhythmic Metronome'
 kicker: 'PWA'
 description: 'Interactive polyrhythmic metronome made with the Web Audio API'
 date:

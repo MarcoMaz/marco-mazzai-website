@@ -32,7 +32,7 @@ const GITHUB_LABEL: string = 'Github';
     {
       sortedEntries.map((entry) => {
         const {
-          headline,
+          heading,
           kicker,
           description,
           date,
@@ -46,7 +46,7 @@ const GITHUB_LABEL: string = 'Github';
             <span class='mm-pet-project-item__date'>{formatDateRange(date.from, date.to)}</span>
             <p class='mm-pet-project-item__kicker'>{kicker}</p>
             <h3 class='mm-pet-project-item__heading'>
-              <a href={`/projects/${entry.id}`}>{headline}</a>
+              <a href={`/projects/${entry.id}`}>{heading}</a>
             </h3>
             <ChipList chips={chips} />
             <p class='mm-pet-project-item__preview'>{description}</p>

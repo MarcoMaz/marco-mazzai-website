@@ -1,6 +1,6 @@
 ---
 order: 6
-headline: 'Renatodolist'
+heading: 'Renatodolist'
 kicker: 'PWA'
 description: 'To-do list with swipe touch event'
 date:

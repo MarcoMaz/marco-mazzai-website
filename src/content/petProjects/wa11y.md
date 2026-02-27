@@ -1,6 +1,6 @@
 ---
 order: 1
-headline: 'Wa11y'
+heading: 'Wa11y'
 kicker: 'Component Library'
 description: "Unstyled UI library of Lit's Web Components I built to showcase my expertise in frontend and accessibility"
 date:
