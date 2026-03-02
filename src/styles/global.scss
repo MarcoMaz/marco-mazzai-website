@@ -551,7 +551,7 @@ footer {
     padding: rem(20) 0;
 
     &--heading {
-      color: #3D3530;
+      color: #3d3530;
       font-size: rem(28);
       margin-bottom: rem(16);
       text-transform: uppercase;
@@ -563,12 +563,12 @@ footer {
       margin-bottom: rem(16);
     }
 
-    @include tablet(){
+    @include tablet() {
       &__heading {
         font-size: rem(32);
       }
 
-      &__content{
+      &__content {
         padding: rem(32) 0;
 
         &--heading {
@@ -577,14 +577,12 @@ footer {
       }
     }
 
-    @include desktop(){
+    @include desktop() {
       &__heading {
         font-size: rem(40);
       }
     }
   }
-
-
 
   &__divider {
     border: 1px solid #e0d8cc;
@@ -681,6 +679,42 @@ footer {
 
     :last-of-type {
       margin-bottom: rem(40);
+    }
+  }
+
+  .mm-about__content wa-accordion {
+    .accordionItem {
+      align-items: center;
+      border-bottom: 1px solid #e0d8cc;
+      display: flex;
+      justify-content: space-between;
+      padding: rem(20) 0;
+    }
+
+    .accordionItem__button {
+      font-size: rem(28);
+      text-transform: uppercase;
+    }
+
+    .accordionItem__addon {
+      align-items: center;
+      display: flex;
+      height: rem(20);
+      justify-content: center;
+      width: rem(20);
+    }
+
+    .mm-about__accordion--minus {
+      display: none;
+    }
+
+    .accordionItem--active {
+      .mm-about__accordion--plus {
+        display: none;
+      }
+      .mm-about__accordion--minus {
+        display: block;
+      }
     }
   }
 
