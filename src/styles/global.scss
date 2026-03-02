@@ -803,6 +803,20 @@ footer {
     list-style-type: disc;
     padding-left: rem(16);
   }
+
+  @include tablet(){
+    &__item {
+      padding: rem(32) 0;
+    }
+
+    &__location {
+      font-size: rem(16);
+    }
+
+    &__heading {
+      font-size: rem(24);
+    }
+  }
 }
 
 /* FOOTER */
