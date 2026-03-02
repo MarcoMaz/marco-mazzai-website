@@ -3,7 +3,7 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import { formatDateRange, type PartialDate } from '../lib/date';
 
 type WorkExperienceItem = {
-  headline: string;
+  workPlace: string;
   description: string;
   role: string;
   date: { from: PartialDate; to?: PartialDate };
@@ -23,25 +23,30 @@ if (workExperiencesCollection.length === 0) {
 const workExperiences = workExperiencesCollection[0].data
   .workExperiencesItems as WorkExperienceItem[];
 ---
+
 <h2>Work experiences</h2>
 <ul>
   {
     workExperiences.map(
-      ({ headline, description, role, date, location, tasks }) => (
-        <li>
-          <h3>{headline}</h3>
-          <div>
-            <em>{role}</em> — <span>{location}</span>
-            <p>{description}</p>
-            <span>{formatDateRange(date.from, date.to)}</span>
-            <ul>
-              {tasks.map((t) => (
-                <li>{t}</li>
-              ))}
-            </ul>
+      ({ workPlace, description, role, date, location, tasks }) => (
+        <li class='mm-work-experiences__item'>
+          <div class='mm-work-experiences__details'>
+            <div class='mm-work-experiences__location'>
+              <div>{workPlace}</div>
+              <div>{location}</div>
+            </div>
+            <div>{formatDateRange(date.from, date.to)}</div>
           </div>
+          <h3 class='mm-work-experiences__heading'>{role}</h3>
+
+          <p>{description}</p>
+          <ul class='mm-work-experiences__tasks'>
+            {tasks.map((task) => (
+              <li>{task}</li>
+            ))}
+          </ul>
         </li>
-      )
+      ),
     )
   }
 </ul>

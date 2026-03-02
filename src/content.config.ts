@@ -109,7 +109,7 @@ const workExperiencesCollection = defineCollection({
   schema: z.object({
     workExperiencesItems: z.array(
       z.object({
-        headline: z.string(),
+        workPlace: z.string(),
         description: z.string(),
         role: z.string(),
         date: z.object({

@@ -1,6 +1,6 @@
 ---
 workExperiencesItems:
-- headline: 'Magnolia'
+- workPlace: 'Magnolia'
   description: 'Enterprise CMS and digital experience platform powering websites and apps for global brands'
   role: 'Senior Frontend Developer'
   date:
@@ -14,7 +14,7 @@ workExperiencesItems:
     - Established testing culture and infrastructure, implementing test coverage for the design system and forms project to improve code quality and prevent regressions
     - Architected complex features including drag-and-drop functionality, programmatic focus management for forms, and error handling systems, while resolving 140+ bugs and feature requests
     - Mentored developers and led onboarding initiatives, fostering team growth and knowledge sharing.
-- headline: 'FitXr'
+- workPlace: 'FitXr'
   description: VR Workout app for MetaQuest and Pico
   role: Senior Frontend Developer
   date:
@@ -27,7 +27,7 @@ workExperiencesItems:
     - Developed key user-facing features including onboarding and home screens, creating reusable components with a focus on UX
     - Led migration from legacy templating system to React, improving development workflows and long-term code quality
     - Analyzed and optimized bundle size, achieving a 40% reduction and improving application performance
-- headline: 'Experience One'
+- workPlace: 'Experience One'
   description: 'A digital agency building products, platforms, and customer experiences for clients worldwide'
   role: 'Frontend Developer'
   date:
@@ -41,7 +41,7 @@ workExperiencesItems:
     - Collaborated cross-functionally on 300+ tickets for responsiveness, accessibility, and testing requirements
     - Delivered technical presentations on design systems, web components, and component architecture
     - Mentored junior developers and led onboarding for new team members
-- headline: 'Media X Change'
+- workPlace: 'Media X Change'
   description: 'A web agency developing micro-sites for third-party clients'
   role: 'Frontend Developer'
   date:

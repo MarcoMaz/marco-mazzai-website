@@ -709,7 +709,7 @@ footer {
 
     .accordionItem__addon {
       align-items: center;
-      color: #8A311B;
+      color: #8a311b;
       display: flex;
       grid-area: addon;
       height: rem(20);
@@ -764,6 +764,44 @@ footer {
         font-size: rem(32);
       }
     }
+  }
+}
+/* WORK EXPERIENCES */
+.mm-work-experiences {
+  &__item {
+    padding: rem(20) 0;
+  }
+
+  &__details {
+    color: #5a4e43;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: rem(8);
+    text-transform: uppercase;
+  }
+
+  &__location {
+    align-items: center;
+    display: flex;
+    font-size: rem(16);
+    gap: rem(12);
+
+    div:first-of-type {
+      font-weight: bold;
+    }
+  }
+
+  &__heading {
+    color: #3d3530;
+    font-size: rem(24);
+    margin-bottom: rem(16);
+    text-transform: uppercase;
+  }
+
+  &__tasks {
+    color: #5a4e43;
+    list-style-type: disc;
+    padding-left: rem(16);
   }
 }
 
