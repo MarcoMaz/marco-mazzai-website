@@ -686,9 +686,20 @@ footer {
     .accordionItem {
       align-items: center;
       border-bottom: 1px solid #e0d8cc;
-      display: flex;
+      display: grid;
+      grid-template-areas:
+        'header addon'
+        'panel .';
       justify-content: space-between;
       padding: rem(20) 0;
+    }
+
+    .accordionItem__header {
+      grid-area: header;
+    }
+
+    .accordionItem__panel {
+      grid-area: panel;
     }
 
     .accordionItem__button {
@@ -698,7 +709,9 @@ footer {
 
     .accordionItem__addon {
       align-items: center;
+      color: #8A311B;
       display: flex;
+      grid-area: addon;
       height: rem(20);
       justify-content: center;
       width: rem(20);
