@@ -20,6 +20,8 @@
     "wa11y-ui": "^0.0.13"
   },
   "devDependencies": {
+    "prettier": "^3.8.1",
+    "prettier-plugin-astro": "^0.14.1",
     "sass": "^1.97.3"
   }
 }
