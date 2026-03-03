@@ -2,10 +2,10 @@
 // IMPORTS & UTILITIES
 // ============================================================
 
-@use 'sass:math';
+@use "sass:math";
 
-@use './variables';
-@use './components/wa-button';
+@use "./variables";
+@use "./components/wa-button";
 
 // Convert px to rem, assuming a 16px base font size
 @function rem($px) {
@@ -69,7 +69,7 @@ h6 {
 
 body {
   font-size: rem(16);
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
 }
 
 button {
@@ -210,7 +210,7 @@ footer {
   }
 
   // Add spacing below the mobile header when the menu is open
-  &__mobile:has(&__hamburger[aria-expanded='true']) {
+  &__mobile:has(&__hamburger[aria-expanded="true"]) {
     margin-bottom: rem(32);
   }
 
@@ -225,7 +225,7 @@ footer {
   }
 
   // Toggle icon visibility based on expanded state
-  &__hamburger[aria-expanded='true'] {
+  &__hamburger[aria-expanded="true"] {
     .mm-navigation__icon-x {
       display: block;
     }
@@ -235,7 +235,7 @@ footer {
     }
   }
 
-  &__hamburger[aria-expanded='false'] {
+  &__hamburger[aria-expanded="false"] {
     .mm-navigation__icon-x {
       display: none;
     }
@@ -377,9 +377,9 @@ footer {
 .mm-blog-list {
   display: grid;
   grid-template-areas:
-    'heading'
-    'content'
-    'button';
+    "heading"
+    "content"
+    "button";
 
   &__headline {
     grid-area: heading;
@@ -402,9 +402,9 @@ footer {
 
   @include tablet() {
     grid-template-areas:
-      'heading'
-      'button'
-      'content';
+      "heading"
+      "button"
+      "content";
 
     &__headline {
       font-size: rem(40);
@@ -597,9 +597,9 @@ footer {
 .mm-pet-projects {
   display: grid;
   grid-template-areas:
-    'heading'
-    'content'
-    'button';
+    "heading"
+    "content"
+    "button";
 
   &__headline {
     grid-area: heading;
@@ -622,9 +622,9 @@ footer {
 
   @include tablet() {
     grid-template-areas:
-      'heading'
-      'button'
-      'content';
+      "heading"
+      "button"
+      "content";
 
     &__headline {
       font-size: rem(40);
@@ -636,9 +636,9 @@ footer {
 .mm-about {
   display: grid;
   grid-template-areas:
-    'heading'
-    'content'
-    'button';
+    "heading"
+    "content"
+    "button";
 
   &__headline {
     grid-area: heading;
@@ -688,8 +688,8 @@ footer {
       border-bottom: 1px solid #e0d8cc;
       display: grid;
       grid-template-areas:
-        'header addon'
-        'panel .';
+        "header addon"
+        "panel .";
       justify-content: space-between;
       padding: rem(20) 0;
     }
@@ -733,9 +733,9 @@ footer {
 
   @include tablet() {
     grid-template-areas:
-      'heading'
-      'button'
-      'content';
+      "heading"
+      "button"
+      "content";
 
     &__headline {
       font-size: rem(40);
@@ -804,7 +804,7 @@ footer {
     padding-left: rem(16);
   }
 
-  @include tablet(){
+  @include tablet() {
     &__item {
       padding: rem(32) 0;
     }
@@ -815,6 +815,62 @@ footer {
 
     &__heading {
       font-size: rem(24);
+    }
+  }
+}
+
+/* EDUCATION */
+.mm-education {
+  &__item {
+    padding: rem(20) 0;
+  }
+
+  &__category {
+    color: #3d3530;
+    font-size: rem(24);
+    margin-bottom: rem(16);
+    text-transform: uppercase;
+  }
+
+  &__details {
+    color: #5a4e43;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: rem(8);
+    text-transform: uppercase;
+  }
+
+  &__location {
+    align-items: center;
+    display: flex;
+    font-size: rem(16);
+    gap: rem(12);
+
+    font-weight: bold;
+  }
+
+  &__topics {
+    color: #5a4e43;
+    list-style-type: disc;
+    padding-bottom: rem(20);
+    padding-left: rem(16);
+  }
+
+  @include tablet() {
+    &__item {
+      padding: rem(32) 0;
+    }
+
+    &__location {
+      font-size: rem(16);
+    }
+
+    &__category {
+      font-size: rem(24);
+    }
+
+    &__topics {
+      padding-bottom: rem(32);
     }
   }
 }
