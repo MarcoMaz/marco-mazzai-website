@@ -690,7 +690,7 @@ footer {
       grid-template-areas:
         "header addon"
         "panel .";
-      justify-content: space-between;
+      grid-template-columns: 1fr auto;
       padding: rem(20) 0;
     }
 
