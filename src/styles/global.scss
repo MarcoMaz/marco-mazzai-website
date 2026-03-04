@@ -183,6 +183,61 @@ footer {
   text-transform: uppercase;
 }
 
+/* GO TO ENTRY */
+.mm-go-to-entry {
+  display: flex;
+  flex-direction: column;
+  gap: rem(8);
+  padding: rem(20);
+
+  a:last-child {
+    justify-content: end;
+  }
+
+  a:focus {
+    outline: 2px solid #8a311b;
+  }
+
+  &:hover div {
+    color: #6d2515;
+  }
+
+  @include tablet() {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: rem(32);
+
+    a:last-child {
+      justify-content: unset;
+    }
+  }
+}
+
+.mm-go-to-entry__link {
+  align-items: center;
+  display: flex;
+  gap: rem(8);
+  text-decoration: none;
+
+  svg {
+    height: rem(20);
+    width: rem(20);
+  }
+}
+
+.mm-go-to-entry__info {
+  color: #8a311b;
+  display: flex;
+  flex-direction: column;
+  gap: rem(8);
+  font-size: rem(20);
+
+  &--heading {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}
+
 /* ICON LINK */
 .mm-icon-link {
   color: #8a311b;
@@ -308,6 +363,19 @@ footer {
   }
 }
 
+// ============================================================
+// SECTIONS
+// ============================================================
+
+// All light-background page sections
+.mm-blog-list,
+.mm-blog-post,
+.mm-pet-projects,
+.mm-pet-project-single,
+.mm-about {
+  background-color: $backgroundLight;
+}
+
 /* HERO */
 
 .mm-hero {
@@ -375,17 +443,6 @@ footer {
       font-size: rem(92);
     }
   }
-}
-
-/* SECTIONS */
-
-// All light-background page sections
-.mm-blog-list,
-.mm-blog-post,
-.mm-pet-projects,
-.mm-pet-project-single,
-.mm-about {
-  background-color: $backgroundLight;
 }
 
 /* TODO: BlogList, Pet Projects and About can be simplified. They share a lot of CSS logic */
@@ -482,6 +539,45 @@ footer {
     &__divider {
       display: flex;
       width: 100%;
+    }
+  }
+}
+
+/* PET PROJECTS */
+.mm-pet-projects {
+  display: grid;
+  grid-template-areas:
+    "heading"
+    "content"
+    "button";
+
+  &__headline {
+    grid-area: heading;
+
+    border-bottom: 2px solid #e0d8cc;
+    color: #3d3530;
+    font-size: rem(32);
+    margin-bottom: rem(24);
+    padding-bottom: rem(8);
+    text-transform: uppercase;
+  }
+
+  &__button {
+    grid-area: button;
+  }
+
+  &__content {
+    grid-area: content;
+  }
+
+  @include tablet() {
+    grid-template-areas:
+      "heading"
+      "button"
+      "content";
+
+    &__headline {
+      font-size: rem(40);
     }
   }
 }
@@ -611,45 +707,6 @@ footer {
   &__goToEntry {
     color: #5a4e43;
     font-size: rem(20);
-  }
-}
-
-/* PET PROJECTS */
-.mm-pet-projects {
-  display: grid;
-  grid-template-areas:
-    "heading"
-    "content"
-    "button";
-
-  &__headline {
-    grid-area: heading;
-
-    border-bottom: 2px solid #e0d8cc;
-    color: #3d3530;
-    font-size: rem(32);
-    margin-bottom: rem(24);
-    padding-bottom: rem(8);
-    text-transform: uppercase;
-  }
-
-  &__button {
-    grid-area: button;
-  }
-
-  &__content {
-    grid-area: content;
-  }
-
-  @include tablet() {
-    grid-template-areas:
-      "heading"
-      "button"
-      "content";
-
-    &__headline {
-      font-size: rem(40);
-    }
   }
 }
 
@@ -787,6 +844,7 @@ footer {
     }
   }
 }
+
 /* WORK EXPERIENCES */
 .mm-work-experiences {
   &__item {
@@ -985,60 +1043,5 @@ footer {
       height: rem(222);
       width: rem(222);
     }
-  }
-}
-
-/* GO TO ENTRY */
-.mm-go-to-entry {
-  display: flex;
-  flex-direction: column;
-  gap: rem(8);
-  padding: rem(20);
-
-  a:last-child {
-    justify-content: end;
-  }
-
-  a:focus {
-    outline: 2px solid #8a311b;
-  }
-
-  &:hover div {
-    color: #6d2515;
-  }
-
-  @include tablet() {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: rem(32);
-
-    a:last-child {
-      justify-content: unset;
-    }
-  }
-}
-
-.mm-go-to-entry__link {
-  align-items: center;
-  display: flex;
-  gap: rem(8);
-  text-decoration: none;
-
-  svg {
-    height: rem(20);
-    width: rem(20);
-  }
-}
-
-.mm-go-to-entry__info {
-  color: #8a311b;
-  display: flex;
-  flex-direction: column;
-  gap: rem(8);
-  font-size: rem(20);
-
-  &--heading {
-    text-transform: uppercase;
-    font-weight: bold;
   }
 }
