@@ -591,6 +591,11 @@ footer {
       display: none;
     }
   }
+
+  &__goToEntry {
+    color: #5a4e43;
+    font-size: rem(20);
+  }
 }
 
 /* PET PROJECTS */
@@ -964,5 +969,52 @@ footer {
       height: rem(222);
       width: rem(222);
     }
+  }
+}
+
+/* GO TO ENTRY */
+.mm-go-to-entry {
+  display: flex;
+  flex-direction: column;
+  gap: rem(8);
+  padding: rem(20);
+
+  a:last-child {
+    justify-content: end;
+  }
+
+  @include tablet() {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: rem(32);
+
+    a:last-child {
+      justify-content: unset;
+    }
+  }
+}
+
+.mm-go-to-entry__link {
+  align-items: center;
+  display: flex;
+  gap: rem(8);
+  text-decoration: none;
+
+  svg {
+    height: rem(20);
+    width: rem(20);
+  }
+}
+
+.mm-go-to-entry__info {
+  color: #5a4e43;
+  display: flex;
+  flex-direction: column;
+  gap: rem(8);
+  font-size: rem(20);
+
+  &--heading {
+    text-transform: uppercase;
+    font-weight: bold;
   }
 }

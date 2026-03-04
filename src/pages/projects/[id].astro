@@ -1,17 +1,21 @@
 ---
-import { getCollection, render, type CollectionEntry } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import ProjectIframe from '../../components/ProjectIframe.astro';
-import { formatDateRange } from '../../lib/date';
-import { PAGE_TITLES } from '../../content.config';
-import ChipList from '../../components/ChipList.astro';
-import IconLink from '../../components/IconLink.astro';
-import { GithubLogoIcon } from '@phosphor-icons/react';
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectIframe from "../../components/ProjectIframe.astro";
+import { formatDateRange } from "../../lib/date";
+import { PAGE_TITLES } from "../../content.config";
+import ChipList from "../../components/ChipList.astro";
+import IconLink from "../../components/IconLink.astro";
+import {
+  CaretLeftIcon,
+  CaretRightIcon,
+  GithubLogoIcon,
+} from "@phosphor-icons/react";
 
-type PetProjectEntry = CollectionEntry<'petProjects'>;
+type PetProjectEntry = CollectionEntry<"petProjects">;
 
 export const getStaticPaths = async () => {
-  const entries: PetProjectEntry[] = await getCollection('petProjects');
+  const entries: PetProjectEntry[] = await getCollection("petProjects");
   const sorted = entries.sort((a, b) => a.data.order - b.data.order);
 
   return sorted.map((entry, index) => ({
@@ -35,40 +39,56 @@ const { heading, kicker, description, date, chips, githubUrl, preview } =
 
 const pageTitle = `${heading} ${PAGE_TITLES.blogSuffix}`;
 
-const GITHUB_LABEL: string = 'Github';
+const GITHUB_LABEL: string = "Github";
 
-const ABOUT_THE_PROJECT_TITLE: string = 'About the project';
+const ABOUT_THE_PROJECT_TITLE: string = "About the project";
 ---
 
 <BaseLayout title={pageTitle}>
-  <section class='mm-pet-project-single'>
-    <div class='mm-pet-project-single__date'>
+  <section class="mm-pet-project-single">
+    <div class="mm-pet-project-single__date">
       {formatDateRange(date.from, date.to)}
     </div>
-    <div class='mm-pet-project-single__kicker'>{kicker}</div>
-    <h1 class='mm-pet-project-single__heading'>{heading}</h1>
+    <div class="mm-pet-project-single__kicker">{kicker}</div>
+    <h1 class="mm-pet-project-single__heading">{heading}</h1>
     <ChipList chips={chips} />
-    <div class='mm-pet-project-single__content'>
-      <h2 class='mm-pet-project-single__content--heading'>
+    <div class="mm-pet-project-single__content">
+      <h2 class="mm-pet-project-single__content--heading">
         {ABOUT_THE_PROJECT_TITLE}
       </h2>
-      <p class='mm-pet-project-single__content--description'>{description}</p>
-      <IconLink href={githubUrl} target='_blank'>
+      <p class="mm-pet-project-single__content--description">{description}</p>
+      <IconLink href={githubUrl} target="_blank">
         {GITHUB_LABEL}
-        <GithubLogoIcon slot='icon-left' />
-      </IconLink>      
+        <GithubLogoIcon slot="icon-left" />
+      </IconLink>
     </div>
     {preview && <ProjectIframe src={preview.url} title={preview.title} />}
-    <hr class='mm-pet-project-single__divider' />
-    <nav>
+    <hr class="mm-pet-project-single__divider" />
+    <nav class="mm-go-to-entry">
       {
         prevEntry && (
-          <a href={`/projects/${prevEntry.id}`}>← {prevEntry.data.heading}</a>
+          <a href={`/projects/${prevEntry.id}`} class="mm-go-to-entry__link">
+            <CaretLeftIcon />
+            <div class="mm-go-to-entry__info">
+              <div class="mm-go-to-entry__info--kicker">FIRST INFO</div>
+              <div class="mm-go-to-entry__info--heading">
+                {prevEntry.data.heading}
+              </div>
+            </div>
+          </a>
         )
       }
       {
         nextEntry && (
-          <a href={`/projects/${nextEntry.id}`}>{nextEntry.data.heading} →</a>
+          <a href={`/projects/${nextEntry.id}`} class="mm-go-to-entry__link">
+            <div class="mm-go-to-entry__info">
+              <div class="mm-go-to-entry__info--kicker">FIRST INFO</div>
+              <div class="mm-go-to-entry__info--heading">
+                {nextEntry.data.heading}
+              </div>
+            </div>
+            <CaretRightIcon />
+          </a>
         )
       }
     </nav>
