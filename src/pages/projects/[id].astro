@@ -70,7 +70,7 @@ const ABOUT_THE_PROJECT_TITLE: string = "About the project";
           <a href={`/projects/${prevEntry.id}`} class="mm-go-to-entry__link">
             <CaretLeftIcon />
             <div class="mm-go-to-entry__info">
-              <div class="mm-go-to-entry__info--kicker">FIRST INFO</div>
+              <div class="mm-go-to-entry__info--kicker">{prevEntry.data.kicker}</div>
               <div class="mm-go-to-entry__info--heading">
                 {prevEntry.data.heading}
               </div>
@@ -82,7 +82,7 @@ const ABOUT_THE_PROJECT_TITLE: string = "About the project";
         nextEntry && (
           <a href={`/projects/${nextEntry.id}`} class="mm-go-to-entry__link">
             <div class="mm-go-to-entry__info">
-              <div class="mm-go-to-entry__info--kicker">FIRST INFO</div>
+              <div class="mm-go-to-entry__info--kicker">{nextEntry.data.kicker}</div>
               <div class="mm-go-to-entry__info--heading">
                 {nextEntry.data.heading}
               </div>
