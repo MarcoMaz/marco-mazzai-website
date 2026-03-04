@@ -141,6 +141,14 @@ footer {
   text-decoration: none;
   text-transform: uppercase;
 
+  &:hover {
+    background: #a63f23;
+  }
+
+  &:focus {
+    outline: 2px solid #c1502e;
+  }
+
   &__icon {
     align-self: center;
     display: flex;
@@ -185,6 +193,14 @@ footer {
   svg {
     height: rem(20);
     width: rem(20);
+  }
+
+  &:hover {
+    color: #6d2515;
+  }
+
+  &:focus {
+    outline: 2px solid #8a311b;
   }
 }
 
@@ -983,6 +999,14 @@ footer {
     justify-content: end;
   }
 
+  a:focus {
+    outline: 2px solid #8a311b;
+  }
+
+  &:hover div {
+    color: #6d2515;
+  }
+
   @include tablet() {
     flex-direction: row;
     justify-content: space-between;
@@ -1007,7 +1031,7 @@ footer {
 }
 
 .mm-go-to-entry__info {
-  color: #5a4e43;
+  color: #8a311b;
   display: flex;
   flex-direction: column;
   gap: rem(8);
