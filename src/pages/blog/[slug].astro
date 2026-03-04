@@ -2,6 +2,7 @@
 import { PAGE_TITLES } from '../../content.config';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ChipList from '../../components/ChipList.astro';
+import GoToEntry from '../../components/GoToEntry.astro';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import { formatDate } from '../../lib/date';
 
@@ -43,10 +44,8 @@ const getReadingTime = (content: string, wordsPerMinute = 200): number => {
 };
 const readingTime: number = getReadingTime(post.body ?? '');
 
-const { slug: prevSlug, heading: prevTitle }: { slug?: string; heading?: string } =
-  prevPost?.data ?? {};
-const { slug: nextSlug, heading: nextTitle }: { slug?: string; heading?: string } =
-  nextPost?.data ?? {};
+const prevEntry = prevPost ? { href: `/blog/${prevPost.data.slug}`, heading: prevPost.data.heading, kicker: prevPost.data.kicker } : undefined;
+const nextEntry = nextPost ? { href: `/blog/${nextPost.data.slug}`, heading: nextPost.data.heading, kicker: nextPost.data.kicker } : undefined;
 ---
 
 <BaseLayout title={pageTitle}>
@@ -61,9 +60,6 @@ const { slug: nextSlug, heading: nextTitle }: { slug?: string; heading?: string 
     <article>
       <Content />
     </article>
-    <nav>
-      {prevSlug && <a href={`/blog/${prevSlug}`}>← {prevTitle}</a>}
-      {nextSlug && <a href={`/blog/${nextSlug}`}>{nextTitle} →</a>}
-    </nav>
+    <GoToEntry prevEntry={prevEntry} nextEntry={nextEntry} />
   </section>
 </BaseLayout>

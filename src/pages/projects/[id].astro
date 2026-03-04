@@ -6,11 +6,8 @@ import { formatDateRange } from "../../lib/date";
 import { PAGE_TITLES } from "../../content.config";
 import ChipList from "../../components/ChipList.astro";
 import IconLink from "../../components/IconLink.astro";
-import {
-  CaretLeftIcon,
-  CaretRightIcon,
-  GithubLogoIcon,
-} from "@phosphor-icons/react";
+import { GithubLogoIcon } from "@phosphor-icons/react";
+import GoToEntry from "../../components/GoToEntry.astro";
 
 type PetProjectEntry = CollectionEntry<"petProjects">;
 
@@ -64,33 +61,9 @@ const ABOUT_THE_PROJECT_TITLE: string = "About the project";
     </div>
     {preview && <ProjectIframe src={preview.url} title={preview.title} />}
     <hr class="mm-pet-project-single__divider" />
-    <nav class="mm-go-to-entry">
-      {
-        prevEntry && (
-          <a href={`/projects/${prevEntry.id}`} class="mm-go-to-entry__link">
-            <CaretLeftIcon />
-            <div class="mm-go-to-entry__info">
-              <div class="mm-go-to-entry__info--kicker">{prevEntry.data.kicker}</div>
-              <div class="mm-go-to-entry__info--heading">
-                {prevEntry.data.heading}
-              </div>
-            </div>
-          </a>
-        )
-      }
-      {
-        nextEntry && (
-          <a href={`/projects/${nextEntry.id}`} class="mm-go-to-entry__link">
-            <div class="mm-go-to-entry__info">
-              <div class="mm-go-to-entry__info--kicker">{nextEntry.data.kicker}</div>
-              <div class="mm-go-to-entry__info--heading">
-                {nextEntry.data.heading}
-              </div>
-            </div>
-            <CaretRightIcon />
-          </a>
-        )
-      }
-    </nav>
+    <GoToEntry
+      prevEntry={prevEntry && { href: `/projects/${prevEntry.id}`, heading: prevEntry.data.heading, kicker: prevEntry.data.kicker }}
+      nextEntry={nextEntry && { href: `/projects/${nextEntry.id}`, heading: nextEntry.data.heading, kicker: nextEntry.data.kicker }}
+    />
   </section>
 </BaseLayout>
