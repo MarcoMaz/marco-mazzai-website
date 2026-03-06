@@ -1,34 +1,34 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
-import ProjectIframe from './ProjectIframe.astro';
-import ChipList from './ChipList.astro';
-import IconLink from './IconLink.astro';
-import Button from './Button.astro';
-import { GithubLogoIcon } from '@phosphor-icons/react';
-import { formatDateRange } from '../lib/date';
+import { getCollection, type CollectionEntry } from "astro:content";
+import ProjectIframe from "./ProjectIframe.astro";
+import ChipList from "./ChipList.astro";
+import IconLink from "./IconLink.astro";
+import Button from "./Button.astro";
+import { GithubLogoIcon } from "@phosphor-icons/react";
+import { formatDateRange } from "../lib/date";
 
-type PetProjectEntry = CollectionEntry<'petProjects'>;
+type PetProjectEntry = CollectionEntry<"petProjects">;
 
-const entries: PetProjectEntry[] = await getCollection('petProjects');
+const entries: PetProjectEntry[] = await getCollection("petProjects");
 const sortedEntries = entries.sort((a, b) => a.data.order - b.data.order);
-const isHome = Astro.url.pathname === '/';
+const isHome = Astro.url.pathname === "/";
 
-const HEADLINE_LABEL: string = 'Pet Projects';
-const SEE_ALL_PROJECTS_TEXT: string = 'See all projects';
+const HEADLINE_LABEL: string = "Pet Projects";
+const SEE_ALL_PROJECTS_TEXT: string = "See all projects";
 
-const GITHUB_LABEL: string = 'Github';
+const GITHUB_LABEL: string = "Github";
 ---
 
-<section class='mm-pet-projects'>
-  <h2 class='mm-pet-projects__headline'>{HEADLINE_LABEL}</h2>
+<section class="mm-section">
+  <h2 class="mm-section__headline">{HEADLINE_LABEL}</h2>
   {
     isHome && (
-      <Button class='mm-pet-projects__button' href='/about'>
+      <Button class="mm-section__button" href="/about">
         {SEE_ALL_PROJECTS_TEXT}
       </Button>
     )
   }
-  <ul class='mm-pet-projects__content'>
+  <ul>
     {
       sortedEntries.map((entry) => {
         const {
@@ -42,22 +42,24 @@ const GITHUB_LABEL: string = 'Github';
         } = entry.data;
 
         return (
-          <li class='mm-pet-project-item'>
-            <span class='mm-pet-project-item__date'>{formatDateRange(date.from, date.to)}</span>
-            <p class='mm-pet-project-item__kicker'>{kicker}</p>
-            <h3 class='mm-pet-project-item__heading'>
+          <li class="mm-section-item">
+            <span class="mm-section-item__time">
+              {formatDateRange(date.from, date.to)}
+            </span>
+            <p class="mm-section-item__kicker">{kicker}</p>
+            <h3 class="mm-section-item__heading">
               <a href={`/projects/${entry.id}`}>{heading}</a>
             </h3>
             <ChipList chips={chips} />
-            <p class='mm-pet-project-item__preview'>{description}</p>
-            <IconLink href={githubUrl} target='_blank'>
+            <p class="mm-section-item__preview">{description}</p>
+            <IconLink href={githubUrl} target="_blank">
               {GITHUB_LABEL}
-              <GithubLogoIcon slot='icon-left' />
+              <GithubLogoIcon slot="icon-left" />
             </IconLink>
             {preview && (
               <ProjectIframe src={preview.url} title={preview.title} />
             )}
-            <hr class='mm-pet-project-item__divider' />
+            <hr class="mm-section-item__divider" />
           </li>
         );
       })

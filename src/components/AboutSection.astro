@@ -1,52 +1,52 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
-import WorkExperiencesSection from './WorkExperiencesSection.astro';
-import EducationSection from './EducationSection.astro';
-import ChipList from './ChipList.astro';
-import Button from './Button.astro';
-import { MinusIcon, PlusIcon } from '@phosphor-icons/react';
+import { getCollection, type CollectionEntry } from "astro:content";
+import WorkExperiencesSection from "./WorkExperiencesSection.astro";
+import EducationSection from "./EducationSection.astro";
+import ChipList from "./ChipList.astro";
+import Button from "./Button.astro";
+import { MinusIcon, PlusIcon } from "@phosphor-icons/react";
 
-type AboutEntry = CollectionEntry<'about'>;
+type AboutEntry = CollectionEntry<"about">;
 
-const aboutCollection: AboutEntry[] = await getCollection('about');
+const aboutCollection: AboutEntry[] = await getCollection("about");
 
 if (aboutCollection.length === 0) {
-  throw new Error('About page not found in copy collection');
+  throw new Error("About page not found in copy collection");
 }
 
 const about: AboutEntry = aboutCollection[0];
 const { headline, intro, sections } = about.data;
 
-const isHome = Astro.url.pathname === '/';
+const isHome = Astro.url.pathname === "/";
 
-const codingDocs = await getCollection('codingLanguages');
+const codingDocs = await getCollection("codingLanguages");
 if (codingDocs.length === 0) {
-  throw new Error('Tags & coding languages not found in copy collection');
+  throw new Error("Tags & coding languages not found in copy collection");
 }
 const codingLanguages = codingDocs[0].data.codingLanguages as string[];
-const SEE_ABOUT_PAGE_TEXT: string = 'About Page';
+const SEE_ABOUT_PAGE_TEXT: string = "About Page";
 ---
 
-<section class='mm-about'>
-  <h2 class='mm-about__headline'>{headline}</h2>
+<section class="mm-section">
+  <h2 class="mm-section__headline">{headline}</h2>
   {
     isHome && (
-      <Button class='mm-about__button' href='/about'>
+      <Button class="mm-section__button" href="/about">
         {SEE_ABOUT_PAGE_TEXT}
       </Button>
     )
   }
-  <div class='mm-about__content'>
-    <p class='mm-about__intro' set:html={intro} />
+  <div class="mm-about">
+    <p class="mm-about__intro" set:html={intro} />
     {
       sections.map((section) => (
-        <div class='mm-about__section'>
-          <h3 class='mm-about__section--heading'>{section.heading}</h3>
+        <div class="mm-about__section">
+          <h3 class="mm-about__section--heading">{section.heading}</h3>
           {section.content && (
-            <p class='mm-about__section--content'>{section.content}</p>
+            <p class="mm-about__section--content">{section.content}</p>
           )}
           {section.items && (
-            <ul class='mm-about__section--list'>
+            <ul class="mm-about__section--list">
               {section.items.map((item) => (
                 <li>{item}</li>
               ))}
@@ -59,10 +59,10 @@ const SEE_ABOUT_PAGE_TEXT: string = 'About Page';
       !isHome && (
         <>
           <ChipList chips={codingLanguages} />
-          <wa-accordion open-index='0'>
+          <wa-accordion open-index="0">
             <template data-addon>
-              <PlusIcon className='mm-about__accordion--plus' />
-              <MinusIcon className='mm-about__accordion--minus' />
+              <PlusIcon className="mm-about__accordion--plus" />
+              <MinusIcon className="mm-about__accordion--minus" />
             </template>
             <WorkExperiencesSection />
             <EducationSection />
@@ -74,5 +74,5 @@ const SEE_ABOUT_PAGE_TEXT: string = 'About Page';
 </section>
 
 <script>
-  import 'wa11y-ui/wa-accordion';
+  import "wa11y-ui/wa-accordion";
 </script>

@@ -1,12 +1,12 @@
 ---
-import { PAGE_TITLES } from '../../content.config';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import ChipList from '../../components/ChipList.astro';
-import GoToEntry from '../../components/GoToEntry.astro';
-import { getCollection, render, type CollectionEntry } from 'astro:content';
-import { formatDate } from '../../lib/date';
+import { PAGE_TITLES } from "../../content.config";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ChipList from "../../components/ChipList.astro";
+import GoToEntry from "../../components/GoToEntry.astro";
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import { formatDate } from "../../lib/date";
 
-type BlogPost = CollectionEntry<'blog'>;
+type BlogPost = CollectionEntry<"blog">;
 
 export const getStaticPaths: () => Promise<
   {
@@ -14,7 +14,7 @@ export const getStaticPaths: () => Promise<
     props: { post: BlogPost; allPosts: BlogPost[] };
   }[]
 > = async () => {
-  const posts: BlogPost[] = await getCollection('blog');
+  const posts: BlogPost[] = await getCollection("blog");
 
   return posts.map((post) => ({
     params: { slug: post.data.slug },
@@ -42,19 +42,31 @@ const getReadingTime = (content: string, wordsPerMinute = 200): number => {
   const wordCount = content.trim().split(/\s+/).length;
   return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
 };
-const readingTime: number = getReadingTime(post.body ?? '');
+const readingTime: number = getReadingTime(post.body ?? "");
 
-const prevEntry = prevPost ? { href: `/blog/${prevPost.data.slug}`, heading: prevPost.data.heading, kicker: prevPost.data.kicker } : undefined;
-const nextEntry = nextPost ? { href: `/blog/${nextPost.data.slug}`, heading: nextPost.data.heading, kicker: nextPost.data.kicker } : undefined;
+const prevEntry = prevPost
+  ? {
+      href: `/blog/${prevPost.data.slug}`,
+      heading: prevPost.data.heading,
+      kicker: prevPost.data.kicker,
+    }
+  : undefined;
+const nextEntry = nextPost
+  ? {
+      href: `/blog/${nextPost.data.slug}`,
+      heading: nextPost.data.heading,
+      kicker: nextPost.data.kicker,
+    }
+  : undefined;
 ---
 
 <BaseLayout title={pageTitle}>
-  <section class='mm-blog-post'>
-    <p class='mm-blog-post__kicker'>{kicker}</p>
+  <section class="mm-entry">
+    <p class="mm-entry__kicker">{kicker}</p>
     <h1>{heading}</h1>
-    <div class='mm-blog-post__meta'>
-      <span class='mm-blog-post__date'>{formattedDate}</span>
-      <span class='mm-blog-post__reading-time'>{readingTime} min. read</span>
+    <div class="mm-entry__meta">
+      <span class="mm-entry__date">{formattedDate}</span>
+      <span class="mm-entry__reading-time">{readingTime} min. read</span>
     </div>
     <ChipList chips={chips} />
     <article>

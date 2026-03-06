@@ -42,28 +42,36 @@ const ABOUT_THE_PROJECT_TITLE: string = "About the project";
 ---
 
 <BaseLayout title={pageTitle}>
-  <section class="mm-pet-project-single">
-    <div class="mm-pet-project-single__date">
+  <section class="mm-entry">
+    <div class="mm-entry__date">
       {formatDateRange(date.from, date.to)}
     </div>
-    <div class="mm-pet-project-single__kicker">{kicker}</div>
-    <h1 class="mm-pet-project-single__heading">{heading}</h1>
+    <div class="mm-entry__kicker">{kicker}</div>
+    <h1 class="mm-entry__heading">{heading}</h1>
     <ChipList chips={chips} />
-    <div class="mm-pet-project-single__content">
-      <h2 class="mm-pet-project-single__content--heading">
+    <div class="mm-entry__content">
+      <h2 class="mm-entry__content--heading">
         {ABOUT_THE_PROJECT_TITLE}
       </h2>
-      <p class="mm-pet-project-single__content--description">{description}</p>
+      <p class="mm-entry__content--description">{description}</p>
       <IconLink href={githubUrl} target="_blank">
         {GITHUB_LABEL}
         <GithubLogoIcon slot="icon-left" />
       </IconLink>
     </div>
     {preview && <ProjectIframe src={preview.url} title={preview.title} />}
-    <hr class="mm-pet-project-single__divider" />
+    <hr class="mm-entry__divider" />
     <GoToEntry
-      prevEntry={prevEntry && { href: `/projects/${prevEntry.id}`, heading: prevEntry.data.heading, kicker: prevEntry.data.kicker }}
-      nextEntry={nextEntry && { href: `/projects/${nextEntry.id}`, heading: nextEntry.data.heading, kicker: nextEntry.data.kicker }}
+      prevEntry={prevEntry && {
+        href: `/projects/${prevEntry.id}`,
+        heading: prevEntry.data.heading,
+        kicker: prevEntry.data.kicker,
+      }}
+      nextEntry={nextEntry && {
+        href: `/projects/${nextEntry.id}`,
+        heading: nextEntry.data.heading,
+        kicker: nextEntry.data.kicker,
+      }}
     />
   </section>
 </BaseLayout>

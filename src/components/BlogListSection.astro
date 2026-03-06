@@ -48,16 +48,16 @@ const SEE_ALL_POSTS_TEXT: string = "See all posts"
 const READ_MORE_TEXT: string = "Read more"
 ---
 
-<section class='mm-blog-list'>
-  <h2 class='mm-blog-list__headline'>{headline}</h2>
+<section class='mm-section'>
+  <h2 class='mm-section__headline'>{headline}</h2>
   {
     isHome && (
-      <Button class='mm-blog-list__button' href='/blog'>
+      <Button class='mm-section__button' href='/blog'>
         {SEE_ALL_POSTS_TEXT}
       </Button>
     )
   }
-  <ul class='mm-blog-list__content'>
+  <ul>
     {
       sortedPosts.map((post) => {
         const { slug, heading, date, kicker, chips } = post.data;
@@ -65,25 +65,25 @@ const READ_MORE_TEXT: string = "Read more"
         const preview = stripMarkdown(post.body ?? '');
 
         return (
-          <li class='mm-blog-item'>
-            <div class='mm-blog-item__time'>
-              <span class='mm-blog-item__time--date'>{formatDate(date)}</span>
-              <span class='mm-blog-item__time--reading-time'>
+          <li class='mm-section-item'>
+            <div class='mm-section-item__time'>
+              <span class='mm-section-item__time--date'>{formatDate(date)}</span>
+              <span class='mm-section-item__time--reading-time'>
                 {readingTime} {MIN_READ_TEXT}
               </span>
             </div>
-            <p class='mm-blog-item__kicker'>{kicker}</p>
-            <h3 class='mm-blog-item__heading'>
+            <p class='mm-section-item__kicker'>{kicker}</p>
+            <h3 class='mm-section-item__heading'>
               <a href={`/blog/${slug}`}>{heading}</a>
             </h3>
             <ChipList chips={chips} />
-            <p class='mm-blog-item__preview'>{preview}</p>
+            <p class='mm-section-item__preview'>{preview}</p>
             <IconLink href={`/blog/${slug}`}>
               {READ_MORE_TEXT}
               <CaretRightIcon slot='icon-right' />
             </IconLink>
           </li>
-          <hr class='mm-blog-item__divider'/>
+          <hr class='mm-section-item__divider'/>
         );
       })
     }
