@@ -63,14 +63,11 @@ const {
       const mainEl = document.querySelector("main");
 
       if (hero && nav && mainEl) {
-        const observer = new IntersectionObserver(
-          ([entry]) => {
-            const scrolled = !entry.isIntersecting;
-            nav.classList.toggle("--scrolled", scrolled);
-            mainEl.classList.toggle("--scrolled", scrolled);
-          },
-          { threshold: 0.5 },
-        );
+        const observer = new IntersectionObserver(([entry]) => {
+          const scrolled = !entry.isIntersecting;
+          nav.classList.toggle("--scrolled", scrolled);
+          mainEl.classList.toggle("--scrolled", scrolled);
+        });
         observer.observe(hero);
       }
     </script>
@@ -90,10 +87,12 @@ const {
 
         const setActive = (href: string | null) => {
           navLinks.forEach((link) => {
-            link.closest(".mm-navigation__list-item")?.classList.toggle(
-              "--is-active",
-              href !== null && link.getAttribute("href") === href,
-            );
+            link
+              .closest(".mm-navigation__list-item")
+              ?.classList.toggle(
+                "--is-active",
+                href !== null && link.getAttribute("href") === href,
+              );
           });
         };
 

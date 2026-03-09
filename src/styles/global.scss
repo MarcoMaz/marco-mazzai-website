@@ -358,6 +358,10 @@ footer {
     &__mobile {
       display: none;
     }
+
+    .mm-avatar {
+      display: none;
+    }
   }
 }
 
@@ -921,7 +925,15 @@ footer {
 }
 
 .--scrolled {
+  background-color: $backgroundLight;
   width: rem(272);
+
+  .mm-avatar {
+    display: flex;
+    height: rem(48);
+    margin-bottom: rem(12);
+    width: rem(48);
+  }
 
   .mm-navigation__list {
     flex-direction: column;
