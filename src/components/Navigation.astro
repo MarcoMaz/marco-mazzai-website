@@ -1,42 +1,42 @@
 ---
-import { ListIcon, XIcon } from '@phosphor-icons/react';
-import { getCollection, type CollectionEntry } from 'astro:content';
-import Avatar from './Avatar.astro';
+import { ListIcon, XIcon } from "@phosphor-icons/react";
+import { getCollection, type CollectionEntry } from "astro:content";
+import Avatar from "./Avatar.astro";
 
-type NavigationEntry = CollectionEntry<'navigation'>;
+type NavigationEntry = CollectionEntry<"navigation">;
 
 const navigationCollection: NavigationEntry[] =
-  await getCollection('navigation');
+  await getCollection("navigation");
 
 if (navigationCollection.length === 0) {
-  throw new Error('Navigation not found in copy collection');
+  throw new Error("Navigation not found in copy collection");
 }
 
 const { navigationItems } = navigationCollection[0].data;
 ---
 
-<div class='mm-navigation'>
-  <div class='mm-navigation__mobile'>
+<div class="mm-navigation">
+  <div class="mm-navigation__mobile">
     <Avatar />
     <button
-      aria-label='Open navigation'
-      aria-expanded='false'
-      aria-controls='mm-navigation__list'
-      class='mm-navigation__hamburger'
+      aria-label="Open navigation"
+      aria-expanded="false"
+      aria-controls="mm-navigation__list"
+      class="mm-navigation__hamburger"
     >
       <ListIcon
         size={24}
         aria-hidden={true}
-        className='mm-navigation__icon-list'
+        className="mm-navigation__icon-list"
       />
-      <XIcon size={24} aria-hidden={true} className='mm-navigation__icon-x' />
+      <XIcon size={24} aria-hidden={true} className="mm-navigation__icon-x" />
     </button>
   </div>
-  <nav class='mm-navigation__nav'>
-    <ul id='mm-navigation__list' class='mm-navigation__list'>
+  <nav class="mm-navigation__nav --scrolled">
+    <ul id="mm-navigation__list" class="mm-navigation__list">
       {
         navigationItems.map(({ url, label }) => (
-          <li class='mm-navigation__list-item'>
+          <li class="mm-navigation__list-item">
             <a href={url}>{label}</a>
           </li>
         ))
@@ -46,34 +46,30 @@ const { navigationItems } = navigationCollection[0].data;
 </div>
 
 <script>
-  const MOBILE_MQ = window.matchMedia('(max-width: 1024px)');
+  const MOBILE_MQ = window.matchMedia("(max-width: 1024px)");
 
   const button = document.querySelector<HTMLButtonElement>(
     `.mm-navigation__hamburger`,
   );
-  const navList = document.getElementById('mm-navigation__list');
+  const navList = document.getElementById("mm-navigation__list");
 
   const setOpen = (open: boolean) => {
     if (!navList || !button) return;
-    navList.style.display = open
-      ? 'flex'
-      : MOBILE_MQ.matches
-        ? 'none'
-        : 'flex';
-    button.setAttribute('aria-expanded', String(open));
+    navList.style.display = open ? "flex" : MOBILE_MQ.matches ? "none" : "flex";
+    button.setAttribute("aria-expanded", String(open));
     button.setAttribute(
-      'aria-label',
-      open ? 'Close navigation' : 'Open navigation',
+      "aria-label",
+      open ? "Close navigation" : "Open navigation",
     );
-    document.body.classList.toggle('blocked', open);
+    document.body.classList.toggle("blocked", open);
   };
 
   // Initial state
-  if (navList) navList.style.display = MOBILE_MQ.matches ? 'none' : 'block';
+  if (navList) navList.style.display = MOBILE_MQ.matches ? "none" : "flex";
 
-  button?.addEventListener('click', () => {
-    setOpen(button.getAttribute('aria-expanded') !== 'true');
+  button?.addEventListener("click", () => {
+    setOpen(button.getAttribute("aria-expanded") !== "true");
   });
 
-  window.addEventListener('resize', () => setOpen(false));
+  window.addEventListener("resize", () => setOpen(false));
 </script>

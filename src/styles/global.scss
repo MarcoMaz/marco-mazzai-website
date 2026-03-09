@@ -540,11 +540,12 @@ footer {
 }
 
 /* ENTRY */
-
 .mm-entry {
   &__date {
     color: #8a311b;
+    display: flex;
     font-size: rem(14);
+    gap: rem(12);
     margin-bottom: rem(8);
   }
 
@@ -915,6 +916,28 @@ footer {
     .mm-avatar {
       height: rem(222);
       width: rem(222);
+    }
+  }
+}
+
+.--scrolled {
+  background: red;
+  width: rem(272);
+
+  .mm-navigation__list {
+    flex-direction: column;
+    font-size: rem(20);
+    font-weight: bold;
+
+    .mm-navigation__list-item {
+      text-transform: uppercase;
+      padding: rem(8) rem(12);
+
+      position: static;
+
+      a {
+        color: #5a4e43;
+      }
     }
   }
 }

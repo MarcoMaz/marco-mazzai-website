@@ -62,12 +62,12 @@ const nextEntry = nextPost
 
 <BaseLayout title={pageTitle}>
   <section class="mm-entry">
-    <p class="mm-entry__kicker">{kicker}</p>
-    <h1>{heading}</h1>
-    <div class="mm-entry__meta">
-      <span class="mm-entry__date">{formattedDate}</span>
-      <span class="mm-entry__reading-time">{readingTime} min. read</span>
+    <div class="mm-entry__date">
+      <span>{formattedDate}</span>
+      <span>{readingTime} min. read</span>
     </div>
+    <p class="mm-entry__kicker">{kicker}</p>
+    <h1 class="mm-entry__heading">{heading}</h1>
     <ChipList chips={chips} />
     <article>
       <Content />
