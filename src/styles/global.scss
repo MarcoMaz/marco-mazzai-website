@@ -930,12 +930,35 @@ footer {
 
     .mm-navigation__list-item {
       text-transform: uppercase;
-      padding: rem(8) rem(12);
 
       position: static;
 
       a {
         color: #5a4e43;
+        padding: rem(8) rem(12);
+        display: inline-flex;
+        width: 100%;
+      }
+
+      a[aria-current="page"] {
+        @include desktop {
+          background-color: #c1502e;
+          color: #fffcf7;
+        }
+      }
+    }
+
+    .mm-navigation__list-item.--is-active {
+      @include desktop {
+        background-color: #c1502e;
+
+        a {
+          color: #fffcf7;
+        }
+
+        :hover {
+          background-color: #a63f23;
+        }
       }
     }
   }

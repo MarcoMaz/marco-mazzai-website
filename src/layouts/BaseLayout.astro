@@ -75,6 +75,46 @@ const {
       }
     </script>
     <script>
+      // Homepage: highlight nav link for the section currently in view
+      if (window.location.pathname === "/") {
+        const sectionNavMap: Record<string, string> = {
+          blog: "/blog",
+          projects: "/projects",
+          about: "/about",
+          contact: "#contact",
+        };
+
+        const navLinks = document.querySelectorAll<HTMLAnchorElement>(
+          ".mm-navigation__list-item a",
+        );
+
+        const setActive = (href: string | null) => {
+          navLinks.forEach((link) => {
+            link.closest(".mm-navigation__list-item")?.classList.toggle(
+              "--is-active",
+              href !== null && link.getAttribute("href") === href,
+            );
+          });
+        };
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                setActive(sectionNavMap[entry.target.id] ?? null);
+              }
+            });
+          },
+          { rootMargin: "-50% 0px -50% 0px" },
+        );
+
+        Object.keys(sectionNavMap).forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) observer.observe(el);
+        });
+      }
+    </script>
+    <script>
       // Accessibility: focus navigation on page load (mobile hamburger if visible, else first nav link)
       document.addEventListener("DOMContentLoaded", () => {
         try {

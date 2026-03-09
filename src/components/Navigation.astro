@@ -13,6 +13,8 @@ if (navigationCollection.length === 0) {
 }
 
 const { navigationItems } = navigationCollection[0].data;
+
+const pathname = Astro.url.pathname;
 ---
 
 <div class="mm-navigation">
@@ -35,11 +37,16 @@ const { navigationItems } = navigationCollection[0].data;
   <nav class="mm-navigation__nav">
     <ul id="mm-navigation__list" class="mm-navigation__list">
       {
-        navigationItems.map(({ url, label }) => (
-          <li class="mm-navigation__list-item">
-            <a href={url}>{label}</a>
-          </li>
-        ))
+        navigationItems.map(({ url, label }) => {
+          const isActive = url.startsWith("/") && pathname.startsWith(url);
+          return (
+            <li class="mm-navigation__list-item">
+              <a href={url} aria-current={isActive ? "page" : undefined}>
+                {label}
+              </a>
+            </li>
+          );
+        })
       }
     </ul>
   </nav>
