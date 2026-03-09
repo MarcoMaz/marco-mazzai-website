@@ -1,9 +1,9 @@
 ---
-import Footer from '../components/Footer.astro';
-import HeroSection from '../components/HeroSection.astro';
-import Navigation from '../components/Navigation.astro';
-import { PAGE_TITLES, META } from '../content.config';
-import '../styles/global.scss';
+import Footer from "../components/Footer.astro";
+import HeroSection from "../components/HeroSection.astro";
+import Navigation from "../components/Navigation.astro";
+import { PAGE_TITLES, META } from "../content.config";
+import "../styles/global.scss";
 
 interface BaseLayoutProps {
   title?: string;
@@ -27,24 +27,27 @@ const {
 } = META;
 ---
 
-<html lang='en'>
+<html lang="en">
   <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <link rel='preconnect' href='https://fonts.googleapis.com' />
-    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
-    <link href='https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap' rel='stylesheet' />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
     <title>{title ?? pageTitle}</title>
 
     <!-- SEO + Social Meta -->
-    <meta name='keywords' content={keywords} />
-    <meta name='description' content={description} />
-    <meta property='og:title' content={metaTitle} />
-    <meta property='og:url' content={ogUrl} />
-    <meta property='og:image' content={ogImage} />
-    <meta property='og:type' content={ogType} />
-    <meta property='og:description' content={ogDescription} />
-    <meta property='og:locale' content={ogLocale} />
+    <meta name="keywords" content={keywords} />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={metaTitle} />
+    <meta property="og:url" content={ogUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:locale" content={ogLocale} />
   </head>
   <body>
     <Navigation />
@@ -54,8 +57,26 @@ const {
     </main>
     <Footer />
     <script>
+      // Toggle --scrolled on nav and main when hero scrolls out of view
+      const hero = document.querySelector(".mm-hero");
+      const nav = document.querySelector(".mm-navigation__nav");
+      const mainEl = document.querySelector("main");
+
+      if (hero && nav && mainEl) {
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            const scrolled = !entry.isIntersecting;
+            nav.classList.toggle("--scrolled", scrolled);
+            mainEl.classList.toggle("--scrolled", scrolled);
+          },
+          { threshold: 0 },
+        );
+        observer.observe(hero);
+      }
+    </script>
+    <script>
       // Accessibility: focus navigation on page load (mobile hamburger if visible, else first nav link)
-      document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener("DOMContentLoaded", () => {
         try {
           const active = document.activeElement as Element | null;
           if (active && active !== document.body) return;
@@ -67,22 +88,40 @@ const {
           };
 
           // 1) Mobile hamburger button (if present and visible)
-          const mobileBtn = document.querySelector('.Navigation__mobile__hamburger') as HTMLElement | null;
-          if (mobileBtn && isVisible(mobileBtn)) { mobileBtn.focus(); return; }
+          const mobileBtn = document.querySelector(
+            ".Navigation__mobile__hamburger",
+          ) as HTMLElement | null;
+          if (mobileBtn && isVisible(mobileBtn)) {
+            mobileBtn.focus();
+            return;
+          }
 
           // 2) First visible nav link
-          const navLink = Array.from(document.querySelectorAll('nav a')).find(el => isVisible(el));
-          if (navLink) { (navLink as HTMLElement).focus(); return; }
+          const navLink = Array.from(document.querySelectorAll("nav a")).find(
+            (el) => isVisible(el),
+          );
+          if (navLink) {
+            (navLink as HTMLElement).focus();
+            return;
+          }
 
           // 3) First focusable element inside main
-          const focusable = Array.from(document.querySelectorAll(
-            'main a[href], main button, main input, main textarea, main select, main [tabindex]:not([tabindex="-1"])'
-          )).find(el => isVisible(el));
-          if (focusable) { (focusable as HTMLElement).focus(); return; }
+          const focusable = Array.from(
+            document.querySelectorAll(
+              'main a[href], main button, main input, main textarea, main select, main [tabindex]:not([tabindex="-1"])',
+            ),
+          ).find((el) => isVisible(el));
+          if (focusable) {
+            (focusable as HTMLElement).focus();
+            return;
+          }
 
           // 4) Fallback: focus main for screen readers
-          const main = document.querySelector('main') as HTMLElement | null;
-          if (main) { main.setAttribute('tabindex', '-1'); main.focus(); }
+          const main = document.querySelector("main") as HTMLElement | null;
+          if (main) {
+            main.setAttribute("tabindex", "-1");
+            main.focus();
+          }
         } catch (e) {
           // fail silently
         }

@@ -921,7 +921,6 @@ footer {
 }
 
 .--scrolled {
-  background: red;
   width: rem(272);
 
   .mm-navigation__list {
@@ -942,6 +941,7 @@ footer {
   }
 }
 
-main {
+main.--scrolled {
   padding-left: rem(304);
+  width: auto;
 }
