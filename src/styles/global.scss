@@ -938,6 +938,10 @@ footer {
         padding: rem(8) rem(12);
         display: inline-flex;
         width: 100%;
+
+        &:focus {
+          outline: 2px solid #c1502e;
+        }
       }
 
       a[aria-current="page"] {
