@@ -1,33 +1,11 @@
 ---
-import { getCollection, render, type CollectionEntry } from 'astro:content';
-import AboutSection from '../components/AboutSection.astro';
-import BlogListSection from '../components/BlogListSection.astro';
-import PetProjectsSection from '../components/PetProjectsSection.astro';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Avatar from '../components/Avatar.astro';
-
-type HomeEntry = CollectionEntry<'home'>;
-
-const homeCollection: HomeEntry[] = await getCollection('home');
-
-if (homeCollection.length === 0) {
-  throw new Error('Home page not found in copy collection');
-}
-
-const home: HomeEntry = homeCollection[0];
-
-const { headline, kicker, summary } = home.data;
+import AboutSection from "../components/AboutSection.astro";
+import BlogListSection from "../components/BlogListSection.astro";
+import PetProjectsSection from "../components/PetProjectsSection.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
-  <section class='mm-hero'>
-    <Avatar />
-    <div class='mm-hero__info'>
-      <h1 class='mm-hero__headline'>{headline}</h1>
-      <h2 class='mm-hero__kicker' set:html={kicker} />
-      <p class='mm-hero__summary' set:html={summary} />
-    </div>
-  </section>
   <BlogListSection />
   <PetProjectsSection />
   <AboutSection />

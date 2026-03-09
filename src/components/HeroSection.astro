@@ -1,0 +1,23 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import Avatar from "./Avatar.astro";
+
+type HomeEntry = CollectionEntry<"home">;
+
+const homeCollection: HomeEntry[] = await getCollection("home");
+
+if (homeCollection.length === 0) {
+  throw new Error("Home page not found in copy collection");
+}
+
+const { headline, kicker, summary } = homeCollection[0].data;
+---
+
+<section class="mm-hero">
+  <Avatar />
+  <div class="mm-hero__info">
+    <h1 class="mm-hero__headline">{headline}</h1>
+    <h2 class="mm-hero__kicker" set:html={kicker} />
+    <p class="mm-hero__summary" set:html={summary} />
+  </div>
+</section>
