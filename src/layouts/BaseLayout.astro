@@ -87,58 +87,5 @@ const {
         footerObserver.observe(footerEl);
       }
     </script>
-    <script>
-      // Accessibility: focus navigation on page load (mobile hamburger if visible, else first nav link)
-      document.addEventListener("DOMContentLoaded", () => {
-        try {
-          const active = document.activeElement as Element | null;
-          if (active && active !== document.body) return;
-
-          const isVisible = (el: Element | null): el is HTMLElement => {
-            if (!el) return false;
-            const r = (el as HTMLElement).getBoundingClientRect();
-            return r.width > 0 && r.height > 0;
-          };
-
-          // 1) Mobile hamburger button (if present and visible)
-          const mobileBtn = document.querySelector(
-            ".mm-navigation-hero__hamburger",
-          ) as HTMLElement | null;
-          if (mobileBtn && isVisible(mobileBtn)) {
-            mobileBtn.focus();
-            return;
-          }
-
-          // 2) First visible nav link
-          const navLink = Array.from(document.querySelectorAll("nav a")).find(
-            (el) => isVisible(el),
-          );
-          if (navLink) {
-            (navLink as HTMLElement).focus();
-            return;
-          }
-
-          // 3) First focusable element inside main
-          const focusable = Array.from(
-            document.querySelectorAll(
-              'main a[href], main button, main input, main textarea, main select, main [tabindex]:not([tabindex="-1"])',
-            ),
-          ).find((el) => isVisible(el));
-          if (focusable) {
-            (focusable as HTMLElement).focus();
-            return;
-          }
-
-          // 4) Fallback: focus main for screen readers
-          const main = document.querySelector("main") as HTMLElement | null;
-          if (main) {
-            main.setAttribute("tabindex", "-1");
-            main.focus();
-          }
-        } catch (e) {
-          // fail silently
-        }
-      });
-    </script>
   </body>
 </html>
