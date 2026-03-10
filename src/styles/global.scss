@@ -109,6 +109,17 @@ footer {
   }
 }
 
+main {
+  @include desktop() {
+    z-index: 999;
+    transition: margin-left 0.4s ease;
+
+    &.--scrolled {
+      margin-left: rem(272);
+    }
+  }
+}
+
 // Default section padding, responsive
 .mm-section {
   padding: rem(40) rem(16);
@@ -257,9 +268,9 @@ footer {
   }
 }
 
-/* NAVIGATION */
+/* NAVIGATION — HERO */
 
-.mm-navigation {
+.mm-navigation-hero {
   background-color: $backgroundDark;
   display: flex;
   flex-direction: column;
@@ -276,11 +287,10 @@ footer {
   &__mobile {
     display: flex;
     justify-content: space-between;
-  }
 
-  // Add spacing below the mobile header when the menu is open
-  &__mobile:has(&__hamburger[aria-expanded="true"]) {
-    margin-bottom: rem(32);
+    &:has(.mm-navigation-hero__hamburger[aria-expanded="true"]) {
+      margin-bottom: rem(32);
+    }
   }
 
   &__hamburger {
@@ -291,22 +301,21 @@ footer {
     height: rem(48);
     justify-content: center;
     width: rem(48);
-  }
 
-  // Toggle icon visibility based on expanded state
-  &__hamburger[aria-expanded="true"] {
-    .mm-navigation__icon-x {
-      display: block;
+    &[aria-expanded="true"] {
+      .mm-navigation-hero__icon-x {
+        display: block;
+      }
+
+      .mm-navigation-hero__icon-list {
+        display: none;
+      }
     }
 
-    .mm-navigation__icon-list {
-      display: none;
-    }
-  }
-
-  &__hamburger[aria-expanded="false"] {
-    .mm-navigation__icon-x {
-      display: none;
+    &[aria-expanded="false"] {
+      .mm-navigation-hero__icon-x {
+        display: none;
+      }
     }
   }
 
@@ -325,13 +334,19 @@ footer {
     padding: rem(32) rem(40);
   }
 
-  // On desktop, nav items are pinned to the four corners of the viewport
   @include desktop {
     background-color: transparent;
-    position: fixed;
-    z-index: 999;
+    transition: opacity 0.4s ease;
 
-    .mm-navigation__list-item {
+    &__mobile {
+      display: none;
+    }
+
+    .mm-avatar {
+      display: none;
+    }
+
+    .mm-navigation-hero__list-item {
       position: fixed;
 
       &:nth-of-type(1) {
@@ -355,12 +370,83 @@ footer {
       }
     }
 
-    &__mobile {
-      display: none;
+    &.--scrolled {
+      opacity: 0;
+      pointer-events: none;
     }
+  }
+}
+
+/* NAVIGATION — SIDE */
+
+.mm-navigation-side {
+  display: none;
+
+  @include desktop {
+    background-color: $backgroundLight;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    padding: rem(32) rem(20);
+    position: fixed;
+    top: 0;
+    transform: translateX(-100%);
+    transition:
+      transform 0.4s ease,
+      opacity 0.4s ease;
+    width: rem(272);
+    z-index: 100;
 
     .mm-avatar {
-      display: none;
+      display: flex;
+      height: rem(48);
+      margin-bottom: rem(12);
+      width: rem(48);
+    }
+
+    &__list {
+      display: flex;
+      flex-direction: column;
+      font-size: rem(20);
+      font-weight: bold;
+    }
+
+    &__list-item {
+      text-transform: uppercase;
+
+      a {
+        color: #5a4e43;
+        display: inline-flex;
+        padding: rem(8) rem(12);
+        text-decoration: none;
+        width: 100%;
+
+        &:focus {
+          outline: 2px solid #c1502e;
+        }
+      }
+
+      a[aria-current="page"] {
+        background-color: #c1502e;
+        color: #fffcf7;
+      }
+
+      &.--is-active {
+        background-color: #c1502e;
+
+        a {
+          color: #fffcf7;
+        }
+
+        &:hover {
+          background-color: #a63f23;
+        }
+      }
+    }
+
+    &.--scrolled {
+      transform: translateX(0);
     }
   }
 }
@@ -836,6 +922,7 @@ footer {
 .mm-footer {
   background-color: $backgroundDark;
   color: #fffcf7;
+  z-index: 9999;
 
   .mm-avatar {
     height: rem(120);
@@ -922,65 +1009,4 @@ footer {
       width: rem(222);
     }
   }
-}
-
-.--scrolled {
-  background-color: $backgroundLight;
-  width: rem(272);
-
-  .mm-avatar {
-    display: flex;
-    height: rem(48);
-    margin-bottom: rem(12);
-    width: rem(48);
-  }
-
-  .mm-navigation__list {
-    flex-direction: column;
-    font-size: rem(20);
-    font-weight: bold;
-
-    .mm-navigation__list-item {
-      text-transform: uppercase;
-
-      position: static;
-
-      a {
-        color: #5a4e43;
-        padding: rem(8) rem(12);
-        display: inline-flex;
-        width: 100%;
-
-        &:focus {
-          outline: 2px solid #c1502e;
-        }
-      }
-
-      a[aria-current="page"] {
-        @include desktop {
-          background-color: #c1502e;
-          color: #fffcf7;
-        }
-      }
-    }
-
-    .mm-navigation__list-item.--is-active {
-      @include desktop {
-        background-color: #c1502e;
-
-        a {
-          color: #fffcf7;
-        }
-
-        :hover {
-          background-color: #a63f23;
-        }
-      }
-    }
-  }
-}
-
-main.--scrolled {
-  padding-left: rem(304);
-  width: auto;
 }

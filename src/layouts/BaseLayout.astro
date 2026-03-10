@@ -57,18 +57,34 @@ const {
     </main>
     <Footer />
     <script>
-      // Toggle --scrolled on nav and main when hero scrolls out of view
+      // Toggle hero nav out and side nav in when hero scrolls out of view
       const hero = document.querySelector(".mm-hero");
-      const nav = document.querySelector(".mm-navigation__nav");
+      const heroNav = document.querySelector(".mm-navigation-hero");
+      const sideNav = document.querySelector(".mm-navigation-side");
       const mainEl = document.querySelector("main");
 
-      if (hero && nav && mainEl) {
+      if (hero && heroNav && sideNav && mainEl) {
         const observer = new IntersectionObserver(([entry]) => {
           const scrolled = !entry.isIntersecting;
-          nav.classList.toggle("--scrolled", scrolled);
+          heroNav.classList.toggle("--scrolled", scrolled);
+          sideNav.classList.toggle("--scrolled", scrolled);
           mainEl.classList.toggle("--scrolled", scrolled);
         });
         observer.observe(hero);
+      }
+
+      // Fade side nav out when footer enters viewport
+      const footerEl = document.querySelector("footer");
+      if (sideNav && footerEl) {
+        const footerObserver = new IntersectionObserver(
+          ([entry]) => {
+            (sideNav as HTMLElement).style.opacity = entry.isIntersecting
+              ? "0"
+              : "";
+          },
+          { rootMargin: "0px 0px -200px 0px" },
+        );
+        footerObserver.observe(footerEl);
       }
     </script>
     <script>
@@ -82,13 +98,13 @@ const {
         };
 
         const navLinks = document.querySelectorAll<HTMLAnchorElement>(
-          ".mm-navigation__list-item a",
+          ".mm-navigation-side__list-item a",
         );
 
         const setActive = (href: string | null) => {
           navLinks.forEach((link) => {
             link
-              .closest(".mm-navigation__list-item")
+              .closest(".mm-navigation-side__list-item")
               ?.classList.toggle(
                 "--is-active",
                 href !== null && link.getAttribute("href") === href,
@@ -98,11 +114,12 @@ const {
 
         const observer = new IntersectionObserver(
           (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                setActive(sectionNavMap[entry.target.id] ?? null);
-              }
-            });
+            const entering = entries.find((e) => e.isIntersecting);
+            if (entering) {
+              setActive(sectionNavMap[entering.target.id] ?? null);
+            } else {
+              setActive(null);
+            }
           },
           { rootMargin: "-50% 0px -50% 0px" },
         );
@@ -128,7 +145,7 @@ const {
 
           // 1) Mobile hamburger button (if present and visible)
           const mobileBtn = document.querySelector(
-            ".Navigation__mobile__hamburger",
+            ".mm-navigation-hero__hamburger",
           ) as HTMLElement | null;
           if (mobileBtn && isVisible(mobileBtn)) {
             mobileBtn.focus();

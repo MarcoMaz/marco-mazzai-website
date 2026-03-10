@@ -17,49 +17,78 @@ const { navigationItems } = navigationCollection[0].data;
 const pathname = Astro.url.pathname;
 ---
 
-<div class="mm-navigation">
-  <div class="mm-navigation__mobile">
+<!-- Hero Navigation: visible when hero is in view, fades out on scroll (desktop) -->
+<div class="mm-navigation-hero">
+  <!-- Mobile header: avatar + hamburger -->
+  <div class="mm-navigation-hero__mobile">
     <Avatar />
     <button
       aria-label="Open navigation"
       aria-expanded="false"
-      aria-controls="mm-navigation__list"
-      class="mm-navigation__hamburger"
+      aria-controls="mm-navigation-hero-list"
+      class="mm-navigation-hero__hamburger"
     >
       <ListIcon
         size={24}
         aria-hidden={true}
-        className="mm-navigation__icon-list"
+        className="mm-navigation-hero__icon-list"
       />
-      <XIcon size={24} aria-hidden={true} className="mm-navigation__icon-x" />
+      <XIcon
+        size={24}
+        aria-hidden={true}
+        className="mm-navigation-hero__icon-x"
+      />
     </button>
   </div>
-  <nav class="mm-navigation__nav">
-    <Avatar />
-    <ul id="mm-navigation__list" class="mm-navigation__list">
-      {
-        navigationItems.map(({ url, label }) => {
-          const isActive = url.startsWith("/") && pathname.startsWith(url);
-          return (
-            <li class="mm-navigation__list-item">
-              <a href={url} aria-current={isActive ? "page" : undefined}>
-                {label}
-              </a>
-            </li>
-          );
-        })
-      }
-    </ul>
-  </nav>
+  <!-- Nav list: collapsible on mobile, corner-positioned on desktop -->
+  <ul id="mm-navigation-hero-list" class="mm-navigation-hero__list">
+    {
+      navigationItems.map(({ url, label }) => {
+        const isActive =
+          url === "/"
+            ? pathname === "/"
+            : url.startsWith("/") && pathname.startsWith(url);
+        return (
+          <li class="mm-navigation-hero__list-item">
+            <a href={url} aria-current={isActive ? "page" : undefined}>
+              {label}
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
 </div>
+
+<!-- Side Navigation: offscreen left initially, slides in on scroll (desktop only) -->
+<nav class="mm-navigation-side" aria-label="Site navigation">
+  <Avatar />
+  <ul class="mm-navigation-side__list">
+    {
+      navigationItems.map(({ url, label }) => {
+        const isActive =
+          url === "/"
+            ? pathname === "/"
+            : url.startsWith("/") && pathname.startsWith(url);
+        return (
+          <li class="mm-navigation-side__list-item">
+            <a href={url} aria-current={isActive ? "page" : undefined}>
+              {label}
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>
 
 <script>
   const MOBILE_MQ = window.matchMedia("(max-width: 1024px)");
 
   const button = document.querySelector<HTMLButtonElement>(
-    `.mm-navigation__hamburger`,
+    ".mm-navigation-hero__hamburger",
   );
-  const navList = document.getElementById("mm-navigation__list");
+  const navList = document.getElementById("mm-navigation-hero-list");
 
   const setOpen = (open: boolean) => {
     if (!navList || !button) return;
@@ -72,7 +101,6 @@ const pathname = Astro.url.pathname;
     document.body.classList.toggle("blocked", open);
   };
 
-  // Initial state
   if (navList) navList.style.display = MOBILE_MQ.matches ? "none" : "flex";
 
   button?.addEventListener("click", () => {
