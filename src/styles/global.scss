@@ -431,18 +431,6 @@ main {
         background-color: #c1502e;
         color: #fffcf7;
       }
-
-      &.--is-active {
-        background-color: #c1502e;
-
-        a {
-          color: #fffcf7;
-        }
-
-        &:hover {
-          background-color: #a63f23;
-        }
-      }
     }
 
     &.--scrolled {
