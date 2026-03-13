@@ -66,22 +66,24 @@ const READ_MORE_TEXT: string = "Read more"
 
         return (
           <li class='mm-section-item'>
-            <div class='mm-section-item__time'>
-              <span class='mm-section-item__time--date'>{formatDate(date)}</span>
-              <span class='mm-section-item__time--reading-time'>
-                {readingTime} {MIN_READ_TEXT}
-              </span>
+            <div class='mm-section-item__info'>
+              <div class='mm-section-item__time'>
+                <span class='mm-section-item__time--date'>{formatDate(date)}</span>
+                <span class='mm-section-item__time--reading-time'>
+                  {readingTime} {MIN_READ_TEXT}
+                </span>
+              </div>
+              <p class='mm-section-item__kicker'>{kicker}</p>
+              <h3 class='mm-section-item__heading'>
+                <a href={`/blog/${slug}`}>{heading}</a>
+              </h3>
+              <ChipList chips={chips} />
+              <p class='mm-section-item__preview'>{preview}</p>
+              <IconLink href={`/blog/${slug}`}>
+                {READ_MORE_TEXT}
+                <CaretRightIcon slot='icon-right' />
+              </IconLink>
             </div>
-            <p class='mm-section-item__kicker'>{kicker}</p>
-            <h3 class='mm-section-item__heading'>
-              <a href={`/blog/${slug}`}>{heading}</a>
-            </h3>
-            <ChipList chips={chips} />
-            <p class='mm-section-item__preview'>{preview}</p>
-            <IconLink href={`/blog/${slug}`}>
-              {READ_MORE_TEXT}
-              <CaretRightIcon slot='icon-right' />
-            </IconLink>
           </li>
           <hr class='mm-section-item__divider'/>
         );

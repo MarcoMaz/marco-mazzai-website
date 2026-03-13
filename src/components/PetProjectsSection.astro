@@ -42,23 +42,28 @@ const GITHUB_LABEL: string = "Github";
         } = entry.data;
 
         return (
-          <li class="mm-section-item">
-            <span class="mm-section-item__time">
-              {formatDateRange(date.from, date.to)}
-            </span>
-            <p class="mm-section-item__kicker">{kicker}</p>
-            <h3 class="mm-section-item__heading">
-              <a href={`/projects/${entry.id}`}>{heading}</a>
-            </h3>
-            <ChipList chips={chips} />
-            <p class="mm-section-item__preview">{description}</p>
-            <IconLink href={githubUrl} target="_blank">
-              {GITHUB_LABEL}
-              <GithubLogoIcon slot="icon-left" />
-            </IconLink>
-            {preview && (
+          <li class="mm-section-item mm-section-item__project-item">
+            <div class="mm-section-item__info">
+              <span class="mm-section-item__time">
+                {formatDateRange(date.from, date.to)}
+              </span>
+              <p class="mm-section-item__kicker">{kicker}</p>
+              <h3 class="mm-section-item__heading">
+                <a href={`/projects/${entry.id}`}>{heading}</a>
+              </h3>
+              <ChipList chips={chips} />
+              <p class="mm-section-item__preview">{description}</p>
+              <IconLink href={githubUrl} target="_blank">
+                {GITHUB_LABEL}
+                <GithubLogoIcon slot="icon-left" />
+              </IconLink>
+            </div>
+            <div class="mm-section-item__image">
+              <img srcset="https://placehold.co/343x343" />
+            </div>
+            {/* {preview && (
               <ProjectIframe src={preview.url} title={preview.title} />
-            )}
+            )} */}
             <hr class="mm-section-item__divider" />
           </li>
         );

@@ -571,6 +571,23 @@ main {
 .mm-section-item {
   padding: rem(20) 0;
 
+  &__project-item {
+    @include tablet() {
+      display: grid;
+      grid-template-areas: "info image";
+      grid-template-columns: 1fr 1fr;
+      gap: rem(32);
+    }
+  }
+
+  &__info {
+    grid-area: info;
+  }
+
+  &__image {
+    grid-area: image;
+  }
+
   &__time {
     color: #8a311b;
     display: flex;
