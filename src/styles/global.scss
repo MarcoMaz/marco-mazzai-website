@@ -663,6 +663,8 @@ main {
 
 /* ENTRY */
 .mm-entry {
+  padding: rem(64);
+
   &__date {
     color: #8a311b;
     display: flex;
