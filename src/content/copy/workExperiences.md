@@ -1,6 +1,7 @@
 ---
 workExperiencesItems:
   - workPlace: "Magnolia"
+    url: "https://www.magnolia-cms.com/"
     role: "Senior Frontend Developer"
     date:
       from: 2024-07
@@ -14,6 +15,7 @@ workExperiencesItems:
       - Architected complex features including drag-and-drop functionality, programmatic focus management for forms, and error handling systems, while resolving 140+ bugs and feature requests
       - Mentored developers and led onboarding initiatives, fostering team growth and knowledge sharing.
   - workPlace: "FitXr"
+    url: "https://fitxr.com/"
     role: Senior Frontend Developer
     date:
       from: 2023-12
@@ -26,6 +28,7 @@ workExperiencesItems:
       - Led migration from legacy templating system to React, improving development workflows and long-term code quality
       - Analyzed and optimized bundle size, achieving a 40% reduction and improving application performance
   - workPlace: "Experience One"
+    url: "https://www.experienceone.com/en"
     description: "A digital agency building products, platforms, and customer experiences for clients worldwide"
     role: "Frontend Developer"
     date:
@@ -40,6 +43,7 @@ workExperiencesItems:
       - Delivered technical presentations on design systems, web components, and component architecture
       - Mentored junior developers and led onboarding for new team members
   - workPlace: "Media X Change"
+    url: "#"
     role: "Frontend Developer"
     date:
       from: 2017

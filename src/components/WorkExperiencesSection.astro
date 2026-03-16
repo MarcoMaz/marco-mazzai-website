@@ -4,6 +4,7 @@ import { formatDateRange, type PartialDate } from "../lib/date";
 
 type WorkExperienceItem = {
   workPlace: string;
+  url: string;
   description: string;
   role: string;
   date: { from: PartialDate; to?: PartialDate };
@@ -27,11 +28,11 @@ const workExperiences = workExperiencesCollection[0].data
 <h2>Work experiences</h2>
 <ul>
   {
-    workExperiences.map(({ workPlace, role, date, location, tasks }) => (
+    workExperiences.map(({ workPlace, url, role, date, location, tasks }) => (
       <li class="mm-work-experiences__item">
         <div class="mm-work-experiences__details">
           <div class="mm-work-experiences__location">
-            <div>{workPlace}</div>
+            <a href={url}>{workPlace}</a>
             <div>{location}</div>
           </div>
           <div>{formatDateRange(date.from, date.to)}</div>

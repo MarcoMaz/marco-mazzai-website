@@ -110,6 +110,7 @@ const workExperiencesCollection = defineCollection({
     workExperiencesItems: z.array(
       z.object({
         workPlace: z.string(),
+        url: z.string(),
         role: z.string(),
         date: z.object({
           from: partialDate,
