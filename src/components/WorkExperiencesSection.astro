@@ -1,6 +1,6 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
-import { formatDateRange, type PartialDate } from '../lib/date';
+import { getCollection, type CollectionEntry } from "astro:content";
+import { formatDateRange, type PartialDate } from "../lib/date";
 
 type WorkExperienceItem = {
   workPlace: string;
@@ -11,13 +11,13 @@ type WorkExperienceItem = {
   tasks: string[];
 };
 
-type WorkExperiencesEntry = CollectionEntry<'workExperiences'>;
+type WorkExperiencesEntry = CollectionEntry<"workExperiences">;
 
 const workExperiencesCollection: WorkExperiencesEntry[] =
-  await getCollection('workExperiences');
+  await getCollection("workExperiences");
 
 if (workExperiencesCollection.length === 0) {
-  throw new Error('Work experiences not found');
+  throw new Error("Work experiences not found");
 }
 
 const workExperiences = workExperiencesCollection[0].data
@@ -27,26 +27,22 @@ const workExperiences = workExperiencesCollection[0].data
 <h2>Work experiences</h2>
 <ul>
   {
-    workExperiences.map(
-      ({ workPlace, description, role, date, location, tasks }) => (
-        <li class='mm-work-experiences__item'>
-          <div class='mm-work-experiences__details'>
-            <div class='mm-work-experiences__location'>
-              <div>{workPlace}</div>
-              <div>{location}</div>
-            </div>
-            <div>{formatDateRange(date.from, date.to)}</div>
+    workExperiences.map(({ workPlace, role, date, location, tasks }) => (
+      <li class="mm-work-experiences__item">
+        <div class="mm-work-experiences__details">
+          <div class="mm-work-experiences__location">
+            <div>{workPlace}</div>
+            <div>{location}</div>
           </div>
-          <h3 class='mm-work-experiences__heading'>{role}</h3>
-
-          <p>{description}</p>
-          <ul class='mm-work-experiences__tasks'>
-            {tasks.map((task) => (
-              <li>{task}</li>
-            ))}
-          </ul>
-        </li>
-      ),
-    )
+          <div>{formatDateRange(date.from, date.to)}</div>
+        </div>
+        <h3 class="mm-work-experiences__heading">{role}</h3>
+        <ul class="mm-work-experiences__tasks">
+          {tasks.map((task) => (
+            <li>{task}</li>
+          ))}
+        </ul>
+      </li>
+    ))
   }
 </ul>

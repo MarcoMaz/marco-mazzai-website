@@ -1,5 +1,5 @@
-import { glob } from 'astro/loaders';
-import { defineCollection, z } from 'astro:content';
+import { glob } from "astro/loaders";
+import { defineCollection, z } from "astro:content";
 
 // -------------------------
 // Helpers
@@ -10,27 +10,27 @@ const partialDate = z.preprocess(
     if (v instanceof Date) return v;
 
     // number year -> "YYYY"
-    if (typeof v === 'number') return String(v);
+    if (typeof v === "number") return String(v);
 
     // keep strings as-is
-    if (typeof v === 'string') return v;
+    if (typeof v === "string") return v;
 
     return v;
   },
   z.union([
-    z.literal('Present'),
+    z.literal("Present"),
     z.date(),
     z.string().regex(/^\d{4}$/), // YYYY
     z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/), // YYYY-MM
     z.string().regex(/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/), // YYYY-MM-DD
-  ])
+  ]),
 );
 
 // -------------------------
 // Collections
 // -------------------------
 const blogCollection = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  loader: glob({ pattern: "**/*.md", base: "./src/content/blog" }),
   schema: z.object({
     slug: z.string(),
     heading: z.string(),
@@ -41,7 +41,7 @@ const blogCollection = defineCollection({
 });
 
 const homeCollection = defineCollection({
-  loader: glob({ pattern: 'home.md', base: './src/content/copy' }),
+  loader: glob({ pattern: "home.md", base: "./src/content/copy" }),
   schema: z.object({
     headline: z.string(),
     kicker: z.string(),
@@ -50,7 +50,7 @@ const homeCollection = defineCollection({
 });
 
 const avatarCollection = defineCollection({
-  loader: glob({ pattern: 'avatar.md', base: './src/content/copy' }),
+  loader: glob({ pattern: "avatar.md", base: "./src/content/copy" }),
   schema: z.object({
     alt: z.string(),
     src: z.string(),
@@ -58,7 +58,7 @@ const avatarCollection = defineCollection({
 });
 
 const aboutCollection = defineCollection({
-  loader: glob({ pattern: 'about.md', base: './src/content/copy' }),
+  loader: glob({ pattern: "about.md", base: "./src/content/copy" }),
   schema: z.object({
     headline: z.string(),
     intro: z.string(),
@@ -67,15 +67,15 @@ const aboutCollection = defineCollection({
         heading: z.string(),
         content: z.string().optional(),
         items: z.array(z.string()).optional(),
-      })
+      }),
     ),
   }),
 });
 
 const codingLanguagesCollection = defineCollection({
   loader: glob({
-    pattern: 'codingLanguages.md',
-    base: './src/content/copy',
+    pattern: "codingLanguages.md",
+    base: "./src/content/copy",
   }),
   schema: z.object({
     codingLanguages: z.array(z.string()),
@@ -83,7 +83,7 @@ const codingLanguagesCollection = defineCollection({
 });
 
 const petProjectsCollection = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/petProjects' }),
+  loader: glob({ pattern: "**/*.md", base: "./src/content/petProjects" }),
   schema: z.object({
     order: z.number(),
     heading: z.string(),
@@ -105,12 +105,11 @@ const petProjectsCollection = defineCollection({
 });
 
 const workExperiencesCollection = defineCollection({
-  loader: glob({ pattern: 'workExperiences.md', base: './src/content/copy' }),
+  loader: glob({ pattern: "workExperiences.md", base: "./src/content/copy" }),
   schema: z.object({
     workExperiencesItems: z.array(
       z.object({
         workPlace: z.string(),
-        description: z.string(),
         role: z.string(),
         date: z.object({
           from: partialDate,
@@ -124,17 +123,17 @@ const workExperiencesCollection = defineCollection({
 });
 
 const educationCollection = defineCollection({
-  loader: glob({ pattern: 'education.md', base: './src/content/copy' }),
+  loader: glob({ pattern: "education.md", base: "./src/content/copy" }),
   schema: z.object({
     educationItems: z.array(
       z.object({
-        category: z.enum(['Frontend', 'Accessibility']),
+        category: z.enum(["Frontend", "Accessibility"]),
         sections: z.array(
           z.object({
             type: z.enum([
-              'Certifications',
-              'Advanced Courses',
-              'Conferences and Webinars',
+              "Certifications",
+              "Advanced Courses",
+              "Conferences and Webinars",
             ]),
             date: z
               .object({
@@ -151,14 +150,14 @@ const educationCollection = defineCollection({
 });
 
 const blogPageCollection = defineCollection({
-  loader: glob({ pattern: 'blog.md', base: './src/content/copy' }),
+  loader: glob({ pattern: "blog.md", base: "./src/content/copy" }),
   schema: z.object({
     headline: z.string(),
   }),
 });
 
 const footerCollection = defineCollection({
-  loader: glob({ pattern: 'footer.md', base: './src/content/copy' }),
+  loader: glob({ pattern: "footer.md", base: "./src/content/copy" }),
   schema: z.object({
     headline: z.string(),
     builtWith: z.string(),
@@ -174,7 +173,7 @@ const footerCollection = defineCollection({
 });
 
 const navigationCollection = defineCollection({
-  loader: glob({ pattern: 'navigation.md', base: './src/content/copy' }),
+  loader: glob({ pattern: "navigation.md", base: "./src/content/copy" }),
   schema: z.object({
     navigationItems: z.array(
       z.object({
@@ -203,10 +202,10 @@ export const collections = {
 // Page Titles
 // -------------------------
 export const PAGE_TITLES = {
-  default: 'Marco Mazzai | Portfolio & Blog',
-  about: 'About | Marco Mazzai',
-  blog: 'Blog | Marco Mazzai',
-  blogSuffix: '| Blog | Marco Mazzai',
+  default: "Marco Mazzai | Portfolio & Blog",
+  about: "About | Marco Mazzai",
+  blog: "Blog | Marco Mazzai",
+  blogSuffix: "| Blog | Marco Mazzai",
 };
 
 // -------------------------
@@ -214,17 +213,17 @@ export const PAGE_TITLES = {
 // -------------------------
 export const META = {
   keywords:
-    'Marco Mazzai, frontend developer, accessibility expert, a11y, design systems, web accessibility, React developer, UI engineer, WCAG, web performance, web site',
+    "Marco Mazzai, frontend developer, accessibility expert, a11y, design systems, web accessibility, React developer, UI engineer, WCAG, web performance, web site",
   description:
-    'Marco Mazzai is a frontend developer specialized in web accessibility and design systems. He creates scalable, inclusive, and high-performance user interfaces that meet WCAG standards and deliver exceptional user experiences.',
-  title: 'Marco Mazzai | Frontend Developer — Accessibility & Design Systems',
+    "Marco Mazzai is a frontend developer specialized in web accessibility and design systems. He creates scalable, inclusive, and high-performance user interfaces that meet WCAG standards and deliver exceptional user experiences.",
+  title: "Marco Mazzai | Frontend Developer — Accessibility & Design Systems",
   og: {
-    title: 'Marco Mazzai | Frontend Developer — Accessibility & Design Systems',
-    url: '',
-    image: '',
-    type: 'website',
+    title: "Marco Mazzai | Frontend Developer — Accessibility & Design Systems",
+    url: "",
+    image: "",
+    type: "website",
     description:
-      'Portfolio and blog by Marco Mazzai, frontend developer focused on accessibility and design systems — crafting inclusive, scalable web experiences.',
-    locale: 'en_US',
+      "Portfolio and blog by Marco Mazzai, frontend developer focused on accessibility and design systems — crafting inclusive, scalable web experiences.",
+    locale: "en_US",
   },
 };
