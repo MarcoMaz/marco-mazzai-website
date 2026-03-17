@@ -328,6 +328,32 @@ main {
     text-transform: uppercase;
   }
 
+  &.--mobile &__list.--open &__list-item {
+    border-radius: rem(4);
+    display: inline-flex;
+    width: rem(276);
+
+    a {
+      display: inline-flex;
+      font-weight: bold;
+      padding: rem(8) rem(12);
+      width: rem(276);
+    }
+
+    a:focus {
+      border-radius: rem(4);
+      outline: 2px solid #e69a87;
+    }
+  }
+
+  &.--mobile &__list.--open &__list-item:has(a[aria-current="page"]) {
+    background-color: #e69a87;
+
+    a {
+      color: #1a1a1a;
+    }
+  }
+
   @include tablet {
     padding: rem(32) rem(40);
   }
