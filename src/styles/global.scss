@@ -309,8 +309,17 @@ main {
   }
 
   &__list {
+    display: flex;
     flex-direction: column;
     gap: rem(12);
+  }
+
+  &__list--mobile {
+    display: none;
+
+    &.--open {
+      display: flex;
+    }
   }
 
   &__list-item a {

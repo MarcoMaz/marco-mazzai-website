@@ -90,9 +90,16 @@ const pathname = Astro.url.pathname;
   );
   const navList = document.getElementById("mm-navigation-hero-list");
 
+  const syncMobileClass = () => {
+    navList?.classList.toggle(
+      "mm-navigation-hero__list--mobile",
+      MOBILE_MQ.matches,
+    );
+  };
+
   const setOpen = (open: boolean) => {
     if (!navList || !button) return;
-    navList.style.display = open ? "flex" : MOBILE_MQ.matches ? "none" : "flex";
+    navList.classList.toggle("--open", open);
     button.setAttribute("aria-expanded", String(open));
     button.setAttribute(
       "aria-label",
@@ -101,11 +108,14 @@ const pathname = Astro.url.pathname;
     document.body.classList.toggle("blocked", open);
   };
 
-  if (navList) navList.style.display = MOBILE_MQ.matches ? "none" : "flex";
+  syncMobileClass();
+
+  MOBILE_MQ.addEventListener("change", () => {
+    syncMobileClass();
+    setOpen(false);
+  });
 
   button?.addEventListener("click", () => {
     setOpen(button.getAttribute("aria-expanded") !== "true");
   });
-
-  window.addEventListener("resize", () => setOpen(false));
 </script>
