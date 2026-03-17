@@ -90,11 +90,12 @@ const pathname = Astro.url.pathname;
   );
   const navList = document.getElementById("mm-navigation-hero-list");
 
+  const heroNav = document.querySelector(".mm-navigation-hero");
+  const sideNav = document.querySelector(".mm-navigation-side");
+
   const syncMobileClass = () => {
-    navList?.classList.toggle(
-      "mm-navigation-hero__list--mobile",
-      MOBILE_MQ.matches,
-    );
+    heroNav?.classList.toggle("--mobile", MOBILE_MQ.matches);
+    sideNav?.classList.toggle("--mobile", MOBILE_MQ.matches);
   };
 
   const setOpen = (open: boolean) => {

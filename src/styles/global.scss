@@ -314,7 +314,7 @@ main {
     gap: rem(12);
   }
 
-  &__list--mobile {
+  &.--mobile &__list {
     display: none;
 
     &.--open {
@@ -378,7 +378,9 @@ main {
 /* NAVIGATION — SIDE */
 
 .mm-navigation-side {
-  display: none;
+  &.--mobile {
+    display: none;
+  }
 
   @include desktop {
     background-color: $backgroundLight;
