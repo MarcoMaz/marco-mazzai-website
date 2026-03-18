@@ -1,31 +1,31 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
-import ChipList from './ChipList.astro';
-import Button from './Button.astro';
-import IconLink from './IconLink.astro';
-import { CaretRightIcon } from '@phosphor-icons/react';
-import { formatDate } from '../lib/date';
+import { getCollection, type CollectionEntry } from "astro:content";
+import ChipList from "./ChipList.astro";
+import Button from "./Button.astro";
+import IconLink from "./IconLink.astro";
+import { CaretRightIcon } from "@phosphor-icons/react";
+import { formatDate } from "../lib/date";
 
-type BlogEntry = CollectionEntry<'blog'>;
-type BlogPageEntry = CollectionEntry<'blogPage'>;
+type BlogEntry = CollectionEntry<"blog">;
+type BlogPageEntry = CollectionEntry<"blogPage">;
 
-const posts: BlogEntry[] = await getCollection('blog');
-const blogPageCollection: BlogPageEntry[] = await getCollection('blogPage');
+const posts: BlogEntry[] = await getCollection("blog");
+const blogPageCollection: BlogPageEntry[] = await getCollection("blogPage");
 
 if (blogPageCollection.length === 0) {
-  throw new Error('Blog list not found in copy collection');
+  throw new Error("Blog list not found in copy collection");
 }
 
 const blogPage: BlogPageEntry = blogPageCollection[0];
 const { headline } = blogPage.data;
-const isHome = Astro.url.pathname === '/';
+const isHome = Astro.url.pathname === "/";
 
 const stripMarkdown = (text: string): string =>
   text
-    .replace(/#{1,6}\s+/g, '')
-    .replace(/\*\*|__|\*|_|~~|`/g, '')
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-    .replace(/!\[[^\]]*\]\([^)]+\)/g, '')
+    .replace(/#{1,6}\s+/g, "")
+    .replace(/\*\*|__|\*|_|~~|`/g, "")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/!\[[^\]]*\]\([^)]+\)/g, "")
     .trim();
 
 const getReadingTime = (content: string, wordsPerMinute = 200): number => {
@@ -33,26 +33,25 @@ const getReadingTime = (content: string, wordsPerMinute = 200): number => {
   return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
 };
 
-
 const sortedPosts: BlogEntry[] = posts.sort((a, b) => {
-  const [dayA, monthA, yearA] = a.data.date.split('-').map(Number);
-  const [dayB, monthB, yearB] = b.data.date.split('-').map(Number);
+  const [dayA, monthA, yearA] = a.data.date.split("-").map(Number);
+  const [dayB, monthB, yearB] = b.data.date.split("-").map(Number);
   return (
     new Date(yearB, monthB - 1, dayB).getTime() -
     new Date(yearA, monthA - 1, dayA).getTime()
   );
 });
 
-const MIN_READ_TEXT: string = "min. read"
-const SEE_ALL_POSTS_TEXT: string = "See all posts"
-const READ_MORE_TEXT: string = "Read more"
+const MIN_READ_TEXT: string = "min. read";
+const SEE_ALL_POSTS_TEXT: string = "See all posts";
+const READ_MORE_TEXT: string = "Read more";
 ---
 
-<section class='mm-section' id="blog">
-  <h2 class='mm-section__headline'>{headline}</h2>
+<section class="mm-section" id="blog">
+  <h2 class="mm-section__headline">{headline}</h2>
   {
     isHome && (
-      <Button class='mm-section__button' href='/blog'>
+      <Button class="mm-section__button" href="/blog">
         {SEE_ALL_POSTS_TEXT}
       </Button>
     )
@@ -61,31 +60,33 @@ const READ_MORE_TEXT: string = "Read more"
     {
       sortedPosts.map((post) => {
         const { slug, heading, date, kicker, chips } = post.data;
-        const readingTime = getReadingTime(post.body ?? '');
-        const preview = stripMarkdown(post.body ?? '');
+        const readingTime = getReadingTime(post.body ?? "");
+        const preview = stripMarkdown(post.body ?? "");
 
         return (
-          <li class='mm-section-item'>
-            <div class='mm-section-item__info'>
-              <div class='mm-section-item__time'>
-                <span class='mm-section-item__time--date'>{formatDate(date)}</span>
-                <span class='mm-section-item__time--reading-time'>
+          <li class="mm-section-item">
+            <div class="mm-section-item__info">
+              <div class="mm-section-item__time">
+                <span class="mm-section-item__time--date">
+                  {formatDate(date)}
+                </span>
+                <span class="mm-section-item__time--reading-time">
                   {readingTime} {MIN_READ_TEXT}
                 </span>
               </div>
-              <p class='mm-section-item__kicker'>{kicker}</p>
-              <h3 class='mm-section-item__heading'>
+              <p class="mm-section-item__kicker">{kicker}</p>
+              <h3 class="mm-section-item__heading">
                 <a href={`/blog/${slug}`}>{heading}</a>
               </h3>
               <ChipList chips={chips} />
-              <p class='mm-section-item__preview'>{preview}</p>
+              <p class="mm-section-item__preview">{preview}</p>
               <IconLink href={`/blog/${slug}`}>
                 {READ_MORE_TEXT}
-                <CaretRightIcon slot='icon-right' />
+                <CaretRightIcon slot="icon-right" />
               </IconLink>
+              <hr class="mm-section-item__divider" />
             </div>
           </li>
-          <hr class='mm-section-item__divider'/>
         );
       })
     }

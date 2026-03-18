@@ -595,12 +595,14 @@ main {
 /* SECTION-ITEM */
 
 .mm-section-item {
-  padding: rem(20) 0;
+  margin-bottom: rem(20);
 
   &__project-item {
     @include tablet() {
       display: grid;
-      grid-template-areas: "info image";
+      grid-template-areas:
+        "info image"
+        "divider divider";
       grid-template-columns: 1fr 1fr;
       gap: rem(32);
     }
@@ -668,21 +670,26 @@ main {
     overflow: hidden;
   }
 
+  .mm-icon-link {
+    margin-bottom: rem(32);
+  }
+
   &__divider {
     display: none;
     border: 1px solid #e0d8cc;
-
-    &:last-of-type {
-      display: none;
-    }
   }
 
   @include tablet() {
-    padding: rem(32) 0;
+    margin-bottom: rem(32);
 
     &__divider {
       display: flex;
+      grid-area: divider;
       width: 100%;
+    }
+
+    &:last-child &__divider {
+      display: none;
     }
   }
 }
@@ -751,9 +758,10 @@ main {
 
   &__divider {
     border: 1px solid #e0d8cc;
+    margin: rem(20) 0;
 
-    &:last-of-type {
-      display: none;
+    @include tablet() {
+      margin: rem(32) 0;
     }
   }
 
