@@ -18,7 +18,7 @@ const { prevEntry, nextEntry } = Astro.props as GoToEntryProps;
 <nav class="mm-go-to-entry">
   {
     prevEntry && (
-      <a href={prevEntry.href} class="mm-go-to-entry__link">
+      <a href={prevEntry.href} class="mm-go-to-entry__link mm-go-to-entry__link--prev">
         <CaretLeftIcon />
         <div class="mm-go-to-entry__info">
           {prevEntry.kicker && (
@@ -31,7 +31,7 @@ const { prevEntry, nextEntry } = Astro.props as GoToEntryProps;
   }
   {
     nextEntry && (
-      <a href={nextEntry.href} class="mm-go-to-entry__link">
+      <a href={nextEntry.href} class="mm-go-to-entry__link mm-go-to-entry__link--next">
         <div class="mm-go-to-entry__info">
           {nextEntry.kicker && (
             <div class="mm-go-to-entry__info--kicker">{nextEntry.kicker}</div>

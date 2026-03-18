@@ -187,10 +187,6 @@ main {
   flex-direction: column;
   gap: rem(8);
 
-  a:last-child {
-    justify-content: end;
-  }
-
   a:focus {
     outline: 2px solid #8a311b;
   }
@@ -199,12 +195,16 @@ main {
     color: #6d2515;
   }
 
+  .mm-go-to-entry__link--next {
+    justify-content: end;
+  }
+
   @include tablet() {
     flex-direction: row;
-    justify-content: space-between;
 
-    a:last-child {
+    .mm-go-to-entry__link--next {
       justify-content: unset;
+      margin-left: auto;
     }
   }
 }
