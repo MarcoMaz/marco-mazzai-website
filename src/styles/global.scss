@@ -186,7 +186,6 @@ main {
   display: flex;
   flex-direction: column;
   gap: rem(8);
-  padding: rem(20);
 
   a:last-child {
     justify-content: end;
@@ -203,7 +202,6 @@ main {
   @include tablet() {
     flex-direction: row;
     justify-content: space-between;
-    padding: rem(32);
 
     a:last-child {
       justify-content: unset;
@@ -218,6 +216,7 @@ main {
   text-decoration: none;
 
   svg {
+    fill: #8a311b;
     height: rem(20);
     width: rem(20);
   }
