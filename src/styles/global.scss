@@ -660,6 +660,10 @@ main {
       color: #3d3530;
       text-decoration: none;
     }
+
+    a:focus {
+      outline: 2px solid #3d3530;
+    }
   }
 
   &__preview {
