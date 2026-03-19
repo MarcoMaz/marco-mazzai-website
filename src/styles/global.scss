@@ -1045,6 +1045,10 @@ main {
     color: #e69a87;
   }
 
+  &__social-link a:focus {
+    outline: 2px solid #e69a87;
+  }
+
   &__social-link a {
     align-items: center;
     display: flex;
