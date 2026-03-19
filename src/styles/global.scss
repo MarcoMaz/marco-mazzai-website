@@ -327,6 +327,10 @@ main {
     text-transform: uppercase;
   }
 
+  &__list-item a:focus {
+    outline: 2px solid #fffcf7;
+  }
+
   &.--mobile &__list.--open &__list-item {
     border-radius: rem(4);
     display: inline-flex;
