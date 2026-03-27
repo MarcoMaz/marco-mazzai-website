@@ -284,6 +284,16 @@ main {
   margin: rem(16);
 }
 
+.mm-iframe-wrapper__skip--back {
+  top: auto;
+  bottom: 0;
+  transform: translateY(100%);
+}
+
+.mm-iframe-wrapper__skip--back:focus {
+  transform: translateY(0);
+}
+
 /* NAVIGATION — HERO */
 
 .mm-navigation-hero {
