@@ -4,22 +4,51 @@ type ProjectIFrameProps = {
   src: string;
   title: string;
   width?: string;
-}
+};
 
 const {
-  height = '400px',
-  width = '600px',
+  height = "400px",
+  width = "600px",
   src,
-  title
+  title,
 } = Astro.props as ProjectIFrameProps;
 
 if (!src) throw new Error('ProjectIframe: "src" prop is required');
 ---
 
-<iframe
-  src={src}
-  width={width}
-  height={height}
-  style='border: 1px solid #ccc; border-radius: 4px;'
-  title={title}
-  allowfullscreen></iframe>
+<div class="mm-iframe-wrapper">
+  <button class="mm-iframe-wrapper__skip" type="button"
+    >Skip project preview</button
+  >
+  <iframe
+    src={src}
+    width={width}
+    height={height}
+    style="border: 1px solid #ccc; border-radius: 4px;"
+    title={title}
+    allowfullscreen></iframe>
+</div>
+
+<script>
+  const FOCUSABLE =
+    'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+  document
+    .querySelectorAll<HTMLButtonElement>(".mm-iframe-wrapper__skip")
+    .forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const wrapper = btn.closest(".mm-iframe-wrapper");
+        let el = wrapper?.nextElementSibling;
+        while (el) {
+          const target = el.matches(FOCUSABLE)
+            ? el
+            : el.querySelector<HTMLElement>(FOCUSABLE);
+          if (target) {
+            (target as HTMLElement).focus();
+            return;
+          }
+          el = el.nextElementSibling;
+        }
+      });
+    });
+</script>

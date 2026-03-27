@@ -256,6 +256,34 @@ main {
   }
 }
 
+/* IFRAME */
+
+/* IFRAME */
+.mm-iframe-wrapper {
+  position: relative;
+}
+
+.mm-iframe-wrapper__skip {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+  padding: rem(12) rem(20);
+  background: var(--sd-global-primary);
+  color: var(--sd-global-white);
+  font-size: rem(16);
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.mm-iframe-wrapper__skip:focus {
+  opacity: 1;
+  transform: translateY(0);
+  outline: 2px solid black;
+  margin: rem(16);
+}
+
 /* NAVIGATION — HERO */
 
 .mm-navigation-hero {
