@@ -27,6 +27,9 @@ if (!src) throw new Error('ProjectIframe: "src" prop is required');
     style="border: 1px solid #ccc; border-radius: 4px;"
     title={title}
     allowfullscreen></iframe>
+  <button class="mm-iframe-wrapper__skip mm-iframe-wrapper__skip--back" type="button"
+    >Skip project preview (back)</button
+  >
 </div>
 
 <script>
@@ -34,7 +37,7 @@ if (!src) throw new Error('ProjectIframe: "src" prop is required');
     'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
   document
-    .querySelectorAll<HTMLButtonElement>(".mm-iframe-wrapper__skip")
+    .querySelectorAll<HTMLButtonElement>(".mm-iframe-wrapper__skip:not(.mm-iframe-wrapper__skip--back)")
     .forEach((btn) => {
       btn.addEventListener("click", () => {
         const wrapper = btn.closest(".mm-iframe-wrapper");
@@ -49,6 +52,28 @@ if (!src) throw new Error('ProjectIframe: "src" prop is required');
           }
           el = el.nextElementSibling;
         }
+      });
+    });
+
+  document
+    .querySelectorAll<HTMLButtonElement>(".mm-iframe-wrapper__skip--back")
+    .forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const wrapper = btn.closest(".mm-iframe-wrapper");
+        const getAllFocusable = (root: Element) =>
+          Array.from(root.querySelectorAll<HTMLElement>(FOCUSABLE));
+
+        let el = wrapper?.previousElementSibling;
+        let lastTarget: HTMLElement | null = null;
+        while (el) {
+          const candidates = el.matches(FOCUSABLE)
+            ? [el as HTMLElement]
+            : getAllFocusable(el);
+          if (candidates.length) lastTarget = candidates[candidates.length - 1];
+          if (lastTarget) break;
+          el = el.previousElementSibling;
+        }
+        lastTarget?.focus();
       });
     });
 </script>
