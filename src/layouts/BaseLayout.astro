@@ -66,13 +66,35 @@ const {
       const DESKTOP_MQ = window.matchMedia("(min-width: 1024px)");
 
       if (hero && heroNav && sideNav && mainEl) {
+        // Side nav + main shift only once the hero is completely off screen
         const observer = new IntersectionObserver(([entry]) => {
           const scrolled = !entry.isIntersecting;
-          heroNav.classList.toggle("--scrolled", scrolled);
           sideNav.classList.toggle("--scrolled", scrolled);
           mainEl.classList.toggle("--scrolled", scrolled);
         });
         observer.observe(hero);
+
+        // Hero nav opacity tied 1:1 to scroll progress through the hero (desktop only)
+        const updateHeroNav = () => {
+          if (!DESKTOP_MQ.matches) return;
+          const ratio = Math.max(0, 1 - window.scrollY / hero.offsetHeight);
+          heroNav.style.transition = "none";
+          heroNav.style.opacity = String(ratio);
+          heroNav.style.pointerEvents = ratio > 0 ? "" : "none";
+          heroNav.style.visibility = ratio > 0 ? "" : "hidden";
+        };
+        window.addEventListener("scroll", updateHeroNav, { passive: true });
+        DESKTOP_MQ.addEventListener("change", () => {
+          if (!DESKTOP_MQ.matches) {
+            heroNav.style.transition = "";
+            heroNav.style.opacity = "";
+            heroNav.style.pointerEvents = "";
+            heroNav.style.visibility = "";
+          } else {
+            updateHeroNav();
+          }
+        });
+        updateHeroNav();
 
         const heroLinks = [
           ...heroNav.querySelectorAll<HTMLAnchorElement>(
@@ -86,7 +108,6 @@ const {
             if (e.key === "Tab" && !e.shiftKey) {
               e.preventDefault();
               window.scrollTo({ top: hero.offsetHeight, behavior: "smooth" });
-              heroNav.classList.add("--scrolled");
               sideNav.classList.add("--scrolled");
               mainEl.classList.add("--scrolled");
               firstSideLink.focus({ preventScroll: true });
