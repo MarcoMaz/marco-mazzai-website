@@ -3,6 +3,12 @@ import { ListIcon, XIcon } from "@phosphor-icons/react";
 import { getCollection, type CollectionEntry } from "astro:content";
 import Avatar from "./Avatar.astro";
 
+interface Props {
+  isHome?: boolean;
+}
+
+const { isHome = true } = Astro.props;
+
 type NavigationEntry = CollectionEntry<"navigation">;
 
 const navigationCollection: NavigationEntry[] =
@@ -61,7 +67,7 @@ const pathname = Astro.url.pathname;
 </div>
 
 <!-- Side Navigation: offscreen left initially, slides in on scroll (desktop only) -->
-<nav class="mm-navigation-side" aria-label="Site navigation">
+<nav class:list={["mm-navigation-side", { "--scrolled": !isHome }]} aria-label="Site navigation">
   <Avatar />
   <ul class="mm-navigation-side__list">
     {

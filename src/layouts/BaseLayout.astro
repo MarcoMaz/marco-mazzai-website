@@ -13,6 +13,8 @@ const { title } = Astro.props as BaseLayoutProps;
 
 const pageTitle = PAGE_TITLES.default;
 
+const isHome = Astro.url.pathname === "/";
+
 const {
   keywords,
   description,
@@ -50,9 +52,9 @@ const {
     <meta property="og:locale" content={ogLocale} />
   </head>
   <body>
-    <Navigation />
+    <Navigation isHome={isHome} />
     <HeroSection />
-    <main>
+    <main class:list={[{ "--scrolled": !isHome }]}>
       <slot />
     </main>
     <Footer />
@@ -94,6 +96,9 @@ const {
             updateHeroNav();
           }
         });
+        if (window.location.pathname !== "/") {
+          window.scrollTo({ top: hero.offsetHeight, behavior: "instant" });
+        }
         updateHeroNav();
 
         const heroLinks = [
