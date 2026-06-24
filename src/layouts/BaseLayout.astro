@@ -83,7 +83,6 @@ const {
           heroNav.style.transition = "none";
           heroNav.style.opacity = String(ratio);
           heroNav.style.pointerEvents = ratio > 0 ? "" : "none";
-          heroNav.style.visibility = ratio > 0 ? "" : "hidden";
         };
         window.addEventListener("scroll", updateHeroNav, { passive: true });
         DESKTOP_MQ.addEventListener("change", () => {
@@ -91,9 +90,15 @@ const {
             heroNav.style.transition = "";
             heroNav.style.opacity = "";
             heroNav.style.pointerEvents = "";
-            heroNav.style.visibility = "";
           } else {
             updateHeroNav();
+          }
+        });
+
+        // Shift+Tab back into the hero nav: scroll to top so it becomes visible
+        heroNav.addEventListener("focusin", () => {
+          if (DESKTOP_MQ.matches && window.scrollY > 0) {
+            window.scrollTo({ top: 0, behavior: "smooth" });
           }
         });
         if (window.location.pathname !== "/") {
