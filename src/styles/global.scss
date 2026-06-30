@@ -4,6 +4,10 @@
 
 @use "sass:math";
 
+@use "./tokens/brand";
+@use "./tokens/alias";
+@use "./tokens/mapped";
+@use "./tokens/responsive";
 @use "./variables";
 @use "./components/wa-button";
 
