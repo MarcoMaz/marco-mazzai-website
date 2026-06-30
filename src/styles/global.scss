@@ -2,7 +2,7 @@
 // IMPORTS & UTILITIES
 // ============================================================
 
-@use "sass:math";
+@use "./utils" as *;
 
 @use "./tokens/brand";
 @use "./tokens/alias";
@@ -10,11 +10,6 @@
 @use "./tokens/responsive";
 @use "./variables";
 @use "./components/wa-button";
-
-// Convert px to rem, assuming a 16px base font size
-@function rem($px) {
-  @return math.div($px, 16) * 1rem;
-}
 
 // ============================================================
 // VARIABLES

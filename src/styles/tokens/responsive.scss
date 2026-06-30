@@ -1,91 +1,93 @@
+@use "../utils" as *;
+
 // Mobile (base — 375px)
 :root {
   // Typography — Display
-  --typography-display-font-size: 32px;
-  --typography-display-line-height: 40px;
-  --typography-display-paragraph-spacing: 32px;
+  --typography-display-font-size: rem(32);
+  --typography-display-line-height: rem(40);
+  --typography-display-paragraph-spacing: rem(32);
 
   // Typography — H1
-  --typography-h1-font-size: 32px;
-  --typography-h1-line-height: 40px;
-  --typography-h1-paragraph-spacing: 32px;
+  --typography-h1-font-size: rem(32);
+  --typography-h1-line-height: rem(40);
+  --typography-h1-paragraph-spacing: rem(32);
 
   // Typography — H2
-  --typography-h2-font-size: 28px;
-  --typography-h2-line-height: 32px;
-  --typography-h2-paragraph-spacing: 20px;
+  --typography-h2-font-size: rem(28);
+  --typography-h2-line-height: rem(32);
+  --typography-h2-paragraph-spacing: rem(20);
 
   // Typography — H3
-  --typography-h3-font-size: 24px;
-  --typography-h3-line-height: 28px;
-  --typography-h3-paragraph-spacing: 20px;
+  --typography-h3-font-size: rem(24);
+  --typography-h3-line-height: rem(28);
+  --typography-h3-paragraph-spacing: rem(20);
 
   // Typography — H4
-  --typography-h4-font-size: 20px;
-  --typography-h4-line-height: 24px;
-  --typography-h4-paragraph-spacing: 20px;
+  --typography-h4-font-size: rem(20);
+  --typography-h4-line-height: rem(24);
+  --typography-h4-paragraph-spacing: rem(20);
 
   // Typography — Paragraph LG
-  --typography-paragraph-lg-font-size: 20px;
-  --typography-paragraph-lg-line-height: 24px;
-  --typography-paragraph-lg-paragraph-spacing: 20px;
+  --typography-paragraph-lg-font-size: rem(20);
+  --typography-paragraph-lg-line-height: rem(24);
+  --typography-paragraph-lg-paragraph-spacing: rem(20);
 
   // Typography — Paragraph MD
-  --typography-paragraph-md-font-size: 16px;
-  --typography-paragraph-md-line-height: 24px;
-  --typography-paragraph-md-paragraph-spacing: 20px;
+  --typography-paragraph-md-font-size: rem(16);
+  --typography-paragraph-md-line-height: rem(24);
+  --typography-paragraph-md-paragraph-spacing: rem(20);
 
   // Typography — Paragraph SM
-  --typography-paragraph-sm-font-size: 14px;
-  --typography-paragraph-sm-line-height: 16px;
-  --typography-paragraph-sm-paragraph-spacing: 20px;
+  --typography-paragraph-sm-font-size: rem(14);
+  --typography-paragraph-sm-line-height: rem(16);
+  --typography-paragraph-sm-paragraph-spacing: rem(20);
 
   // Typography — Paragraph XSM
-  --typography-paragraph-xsm-font-size: 12px;
-  --typography-paragraph-xsm-line-height: 16px;
-  --typography-paragraph-xsm-paragraph-spacing: 20px;
+  --typography-paragraph-xsm-font-size: rem(12);
+  --typography-paragraph-xsm-line-height: rem(16);
+  --typography-paragraph-xsm-paragraph-spacing: rem(20);
 
   // Layout — Section
-  --layout-section-padding-x: 20px;
-  --layout-section-padding-y: 40px;
-  --layout-section-gap: 40px;
+  --layout-section-padding-x: rem(20);
+  --layout-section-padding-y: rem(40);
+  --layout-section-gap: rem(40);
 
   // Layout — Card
-  --layout-card-padding-x: 0px;
-  --layout-card-padding-y: 20px;
-  --layout-card-gap-x: 20px;
-  --layout-card-gap-y: 20px;
+  --layout-card-padding-x: 0;
+  --layout-card-padding-y: rem(20);
+  --layout-card-gap-x: rem(20);
+  --layout-card-gap-y: rem(20);
 
   // Layout — Grid
   --layout-grid-columns: 4;
-  --layout-grid-gutter: 16px;
-  --layout-grid-margin: 16px;
+  --layout-grid-gutter: rem(16);
+  --layout-grid-margin: rem(16);
 }
 
 // Tablet (768px)
 @media (min-width: 768px) {
   :root {
     // Typography — Display
-    --typography-display-font-size: 64px;
-    --typography-display-line-height: 76px;
+    --typography-display-font-size: rem(64);
+    --typography-display-line-height: rem(76);
 
     // Typography — H1, H2, H3, H4 unchanged from mobile
 
     // Layout — Section
-    --layout-section-padding-x: 40px;
-    --layout-section-padding-y: 60px;
-    --layout-section-gap: 60px;
+    --layout-section-padding-x: rem(40);
+    --layout-section-padding-y: rem(60);
+    --layout-section-gap: rem(60);
 
     // Layout — Card
-    --layout-card-padding-x: 0px;
-    --layout-card-padding-y: 32px;
-    --layout-card-gap-x: 24px;
-    --layout-card-gap-y: 24px;
+    --layout-card-padding-x: 0;
+    --layout-card-padding-y: rem(32);
+    --layout-card-gap-x: rem(24);
+    --layout-card-gap-y: rem(24);
 
     // Layout — Grid
     --layout-grid-columns: 8;
-    --layout-grid-gutter: 24px;
-    --layout-grid-margin: 40px;
+    --layout-grid-gutter: rem(24);
+    --layout-grid-margin: rem(40);
   }
 }
 
@@ -93,34 +95,34 @@
 @media (min-width: 1440px) {
   :root {
     // Typography — Display
-    --typography-display-font-size: 92px;
-    --typography-display-line-height: 112px;
+    --typography-display-font-size: rem(92);
+    --typography-display-line-height: rem(112);
 
     // Typography — H1
-    --typography-h1-font-size: 40px;
-    --typography-h1-line-height: 48px;
+    --typography-h1-font-size: rem(40);
+    --typography-h1-line-height: rem(48);
 
     // Typography — H2
-    --typography-h2-font-size: 32px;
-    --typography-h2-line-height: 40px;
+    --typography-h2-font-size: rem(32);
+    --typography-h2-line-height: rem(40);
 
     // Typography — Paragraph MD (paragraph-spacing differs at desktop)
-    --typography-paragraph-md-paragraph-spacing: 24px;
+    --typography-paragraph-md-paragraph-spacing: rem(24);
 
     // Layout — Section
-    --layout-section-padding-x: 80px;
-    --layout-section-padding-y: 80px;
-    --layout-section-gap: 80px;
+    --layout-section-padding-x: rem(80);
+    --layout-section-padding-y: rem(80);
+    --layout-section-gap: rem(80);
 
     // Layout — Card
-    --layout-card-padding-x: 32px;
-    --layout-card-padding-y: 32px;
-    --layout-card-gap-x: 32px;
-    --layout-card-gap-y: 32px;
+    --layout-card-padding-x: rem(32);
+    --layout-card-padding-y: rem(32);
+    --layout-card-gap-x: rem(32);
+    --layout-card-gap-y: rem(32);
 
     // Layout — Grid
     --layout-grid-columns: 12;
-    --layout-grid-gutter: 32px;
-    --layout-grid-margin: 120px;
+    --layout-grid-gutter: rem(32);
+    --layout-grid-margin: rem(120);
   }
 }
