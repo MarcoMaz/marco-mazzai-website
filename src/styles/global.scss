@@ -401,7 +401,10 @@ main {
 
   @include desktop {
     background-color: transparent;
-    transition: opacity 0.4s ease;
+    transition:
+      opacity 0.4s ease,
+      visibility 0s 0s;
+    visibility: visible;
 
     &__mobile {
       display: none;
@@ -438,6 +441,10 @@ main {
     &.--scrolled {
       opacity: 0;
       pointer-events: none;
+      transition:
+        opacity 0.4s ease,
+        visibility 0s 0.4s;
+      visibility: hidden;
     }
   }
 }

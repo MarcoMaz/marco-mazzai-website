@@ -13,6 +13,8 @@ const { title } = Astro.props as BaseLayoutProps;
 
 const pageTitle = PAGE_TITLES.default;
 
+const isHome = Astro.url.pathname === "/";
+
 const {
   keywords,
   description,
@@ -50,37 +52,86 @@ const {
     <meta property="og:locale" content={ogLocale} />
   </head>
   <body>
-    <Navigation />
+    <Navigation isHome={isHome} />
     <HeroSection />
-    <main>
+    <main class:list={[{ "--scrolled": !isHome }]}>
       <slot />
     </main>
     <Footer />
     <script>
       // Toggle hero nav out and side nav in when hero scrolls out of view
-      const hero = document.querySelector(".mm-hero");
-      const heroNav = document.querySelector(".mm-navigation-hero");
-      const sideNav = document.querySelector(".mm-navigation-side");
-      const mainEl = document.querySelector("main");
+      const hero = document.querySelector<HTMLElement>(".mm-hero");
+      const heroNav = document.querySelector<HTMLElement>(".mm-navigation-hero");
+      const sideNav = document.querySelector<HTMLElement>(".mm-navigation-side");
+      const mainEl = document.querySelector<HTMLElement>("main");
+
+      const DESKTOP_MQ = window.matchMedia("(min-width: 1024px)");
 
       if (hero && heroNav && sideNav && mainEl) {
+        // Side nav + main shift only once the hero is completely off screen
         const observer = new IntersectionObserver(([entry]) => {
           const scrolled = !entry.isIntersecting;
-          heroNav.classList.toggle("--scrolled", scrolled);
           sideNav.classList.toggle("--scrolled", scrolled);
           mainEl.classList.toggle("--scrolled", scrolled);
         });
         observer.observe(hero);
+
+        // Hero nav opacity tied 1:1 to scroll progress through the hero (desktop only)
+        const updateHeroNav = () => {
+          if (!DESKTOP_MQ.matches) return;
+          const ratio = Math.max(0, 1 - window.scrollY / hero.offsetHeight);
+          heroNav.style.transition = "none";
+          heroNav.style.opacity = String(ratio);
+          heroNav.style.pointerEvents = ratio > 0 ? "" : "none";
+        };
+        window.addEventListener("scroll", updateHeroNav, { passive: true });
+        DESKTOP_MQ.addEventListener("change", () => {
+          if (!DESKTOP_MQ.matches) {
+            heroNav.style.transition = "";
+            heroNav.style.opacity = "";
+            heroNav.style.pointerEvents = "";
+          } else {
+            updateHeroNav();
+          }
+        });
+
+        // Shift+Tab back into the hero nav: scroll to top so it becomes visible
+        heroNav.addEventListener("focusin", () => {
+          if (DESKTOP_MQ.matches && window.scrollY > 0) {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }
+        });
+        if (window.location.pathname !== "/") {
+          window.scrollTo({ top: hero.offsetHeight, behavior: "instant" });
+        }
+        updateHeroNav();
+
+        const heroLinks = [
+          ...heroNav.querySelectorAll<HTMLAnchorElement>(
+            ".mm-navigation-hero__list-item a",
+          ),
+        ];
+        const firstSideLink = sideNav.querySelector<HTMLAnchorElement>("a");
+
+        if (heroLinks.length > 0 && firstSideLink && DESKTOP_MQ.matches) {
+          heroLinks[heroLinks.length - 1].addEventListener("keydown", (e) => {
+            if (e.key === "Tab" && !e.shiftKey) {
+              e.preventDefault();
+              window.scrollTo({ top: hero.offsetHeight, behavior: "smooth" });
+              sideNav.classList.add("--scrolled");
+              mainEl.classList.add("--scrolled");
+              firstSideLink.focus({ preventScroll: true });
+            }
+          });
+        }
       }
 
       // Fade side nav out when footer enters viewport
-      const footerEl = document.querySelector("footer");
+      const footerEl = document.querySelector<HTMLElement>("footer");
       if (sideNav && footerEl) {
         const footerObserver = new IntersectionObserver(
           ([entry]) => {
-            (sideNav as HTMLElement).style.opacity = entry.isIntersecting
-              ? "0"
-              : "";
+            sideNav.style.opacity = entry.isIntersecting ? "0" : "";
           },
           { rootMargin: "0px 0px -200px 0px" },
         );
