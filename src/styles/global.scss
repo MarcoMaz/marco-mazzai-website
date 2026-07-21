@@ -136,7 +136,7 @@ main {
   }
 
   &:focus {
-    outline: 2px solid $primary-default;
+    outline: $border-width-50 solid $primary-default;
   }
 
   &__icon {
@@ -180,7 +180,7 @@ main {
   gap: rem(8);
 
   a:focus {
-    outline: 2px solid $primary-700;
+    outline: $border-width-50 solid $primary-700;
   }
 
   &:hover div {
@@ -244,7 +244,7 @@ main {
   }
 
   &:focus {
-    outline: 2px solid $primary-700;
+    outline: $border-width-50 solid $primary-700;
   }
 }
 
@@ -272,7 +272,7 @@ main {
 .mm-iframe-wrapper__skip:focus {
   opacity: 1;
   transform: translateY(0);
-  outline: 2px solid black;
+  outline: $border-width-50 solid black;
   margin: rem(16);
 }
 
@@ -358,7 +358,7 @@ main {
   }
 
   &__list-item a:focus {
-    outline: 2px solid $neutral-white;
+    outline: $border-width-50 solid $neutral-white;
   }
 
   &.--mobile &__list.--open &__list-item {
@@ -375,7 +375,7 @@ main {
 
     a:focus {
       border-radius: $border-radius-100;
-      outline: 2px solid $primary-300;
+      outline: $border-width-50 solid $primary-300;
     }
   }
 
@@ -492,7 +492,7 @@ main {
         width: 100%;
 
         &:focus {
-          outline: 2px solid $primary-default;
+          outline: $border-width-50 solid $primary-default;
         }
       }
 
@@ -604,7 +604,7 @@ main {
   &__headline {
     grid-area: heading;
 
-    border-bottom: 2px solid $neutral-300;
+    border-bottom: $border-width-50 solid $neutral-300;
     color: $neutral-800;
     font-size: rem(32);
     margin-bottom: rem(24);
@@ -699,7 +699,7 @@ main {
     }
 
     a:focus {
-      outline: 2px solid $neutral-800;
+      outline: $border-width-50 solid $neutral-800;
     }
   }
 
@@ -720,7 +720,7 @@ main {
 
   &__divider {
     display: none;
-    border: 1px solid $neutral-300;
+    border: $border-width-25 solid $neutral-300;
   }
 
   @include tablet() {
@@ -801,7 +801,7 @@ main {
   }
 
   &__divider {
-    border: 1px solid $neutral-300;
+    border: $border-width-25 solid $neutral-300;
     margin: rem(20) 0;
 
     @include tablet() {
@@ -843,7 +843,7 @@ main {
   wa-accordion {
     .accordionItem {
       align-items: center;
-      border-bottom: 1px solid $neutral-300;
+      border-bottom: $border-width-25 solid $neutral-300;
       display: grid;
       grid-template-areas:
         "header addon"
@@ -878,8 +878,8 @@ main {
         outline: none;
 
         &::after {
-          outline: 2px solid currentColor;
-          outline-offset: 2px;
+          outline: $border-width-50 solid currentColor;
+          outline-offset: $border-width-50;
         }
       }
     }
@@ -1091,7 +1091,7 @@ main {
   }
 
   &__social-link a:focus {
-    outline: 2px solid $primary-300;
+    outline: $border-width-50 solid $primary-300;
   }
 
   &__social-link a {
