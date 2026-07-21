@@ -6,7 +6,7 @@
 
 @use "./tokens/brand";
 @use "./tokens/alias";
-@use "./tokens/mapped";
+@use "./tokens/mapped" as *;
 @use "./tokens/responsive";
 @use "./variables";
 @use "./components/wa-button";
@@ -163,7 +163,7 @@ main {
 }
 
 .mm-chip {
-  border-radius: 2px;
+  border-radius: $border-radius-50;
   border: rem(1) solid #e0d8cc;
   color: #5a4e43;
   font-size: rem(12);
@@ -362,7 +362,7 @@ main {
   }
 
   &.--mobile &__list.--open &__list-item {
-    border-radius: rem(4);
+    border-radius: $border-radius-100;
     display: inline-flex;
     width: rem(276);
 
@@ -374,7 +374,7 @@ main {
     }
 
     a:focus {
-      border-radius: rem(4);
+      border-radius: $border-radius-100;
       outline: 2px solid #e69a87;
     }
   }
