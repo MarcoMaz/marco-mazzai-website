@@ -132,7 +132,7 @@ main {
   text-transform: uppercase;
 
   &:hover {
-    background: #a63f23;
+    background: $primary-600;
   }
 
   &:focus {
@@ -164,8 +164,8 @@ main {
 
 .mm-chip {
   border-radius: $border-radius-50;
-  border: rem(1) solid #e0d8cc;
-  color: #5a4e43;
+  border: rem(1) solid $neutral-300;
+  color: $neutral-700;
   font-size: rem(12);
   font-weight: 400;
   line-height: rem(12);
@@ -180,11 +180,11 @@ main {
   gap: rem(8);
 
   a:focus {
-    outline: 2px solid #8a311b;
+    outline: 2px solid $primary-700;
   }
 
   &:hover div {
-    color: #6d2515;
+    color: $primary-800;
   }
 
   .mm-go-to-entry__link--next {
@@ -208,14 +208,14 @@ main {
   text-decoration: none;
 
   svg {
-    fill: #8a311b;
+    fill: $primary-700;
     height: rem(20);
     width: rem(20);
   }
 }
 
 .mm-go-to-entry__info {
-  color: #8a311b;
+  color: $primary-700;
   display: flex;
   flex-direction: column;
   gap: rem(8);
@@ -229,7 +229,7 @@ main {
 
 /* ICON LINK */
 .mm-icon-link {
-  color: #8a311b;
+  color: $primary-700;
   display: inline-flex;
   font-size: rem(16);
   gap: 2px;
@@ -240,11 +240,11 @@ main {
   }
 
   &:hover {
-    color: #6d2515;
+    color: $primary-800;
   }
 
   &:focus {
-    outline: 2px solid #8a311b;
+    outline: 2px solid $primary-700;
   }
 }
 
@@ -375,15 +375,15 @@ main {
 
     a:focus {
       border-radius: $border-radius-100;
-      outline: 2px solid #e69a87;
+      outline: 2px solid $primary-300;
     }
   }
 
   &.--mobile &__list.--open &__list-item:has(a[aria-current="page"]) {
-    background-color: #e69a87;
+    background-color: $primary-300;
 
     a {
-      color: #1a1a1a;
+      color: $neutral-black;
     }
   }
 
@@ -485,7 +485,7 @@ main {
       text-transform: uppercase;
 
       a {
-        color: #5a4e43;
+        color: $neutral-700;
         display: inline-flex;
         padding: rem(8) rem(12);
         text-decoration: none;
@@ -604,8 +604,8 @@ main {
   &__headline {
     grid-area: heading;
 
-    border-bottom: 2px solid #e0d8cc;
-    color: #3d3530;
+    border-bottom: 2px solid $neutral-300;
+    color: $neutral-800;
     font-size: rem(32);
     margin-bottom: rem(24);
     padding-bottom: rem(8);
@@ -675,7 +675,7 @@ main {
   }
 
   &__time {
-    color: #8a311b;
+    color: $primary-700;
     display: flex;
     font-size: rem(14);
     gap: rem(12);
@@ -683,7 +683,7 @@ main {
   }
 
   &__kicker {
-    color: #5a4e43;
+    color: $neutral-700;
     font-size: rem(16);
     margin-bottom: rem(8);
   }
@@ -694,19 +694,19 @@ main {
     margin-bottom: rem(16);
 
     a {
-      color: #3d3530;
+      color: $neutral-800;
       text-decoration: none;
     }
 
     a:focus {
-      outline: 2px solid #3d3530;
+      outline: 2px solid $neutral-800;
     }
   }
 
   &__preview {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    color: #5a4e43;
+    color: $neutral-700;
     display: -webkit-box;
     font-size: rem(16);
     line-clamp: 3;
@@ -720,7 +720,7 @@ main {
 
   &__divider {
     display: none;
-    border: 1px solid #e0d8cc;
+    border: 1px solid $neutral-300;
   }
 
   @include tablet() {
@@ -743,7 +743,7 @@ main {
   padding: rem(64);
 
   &__date {
-    color: #8a311b;
+    color: $primary-700;
     display: flex;
     font-size: rem(14);
     gap: rem(12);
@@ -751,13 +751,13 @@ main {
   }
 
   &__kicker {
-    color: #5a4e43;
+    color: $neutral-700;
     font-size: rem(16);
     margin-bottom: rem(8);
   }
 
   &__heading {
-    color: #3d3530;
+    color: $neutral-800;
     font-size: rem(24);
     margin-bottom: rem(16);
     text-transform: uppercase;
@@ -767,14 +767,14 @@ main {
     padding: rem(20) 0;
 
     &--heading {
-      color: #3d3530;
+      color: $neutral-800;
       font-size: rem(28);
       margin-bottom: rem(16);
       text-transform: uppercase;
     }
 
     &--description {
-      color: #5a4e43;
+      color: $neutral-700;
       font-size: rem(16);
       margin-bottom: rem(16);
     }
@@ -801,7 +801,7 @@ main {
   }
 
   &__divider {
-    border: 1px solid #e0d8cc;
+    border: 1px solid $neutral-300;
     margin: rem(20) 0;
 
     @include tablet() {
@@ -810,7 +810,7 @@ main {
   }
 
   &__goToEntry {
-    color: #5a4e43;
+    color: $neutral-700;
     font-size: rem(20);
   }
 }
@@ -843,7 +843,7 @@ main {
   wa-accordion {
     .accordionItem {
       align-items: center;
-      border-bottom: 1px solid #e0d8cc;
+      border-bottom: 1px solid $neutral-300;
       display: grid;
       grid-template-areas:
         "header addon"
@@ -886,7 +886,7 @@ main {
 
     .accordionItem__addon {
       align-items: center;
-      color: #8a311b;
+      color: $primary-700;
       display: flex;
       grid-area: addon;
       height: rem(20);
@@ -947,7 +947,7 @@ main {
   }
 
   &__details {
-    color: #5a4e43;
+    color: $neutral-700;
     display: flex;
     justify-content: space-between;
     margin-bottom: rem(8);
@@ -966,14 +966,14 @@ main {
   }
 
   &__heading {
-    color: #3d3530;
+    color: $neutral-800;
     font-size: rem(24);
     margin-bottom: rem(16);
     text-transform: uppercase;
   }
 
   &__tasks {
-    color: #5a4e43;
+    color: $neutral-700;
     list-style-type: disc;
     padding-left: rem(16);
   }
@@ -1000,14 +1000,14 @@ main {
   }
 
   &__category {
-    color: #3d3530;
+    color: $neutral-800;
     font-size: rem(24);
     margin-bottom: rem(16);
     text-transform: uppercase;
   }
 
   &__details {
-    color: #5a4e43;
+    color: $neutral-700;
     display: flex;
     justify-content: space-between;
     margin-bottom: rem(8);
@@ -1024,7 +1024,7 @@ main {
   }
 
   &__topics {
-    color: #5a4e43;
+    color: $neutral-700;
     list-style-type: disc;
     padding-bottom: rem(20);
     padding-left: rem(16);
@@ -1087,11 +1087,11 @@ main {
 
   &__social-link,
   &__social-link a {
-    color: #e69a87;
+    color: $primary-300;
   }
 
   &__social-link a:focus {
-    outline: 2px solid #e69a87;
+    outline: 2px solid $primary-300;
   }
 
   &__social-link a {
@@ -1104,8 +1104,8 @@ main {
   }
 
   &__built-with {
-    background-color: #e0d8cc;
-    color: #5a4e43;
+    background-color: $neutral-300;
+    color: $neutral-700;
     padding: rem(32) rem(20);
     text-align: center;
   }
