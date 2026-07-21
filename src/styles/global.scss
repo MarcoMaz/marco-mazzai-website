@@ -60,7 +60,7 @@ h6 {
 }
 
 body {
-  font-size: rem(16);
+  font-size: var(--scale400);
   font-family: "Space Grotesk", sans-serif;
 }
 
@@ -103,10 +103,10 @@ main {
 
 // Default section padding, responsive
 .mm-section {
-  padding: rem(40) rem(16);
+  padding: var(--scale1000) var(--scale400);
 
   @include tablet() {
-    padding: rem(60) rem(40);
+    padding: rem(60) var(--scale1000);
   }
 }
 
@@ -125,9 +125,9 @@ main {
   background: $primary-default;
   color: $neutral-white;
   display: flex;
-  gap: rem(8);
+  gap: var(--scale200);
   justify-content: center;
-  padding: rem(12) 0;
+  padding: var(--scale300) 0;
   text-decoration: none;
   text-transform: uppercase;
 
@@ -149,8 +149,8 @@ main {
     right: rem(
       40
     ); /* TODO: this is the padding from Default section.. can be a variable */
-    padding-right: rem(20);
-    padding-left: rem(20);
+    padding-right: var(--scale500);
+    padding-left: var(--scale500);
   }
 }
 
@@ -158,18 +158,18 @@ main {
 .mm-chip-list {
   display: flex;
   flex-wrap: wrap;
-  gap: rem(8);
-  margin-bottom: rem(16);
+  gap: var(--scale200);
+  margin-bottom: var(--scale400);
 }
 
 .mm-chip {
   border-radius: $border-radius-50;
-  border: rem(1) solid $neutral-300;
+  border: var(--scale25) solid $neutral-300;
   color: $neutral-700;
-  font-size: rem(12);
+  font-size: var(--scale300);
   font-weight: 400;
-  line-height: rem(12);
-  padding: rem(4) rem(8);
+  line-height: var(--scale300);
+  padding: var(--scale100) var(--scale200);
   text-transform: uppercase;
 }
 
@@ -177,7 +177,7 @@ main {
 .mm-go-to-entry {
   display: flex;
   flex-direction: column;
-  gap: rem(8);
+  gap: var(--scale200);
 
   a:focus {
     outline: $border-width-50 solid $primary-700;
@@ -204,13 +204,13 @@ main {
 .mm-go-to-entry__link {
   align-items: center;
   display: flex;
-  gap: rem(8);
+  gap: var(--scale200);
   text-decoration: none;
 
   svg {
     fill: $primary-700;
-    height: rem(20);
-    width: rem(20);
+    height: var(--scale500);
+    width: var(--scale500);
   }
 }
 
@@ -218,8 +218,8 @@ main {
   color: $primary-700;
   display: flex;
   flex-direction: column;
-  gap: rem(8);
-  font-size: rem(20);
+  gap: var(--scale200);
+  font-size: var(--scale500);
 
   &--heading {
     text-transform: uppercase;
@@ -231,12 +231,12 @@ main {
 .mm-icon-link {
   color: $primary-700;
   display: inline-flex;
-  font-size: rem(16);
+  font-size: var(--scale400);
   gap: 2px;
 
   svg {
-    height: rem(20);
-    width: rem(20);
+    height: var(--scale500);
+    width: var(--scale500);
   }
 
   &:hover {
@@ -261,10 +261,10 @@ main {
   top: 0;
   left: 0;
   transform: translateY(-100%);
-  padding: rem(12) rem(20);
+  padding: var(--scale300) var(--scale500);
   background: var(--sd-global-primary);
   color: var(--sd-global-white);
-  font-size: rem(16);
+  font-size: var(--scale400);
   opacity: 0;
   transition: opacity 0.15s;
 }
@@ -273,7 +273,7 @@ main {
   opacity: 1;
   transform: translateY(0);
   outline: $border-width-50 solid black;
-  margin: rem(16);
+  margin: var(--scale400);
 }
 
 .mm-iframe-wrapper__skip--back {
@@ -292,14 +292,14 @@ main {
   background-color: var();
   display: flex;
   flex-direction: column;
-  padding: rem(32) rem(20);
+  padding: var(--scale800) var(--scale500);
   position: fixed;
   width: 100%;
   z-index: 999;
 
   .mm-avatar {
-    height: rem(44);
-    width: rem(44);
+    height: var(--scale1050);
+    width: var(--scale1050);
   }
 
   &__mobile {
@@ -307,7 +307,7 @@ main {
     justify-content: space-between;
 
     &:has(.mm-navigation-hero__hamburger[aria-expanded="true"]) {
-      margin-bottom: rem(32);
+      margin-bottom: var(--scale800);
     }
   }
 
@@ -316,9 +316,9 @@ main {
     background: var(--color-neutrals900);
     color: $neutral-white;
     display: flex;
-    height: rem(48);
+    height: var(--scale1100);
     justify-content: center;
-    width: rem(48);
+    width: var(--scale1100);
 
     &[aria-expanded="true"] {
       .mm-navigation-hero__icon-x {
@@ -340,7 +340,7 @@ main {
   &__list {
     display: flex;
     flex-direction: column;
-    gap: rem(12);
+    gap: var(--scale300);
   }
 
   &.--mobile &__list {
@@ -369,7 +369,7 @@ main {
     a {
       display: inline-flex;
       font-weight: bold;
-      padding: rem(8) rem(12);
+      padding: var(--scale200) var(--scale300);
       width: rem(276);
     }
 
@@ -388,7 +388,7 @@ main {
   }
 
   @include tablet {
-    padding: rem(32) rem(40);
+    padding: var(--scale800) var(--scale1000);
   }
 
   @include desktop {
@@ -454,7 +454,7 @@ main {
     display: flex;
     flex-direction: column;
     left: 0;
-    padding: rem(32) rem(20);
+    padding: var(--scale800) var(--scale500);
     position: fixed;
     top: 0;
     transform: translateX(-100%);
@@ -469,15 +469,15 @@ main {
 
     .mm-avatar {
       display: flex;
-      height: rem(48);
-      margin-bottom: rem(12);
-      width: rem(48);
+      height: var(--scale1100);
+      margin-bottom: var(--scale300);
+      width: var(--scale1100);
     }
 
     &__list {
       display: flex;
       flex-direction: column;
-      font-size: rem(20);
+      font-size: var(--scale500);
       font-weight: bold;
     }
 
@@ -487,7 +487,7 @@ main {
       a {
         color: $neutral-700;
         display: inline-flex;
-        padding: rem(8) rem(12);
+        padding: var(--scale200) var(--scale300);
         text-decoration: none;
         width: 100%;
 
@@ -529,7 +529,7 @@ main {
 .mm-hero {
   background-color: var(--color-neutrals900);
   color: $neutral-white;
-  padding: rem(112) rem(16) rem(64);
+  padding: rem(112) var(--scale400) var(--scale1300);
   text-align: center;
 
   .mm-avatar {
@@ -538,16 +538,16 @@ main {
 
   &__headline,
   &__kicker {
-    margin-bottom: rem(24);
+    margin-bottom: var(--scale600);
     text-transform: uppercase;
   }
 
   &__headline {
-    font-size: rem(32);
+    font-size: var(--scale800);
   }
 
   &__kicker {
-    font-size: rem(20);
+    font-size: var(--scale500);
   }
 
   &__summary {
@@ -555,18 +555,18 @@ main {
   }
 
   @include tablet() {
-    padding: rem(112) rem(64) rem(84);
+    padding: rem(112) var(--scale1300) rem(84);
 
     &__headline {
-      font-size: rem(64);
+      font-size: var(--scale1300);
     }
 
     &__kicker {
-      font-size: rem(24);
+      font-size: var(--scale600);
     }
 
     &__summary {
-      font-size: rem(20);
+      font-size: var(--scale500);
     }
   }
 
@@ -606,9 +606,9 @@ main {
 
     border-bottom: $border-width-50 solid $neutral-300;
     color: $neutral-800;
-    font-size: rem(32);
-    margin-bottom: rem(24);
-    padding-bottom: rem(8);
+    font-size: var(--scale800);
+    margin-bottom: var(--scale600);
+    padding-bottom: var(--scale200);
     text-transform: uppercase;
   }
 
@@ -627,7 +627,7 @@ main {
       "content";
 
     &__headline {
-      font-size: rem(40);
+      font-size: var(--scale1000);
     }
   }
 }
@@ -635,7 +635,7 @@ main {
 /* SECTION-ITEM */
 
 .mm-section-item {
-  margin-bottom: rem(20);
+  margin-bottom: var(--scale500);
 
   &__project-item {
     @include tablet() {
@@ -644,7 +644,7 @@ main {
         "info image"
         "divider divider";
       grid-template-columns: 1fr 1fr;
-      gap: rem(32);
+      gap: var(--scale800);
     }
 
     &:nth-child(even) {
@@ -656,7 +656,7 @@ main {
 
   &__info {
     grid-area: info;
-    margin-bottom: rem(20);
+    margin-bottom: var(--scale500);
 
     @include tablet() {
       margin-bottom: unset;
@@ -678,20 +678,20 @@ main {
     color: $primary-700;
     display: flex;
     font-size: rem(14);
-    gap: rem(12);
-    margin-bottom: rem(8);
+    gap: var(--scale300);
+    margin-bottom: var(--scale200);
   }
 
   &__kicker {
     color: $neutral-700;
-    font-size: rem(16);
-    margin-bottom: rem(8);
+    font-size: var(--scale400);
+    margin-bottom: var(--scale200);
   }
 
   &__heading {
-    font-size: rem(24);
+    font-size: var(--scale600);
     text-transform: uppercase;
-    margin-bottom: rem(16);
+    margin-bottom: var(--scale400);
 
     a {
       color: $neutral-800;
@@ -708,14 +708,14 @@ main {
     -webkit-box-orient: vertical;
     color: $neutral-700;
     display: -webkit-box;
-    font-size: rem(16);
+    font-size: var(--scale400);
     line-clamp: 3;
-    margin-bottom: rem(16);
+    margin-bottom: var(--scale400);
     overflow: hidden;
   }
 
   .mm-icon-link {
-    margin-bottom: rem(32);
+    margin-bottom: var(--scale800);
   }
 
   &__divider {
@@ -724,7 +724,7 @@ main {
   }
 
   @include tablet() {
-    margin-bottom: rem(32);
+    margin-bottom: var(--scale800);
 
     &__divider {
       display: flex;
@@ -740,103 +740,103 @@ main {
 
 /* ENTRY */
 .mm-entry {
-  padding: rem(64);
+  padding: var(--scale1300);
 
   &__date {
     color: $primary-700;
     display: flex;
     font-size: rem(14);
-    gap: rem(12);
-    margin-bottom: rem(8);
+    gap: var(--scale300);
+    margin-bottom: var(--scale200);
   }
 
   &__kicker {
     color: $neutral-700;
-    font-size: rem(16);
-    margin-bottom: rem(8);
+    font-size: var(--scale400);
+    margin-bottom: var(--scale200);
   }
 
   &__heading {
     color: $neutral-800;
-    font-size: rem(24);
-    margin-bottom: rem(16);
+    font-size: var(--scale600);
+    margin-bottom: var(--scale400);
     text-transform: uppercase;
   }
 
   &__content {
-    padding: rem(20) 0;
+    padding: var(--scale500) 0;
 
     &--heading {
       color: $neutral-800;
-      font-size: rem(28);
-      margin-bottom: rem(16);
+      font-size: var(--scale700);
+      margin-bottom: var(--scale400);
       text-transform: uppercase;
     }
 
     &--description {
       color: $neutral-700;
-      font-size: rem(16);
-      margin-bottom: rem(16);
+      font-size: var(--scale400);
+      margin-bottom: var(--scale400);
     }
 
     @include tablet() {
       &__heading {
-        font-size: rem(32);
+        font-size: var(--scale800);
       }
 
       &__content {
-        padding: rem(32) 0;
+        padding: var(--scale800) 0;
 
         &--heading {
-          font-size: rem(32);
+          font-size: var(--scale800);
         }
       }
     }
 
     @include desktop() {
       &__heading {
-        font-size: rem(40);
+        font-size: var(--scale1000);
       }
     }
   }
 
   &__divider {
     border: $border-width-25 solid $neutral-300;
-    margin: rem(20) 0;
+    margin: var(--scale500) 0;
 
     @include tablet() {
-      margin: rem(32) 0;
+      margin: var(--scale800) 0;
     }
   }
 
   &__goToEntry {
     color: $neutral-700;
-    font-size: rem(20);
+    font-size: var(--scale500);
   }
 }
 
 /* ABOUT */
 .mm-about {
   &__intro {
-    margin-bottom: rem(20);
+    margin-bottom: var(--scale500);
   }
 
   &__section {
-    padding: rem(20) 0;
+    padding: var(--scale500) 0;
 
     &--heading {
-      font-size: rem(28);
-      margin-bottom: rem(16);
+      font-size: var(--scale700);
+      margin-bottom: var(--scale400);
       text-transform: uppercase;
     }
 
     &--list {
       list-style-type: disc;
-      padding-left: rem(16);
+      padding-left: var(--scale400);
     }
 
     :last-of-type {
-      margin-bottom: rem(40);
+      margin-bottom: var(--scale1000);
     }
   }
 
@@ -849,7 +849,7 @@ main {
         "header addon"
         "panel .";
       grid-template-columns: 1fr auto;
-      padding: rem(20) 0;
+      padding: var(--scale500) 0;
     }
 
     .accordionItem__header {
@@ -862,7 +862,7 @@ main {
     }
 
     .accordionItem__button {
-      font-size: rem(28);
+      font-size: var(--scale700);
       text-transform: uppercase;
 
       &::after {
@@ -870,7 +870,7 @@ main {
         inset: 0;
         position: absolute;
         right: calc(
-          -1 * (rem(20) + rem(20))
+          -1 * (var(--scale500) + var(--scale500))
         ); // extend over addon width + item padding
       }
 
@@ -889,9 +889,9 @@ main {
       color: $primary-700;
       display: flex;
       grid-area: addon;
-      height: rem(20);
+      height: var(--scale500);
       justify-content: center;
-      width: rem(20);
+      width: var(--scale500);
     }
 
     .mm-about__accordion--minus {
@@ -915,15 +915,15 @@ main {
       "content";
 
     &__headline {
-      font-size: rem(40);
+      font-size: var(--scale1000);
     }
 
     &__intro {
-      margin-bottom: rem(32);
+      margin-bottom: var(--scale800);
     }
 
     &__section {
-      padding: rem(32) 0;
+      padding: var(--scale800) 0;
 
       :last-of-type {
         margin-bottom: unset;
@@ -934,7 +934,7 @@ main {
   @include desktop() {
     &__section {
       &--heading {
-        font-size: rem(32);
+        font-size: var(--scale800);
       }
     }
   }
@@ -943,22 +943,22 @@ main {
 /* WORK EXPERIENCES */
 .mm-work-experiences {
   &__item {
-    padding: rem(20) 0;
+    padding: var(--scale500) 0;
   }
 
   &__details {
     color: $neutral-700;
     display: flex;
     justify-content: space-between;
-    margin-bottom: rem(8);
+    margin-bottom: var(--scale200);
     text-transform: uppercase;
   }
 
   &__location {
     align-items: center;
     display: flex;
-    font-size: rem(16);
-    gap: rem(12);
+    font-size: var(--scale400);
+    gap: var(--scale300);
 
     div:first-of-type {
       font-weight: bold;
@@ -967,28 +967,28 @@ main {
 
   &__heading {
     color: $neutral-800;
-    font-size: rem(24);
-    margin-bottom: rem(16);
+    font-size: var(--scale600);
+    margin-bottom: var(--scale400);
     text-transform: uppercase;
   }
 
   &__tasks {
     color: $neutral-700;
     list-style-type: disc;
-    padding-left: rem(16);
+    padding-left: var(--scale400);
   }
 
   @include tablet() {
     &__item {
-      padding: rem(32) 0;
+      padding: var(--scale800) 0;
     }
 
     &__location {
-      font-size: rem(16);
+      font-size: var(--scale400);
     }
 
     &__heading {
-      font-size: rem(24);
+      font-size: var(--scale600);
     }
   }
 }
@@ -996,13 +996,13 @@ main {
 /* EDUCATION */
 .mm-education {
   &__item {
-    padding: rem(20) 0;
+    padding: var(--scale500) 0;
   }
 
   &__category {
     color: $neutral-800;
-    font-size: rem(24);
-    margin-bottom: rem(16);
+    font-size: var(--scale600);
+    margin-bottom: var(--scale400);
     text-transform: uppercase;
   }
 
@@ -1010,15 +1010,15 @@ main {
     color: $neutral-700;
     display: flex;
     justify-content: space-between;
-    margin-bottom: rem(8);
+    margin-bottom: var(--scale200);
     text-transform: uppercase;
   }
 
   &__location {
     align-items: center;
     display: flex;
-    font-size: rem(16);
-    gap: rem(12);
+    font-size: var(--scale400);
+    gap: var(--scale300);
 
     font-weight: bold;
   }
@@ -1026,25 +1026,25 @@ main {
   &__topics {
     color: $neutral-700;
     list-style-type: disc;
-    padding-bottom: rem(20);
-    padding-left: rem(16);
+    padding-bottom: var(--scale500);
+    padding-left: var(--scale400);
   }
 
   @include tablet() {
     &__item {
-      padding: rem(32) 0;
+      padding: var(--scale800) 0;
     }
 
     &__location {
-      font-size: rem(16);
+      font-size: var(--scale400);
     }
 
     &__category {
-      font-size: rem(24);
+      font-size: var(--scale600);
     }
 
     &__topics {
-      padding-bottom: rem(32);
+      padding-bottom: var(--scale800);
     }
   }
 }
@@ -1058,23 +1058,23 @@ main {
   .mm-avatar {
     height: rem(120);
     width: rem(120);
-    margin-bottom: rem(48);
+    margin-bottom: var(--scale1100);
   }
 
   &__body {
     align-items: center;
     display: flex;
     flex-direction: column;
-    padding: rem(40) rem(16);
+    padding: var(--scale1000) var(--scale400);
   }
 
   &__heading {
     text-transform: uppercase;
-    margin-bottom: rem(24);
+    margin-bottom: var(--scale600);
   }
 
   &__collaboration {
-    margin-bottom: rem(48);
+    margin-bottom: var(--scale1100);
     text-align: center;
   }
 
@@ -1082,7 +1082,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: rem(32);
+    gap: var(--scale800);
   }
 
   &__social-link,
@@ -1097,7 +1097,7 @@ main {
   &__social-link a {
     align-items: center;
     display: flex;
-    font-size: rem(20);
+    font-size: var(--scale500);
     gap: 2px;
     text-decoration: none;
     text-transform: uppercase;
@@ -1106,7 +1106,7 @@ main {
   &__built-with {
     background-color: $neutral-300;
     color: $neutral-700;
-    padding: rem(32) rem(20);
+    padding: var(--scale800) var(--scale500);
     text-align: center;
   }
 
@@ -1116,7 +1116,7 @@ main {
 
   @include tablet() {
     &__body {
-      padding: rem(60) rem(40);
+      padding: rem(60) var(--scale1000);
     }
 
     &__social-links-list {
