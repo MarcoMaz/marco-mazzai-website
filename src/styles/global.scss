@@ -122,8 +122,8 @@ main {
 
 /* BUTTON */
 .mm-button {
-  background: #c1502e;
-  color: #fffcf7;
+  background: $primary-default;
+  color: $neutral-white;
   display: flex;
   gap: rem(8);
   justify-content: center;
@@ -136,7 +136,7 @@ main {
   }
 
   &:focus {
-    outline: 2px solid #c1502e;
+    outline: 2px solid $primary-default;
   }
 
   &__icon {
@@ -314,7 +314,7 @@ main {
   &__hamburger {
     align-items: center;
     background: var(--color-neutrals900);
-    color: #fffcf7;
+    color: $neutral-white;
     display: flex;
     height: rem(48);
     justify-content: center;
@@ -352,13 +352,13 @@ main {
   }
 
   &__list-item a {
-    color: #fffcf7;
+    color: $neutral-white;
     text-decoration: none;
     text-transform: uppercase;
   }
 
   &__list-item a:focus {
-    outline: 2px solid #fffcf7;
+    outline: 2px solid $neutral-white;
   }
 
   &.--mobile &__list.--open &__list-item {
@@ -492,13 +492,13 @@ main {
         width: 100%;
 
         &:focus {
-          outline: 2px solid #c1502e;
+          outline: 2px solid $primary-default;
         }
       }
 
       a[aria-current="page"] {
-        background-color: #c1502e;
-        color: #fffcf7;
+        background-color: $primary-default;
+        color: $neutral-white;
       }
     }
 
@@ -528,7 +528,7 @@ main {
 
 .mm-hero {
   background-color: var(--color-neutrals900);
-  color: #fffcf7;
+  color: $neutral-white;
   padding: rem(112) rem(16) rem(64);
   text-align: center;
 
@@ -1052,7 +1052,7 @@ main {
 /* FOOTER */
 .mm-footer {
   background-color: var(--color-neutrals900);
-  color: #fffcf7;
+  color: $neutral-white;
   z-index: 9999;
 
   .mm-avatar {
