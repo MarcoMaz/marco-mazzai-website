@@ -12,13 +12,6 @@
 @use "./components/wa-button";
 
 // ============================================================
-// VARIABLES
-// ============================================================
-
-$backgroundDark: #1a1a1a;
-$backgroundLight: #fffcf7;
-
-// ============================================================
 // BREAKPOINTS
 // ============================================================
 
@@ -296,7 +289,7 @@ main {
 /* NAVIGATION — HERO */
 
 .mm-navigation-hero {
-  background-color: $backgroundDark;
+  background-color: var();
   display: flex;
   flex-direction: column;
   padding: rem(32) rem(20);
@@ -320,7 +313,7 @@ main {
 
   &__hamburger {
     align-items: center;
-    background: $backgroundDark;
+    background: var(--color-neutrals900);
     color: #fffcf7;
     display: flex;
     height: rem(48);
@@ -456,7 +449,7 @@ main {
   }
 
   @include desktop {
-    background-color: $backgroundLight;
+    background-color: var(--color-neutrals50);
     bottom: 0;
     display: flex;
     flex-direction: column;
@@ -528,13 +521,13 @@ main {
 // All light-background page sections
 .mm-section,
 .mm-entry {
-  background-color: $backgroundLight;
+  background-color: var(--color-neutrals50);
 }
 
 /* HERO */
 
 .mm-hero {
-  background-color: $backgroundDark;
+  background-color: var(--color-neutrals900);
   color: #fffcf7;
   padding: rem(112) rem(16) rem(64);
   text-align: center;
@@ -1058,7 +1051,7 @@ main {
 
 /* FOOTER */
 .mm-footer {
-  background-color: $backgroundDark;
+  background-color: var(--color-neutrals900);
   color: #fffcf7;
   z-index: 9999;
 
