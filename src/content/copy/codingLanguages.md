@@ -16,4 +16,5 @@ codingLanguages:
   - Git, Github and Gitlab
   - Docker
   - Slack and Jira
+  - Claude Code
 ---
