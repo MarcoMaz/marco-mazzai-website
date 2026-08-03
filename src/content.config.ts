@@ -134,6 +134,7 @@ const educationCollection = defineCollection({
             type: z.enum([
               "Certifications",
               "Advanced Courses",
+              "Expert Courses",
               "Conferences and Webinars",
             ]),
             date: z
