@@ -59,7 +59,16 @@ const ABOUT_THE_PROJECT_TITLE: string = "About the project";
         <GithubLogoIcon slot="icon-left" />
       </IconLink>
     </div>
-    {preview && <ProjectIframe src={preview.url} title={preview.title} />}
+    {
+      preview && (
+        <ProjectIframe
+          src={preview.url}
+          title={preview.title}
+          width={preview.width}
+          height={preview.height}
+        />
+      )
+    }
     <hr class="mm-entry__divider" />
     <GoToEntry
       prevEntry={prevEntry && {

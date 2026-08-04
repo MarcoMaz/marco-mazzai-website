@@ -103,6 +103,8 @@ const petProjectsCollection = defineCollection({
       .object({
         title: z.string().optional(),
         url: z.string(),
+        width: z.number().optional(),
+        height: z.number().optional(),
       })
       .optional(),
   }),
