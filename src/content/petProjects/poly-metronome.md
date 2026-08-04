@@ -2,7 +2,7 @@
 order: 2
 heading: 'Polyrhythmic Metronome'
 kicker: 'PWA'
-description: 'Interactive polyrhythmic metronome made with the Web Audio API'
+description: 'Browser-based polyrhythmic metronome combining the Web Audio API for sample-accurate timing with the Canvas API for real-time visual sync'
 date:
   from: 2021
   to: Present

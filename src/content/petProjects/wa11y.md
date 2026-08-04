@@ -2,7 +2,7 @@
 order: 1
 heading: 'Wa11y'
 kicker: 'Component Library'
-description: "Unstyled UI library of Lit's Web Components I built to showcase my expertise in frontend and accessibility"
+description: 'Accessible-by-default component library built with Lit and TypeScript, covering keyboard and ARIA patterns most UI kits skip, documented in Storybook and unit-tested with Vitest'
 date:
   from: 2024
   to: Present
