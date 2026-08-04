@@ -8,4 +8,7 @@ date:
   to: Present
 chips: ['Astro', 'Zod', 'Wa11y']
 githubUrl: 'https://github.com/MarcoMaz/marco-mazzai-website'
+image:
+  src: '/images/marco-mazzai-website.png'
+  alt: "Marco Mazzai's website preview"
 ---

@@ -8,6 +8,9 @@ date:
   to: Present
 chips: ['Lit', 'Typescript', 'Storybook', 'Vitest']
 githubUrl: 'https://github.com/MarcoMaz/wa11y'
+image:
+  src: '/images/wa11y.png'
+  alt: 'Wa11y component library preview'
 preview:
   url: 'https://wa11y-storybook.netlify.app/?path=/docs/atoms-button--buttoninfo'
   title: 'Wa11y live demo'

@@ -95,6 +95,10 @@ const petProjectsCollection = defineCollection({
     }),
     chips: z.array(z.string()),
     githubUrl: z.string().url(),
+    image: z.object({
+      src: z.string(),
+      alt: z.string(),
+    }),
     preview: z
       .object({
         title: z.string().optional(),

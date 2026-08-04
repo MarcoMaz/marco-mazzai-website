@@ -1,6 +1,5 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
-import ProjectIframe from "./ProjectIframe.astro";
 import ChipList from "./ChipList.astro";
 import IconLink from "./IconLink.astro";
 import Button from "./Button.astro";
@@ -38,7 +37,7 @@ const GITHUB_LABEL: string = "Github";
           date,
           chips,
           githubUrl,
-          preview,
+          image,
         } = entry.data;
 
         return (
@@ -59,7 +58,18 @@ const GITHUB_LABEL: string = "Github";
               </IconLink>
             </div>
             <div class="mm-section-item__image">
-              <img srcset="https://placehold.co/389x325" />
+              <picture>
+                <source
+                  srcset={image.src.replace(/\.\w+$/, ".webp")}
+                  type="image/webp"
+                />
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  width="389"
+                  height="325"
+                />
+              </picture>
             </div>
             <hr class="mm-section-item__divider" />
           </li>
