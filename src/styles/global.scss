@@ -777,6 +777,24 @@ main {
     text-transform: uppercase;
   }
 
+  article {
+    p,
+    ul,
+    ol {
+      margin-bottom: rem(20);
+    }
+
+    h2,
+    h3 {
+      margin-top: rem(32);
+      margin-bottom: rem(16);
+    }
+
+    li {
+      margin-bottom: rem(8);
+    }
+  }
+
   &__content {
     padding: rem(20) 0;
 
