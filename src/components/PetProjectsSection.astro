@@ -16,6 +16,11 @@ const HEADLINE_LABEL: string = "Pet Projects";
 const SEE_ALL_PROJECTS_TEXT: string = "See all projects";
 
 const GITHUB_LABEL: string = "Github";
+
+const MOBILE_MEDIA_QUERY: string = "(max-width: 767px)";
+
+const toWebp = (src: string): string => src.replace(/\.\w+$/, ".webp");
+const toMobile = (src: string): string => src.replace(/(\.\w+)$/, "-mobile$1");
 ---
 
 <section class="mm-section" id="projects">
@@ -30,15 +35,8 @@ const GITHUB_LABEL: string = "Github";
   <ul>
     {
       sortedEntries.map((entry) => {
-        const {
-          heading,
-          kicker,
-          description,
-          date,
-          chips,
-          githubUrl,
-          image,
-        } = entry.data;
+        const { heading, kicker, description, date, chips, githubUrl, image } =
+          entry.data;
 
         return (
           <li class="mm-section-item mm-section-item__project-item">
@@ -60,15 +58,17 @@ const GITHUB_LABEL: string = "Github";
             <div class="mm-section-item__image">
               <picture>
                 <source
-                  srcset={image.src.replace(/\.\w+$/, ".webp")}
+                  media={MOBILE_MEDIA_QUERY}
+                  srcset={toWebp(toMobile(image.src))}
                   type="image/webp"
                 />
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  width="389"
-                  height="325"
+                <source
+                  media={MOBILE_MEDIA_QUERY}
+                  srcset={toMobile(image.src)}
+                  type="image/png"
                 />
+                <source srcset={toWebp(image.src)} type="image/webp" />
+                <img src={image.src} alt={image.alt} width="389" height="325" />
               </picture>
             </div>
             <hr class="mm-section-item__divider" />
