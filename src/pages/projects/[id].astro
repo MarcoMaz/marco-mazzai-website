@@ -31,7 +31,7 @@ const { entry, prevEntry, nextEntry } = Astro.props as {
   nextEntry: PetProjectEntry | undefined;
 };
 
-const { heading, kicker, description, date, chips, githubUrl, preview } =
+const { heading, kicker, description, date, chips, githubUrl, preview, image } =
   entry.data;
 
 const pageTitle = `${heading} ${PAGE_TITLES.blogSuffix}`;
@@ -41,7 +41,7 @@ const GITHUB_LABEL: string = "Github";
 const ABOUT_THE_PROJECT_TITLE: string = "About the project";
 ---
 
-<BaseLayout title={pageTitle}>
+<BaseLayout title={pageTitle} description={description} image={image.src} type="article">
   <section class="mm-entry">
     <div class="mm-entry__date">
       {formatDateRange(date.from, date.to)}
