@@ -90,6 +90,7 @@ const READ_MORE_TEXT: string = "Read more";
               <p class="mm-section-item__preview">{preview}</p>
               <IconLink href={`/blog/${slug}`}>
                 {READ_MORE_TEXT}
+                <span class="visually-hidden">: {heading}</span>
                 <Icon name="ph:caret-right" slot="icon-right" />
               </IconLink>
               <hr class="mm-section-item__divider" />
