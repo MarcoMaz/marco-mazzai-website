@@ -11,6 +11,15 @@ Personal portfolio and blog for Marco Mazzai, built with [Astro](https://astro.b
 
 All pages are statically prerendered; there is no client-side JS framework runtime shipped to the browser.
 
+## Requirements
+
+Node **>=22.12.0** (see `.nvmrc`). If Node is managed via Homebrew rather than nvm/fnm:
+
+```sh
+brew install node@22
+export PATH="/opt/homebrew/opt/node@22/bin:$PATH"  # for this shell session
+```
+
 ## Project structure
 
 ```
