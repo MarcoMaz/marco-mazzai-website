@@ -84,15 +84,34 @@ const ogImageURL = new URL(image, siteOrigin);
         });
         observer.observe(hero);
 
+        // Cached instead of read on every scroll event, since reading it
+        // right after the previous frame's style writes forces a synchronous
+        // reflow. Kept in sync via ResizeObserver instead.
+        let heroHeight = hero.offsetHeight;
+        new ResizeObserver(() => {
+          heroHeight = hero.offsetHeight;
+        }).observe(hero);
+
         // Hero nav opacity tied 1:1 to scroll progress through the hero (desktop only)
+        let scrollRaf = 0;
         const updateHeroNav = () => {
           if (!DESKTOP_MQ.matches) return;
-          const ratio = Math.max(0, 1 - window.scrollY / hero.offsetHeight);
+          const ratio = Math.max(0, 1 - window.scrollY / heroHeight);
           heroNav.style.transition = "none";
           heroNav.style.opacity = String(ratio);
           heroNav.style.pointerEvents = ratio > 0 ? "" : "none";
         };
-        window.addEventListener("scroll", updateHeroNav, { passive: true });
+        window.addEventListener(
+          "scroll",
+          () => {
+            if (scrollRaf) return;
+            scrollRaf = requestAnimationFrame(() => {
+              scrollRaf = 0;
+              updateHeroNav();
+            });
+          },
+          { passive: true },
+        );
         DESKTOP_MQ.addEventListener("change", () => {
           if (!DESKTOP_MQ.matches) {
             heroNav.style.transition = "";
@@ -110,7 +129,7 @@ const ogImageURL = new URL(image, siteOrigin);
           }
         });
         if (window.location.pathname !== "/") {
-          window.scrollTo({ top: hero.offsetHeight, behavior: "instant" });
+          window.scrollTo({ top: heroHeight, behavior: "instant" });
         }
         updateHeroNav();
 
@@ -125,7 +144,7 @@ const ogImageURL = new URL(image, siteOrigin);
           heroLinks[heroLinks.length - 1].addEventListener("keydown", (e) => {
             if (e.key === "Tab" && !e.shiftKey) {
               e.preventDefault();
-              window.scrollTo({ top: hero.offsetHeight, behavior: "smooth" });
+              window.scrollTo({ top: heroHeight, behavior: "smooth" });
               sideNav.classList.add("--scrolled");
               mainEl.classList.add("--scrolled");
               firstSideLink.focus({ preventScroll: true });
