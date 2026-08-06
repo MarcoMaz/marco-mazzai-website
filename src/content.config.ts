@@ -1,5 +1,6 @@
 import { glob } from "astro/loaders";
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
 
 // -------------------------
 // Helpers
@@ -94,7 +95,7 @@ const petProjectsCollection = defineCollection({
       to: partialDate.optional(),
     }),
     chips: z.array(z.string()),
-    githubUrl: z.string().url(),
+    githubUrl: z.url(),
     image: z.object({
       src: z.string(),
       alt: z.string(),
