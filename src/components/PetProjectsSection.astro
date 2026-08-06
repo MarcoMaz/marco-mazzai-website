@@ -68,7 +68,14 @@ const toMobile = (src: string): string => src.replace(/(\.\w+)$/, "-mobile$1");
                   type="image/png"
                 />
                 <source srcset={toWebp(image.src)} type="image/webp" />
-                <img src={image.src} alt={image.alt} width="389" height="325" />
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  width="389"
+                  height="325"
+                  loading="lazy"
+                  decoding="async"
+                />
               </picture>
             </div>
             <hr class="mm-section-item__divider" />
