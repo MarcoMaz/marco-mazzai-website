@@ -1,5 +1,5 @@
 ---
-import { CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react";
+import { Icon } from "astro-icon/components";
 
 interface EntryProps {
   href: string;
@@ -19,7 +19,7 @@ const { prevEntry, nextEntry } = Astro.props as GoToEntryProps;
   {
     prevEntry && (
       <a href={prevEntry.href} class="mm-go-to-entry__link mm-go-to-entry__link--prev">
-        <CaretLeftIcon />
+        <Icon name="ph:caret-left" />
         <div class="mm-go-to-entry__info">
           {prevEntry.kicker && (
             <div class="mm-go-to-entry__info--kicker">{prevEntry.kicker}</div>
@@ -38,7 +38,7 @@ const { prevEntry, nextEntry } = Astro.props as GoToEntryProps;
           )}
           <div class="mm-go-to-entry__info--heading">{nextEntry.heading}</div>
         </div>
-        <CaretRightIcon />
+        <Icon name="ph:caret-right" />
       </a>
     )
   }

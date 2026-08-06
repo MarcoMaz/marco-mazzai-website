@@ -3,7 +3,7 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import ChipList from "./ChipList.astro";
 import Button from "./Button.astro";
 import IconLink from "./IconLink.astro";
-import { CaretRightIcon } from "@phosphor-icons/react";
+import { Icon } from "astro-icon/components";
 import { formatDate } from "../lib/date";
 
 type BlogEntry = CollectionEntry<"blog">;
@@ -90,7 +90,7 @@ const READ_MORE_TEXT: string = "Read more";
               <p class="mm-section-item__preview">{preview}</p>
               <IconLink href={`/blog/${slug}`}>
                 {READ_MORE_TEXT}
-                <CaretRightIcon slot="icon-right" />
+                <Icon name="ph:caret-right" slot="icon-right" />
               </IconLink>
               <hr class="mm-section-item__divider" />
             </div>

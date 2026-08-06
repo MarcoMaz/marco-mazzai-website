@@ -6,7 +6,7 @@ import { formatDateRange } from "../../lib/date";
 import { PAGE_TITLES } from "../../content.config";
 import ChipList from "../../components/ChipList.astro";
 import IconLink from "../../components/IconLink.astro";
-import { GithubLogoIcon } from "@phosphor-icons/react";
+import { Icon } from "astro-icon/components";
 import GoToEntry from "../../components/GoToEntry.astro";
 
 type PetProjectEntry = CollectionEntry<"petProjects">;
@@ -56,7 +56,7 @@ const ABOUT_THE_PROJECT_TITLE: string = "About the project";
       <p class="mm-entry__content--description">{description}</p>
       <IconLink href={githubUrl} target="_blank">
         {GITHUB_LABEL}
-        <GithubLogoIcon slot="icon-left" />
+        <Icon name="ph:github-logo" slot="icon-left" />
       </IconLink>
     </div>
     {

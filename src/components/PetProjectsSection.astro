@@ -3,7 +3,7 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import ChipList from "./ChipList.astro";
 import IconLink from "./IconLink.astro";
 import Button from "./Button.astro";
-import { GithubLogoIcon } from "@phosphor-icons/react";
+import { Icon } from "astro-icon/components";
 import { formatDateRange } from "../lib/date";
 
 type PetProjectEntry = CollectionEntry<"petProjects">;
@@ -52,7 +52,7 @@ const toMobile = (src: string): string => src.replace(/(\.\w+)$/, "-mobile$1");
               <p class="mm-section-item__preview">{description}</p>
               <IconLink href={githubUrl} target="_blank">
                 {GITHUB_LABEL}
-                <GithubLogoIcon slot="icon-left" />
+                <Icon name="ph:github-logo" slot="icon-left" />
               </IconLink>
             </div>
             <div class="mm-section-item__image">
