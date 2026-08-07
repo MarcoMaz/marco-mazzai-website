@@ -1,9 +1,20 @@
 ---
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import AboutSection from '../../components/AboutSection.astro';
 import { PAGE_TITLES } from '../../content.config';
+
+type AboutEntry = CollectionEntry<'about'>;
+
+const aboutCollection: AboutEntry[] = await getCollection('about');
+if (aboutCollection.length === 0) {
+  throw new Error('About page not found in copy collection');
+}
+
+const { intro } = aboutCollection[0].data;
+const description = intro.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 ---
 
-<BaseLayout title={PAGE_TITLES.about}>
+<BaseLayout title={PAGE_TITLES.about} description={description}>
   <AboutSection />
 </BaseLayout>

@@ -3,7 +3,7 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import ChipList from "./ChipList.astro";
 import Button from "./Button.astro";
 import IconLink from "./IconLink.astro";
-import { CaretRightIcon } from "@phosphor-icons/react";
+import { Icon } from "astro-icon/components";
 import { formatDate } from "../lib/date";
 
 type BlogEntry = CollectionEntry<"blog">;
@@ -20,6 +20,8 @@ const blogPage: BlogPageEntry = blogPageCollection[0];
 const { headline } = blogPage.data;
 const isHome = Astro.url.pathname === "/";
 
+const PREVIEW_MAX_LENGTH = 140;
+
 const stripMarkdown = (text: string): string =>
   text
     .replace(/#{1,6}\s+/g, "")
@@ -27,6 +29,12 @@ const stripMarkdown = (text: string): string =>
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
     .replace(/!\[[^\]]*\]\([^)]+\)/g, "")
     .trim();
+
+const truncate = (text: string, maxLength: number): string => {
+  if (text.length <= maxLength) return text;
+  const cut = text.slice(0, maxLength);
+  return `${cut.slice(0, cut.lastIndexOf(" "))}…`;
+};
 
 const getReadingTime = (content: string, wordsPerMinute = 200): number => {
   const wordCount = content.trim().split(/\s+/).length;
@@ -61,7 +69,7 @@ const READ_MORE_TEXT: string = "Read more";
       sortedPosts.map((post) => {
         const { slug, heading, date, kicker, chips } = post.data;
         const readingTime = getReadingTime(post.body ?? "");
-        const preview = stripMarkdown(post.body ?? "");
+        const preview = truncate(stripMarkdown(post.body ?? ""), PREVIEW_MAX_LENGTH);
 
         return (
           <li class="mm-section-item">
@@ -82,7 +90,8 @@ const READ_MORE_TEXT: string = "Read more";
               <p class="mm-section-item__preview">{preview}</p>
               <IconLink href={`/blog/${slug}`}>
                 {READ_MORE_TEXT}
-                <CaretRightIcon slot="icon-right" />
+                <span class="visually-hidden">: {heading}</span>
+                <Icon name="ph:caret-right" slot="icon-right" />
               </IconLink>
               <hr class="mm-section-item__divider" />
             </div>

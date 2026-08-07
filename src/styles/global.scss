@@ -69,7 +69,7 @@ h6 {
 
 body {
   font-size: rem(16);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Space Grotesk Variable", sans-serif;
 }
 
 button {
@@ -92,6 +92,24 @@ ul {
   li {
     padding: 0;
   }
+}
+
+// ============================================================
+// UTILITIES
+// ============================================================
+
+// Keeps content in the accessible name / text content without
+// showing it visually (unlike display:none, which strips both).
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 // ============================================================
@@ -674,6 +692,12 @@ main {
   &__image {
     grid-area: image;
 
+    picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
     img {
       display: block;
       width: 100%;
@@ -769,6 +793,24 @@ main {
     font-size: rem(24);
     margin-bottom: rem(16);
     text-transform: uppercase;
+  }
+
+  article {
+    p,
+    ul,
+    ol {
+      margin-bottom: rem(20);
+    }
+
+    h2,
+    h3 {
+      margin-top: rem(32);
+      margin-bottom: rem(16);
+    }
+
+    li {
+      margin-bottom: rem(8);
+    }
   }
 
   &__content {

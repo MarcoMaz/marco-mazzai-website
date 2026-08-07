@@ -2,21 +2,21 @@
 workExperiencesItems:
   - workPlace: "Magnolia"
     url: "https://www.magnolia-cms.com/"
-    role: "Senior Frontend Developer"
+    role: "Frontend Developer"
     date:
       from: 2024-07
       to: Present
     location: Basel, CH (remote)
     tasks:
-      - Led the design system as primary maintainer, collaborating with designers to develop new components and creating custom Storybook tooling to enhance developer experience and repository efficiency
-      - Conducted comprehensive accessibility audits across the design system, main application, and forms project, implementing WCAG compliance strategies and serving as the team's accessibility expert
-      - Authored accessibility-focused articles for the company blog, sharing best practices and promoting awareness across the organization.
-      - Established testing culture and infrastructure, implementing test coverage for the design system and forms project to improve code quality and prevent regressions
+      - Own and maintain the design system repository, collaborating with designers to develop new components and building custom Storybook tooling to improve developer experience
+      - Conduct regular accessibility audits across the design system, main application, and forms project, implementing WCAG compliance strategies and serving as the team's accessibility expert
+      - Author accessibility-focused articles for the company blog and deliver internal tech talks on accessibility, including training sessions for non-technical teams such as marketing and sales
+      - Established a testing culture and infrastructure from the ground up, implementing test coverage across the design system and forms project to improve code quality and prevent regressions
       - Architected complex features including drag-and-drop functionality, programmatic focus management for forms, and error handling systems, while resolving 140+ bugs and feature requests
-      - Mentored developers and led onboarding initiatives, fostering team growth and knowledge sharing.
+      - Explored AI-assisted workflows to streamline recurring design system tasks, and led onboarding and mentorship for new developers on frontend and accessibility topics
   - workPlace: "FitXr"
     url: "https://fitxr.com/"
-    role: Senior Frontend Developer
+    role: "Senior Frontend Developer"
     date:
       from: 2023-12
       to: 2024-04
@@ -36,7 +36,7 @@ workExperiencesItems:
       to: 2023
     location: Berlin, Germany
     tasks:
-      - Led development and expansion of an enterprise design system across multiple projects, overseeing 50+ reusable components. Collaborated with designers to implement multi-branding, theming, and accessibility standards to create a versatile, inclusive component library
+      - Led development and expansion of an enterprise design system across multiple projects for clients including Mercedes-Benz and Bosch, overseeing 50+ reusable components
       - Built and refactored enterprise web applications using React and TypeScript, enhancing functionality and long-term code quality while ensuring modern web standards compliance
       - Worked in Agile/Scrum environments managing stakeholder relationships across remote and on-site teams
       - Collaborated cross-functionally on 300+ tickets for responsiveness, accessibility, and testing requirements

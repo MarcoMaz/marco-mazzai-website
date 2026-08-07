@@ -1,12 +1,12 @@
 ---
-import { getCollection, render, type CollectionEntry } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ProjectIframe from "../../components/ProjectIframe.astro";
 import { formatDateRange } from "../../lib/date";
 import { PAGE_TITLES } from "../../content.config";
 import ChipList from "../../components/ChipList.astro";
 import IconLink from "../../components/IconLink.astro";
-import { GithubLogoIcon } from "@phosphor-icons/react";
+import { Icon } from "astro-icon/components";
 import GoToEntry from "../../components/GoToEntry.astro";
 
 type PetProjectEntry = CollectionEntry<"petProjects">;
@@ -31,7 +31,7 @@ const { entry, prevEntry, nextEntry } = Astro.props as {
   nextEntry: PetProjectEntry | undefined;
 };
 
-const { heading, kicker, description, date, chips, githubUrl, preview } =
+const { heading, kicker, description, date, chips, githubUrl, preview, image } =
   entry.data;
 
 const pageTitle = `${heading} ${PAGE_TITLES.blogSuffix}`;
@@ -41,7 +41,7 @@ const GITHUB_LABEL: string = "Github";
 const ABOUT_THE_PROJECT_TITLE: string = "About the project";
 ---
 
-<BaseLayout title={pageTitle}>
+<BaseLayout title={pageTitle} description={description} image={image.src} type="article">
   <section class="mm-entry">
     <div class="mm-entry__date">
       {formatDateRange(date.from, date.to)}
@@ -56,10 +56,19 @@ const ABOUT_THE_PROJECT_TITLE: string = "About the project";
       <p class="mm-entry__content--description">{description}</p>
       <IconLink href={githubUrl} target="_blank">
         {GITHUB_LABEL}
-        <GithubLogoIcon slot="icon-left" />
+        <Icon name="ph:github-logo" slot="icon-left" />
       </IconLink>
     </div>
-    {preview && <ProjectIframe src={preview.url} title={preview.title} />}
+    {
+      preview && (
+        <ProjectIframe
+          src={preview.url}
+          title={preview.title}
+          width={preview.width}
+          height={preview.height}
+        />
+      )
+    }
     <hr class="mm-entry__divider" />
     <GoToEntry
       prevEntry={prevEntry && {

@@ -5,7 +5,11 @@ import { formatDateRange, type PartialDate } from "../lib/date";
 type EducationItem = {
   category: "Frontend" | "Accessibility";
   sections: Array<{
-    type: "Certifications" | "Advanced Courses" | "Conferences and Webinars";
+    type:
+      | "Certifications"
+      | "Advanced Courses"
+      | "Expert Courses"
+      | "Conferences and Webinars";
     date?: { from?: PartialDate; to?: PartialDate };
     items: string[];
   }>;

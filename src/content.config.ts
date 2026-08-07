@@ -1,5 +1,6 @@
 import { glob } from "astro/loaders";
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
 
 // -------------------------
 // Helpers
@@ -94,11 +95,17 @@ const petProjectsCollection = defineCollection({
       to: partialDate.optional(),
     }),
     chips: z.array(z.string()),
-    githubUrl: z.string().url(),
+    githubUrl: z.url(),
+    image: z.object({
+      src: z.string(),
+      alt: z.string(),
+    }),
     preview: z
       .object({
         title: z.string().optional(),
         url: z.string(),
+        width: z.number().optional(),
+        height: z.number().optional(),
       })
       .optional(),
   }),
@@ -134,6 +141,7 @@ const educationCollection = defineCollection({
             type: z.enum([
               "Certifications",
               "Advanced Courses",
+              "Expert Courses",
               "Conferences and Webinars",
             ]),
             date: z
@@ -154,6 +162,7 @@ const blogPageCollection = defineCollection({
   loader: glob({ pattern: "blog.md", base: "./src/content/copy" }),
   schema: z.object({
     headline: z.string(),
+    description: z.string(),
   }),
 });
 
@@ -219,9 +228,7 @@ export const META = {
     "Marco Mazzai is a frontend developer specialized in web accessibility and design systems. He creates scalable, inclusive, and high-performance user interfaces that meet WCAG standards and deliver exceptional user experiences.",
   title: "Marco Mazzai | Frontend Developer — Accessibility & Design Systems",
   og: {
-    title: "Marco Mazzai | Frontend Developer — Accessibility & Design Systems",
-    url: "",
-    image: "",
+    image: "/images/marco-mazzai-website.png",
     type: "website",
     description:
       "Portfolio and blog by Marco Mazzai, frontend developer focused on accessibility and design systems — crafting inclusive, scalable web experiences.",

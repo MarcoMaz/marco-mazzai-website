@@ -4,7 +4,7 @@ import WorkExperiencesSection from "./WorkExperiencesSection.astro";
 import EducationSection from "./EducationSection.astro";
 import ChipList from "./ChipList.astro";
 import Button from "./Button.astro";
-import { MinusIcon, PlusIcon } from "@phosphor-icons/react";
+import { Icon } from "astro-icon/components";
 
 type AboutEntry = CollectionEntry<"about">;
 
@@ -61,8 +61,8 @@ const SEE_ABOUT_PAGE_TEXT: string = "About Page";
           <ChipList chips={codingLanguages} />
           <wa-accordion open-index="0">
             <template data-addon>
-              <PlusIcon className="mm-about__accordion--plus" />
-              <MinusIcon className="mm-about__accordion--minus" />
+              <Icon name="ph:plus" class="mm-about__accordion--plus" />
+              <Icon name="ph:minus" class="mm-about__accordion--minus" />
             </template>
             <WorkExperiencesSection />
             <EducationSection />

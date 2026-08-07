@@ -1,14 +1,14 @@
 ---
 type ProjectIFrameProps = {
-  height?: string;
+  height?: number;
   src: string;
   title: string;
-  width?: string;
+  width?: number;
 };
 
 const {
-  height = "400px",
-  width = "600px",
+  height = 400,
+  width = 600,
   src,
   title,
 } = Astro.props as ProjectIFrameProps;
