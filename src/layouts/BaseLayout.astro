@@ -3,53 +3,61 @@ import Footer from "../components/Footer.astro";
 import HeroSection from "../components/HeroSection.astro";
 import Navigation from "../components/Navigation.astro";
 import { PAGE_TITLES, META } from "../content.config";
+import "@fontsource-variable/space-grotesk";
 import "../styles/global.scss";
 
 interface BaseLayoutProps {
   title?: string;
+  description?: string;
+  image?: string;
+  type?: string;
 }
 
-const { title } = Astro.props as BaseLayoutProps;
+const {
+  title,
+  description = META.description,
+  image = META.og.image,
+  type = META.og.type,
+} = Astro.props as BaseLayoutProps;
 
 const pageTitle = PAGE_TITLES.default;
+const metaTitle = title ?? META.title;
 
 const isHome = Astro.url.pathname === "/";
 
-const {
-  keywords,
-  description,
-  title: metaTitle,
-  og: {
-    url: ogUrl,
-    image: ogImage,
-    type: ogType,
-    description: ogDescription,
-    locale: ogLocale,
-  },
-} = META;
+const { keywords, og: { locale: ogLocale } } = META;
+
+const siteOrigin = Astro.site ?? new URL(Astro.url.origin);
+const canonicalURL = new URL(Astro.url.pathname, siteOrigin);
+const ogImageURL = new URL(image, siteOrigin);
 ---
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap"
-      rel="stylesheet"
-    />
     <title>{title ?? pageTitle}</title>
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/favicon-512x512.png" type="image/png" sizes="512x512" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- SEO + Social Meta -->
     <meta name="keywords" content={keywords} />
     <meta name="description" content={description} />
     <meta property="og:title" content={metaTitle} />
-    <meta property="og:url" content={ogUrl} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:type" content={ogType} />
-    <meta property="og:description" content={ogDescription} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:type" content={type} />
+    <meta property="og:description" content={description} />
     <meta property="og:locale" content={ogLocale} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={metaTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
   </head>
   <body>
     <Navigation isHome={isHome} />
@@ -76,15 +84,34 @@ const {
         });
         observer.observe(hero);
 
+        // Cached instead of read on every scroll event, since reading it
+        // right after the previous frame's style writes forces a synchronous
+        // reflow. Kept in sync via ResizeObserver instead.
+        let heroHeight = hero.offsetHeight;
+        new ResizeObserver(() => {
+          heroHeight = hero.offsetHeight;
+        }).observe(hero);
+
         // Hero nav opacity tied 1:1 to scroll progress through the hero (desktop only)
+        let scrollRaf = 0;
         const updateHeroNav = () => {
           if (!DESKTOP_MQ.matches) return;
-          const ratio = Math.max(0, 1 - window.scrollY / hero.offsetHeight);
+          const ratio = Math.max(0, 1 - window.scrollY / heroHeight);
           heroNav.style.transition = "none";
           heroNav.style.opacity = String(ratio);
           heroNav.style.pointerEvents = ratio > 0 ? "" : "none";
         };
-        window.addEventListener("scroll", updateHeroNav, { passive: true });
+        window.addEventListener(
+          "scroll",
+          () => {
+            if (scrollRaf) return;
+            scrollRaf = requestAnimationFrame(() => {
+              scrollRaf = 0;
+              updateHeroNav();
+            });
+          },
+          { passive: true },
+        );
         DESKTOP_MQ.addEventListener("change", () => {
           if (!DESKTOP_MQ.matches) {
             heroNav.style.transition = "";
@@ -102,7 +129,7 @@ const {
           }
         });
         if (window.location.pathname !== "/") {
-          window.scrollTo({ top: hero.offsetHeight, behavior: "instant" });
+          window.scrollTo({ top: heroHeight, behavior: "instant" });
         }
         updateHeroNav();
 
@@ -117,7 +144,7 @@ const {
           heroLinks[heroLinks.length - 1].addEventListener("keydown", (e) => {
             if (e.key === "Tab" && !e.shiftKey) {
               e.preventDefault();
-              window.scrollTo({ top: hero.offsetHeight, behavior: "smooth" });
+              window.scrollTo({ top: heroHeight, behavior: "smooth" });
               sideNav.classList.add("--scrolled");
               mainEl.classList.add("--scrolled");
               firstSideLink.focus({ preventScroll: true });

@@ -1,10 +1,9 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
-import ProjectIframe from "./ProjectIframe.astro";
 import ChipList from "./ChipList.astro";
 import IconLink from "./IconLink.astro";
 import Button from "./Button.astro";
-import { GithubLogoIcon } from "@phosphor-icons/react";
+import { Icon } from "astro-icon/components";
 import { formatDateRange } from "../lib/date";
 
 type PetProjectEntry = CollectionEntry<"petProjects">;
@@ -17,6 +16,11 @@ const HEADLINE_LABEL: string = "Pet Projects";
 const SEE_ALL_PROJECTS_TEXT: string = "See all projects";
 
 const GITHUB_LABEL: string = "Github";
+
+const MOBILE_MEDIA_QUERY: string = "(max-width: 767px)";
+
+const toWebp = (src: string): string => src.replace(/\.\w+$/, ".webp");
+const toMobile = (src: string): string => src.replace(/(\.\w+)$/, "-mobile$1");
 ---
 
 <section class="mm-section" id="projects">
@@ -31,15 +35,8 @@ const GITHUB_LABEL: string = "Github";
   <ul>
     {
       sortedEntries.map((entry) => {
-        const {
-          heading,
-          kicker,
-          description,
-          date,
-          chips,
-          githubUrl,
-          preview,
-        } = entry.data;
+        const { heading, kicker, description, date, chips, githubUrl, image } =
+          entry.data;
 
         return (
           <li class="mm-section-item mm-section-item__project-item">
@@ -55,11 +52,31 @@ const GITHUB_LABEL: string = "Github";
               <p class="mm-section-item__preview">{description}</p>
               <IconLink href={githubUrl} target="_blank">
                 {GITHUB_LABEL}
-                <GithubLogoIcon slot="icon-left" />
+                <Icon name="ph:github-logo" slot="icon-left" />
               </IconLink>
             </div>
             <div class="mm-section-item__image">
-              <img srcset="https://placehold.co/389x325" />
+              <picture>
+                <source
+                  media={MOBILE_MEDIA_QUERY}
+                  srcset={toWebp(toMobile(image.src))}
+                  type="image/webp"
+                />
+                <source
+                  media={MOBILE_MEDIA_QUERY}
+                  srcset={toMobile(image.src)}
+                  type="image/png"
+                />
+                <source srcset={toWebp(image.src)} type="image/webp" />
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  width="389"
+                  height="325"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </div>
             <hr class="mm-section-item__divider" />
           </li>

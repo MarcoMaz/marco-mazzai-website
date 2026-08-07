@@ -1,11 +1,20 @@
 ---
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogListSection from '../../components/BlogListSection.astro';
 import { PAGE_TITLES } from '../../content.config';
 
+type BlogPageEntry = CollectionEntry<'blogPage'>;
+
+const blogPageCollection: BlogPageEntry[] = await getCollection('blogPage');
+if (blogPageCollection.length === 0) {
+  throw new Error('Blog list not found in copy collection');
+}
+
 const pageTitle = PAGE_TITLES.blog;
+const { description } = blogPageCollection[0].data;
 ---
 
-<BaseLayout title={pageTitle}>
+<BaseLayout title={pageTitle} description={description}>
   <BlogListSection />
 </BaseLayout>

@@ -1,43 +1,50 @@
-# Astro Starter Kit: Minimal
+# marco-mazzai-website
+
+Personal portfolio and blog for Marco Mazzai, built with [Astro](https://astro.build).
+
+## Tech stack
+
+- **Astro** — static site generation, content collections, routing
+- **SCSS** — styling (`src/styles`)
+- **wa11y-ui** — accessible Web Components (accordion, etc.)
+- **astro-icon** — inline SVG icons from the Phosphor Iconify set
+
+All pages are statically prerendered; there is no client-side JS framework runtime shipped to the browser.
+
+## Requirements
+
+Node **>=22.12.0** (see `.nvmrc`). If Node is managed via Homebrew rather than nvm/fnm:
 
 ```sh
-yarn create astro@latest -- --template minimal
+brew install node@22
+export PATH="/opt/homebrew/opt/node@22/bin:$PATH"  # for this shell session
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Project structure
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```
+src/
+├── components/     Astro components (Navigation, Footer, sections, ...)
+├── content/        Content collections
+│   ├── blog/           blog posts (Markdown)
+│   ├── copy/           site copy (home, about, footer, navigation, ...)
+│   └── petProjects/    pet project entries
+├── layouts/        BaseLayout.astro (head/meta, nav, footer shell)
+├── lib/            Shared utilities (date formatting)
+├── pages/           File-based routes
+└── styles/          Global SCSS, tokens, component styles
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Collection schemas and shared page metadata (titles, SEO defaults) live in `src/content.config.ts`.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
+## Commands
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `yarn install`             | Installs dependencies                            |
-| `yarn dev`             | Starts local dev server at `localhost:4321`      |
-| `yarn build`           | Build your production site to `./dist/`          |
-| `yarn preview`         | Preview your build locally, before deploying     |
-| `yarn astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `yarn astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| Command             | Action                                      |
+| :------------------ | :------------------------------------------- |
+| `npm install`        | Install dependencies                         |
+| `npm run dev`         | Start local dev server at `localhost:4321`   |
+| `npm run build`       | Build the production site to `./dist/`       |
+| `npm run preview`     | Preview the production build locally         |
+| `npm run astro ...`   | Run Astro CLI commands, e.g. `astro check`   |

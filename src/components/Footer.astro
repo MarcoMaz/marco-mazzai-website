@@ -1,10 +1,6 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
-import {
-  PaperPlaneTiltIcon,
-  GitlabLogoSimpleIcon,
-  LinkedinLogoIcon,
-} from '@phosphor-icons/react';
+import { Icon } from 'astro-icon/components';
 import Avatar from './Avatar.astro';
 
 type FooterEntry = CollectionEntry<'footer'>;
@@ -34,11 +30,11 @@ const currentYear: number = new Date().getFullYear();
           <li class='mm-footer__social-link'>
             {url && (
               <a href={url}>
-                {url.startsWith('mailto:') && <PaperPlaneTiltIcon size={20} />}
+                {url.startsWith('mailto:') && <Icon name="ph:paper-plane-tilt" size={20} />}
                 {(url.includes('gitlab') || url.includes('github')) && (
-                  <GitlabLogoSimpleIcon size={20} />
+                  <Icon name="ph:gitlab-logo-simple" size={20} />
                 )}
-                {url.includes('linkedin') && <LinkedinLogoIcon size={20} />}
+                {url.includes('linkedin') && <Icon name="ph:linkedin-logo" size={20} />}
                 {label}
               </a>
             )}
