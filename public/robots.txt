@@ -1,2 +1,60 @@
+# Site isn't public yet — everything is blocked below via the wildcard rule.
+# AI crawlers/agents are listed explicitly too so the intent is documented
+# and survives if the wildcard block is ever relaxed for search engines.
+# Note: robots.txt is voluntary — compliant bots honor it, but it isn't
+# an access-control mechanism against crawlers that ignore it.
+
+# OpenAI
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: OAI-SearchBot
+Disallow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+# Google (AI training, separate from regular Googlebot search indexing)
+User-agent: Google-Extended
+Disallow: /
+
+# Common Crawl (widely used as LLM training data source)
+User-agent: CCBot
+Disallow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Perplexity-User
+Disallow: /
+
+# ByteDance / TikTok
+User-agent: Bytespider
+Disallow: /
+
+# Amazon
+User-agent: Amazonbot
+Disallow: /
+
+# Apple (AI training, separate from regular Applebot search indexing)
+User-agent: Applebot-Extended
+Disallow: /
+
+# Meta
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+# Everyone else
 User-agent: *
 Disallow: /
