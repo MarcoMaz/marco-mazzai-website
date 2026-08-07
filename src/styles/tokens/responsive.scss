@@ -1,6 +1,6 @@
 @use "../utils" as *;
 
-// Mobile (base — 375px)
+// Mobile
 :root {
   // Typography — Display
   --typography-display-font-size: rem(32);
@@ -64,7 +64,7 @@
   --layout-grid-margin: rem(16);
 }
 
-// Tablet (768px)
+// Tablet
 @media (min-width: 768px) {
   :root {
     // Typography — Display
@@ -91,8 +91,8 @@
   }
 }
 
-// Desktop (1440px)
-@media (min-width: 1440px) {
+// Desktop
+@media (min-width: 1024px) {
   :root {
     // Typography — Display
     --typography-display-font-size: rem(92);
