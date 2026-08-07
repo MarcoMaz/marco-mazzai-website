@@ -1,7 +1,7 @@
 import Navigation from './Navigation.astro';
 
 export default {
-  title: 'Components/Navigation',
+  title: 'Organisms/Navigation',
   component: Navigation,
   parameters: {
     docs: {

@@ -1,7 +1,7 @@
 import EducationSection from './EducationSection.astro';
 
 export default {
-  title: 'Components/EducationSection',
+  title: 'Organisms/EducationSection',
   component: EducationSection,
   parameters: {
     docs: {

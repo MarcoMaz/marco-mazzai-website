@@ -1,7 +1,7 @@
 import ProjectIframe from './ProjectIframe.astro';
 
 export default {
-  title: 'Components/ProjectIframe',
+  title: 'Molecules/ProjectIframe',
   component: ProjectIframe,
 };
 

@@ -1,7 +1,7 @@
 import ChipList from './ChipList.astro';
 
 export default {
-  title: 'Components/ChipList',
+  title: 'Molecules/ChipList',
   component: ChipList,
 };
 

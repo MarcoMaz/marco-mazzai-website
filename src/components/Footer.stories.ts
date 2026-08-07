@@ -1,7 +1,7 @@
 import Footer from './Footer.astro';
 
 export default {
-  title: 'Components/Footer',
+  title: 'Organisms/Footer',
   component: Footer,
   parameters: {
     docs: {

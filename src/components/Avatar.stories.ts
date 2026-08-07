@@ -1,7 +1,7 @@
 import Avatar from './Avatar.astro';
 
 export default {
-  title: 'Components/Avatar',
+  title: 'Atoms/Avatar',
   component: Avatar,
   parameters: {
     docs: {

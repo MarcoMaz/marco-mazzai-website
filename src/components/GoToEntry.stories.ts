@@ -1,7 +1,7 @@
 import GoToEntry from './GoToEntry.astro';
 
 export default {
-  title: 'Components/GoToEntry',
+  title: 'Molecules/GoToEntry',
   component: GoToEntry,
 };
 

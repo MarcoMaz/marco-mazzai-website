@@ -1,7 +1,7 @@
 import PetProjectsSection from './PetProjectsSection.astro';
 
 export default {
-  title: 'Components/PetProjectsSection',
+  title: 'Organisms/PetProjectsSection',
   component: PetProjectsSection,
   parameters: {
     docs: {

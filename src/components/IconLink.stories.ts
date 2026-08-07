@@ -1,7 +1,7 @@
 import IconLink from './IconLink.astro';
 
 export default {
-  title: 'Components/IconLink',
+  title: 'Atoms/IconLink',
   component: IconLink,
 };
 
