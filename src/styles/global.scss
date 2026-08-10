@@ -245,7 +245,7 @@ main {
 /* NAVIGATION — HERO */
 
 .mm-navigation-hero {
-  background-color: var();
+  background-color: var(--color-neutrals900);
   display: flex;
   flex-direction: column;
   padding: var(--scale800) var(--scale500);
