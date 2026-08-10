@@ -1,7 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
 import ChipList from "../../molecules/ChipList/ChipList.astro";
-import Button from "../../atoms/Button/Button.astro";
+import LinkButton from "../../atoms/LinkButton/LinkButton.astro";
 import IconLink from "../../atoms/IconLink/IconLink.astro";
 import { Icon } from "astro-icon/components";
 import { formatDate } from "../../../lib/date";
@@ -59,9 +59,9 @@ const READ_MORE_TEXT: string = "Read more";
   <h2 class="mm-section__headline">{headline}</h2>
   {
     isHome && (
-      <Button class="mm-section__button" href="/blog">
+      <LinkButton class="mm-section__link-button" href="/blog">
         {SEE_ALL_POSTS_TEXT}
-      </Button>
+      </LinkButton>
     )
   }
   <ul>

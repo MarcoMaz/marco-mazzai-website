@@ -9,9 +9,9 @@ interface Props {
 const { href, class: className } = Astro.props;
 ---
 
-<a class:list={['mm-button', className]} href={href}
+<a class:list={['mm-link-button', className]} href={href}
   ><slot />
-  <span class='mm-button__icon'>
+  <span class='mm-link-button__icon'>
     <Icon name="ph:caret-right" />
   </span>
 </a>

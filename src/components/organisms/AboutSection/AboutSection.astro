@@ -3,7 +3,7 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import WorkExperiencesSection from "../WorkExperiencesSection/WorkExperiencesSection.astro";
 import EducationSection from "../EducationSection/EducationSection.astro";
 import ChipList from "../../molecules/ChipList/ChipList.astro";
-import Button from "../../atoms/Button/Button.astro";
+import LinkButton from "../../atoms/LinkButton/LinkButton.astro";
 import { Icon } from "astro-icon/components";
 
 type AboutEntry = CollectionEntry<"about">;
@@ -31,9 +31,9 @@ const SEE_ABOUT_PAGE_TEXT: string = "About Page";
   <h2 class="mm-section__headline">{headline}</h2>
   {
     isHome && (
-      <Button class="mm-section__button" href="/about">
+      <LinkButton class="mm-section__link-button" href="/about">
         {SEE_ABOUT_PAGE_TEXT}
-      </Button>
+      </LinkButton>
     )
   }
   <div class="mm-about">

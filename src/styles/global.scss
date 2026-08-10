@@ -561,8 +561,8 @@ ul {
 /* SECTION */
 .mm-section {
   @include tablet() {
-    .mm-button {
-      right: rem(40); // previously moved from Button
+    .mm-link-button {
+      right: rem(40); // previously moved from LinkButton
     }
   }
 }
@@ -585,7 +585,7 @@ ul {
 //     text-transform: uppercase;
 //   }
 
-//   &__button {
+//   &__link-button {
 //     grid-area: button;
 //   }
 

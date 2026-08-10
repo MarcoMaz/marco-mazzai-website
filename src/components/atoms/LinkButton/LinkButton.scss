@@ -1,6 +1,6 @@
 @use "../../../styles/shared" as *;
 
-.mm-button {
+.mm-link-button {
   @include typography-(h4);
 
   background: $surface-action;

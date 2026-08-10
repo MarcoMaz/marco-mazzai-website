@@ -1,8 +1,8 @@
-import Button from './Button.astro';
+import LinkButton from './LinkButton.astro';
 
 export default {
-  title: 'Atoms/Button',
-  component: Button,
+  title: 'Atoms/LinkButton',
+  component: LinkButton,
 };
 
 export const Default = {
@@ -26,7 +26,7 @@ export const LongLabel = {
 export const CustomClass = {
   args: {
     href: '/projects',
-    class: 'mm-section__button',
+    class: 'mm-section__link-button',
     slots: {
       default: 'See all projects',
     },
