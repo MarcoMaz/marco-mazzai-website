@@ -1,8 +1,9 @@
 @use "../../../styles/shared" as *;
 
 .mm-button {
-  background: $primary-default;
-  color: $neutral-white;
+  background: $surface-action;
+  border-radius: $border-radius-50;
+  color: $text-on-action;
   display: flex;
   gap: var(--scale200);
   justify-content: center;
@@ -11,11 +12,11 @@
   text-transform: uppercase;
 
   &:hover {
-    background: $primary-600;
+    background: $surface-action-hover;
   }
 
   &:focus {
-    outline: $border-width-50 solid $primary-default;
+    outline: $border-width-50 solid $surface-action;
   }
 
   &__icon {
