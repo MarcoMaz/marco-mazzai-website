@@ -24,11 +24,7 @@
   }
 
   @include tablet() {
+    padding: var(--scale300) var(--scale500);
     position: absolute;
-    right: rem(
-      40
-    ); /* TODO: this is the padding from Default section.. can be a variable */
-    padding-right: var(--scale500);
-    padding-left: var(--scale500);
   }
 }
