@@ -1,6 +1,4 @@
-# Site isn't public yet — everything is blocked below via the wildcard rule.
-# AI crawlers/agents are listed explicitly too so the intent is documented
-# and survives if the wildcard block is ever relaxed for search engines.
+# AI crawlers/agents are blocked below — search engines are free to index.
 # Note: robots.txt is voluntary — compliant bots honor it, but it isn't
 # an access-control mechanism against crawlers that ignore it.
 
@@ -55,6 +53,6 @@ Disallow: /
 User-agent: Meta-ExternalAgent
 Disallow: /
 
-# Everyone else
+# Everyone else (search engines, etc.) is welcome
 User-agent: *
-Disallow: /
+Disallow:
