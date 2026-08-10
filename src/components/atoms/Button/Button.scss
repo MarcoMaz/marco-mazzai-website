@@ -1,6 +1,8 @@
 @use "../../../styles/shared" as *;
 
 .mm-button {
+  @include typography-(h4);
+
   background: $surface-action;
   border-radius: $border-radius-50;
   color: $text-on-action;
