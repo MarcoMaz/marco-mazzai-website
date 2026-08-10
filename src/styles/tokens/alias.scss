@@ -1,0 +1,85 @@
+:root {
+  // Primary
+  --primary-100: var(--color-brick-red100);
+  --primary-200: var(--color-brick-red200);
+  --primary-300: var(--color-brick-red300);
+  --primary-400: var(--color-brick-red400);
+  --primary-default: var(--color-brick-red500);
+  --primary-600: var(--color-brick-red600);
+  --primary-700: var(--color-brick-red700);
+  --primary-800: var(--color-brick-red800);
+  --primary-900: var(--color-brick-red900);
+
+  // Error
+  --error-100: var(--color-red100);
+  --error-200: var(--color-red200);
+  --error-300: var(--color-red300);
+  --error-400: var(--color-red400);
+  --error-default: var(--color-red500);
+  --error-600: var(--color-red600);
+  --error-700: var(--color-red700);
+  --error-800: var(--color-red800);
+  --error-900: var(--color-red900);
+
+  // Information
+  --information-100: var(--color-teal100);
+  --information-200: var(--color-teal200);
+  --information-300: var(--color-teal300);
+  --information-400: var(--color-teal400);
+  --information-500: var(--color-teal500);
+  --information-600: var(--color-teal600);
+  --information-700: var(--color-teal700);
+  --information-800: var(--color-teal800);
+  --information-900: var(--color-teal900);
+
+  // Success
+  --success-100: var(--color-green100);
+  --success-200: var(--color-green200);
+  --success-300: var(--color-green300);
+  --success-400: var(--color-green400);
+  --success-default: var(--color-green500);
+  --success-600: var(--color-green600);
+  --success-700: var(--color-green700);
+  --success-800: var(--color-green800);
+  --success-900: var(--color-green900);
+
+  // Warning
+  --warning-100: var(--color-orange100);
+  --warning-200: var(--color-orange200);
+  --warning-300: var(--color-orange300);
+  --warning-400: var(--color-orange400);
+  --warning-default: var(--color-orange500);
+  --warning-600: var(--color-orange600);
+  --warning-700: var(--color-orange700);
+  --warning-800: var(--color-orange800);
+  --warning-900: var(--color-orange900);
+
+  // Neutral
+  --neutral-100: var(--color-neutrals100);
+  --neutral-200: var(--color-neutrals200);
+  --neutral-300: var(--color-neutrals300);
+  --neutral-400: var(--color-neutrals400);
+  --neutral-default: var(--color-neutrals500);
+  --neutral-600: var(--color-neutrals600);
+  --neutral-700: var(--color-neutrals700);
+  --neutral-800: var(--color-neutrals800);
+  --neutral-black: var(--color-neutrals900);
+  --neutral-white: var(--color-neutrals50);
+
+  // Border width
+  --border-width-25: var(--scale25);
+  --border-width-50: var(--scale50);
+  --border-width-m: var(--scale100);
+
+  // Border radius
+  --border-radius-none: var(--scale0);
+  --border-radius-50: var(--scale50);
+  --border-radius-100: var(--scale100);
+  --border-radius-200: var(--scale200);
+  --border-radius-300: var(--scale300);
+  --border-radius-round: var(--scale1600);
+
+  // Fonts
+  --fonts-primary: var(--fonts-headings-style-tanker);
+  --fonts-secondary: var(--fonts-paragraph-style-space-grotesk);
+}

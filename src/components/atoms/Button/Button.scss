@@ -1,0 +1,31 @@
+@use "../../../styles/shared" as *;
+
+.mm-button {
+  background: $surface-action;
+  border-radius: $border-radius-50;
+  color: $text-on-action;
+  display: flex;
+  gap: var(--scale200);
+  justify-content: center;
+  padding: var(--scale300) 0;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:hover {
+    background: $surface-action-hover;
+  }
+
+  &:focus {
+    outline: $border-width-50 solid $surface-action;
+  }
+
+  &__icon {
+    align-self: center;
+    display: flex;
+  }
+
+  @include tablet() {
+    padding: var(--scale300) var(--scale500);
+    position: absolute;
+  }
+}

@@ -1,0 +1,11 @@
+// Tanker isn't distributed on Google Fonts/Fontsource, so it's self-hosted
+// from the licensed files in src/assets/fonts/tanker.
+@font-face {
+  font-family: "Tanker";
+  src:
+    url("../assets/fonts/tanker/Tanker-Regular.woff2") format("woff2"),
+    url("../assets/fonts/tanker/Tanker-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

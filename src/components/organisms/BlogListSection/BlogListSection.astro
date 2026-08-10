@@ -1,10 +1,10 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
-import ChipList from "./ChipList.astro";
-import Button from "./Button.astro";
-import IconLink from "./IconLink.astro";
+import ChipList from "../../molecules/ChipList/ChipList.astro";
+import Button from "../../atoms/Button/Button.astro";
+import IconLink from "../../atoms/IconLink/IconLink.astro";
 import { Icon } from "astro-icon/components";
-import { formatDate } from "../lib/date";
+import { formatDate } from "../../../lib/date";
 
 type BlogEntry = CollectionEntry<"blog">;
 type BlogPageEntry = CollectionEntry<"blogPage">;
