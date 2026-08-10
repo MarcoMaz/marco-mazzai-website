@@ -81,3 +81,52 @@ $border-radius-round: var(--border-radius-round);
 // Fonts
 $fonts-primary: var(--fonts-primary);
 $fonts-secondary: var(--fonts-secondary);
+
+// Text
+$text-headings: var(--neutral-800);
+$text-body: var(--neutral-700);
+$text-action: var(--primary-700);
+$text-action-hover: var(--primary-800);
+$text-disabled: var(--neutral-600);
+$text-information: var(--information-500);
+$text-warning: var(--warning-default);
+$text-success: var(--success-600);
+$text-error: var(--error-default);
+$text-on-action: var(--neutral-white);
+$text-placeholder: var(--neutral-700);
+$text-secondary: var(--primary-700);
+
+// Icons
+$icons-default: var(--neutral-800);
+$icons-action: var(--primary-700);
+$icons-action-hover: var(--primary-800);
+$icons-disabled: var(--neutral-600);
+$icons-information: var(--information-500);
+$icons-warning: var(--warning-default);
+$icons-success: var(--success-600);
+$icons-error: var(--error-default);
+$icons-on-action: var(--neutral-white);
+
+// Surface
+$surface-page: var(--neutral-white);
+$surface-default: var(--neutral-white);
+$surface-action: var(--primary-default);
+$surface-action-hover: var(--primary-600);
+$surface-error: var(--error-100);
+$surface-information: var(--information-100);
+$surface-success: var(--success-100);
+$surface-warning: var(--warning-100);
+$surface-action-hover-light: var(--primary-100);
+$surface-subtle: var(--neutral-300);
+$surface-disabled: var(--neutral-200);
+
+// Border (surface/text usage — distinct from border-width/border-radius scale above)
+$border-default: var(--neutral-300);
+$border-disabled: var(--neutral-400);
+$border-error: var(--error-300);
+$border-information: var(--information-300);
+$border-warning: var(--warning-300);
+$border-success: var(--success-600);
+$border-action-hover: var(--primary-600);
+$border-action: var(--primary-default);
+$border-focus: var(--primary-default);

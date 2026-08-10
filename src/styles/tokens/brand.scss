@@ -1,6 +1,7 @@
 @use "../utils" as *;
 
 :root {
+  --color-neutrals50: #fffcf7;
   --color-neutrals100: #f5f0e8;
   --color-neutrals200: #ede7dd;
   --color-neutrals300: #e0d8cc;
@@ -37,7 +38,6 @@
   --color-orange700: #8b6034;
   --color-orange800: #5d4022;
   --color-orange900: #2e2011;
-  --color-neutrals50: #fffcf7;
   --color-brick-red100: #f9e5e0;
   --color-brick-red200: #f0c5ba;
   --color-brick-red300: #e69a87;
