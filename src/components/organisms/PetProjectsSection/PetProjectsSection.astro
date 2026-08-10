@@ -1,10 +1,11 @@
 ---
+import "./PetProjectsSection.scss";
 import { getCollection, type CollectionEntry } from "astro:content";
-import ChipList from "./ChipList.astro";
-import IconLink from "./IconLink.astro";
-import Button from "./Button.astro";
+import ChipList from "../../molecules/ChipList/ChipList.astro";
+import IconLink from "../../atoms/IconLink/IconLink.astro";
+import Button from "../../atoms/Button/Button.astro";
 import { Icon } from "astro-icon/components";
-import { formatDateRange } from "../lib/date";
+import { formatDateRange } from "../../../lib/date";
 
 type PetProjectEntry = CollectionEntry<"petProjects">;
 

@@ -1,9 +1,10 @@
 ---
+import "./AboutSection.scss";
 import { getCollection, type CollectionEntry } from "astro:content";
-import WorkExperiencesSection from "./WorkExperiencesSection.astro";
-import EducationSection from "./EducationSection.astro";
-import ChipList from "./ChipList.astro";
-import Button from "./Button.astro";
+import WorkExperiencesSection from "../WorkExperiencesSection/WorkExperiencesSection.astro";
+import EducationSection from "../EducationSection/EducationSection.astro";
+import ChipList from "../../molecules/ChipList/ChipList.astro";
+import Button from "../../atoms/Button/Button.astro";
 import { Icon } from "astro-icon/components";
 
 type AboutEntry = CollectionEntry<"about">;

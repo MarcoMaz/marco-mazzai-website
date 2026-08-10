@@ -1,13 +1,13 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import ProjectIframe from "../../components/ProjectIframe.astro";
+import ProjectIframe from "../../components/molecules/ProjectIframe/ProjectIframe.astro";
 import { formatDateRange } from "../../lib/date";
 import { PAGE_TITLES } from "../../content.config";
-import ChipList from "../../components/ChipList.astro";
-import IconLink from "../../components/IconLink.astro";
+import ChipList from "../../components/molecules/ChipList/ChipList.astro";
+import IconLink from "../../components/atoms/IconLink/IconLink.astro";
 import { Icon } from "astro-icon/components";
-import GoToEntry from "../../components/GoToEntry.astro";
+import GoToEntry from "../../components/molecules/GoToEntry/GoToEntry.astro";
 
 type PetProjectEntry = CollectionEntry<"petProjects">;
 
