@@ -1,0 +1,36 @@
+@use "../../../styles/shared" as *;
+
+.mm-iframe-wrapper {
+  position: relative;
+}
+
+.mm-iframe-wrapper__skip {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+  padding: var(--scale300) var(--scale500);
+  background: var(--sd-global-primary);
+  color: var(--sd-global-white);
+  font-size: var(--scale400);
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.mm-iframe-wrapper__skip:focus {
+  opacity: 1;
+  transform: translateY(0);
+  outline: $border-width-50 solid black;
+  margin: var(--scale400);
+}
+
+.mm-iframe-wrapper__skip--back {
+  top: auto;
+  bottom: 0;
+  transform: translateY(100%);
+}
+
+.mm-iframe-wrapper__skip--back:focus {
+  transform: translateY(0);
+}
