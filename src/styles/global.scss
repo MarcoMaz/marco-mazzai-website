@@ -115,60 +115,6 @@ ul {
 // COMPONENTS
 // ============================================================
 
-/* GO TO ENTRY */
-// .mm-go-to-entry {
-//   display: flex;
-//   flex-direction: column;
-//   gap: var(--scale200);
-
-//   a:focus {
-//     outline: $border-width-50 solid $primary-700;
-//   }
-
-//   &:hover div {
-//     color: $primary-800;
-//   }
-
-//   .mm-go-to-entry__link--next {
-//     justify-content: end;
-//   }
-
-//   @include tablet() {
-//     flex-direction: row;
-
-//     .mm-go-to-entry__link--next {
-//       justify-content: unset;
-//       margin-left: auto;
-//     }
-//   }
-// }
-
-// .mm-go-to-entry__link {
-//   align-items: center;
-//   display: flex;
-//   gap: var(--scale200);
-//   text-decoration: none;
-
-//   svg {
-//     fill: $primary-700;
-//     height: var(--scale500);
-//     width: var(--scale500);
-//   }
-// }
-
-// .mm-go-to-entry__info {
-//   color: $primary-700;
-//   display: flex;
-//   flex-direction: column;
-//   gap: var(--scale200);
-//   font-size: var(--scale500);
-
-//   &--heading {
-//     text-transform: uppercase;
-//     font-weight: bold;
-//   }
-// }
-
 /* IFRAME */
 // .mm-iframe-wrapper {
 //   position: relative;
