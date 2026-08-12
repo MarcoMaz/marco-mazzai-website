@@ -115,25 +115,6 @@ ul {
 // COMPONENTS
 // ============================================================
 
-/* CHIP */
-// .mm-chip-list {
-//   display: flex;
-//   flex-wrap: wrap;
-//   gap: var(--scale200);
-//   margin-bottom: var(--scale400);
-// }
-
-// .mm-chip {
-//   border-radius: $border-radius-50;
-//   border: var(--scale25) solid $neutral-300;
-//   color: $neutral-700;
-//   font-size: var(--scale300);
-//   font-weight: 400;
-//   line-height: var(--scale300);
-//   padding: var(--scale100) var(--scale200);
-//   text-transform: uppercase;
-// }
-
 /* GO TO ENTRY */
 // .mm-go-to-entry {
 //   display: flex;
@@ -786,120 +767,123 @@ ul {
 // }
 
 /* ABOUT */
-// .mm-about {
-//   &__intro {
-//     margin-bottom: var(--scale500);
-//   }
+.mm-about {
+  //   &__intro {
+  //     margin-bottom: var(--scale500);
+  //   }
 
-//   &__section {
-//     padding: var(--scale500) 0;
+  //   &__section {
+  //     padding: var(--scale500) 0;
 
-//     &--heading {
-//       font-size: var(--scale700);
-//       margin-bottom: var(--scale400);
-//       text-transform: uppercase;
-//     }
+  //     &--heading {
+  //       font-size: var(--scale700);
+  //       margin-bottom: var(--scale400);
+  //       text-transform: uppercase;
+  //     }
 
-//     &--list {
-//       list-style-type: disc;
-//       padding-left: var(--scale400);
-//     }
+  //     &--list {
+  //       list-style-type: disc;
+  //       padding-left: var(--scale400);
+  //     }
 
-//     :last-of-type {
-//       margin-bottom: var(--scale1000);
-//     }
-//   }
+  //     :last-of-type {
+  //       margin-bottom: var(--scale1000);
+  //     }
+  //   }
 
-//   wa-accordion {
-//     .accordionItem {
-//       align-items: center;
-//       border-bottom: $border-width-25 solid $neutral-300;
-//       display: grid;
-//       grid-template-areas:
-//         "header addon"
-//         "panel .";
-//       grid-template-columns: 1fr auto;
-//       padding: var(--scale500) 0;
-//     }
+  .mm-chip-list {
+    margin-bottom: var(--scale400);
+  }
+  //   wa-accordion {
+  //     .accordionItem {
+  //       align-items: center;
+  //       border-bottom: $border-width-25 solid $neutral-300;
+  //       display: grid;
+  //       grid-template-areas:
+  //         "header addon"
+  //         "panel .";
+  //       grid-template-columns: 1fr auto;
+  //       padding: var(--scale500) 0;
+  //     }
 
-//     .accordionItem__header {
-//       grid-area: header;
-//       position: relative;
-//     }
+  //     .accordionItem__header {
+  //       grid-area: header;
+  //       position: relative;
+  //     }
 
-//     .accordionItem__panel {
-//       grid-area: panel;
-//     }
+  //     .accordionItem__panel {
+  //       grid-area: panel;
+  //     }
 
-//     .accordionItem__button {
-//       font-size: var(--scale700);
-//       text-transform: uppercase;
+  //     .accordionItem__button {
+  //       font-size: var(--scale700);
+  //       text-transform: uppercase;
 
-//       &::after {
-//         content: "";
-//         inset: 0;
-//         position: absolute;
-//         right: calc(
-//           -1 * (var(--scale500) + var(--scale500))
-//         ); // extend over addon width + item padding
-//       }
+  //       &::after {
+  //         content: "";
+  //         inset: 0;
+  //         position: absolute;
+  //         right: calc(
+  //           -1 * (var(--scale500) + var(--scale500))
+  //         ); // extend over addon width + item padding
+  //       }
 
-//       &:focus-visible {
-//         outline: none;
+  //       &:focus-visible {
+  //         outline: none;
 
-//         &::after {
-//           outline: $border-width-50 solid currentColor;
-//           outline-offset: $border-width-50;
-//         }
-//       }
-//     }
+  //         &::after {
+  //           outline: $border-width-50 solid currentColor;
+  //           outline-offset: $border-width-50;
+  //         }
+  //       }
+  //     }
 
-//     .accordionItem__addon {
-//       align-items: center;
-//       color: $primary-700;
-//       display: flex;
-//       grid-area: addon;
-//       height: var(--scale500);
-//       justify-content: center;
-//       width: var(--scale500);
-//     }
+  //     .accordionItem__addon {
+  //       align-items: center;
+  //       color: $primary-700;
+  //       display: flex;
+  //       grid-area: addon;
+  //       height: var(--scale500);
+  //       justify-content: center;
+  //       width: var(--scale500);
+  //     }
 
-//     .mm-about__accordion--minus {
-//       display: none;
-//     }
+  //     .mm-about__accordion--minus {
+  //       display: none;
+  //     }
 
-//     .accordionItem--active {
-//       .mm-about__accordion--plus {
-//         display: none;
-//       }
-//       .mm-about__accordion--minus {
-//         display: block;
-//       }
-//     }
-//   }
+  //     .accordionItem--active {
+  //       .mm-about__accordion--plus {
+  //         display: none;
+  //       }
+  //       .mm-about__accordion--minus {
+  //         display: block;
+  //       }
+  //     }
+  //   }
 
-//   @include tablet() {
-//     grid-template-areas:
-//       "heading"
-//       "button"
-//       "content";
+  //   @include tablet() {
+  //     grid-template-areas:
+  //       "heading"
+  //       "button"
+  //       "content";
 
-//     &__headline {
-//       font-size: var(--scale1000);
-//     }
+  //     &__headline {
+  //       font-size: var(--scale1000);
+  //     }
 
-//     &__intro {
-//       margin-bottom: var(--scale800);
-//     }
+  //     &__intro {
+  //       margin-bottom: var(--scale800);
+  //     }
 
-//     &__section {
-//       padding: var(--scale800) 0;
+  //     &__section {
+  //       padding: var(--scale800) 0;
 
-//       :last-of-type {
-//         margin-bottom: unset;
-//       }
-//     }
-//   }
+  //       :last-of-type {
+  //         margin-bottom: unset;
+  //       }
+  //     }
+}
 
 //   @include desktop() {
 //     &__section {

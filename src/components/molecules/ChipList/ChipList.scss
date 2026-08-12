@@ -1,0 +1,18 @@
+@use "../../../styles/shared" as *;
+
+.mm-chip {
+  @include typography-(paragraph-xsm);
+
+  border-radius: $border-radius-50;
+  border: $border-width-25 solid $border-default;
+  color: $text-placeholder;
+  font-family: $fonts-secondary;
+  padding: var(--scale100) var(--scale200);
+  text-transform: uppercase;
+}
+
+.mm-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--scale300);
+}
