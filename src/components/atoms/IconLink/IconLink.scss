@@ -1,0 +1,21 @@
+@use "../../../styles/shared" as *;
+
+.mm-icon-link {
+  color: $primary-700;
+  display: inline-flex;
+  font-size: var(--scale400);
+  gap: 2px;
+
+  svg {
+    height: var(--scale500);
+    width: var(--scale500);
+  }
+
+  &:hover {
+    color: $primary-800;
+  }
+
+  &:focus {
+    outline: $border-width-50 solid $primary-700;
+  }
+}
