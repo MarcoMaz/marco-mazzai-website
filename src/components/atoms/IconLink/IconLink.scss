@@ -1,10 +1,13 @@
 @use "../../../styles/shared" as *;
 
 .mm-icon-link {
-  color: $primary-700;
+  @include typography-(paragraph-md);
+
+  align-items: center;
+  color: $text-action;
   display: inline-flex;
-  font-size: var(--scale400);
-  gap: 2px;
+  font-family: $fonts-secondary;
+  gap: var(--scale200);
 
   svg {
     height: var(--scale500);
@@ -12,10 +15,11 @@
   }
 
   &:hover {
-    color: $primary-800;
+    color: $text-action-hover;
   }
 
   &:focus {
-    outline: $border-width-50 solid $primary-700;
+    border-radius: $border-radius-50;
+    outline: $border-width-50 solid $border-focus;
   }
 }
