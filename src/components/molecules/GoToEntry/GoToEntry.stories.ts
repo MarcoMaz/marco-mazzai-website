@@ -5,22 +5,7 @@ export default {
   component: GoToEntry,
 };
 
-export const Both = {
-  args: {
-    prevEntry: {
-      href: "/blog/previous-post",
-      heading: "Designing accessible focus states",
-      kicker: "Accessibility",
-    },
-    nextEntry: {
-      href: "/blog/next-post",
-      heading: "Why design systems need a11y from day one",
-      kicker: "Design Systems",
-    },
-  },
-};
-
-export const PrevOnly = {
+export const Default = {
   args: {
     prevEntry: {
       href: "/blog/previous-post",
@@ -32,6 +17,21 @@ export const PrevOnly = {
 
 export const NextOnly = {
   args: {
+    nextEntry: {
+      href: "/blog/next-post",
+      heading: "Why design systems need a11y from day one",
+      kicker: "Design Systems",
+    },
+  },
+};
+
+export const Both = {
+  args: {
+    prevEntry: {
+      href: "/blog/previous-post",
+      heading: "Designing accessible focus states",
+      kicker: "Accessibility",
+    },
     nextEntry: {
       href: "/blog/next-post",
       heading: "Why design systems need a11y from day one",
