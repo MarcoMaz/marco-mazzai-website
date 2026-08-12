@@ -48,14 +48,14 @@ const prevEntry = prevPost
   ? {
       href: `/blog/${prevPost.data.slug}`,
       heading: prevPost.data.heading,
-      kicker: prevPost.data.kicker,
+      date: prevPost.data.date,
     }
   : undefined;
 const nextEntry = nextPost
   ? {
       href: `/blog/${nextPost.data.slug}`,
       heading: nextPost.data.heading,
-      kicker: nextPost.data.kicker,
+      date: nextPost.data.date,
     }
   : undefined;
 ---

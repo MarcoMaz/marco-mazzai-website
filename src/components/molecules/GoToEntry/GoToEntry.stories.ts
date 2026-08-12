@@ -10,7 +10,7 @@ export const Default = {
     prevEntry: {
       href: "/blog/previous-post",
       heading: "Designing accessible focus states",
-      kicker: "Accessibility",
+      date: "12-03-2024",
     },
   },
 };
@@ -20,7 +20,7 @@ export const NextOnly = {
     nextEntry: {
       href: "/blog/next-post",
       heading: "Why design systems need a11y from day one",
-      kicker: "Design Systems",
+      date: "03-06-2024",
     },
   },
 };
@@ -30,25 +30,12 @@ export const Both = {
     prevEntry: {
       href: "/blog/previous-post",
       heading: "Designing accessible focus states",
-      kicker: "Accessibility",
+      date: "12-03-2024",
     },
     nextEntry: {
       href: "/blog/next-post",
       heading: "Why design systems need a11y from day one",
-      kicker: "Design Systems",
-    },
-  },
-};
-
-export const WithoutKickers = {
-  args: {
-    prevEntry: {
-      href: "/blog/previous-post",
-      heading: "Designing accessible focus states",
-    },
-    nextEntry: {
-      href: "/blog/next-post",
-      heading: "Why design systems need a11y from day one",
+      date: "03-06-2024",
     },
   },
 };
