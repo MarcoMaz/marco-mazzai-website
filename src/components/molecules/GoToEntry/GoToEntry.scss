@@ -1,16 +1,43 @@
 @use "../../../styles/shared" as *;
 
+.mm-go-to-entry__link {
+  align-items: center;
+  display: flex;
+  gap: var(--scale200);
+  text-decoration: none;
+
+  svg {
+    color: $icons-action;
+    height: var(--scale500);
+    width: var(--scale500);
+  }
+}
+
+.mm-go-to-entry__info {
+  @include typography-(paragraph-sm);
+
+  color: $text-action;
+  display: flex;
+  flex-direction: column;
+  gap: var(--scale200);
+
+  &--date {
+    font-family: $fonts-secondary;
+  }
+}
+
 .mm-go-to-entry {
   display: flex;
   flex-direction: column;
   gap: var(--scale200);
 
   a:focus {
-    outline: $border-width-50 solid $primary-700;
+    border-radius: $border-radius-50;
+    outline: $border-width-50 solid $border-focus;
   }
 
   &:hover div {
-    color: $primary-800;
+    color: $text-action-hover;
   }
 
   .mm-go-to-entry__link--next {
@@ -19,36 +46,10 @@
 
   @include tablet() {
     flex-direction: row;
+    gap: unset;
 
     .mm-go-to-entry__link--next {
-      justify-content: unset;
       margin-left: auto;
     }
-  }
-}
-
-.mm-go-to-entry__link {
-  align-items: center;
-  display: flex;
-  gap: var(--scale200);
-  text-decoration: none;
-
-  svg {
-    fill: $primary-700;
-    height: var(--scale500);
-    width: var(--scale500);
-  }
-}
-
-.mm-go-to-entry__info {
-  color: $primary-700;
-  display: flex;
-  flex-direction: column;
-  gap: var(--scale200);
-  font-size: var(--scale500);
-
-  &--heading {
-    text-transform: uppercase;
-    font-weight: bold;
   }
 }
