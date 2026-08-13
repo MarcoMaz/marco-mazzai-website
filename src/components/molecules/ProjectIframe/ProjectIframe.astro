@@ -16,8 +16,8 @@ const {
 if (!src) throw new Error('ProjectIframe: "src" prop is required');
 ---
 
-<div class="mm-iframe-wrapper">
-  <button class="mm-iframe-wrapper__skip" type="button"
+<div class="mm-project-iframe">
+  <button class="mm-project-iframe__skip" type="button"
     >Skip project preview</button
   >
   <iframe
@@ -27,7 +27,7 @@ if (!src) throw new Error('ProjectIframe: "src" prop is required');
     style="border: 1px solid #ccc; border-radius: 4px;"
     title={title}
     allowfullscreen></iframe>
-  <button class="mm-iframe-wrapper__skip mm-iframe-wrapper__skip--back" type="button"
+  <button class="mm-project-iframe__skip mm-project-iframe__skip--back" type="button"
     >Skip project preview (back)</button
   >
 </div>
@@ -37,10 +37,10 @@ if (!src) throw new Error('ProjectIframe: "src" prop is required');
     'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
   document
-    .querySelectorAll<HTMLButtonElement>(".mm-iframe-wrapper__skip:not(.mm-iframe-wrapper__skip--back)")
+    .querySelectorAll<HTMLButtonElement>(".mm-project-iframe__skip:not(.mm-project-iframe__skip--back)")
     .forEach((btn) => {
       btn.addEventListener("click", () => {
-        const wrapper = btn.closest(".mm-iframe-wrapper");
+        const wrapper = btn.closest(".mm-project-iframe");
         let el = wrapper?.nextElementSibling;
         while (el) {
           const target = el.matches(FOCUSABLE)
@@ -56,10 +56,10 @@ if (!src) throw new Error('ProjectIframe: "src" prop is required');
     });
 
   document
-    .querySelectorAll<HTMLButtonElement>(".mm-iframe-wrapper__skip--back")
+    .querySelectorAll<HTMLButtonElement>(".mm-project-iframe__skip--back")
     .forEach((btn) => {
       btn.addEventListener("click", () => {
-        const wrapper = btn.closest(".mm-iframe-wrapper");
+        const wrapper = btn.closest(".mm-project-iframe");
         const getAllFocusable = (root: Element) =>
           Array.from(root.querySelectorAll<HTMLElement>(FOCUSABLE));
 

@@ -1,10 +1,10 @@
 @use "../../../styles/shared" as *;
 
-.mm-iframe-wrapper {
+.mm-project-iframe {
   position: relative;
 }
 
-.mm-iframe-wrapper__skip {
+.mm-project-iframe__skip {
   display: block;
   position: absolute;
   top: 0;
@@ -18,19 +18,19 @@
   transition: opacity 0.15s;
 }
 
-.mm-iframe-wrapper__skip:focus {
+.mm-project-iframe__skip:focus {
   opacity: 1;
   transform: translateY(0);
   outline: $border-width-50 solid black;
   margin: var(--scale400);
 }
 
-.mm-iframe-wrapper__skip--back {
+.mm-project-iframe__skip--back {
   top: auto;
   bottom: 0;
   transform: translateY(100%);
 }
 
-.mm-iframe-wrapper__skip--back:focus {
+.mm-project-iframe__skip--back:focus {
   transform: translateY(0);
 }
