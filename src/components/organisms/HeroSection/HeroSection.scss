@@ -1,0 +1,59 @@
+@use "../../../styles/shared" as *;
+
+.mm-hero {
+  background-color: $neutral-black;
+  color: $neutral-white;
+  padding: var(--scale1600) var(--scale400) var(--scale1300);
+  text-align: center;
+
+  .mm-avatar {
+    display: none;
+  }
+
+  &__headline,
+  &__kicker {
+    margin-bottom: var(--scale600);
+  }
+
+  &__headline {
+    @include typography-(display);
+  }
+
+  &__kicker {
+    @include typography-(h4);
+  }
+
+  &__summary {
+    @include typography-(paragraph-sm);
+  }
+
+  @include tablet() {
+    padding: rem(112) var(--scale1300) rem(84);
+
+    &__kicker {
+      @include typography-(h3);
+    }
+
+    &__summary {
+      @include typography-(paragraph-lg);
+    }
+  }
+
+  @include desktop() {
+    display: flex;
+    height: 100vh;
+    padding: rem(180) rem(185);
+
+    .mm-avatar {
+      display: block;
+      height: rem(317);
+      width: rem(317);
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+    }
+  }
+}

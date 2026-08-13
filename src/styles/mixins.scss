@@ -6,7 +6,6 @@
   line-height: var(--typography-#{$level}-line-height);
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 @mixin mobile {
