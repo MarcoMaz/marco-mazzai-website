@@ -1,0 +1,103 @@
+@use "../../../styles/shared" as *;
+
+.mm-footer {
+  background-color: $neutral-black;
+  color: $neutral-white;
+
+  .mm-avatar {
+    height: var(--scale1600);
+    width: var(--scale1600);
+    margin-bottom: var(--scale1100);
+  }
+
+  &__body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: var(--scale1000) var(--scale400);
+  }
+
+  &__heading {
+    @include typography-(h2);
+
+    margin-bottom: var(--scale600);
+  }
+
+  &__collaboration {
+    @include typography-(paragraph-lg);
+
+    font-family: $fonts-secondary;
+    margin-bottom: var(--scale1100);
+    text-align: center;
+    text-wrap: auto;
+  }
+
+  &__social-link,
+  &__social-link a {
+    color: $primary-300;
+  }
+
+  &__social-link a {
+    @include typography-(h4);
+
+    align-items: center;
+    border-radius: $border-radius-50;
+    display: flex;
+    gap: var(--scale200);
+    padding: var(--scale100) var(--scale200);
+    text-decoration: none;
+
+    &:focus {
+      outline: $border-width-50 solid $primary-300;
+    }
+  }
+
+  &__social-links-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--scale800);
+  }
+
+  &__built-with {
+    @include typography-(paragraph-sm);
+
+    background-color: $surface-subtle;
+    color: $text-body;
+    font-family: $fonts-secondary;
+    font-weight: 700;
+    padding: var(--scale800) var(--scale500);
+    text-align: center;
+    white-space: unset;
+  }
+
+  &__copyright {
+    display: block;
+  }
+
+  @include tablet() {
+    .mm-avatar {
+      height: rem(180);
+      width: rem(180);
+    }
+
+    &__body {
+      padding: var(--scale1300) var(--scale1000);
+    }
+
+    &__social-links-list {
+      flex-direction: row;
+    }
+  }
+
+  @include desktop() {
+    .mm-avatar {
+      height: rem(222);
+      width: rem(222);
+    }
+
+    &__body {
+      padding: var(--scale1400) rem(320);
+    }
+  }
+}
