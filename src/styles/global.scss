@@ -348,16 +348,16 @@ ul {
 // ============================================================
 
 // All light-background page sections
-// .mm-section,
-// .mm-entry {
-//   background-color: var(--color-neutrals50);
-// }
+.mm-section,
+.mm-entry {
+  background-color: $surface-page;
+}
 
 /* SECTION */
 .mm-section {
   @include tablet() {
     .mm-link-button {
-      right: rem(40); // previously moved from LinkButton
+      right: rem(40);
     }
   }
 }
