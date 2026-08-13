@@ -24,7 +24,8 @@ if (!src) throw new Error('ProjectIframe: "src" prop is required');
     src={src}
     width={width}
     height={height}
-    style="border: 1px solid #ccc; border-radius: 4px;"
+    class="mm-project-iframe__frame"
+    style={`--iframe-width: ${width}; --iframe-height: ${height};`}
     title={title}
     allowfullscreen></iframe>
   <button class="mm-project-iframe__skip mm-project-iframe__skip--back" type="button"
@@ -36,44 +37,48 @@ if (!src) throw new Error('ProjectIframe: "src" prop is required');
   const FOCUSABLE =
     'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
-  document
-    .querySelectorAll<HTMLButtonElement>(".mm-project-iframe__skip:not(.mm-project-iframe__skip--back)")
-    .forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const wrapper = btn.closest(".mm-project-iframe");
-        let el = wrapper?.nextElementSibling;
-        while (el) {
-          const target = el.matches(FOCUSABLE)
-            ? el
-            : el.querySelector<HTMLElement>(FOCUSABLE);
-          if (target) {
-            (target as HTMLElement).focus();
-            return;
-          }
-          el = el.nextElementSibling;
-        }
-      });
-    });
+  const skipButtons = document.querySelectorAll(
+    ".mm-project-iframe__skip:not(.mm-project-iframe__skip--back)",
+  ) as NodeListOf<HTMLButtonElement>;
 
-  document
-    .querySelectorAll<HTMLButtonElement>(".mm-project-iframe__skip--back")
-    .forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const wrapper = btn.closest(".mm-project-iframe");
-        const getAllFocusable = (root: Element) =>
-          Array.from(root.querySelectorAll<HTMLElement>(FOCUSABLE));
-
-        let el = wrapper?.previousElementSibling;
-        let lastTarget: HTMLElement | null = null;
-        while (el) {
-          const candidates = el.matches(FOCUSABLE)
-            ? [el as HTMLElement]
-            : getAllFocusable(el);
-          if (candidates.length) lastTarget = candidates[candidates.length - 1];
-          if (lastTarget) break;
-          el = el.previousElementSibling;
+  skipButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const wrapper = btn.closest(".mm-project-iframe");
+      let el = wrapper?.nextElementSibling;
+      while (el) {
+        const target = el.matches(FOCUSABLE)
+          ? (el as HTMLElement)
+          : (el.querySelector(FOCUSABLE) as HTMLElement | null);
+        if (target) {
+          target.focus();
+          return;
         }
-        lastTarget?.focus();
-      });
+        el = el.nextElementSibling;
+      }
     });
+  });
+
+  const backButtons = document.querySelectorAll(
+    ".mm-project-iframe__skip--back",
+  ) as NodeListOf<HTMLButtonElement>;
+
+  backButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const wrapper = btn.closest(".mm-project-iframe");
+      const getAllFocusable = (root: Element) =>
+        Array.from(root.querySelectorAll(FOCUSABLE)) as HTMLElement[];
+
+      let el = wrapper?.previousElementSibling;
+      let lastTarget: HTMLElement | null = null;
+      while (el) {
+        const candidates = el.matches(FOCUSABLE)
+          ? [el as HTMLElement]
+          : getAllFocusable(el);
+        if (candidates.length) lastTarget = candidates[candidates.length - 1];
+        if (lastTarget) break;
+        el = el.previousElementSibling;
+      }
+      lastTarget?.focus();
+    });
+  });
 </script>
