@@ -26,20 +26,38 @@ const currentYear: number = new Date().getFullYear();
     </p>
     <ul class='mm-footer__social-links-list'>
       {
-        CTA.map(({ url, label }) => (
-          <li class='mm-footer__social-link'>
-            {url && (
-              <a href={url}>
-                {url.startsWith('mailto:') && <Icon name="ph:paper-plane-tilt" size={20} />}
-                {(url.includes('gitlab') || url.includes('github')) && (
-                  <Icon name="ph:gitlab-logo-simple" size={20} />
-                )}
-                {url.includes('linkedin') && <Icon name="ph:linkedin-logo" size={20} />}
-                {label}
-              </a>
-            )}
-          </li>
-        ))
+        CTA.map(({ url, label }) => {
+          const isEmail = url?.startsWith('mailto:');
+          const [emailUser, emailDomain] = isEmail
+            ? url.slice('mailto:'.length).split('@')
+            : [];
+
+          return (
+            <li class='mm-footer__social-link'>
+              {url && isEmail && emailUser && emailDomain && (
+                <a
+                  href='#'
+                  data-mm-email-user={emailUser}
+                  data-mm-email-domain={emailDomain}
+                >
+                  <Icon name="ph:paper-plane-tilt" size={20} />
+                  <span data-mm-email-text>
+                    {emailUser} [at] {emailDomain}
+                  </span>
+                </a>
+              )}
+              {url && !isEmail && (
+                <a href={url}>
+                  {(url.includes('gitlab') || url.includes('github')) && (
+                    <Icon name="ph:gitlab-logo-simple" size={20} />
+                  )}
+                  {url.includes('linkedin') && <Icon name="ph:linkedin-logo" size={20} />}
+                  {label}
+                </a>
+              )}
+            </li>
+          );
+        })
       }
     </ul>
   </div>
@@ -51,3 +69,18 @@ const currentYear: number = new Date().getFullYear();
     </span>
   </p>
 </footer>
+
+<script>
+  document
+    .querySelectorAll<HTMLAnchorElement>('[data-mm-email-user]')
+    .forEach((link) => {
+      const { mmEmailUser: user, mmEmailDomain: domain } = link.dataset;
+      if (!user || !domain) return;
+
+      const email = `${user}@${domain}`;
+      link.href = `mailto:${email}`;
+
+      const textEl = link.querySelector('[data-mm-email-text]');
+      if (textEl) textEl.textContent = email;
+    });
+</script>
