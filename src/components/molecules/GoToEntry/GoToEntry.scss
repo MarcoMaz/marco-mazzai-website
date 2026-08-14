@@ -14,15 +14,19 @@
 }
 
 .mm-go-to-entry__info {
-  @include typography-(paragraph-sm);
-
   color: $text-action;
   display: flex;
   flex-direction: column;
   gap: var(--scale200);
 
   &--date {
-    font-family: $fonts-secondary;
+    @include typography-(paragraph-sm);
+  }
+
+  &--heading {
+    @include typography-(h4);
+
+    font-family: $fonts-primary;
   }
 }
 
