@@ -1,11 +1,8 @@
 @use "./tokens/mapped" as *;
 
 @mixin typography-($level) {
-  font-family: $fonts-primary;
   font-size: var(--typography-#{$level}-font-size);
   line-height: var(--typography-#{$level}-line-height);
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 @mixin mobile {

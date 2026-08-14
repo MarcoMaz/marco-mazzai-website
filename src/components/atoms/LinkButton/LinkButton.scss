@@ -3,6 +3,7 @@
 .mm-link-button {
   @include typography-(h4);
 
+  font-family: $fonts-primary;
   background: $surface-action;
   border-radius: $border-radius-50;
   color: $text-on-action;
