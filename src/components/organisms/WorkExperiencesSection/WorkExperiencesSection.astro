@@ -32,7 +32,9 @@ const workExperiences = workExperiencesCollection[0].data
       <li class="mm-work-experiences__item">
         <div class="mm-work-experiences__details">
           <div class="mm-work-experiences__location">
-            <a href={url}>{workPlace}</a>
+            <a class="mm-work-experiences__company" href={url}>
+              {workPlace}
+            </a>
             <div>{location}</div>
           </div>
           <div>{formatDateRange(date.from, date.to)}</div>

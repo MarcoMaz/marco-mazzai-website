@@ -1,0 +1,56 @@
+@use "../../../styles/shared" as *;
+
+.mm-work-experiences {
+  &__item {
+    padding: var(--scale500) 0;
+  }
+
+  &__details {
+    @include typography-(paragraph-md);
+
+    color: $text-body;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--scale200);
+    text-transform: uppercase;
+  }
+
+  &__company {
+    color: $text-action;
+    font-weight: bold;
+    text-decoration: none;
+
+    &:hover {
+      color: $text-action-hover;
+    }
+
+    &:focus {
+      border-radius: $border-radius-50;
+      outline: $border-width-50 solid $border-focus;
+    }
+  }
+
+  &__location {
+    display: flex;
+    gap: var(--scale300);
+  }
+
+  &__heading {
+    @include typography-(h3);
+
+    color: $text-headings;
+    margin-bottom: var(--scale400);
+  }
+
+  &__tasks {
+    color: $text-body;
+    list-style-type: disc;
+    padding-left: var(--scale400);
+  }
+
+  @include tablet() {
+    &__item {
+      padding: var(--scale800) 0;
+    }
+  }
+}
