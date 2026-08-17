@@ -498,99 +498,104 @@ ul {
 }
 
 /* ENTRY */
-// .mm-entry {
-//   padding: var(--scale1300);
+.mm-entry {
+  padding: var(--scale1000) var(--scale400);
+  // padding: var(--scale1300);
 
-//   &__date {
-//     color: $primary-700;
-//     display: flex;
-//     font-size: rem(14);
-//     gap: var(--scale300);
-//     margin-bottom: var(--scale200);
-//   }
+  &__date {
+    color: $primary-700;
+    display: flex;
+    font-size: rem(14);
+    gap: var(--scale300);
+    margin-bottom: var(--scale200);
+  }
 
-//   &__kicker {
-//     color: $neutral-700;
-//     font-size: var(--scale400);
-//     margin-bottom: var(--scale200);
-//   }
+  &__kicker {
+    color: $neutral-700;
+    font-size: var(--scale400);
+    margin-bottom: var(--scale200);
+  }
 
-//   &__heading {
-//     color: $neutral-800;
-//     font-size: var(--scale600);
-//     margin-bottom: var(--scale400);
-//     text-transform: uppercase;
-//   }
+  &__heading {
+    color: $neutral-800;
+    font-size: var(--scale600);
+    margin-bottom: var(--scale400);
+    text-transform: uppercase;
+  }
 
-//   article {
-//     p,
-//     ul,
-//     ol {
-//       margin-bottom: rem(20);
-//     }
+  article {
+    p,
+    ul,
+    ol {
+      margin-bottom: rem(20);
+    }
 
-//     h2,
-//     h3 {
-//       margin-top: rem(32);
-//       margin-bottom: rem(16);
-//     }
+    h2,
+    h3 {
+      margin-top: rem(32);
+      margin-bottom: rem(16);
+    }
 
-//     li {
-//       margin-bottom: rem(8);
-//     }
-//   }
+    li {
+      margin-bottom: rem(8);
+    }
+  }
 
-//   &__content {
-//     padding: var(--scale500) 0;
+  &__content {
+    padding: var(--scale500) 0;
 
-//     &--heading {
-//       color: $neutral-800;
-//       font-size: var(--scale700);
-//       margin-bottom: var(--scale400);
-//       text-transform: uppercase;
-//     }
+    &--heading {
+      color: $neutral-800;
+      font-size: var(--scale700);
+      margin-bottom: var(--scale400);
+      text-transform: uppercase;
+    }
 
-//     &--description {
-//       color: $neutral-700;
-//       font-size: var(--scale400);
-//       margin-bottom: var(--scale400);
-//     }
+    &--description {
+      color: $neutral-700;
+      font-size: var(--scale400);
+      margin-bottom: var(--scale400);
+    }
 
-//     @include tablet() {
-//       &__heading {
-//         font-size: var(--scale800);
-//       }
+    @include tablet() {
+      &__heading {
+        font-size: var(--scale800);
+      }
 
-//       &__content {
-//         padding: var(--scale800) 0;
+      &__content {
+        padding: var(--scale800) 0;
 
-//         &--heading {
-//           font-size: var(--scale800);
-//         }
-//       }
-//     }
+        &--heading {
+          font-size: var(--scale800);
+        }
+      }
+    }
 
-//     @include desktop() {
-//       &__heading {
-//         font-size: var(--scale1000);
-//       }
-//     }
-//   }
+    @include desktop() {
+      &__heading {
+        font-size: var(--scale1000);
+      }
+    }
+  }
 
-//   &__divider {
-//     border: $border-width-25 solid $neutral-300;
-//     margin: var(--scale500) 0;
+  &__divider {
+    border: $border-width-25 solid $neutral-300;
+    margin: var(--scale500) 0;
 
-//     @include tablet() {
-//       margin: var(--scale800) 0;
-//     }
-//   }
+    @include tablet() {
+      margin: var(--scale800) 0;
+    }
+  }
 
-//   &__goToEntry {
-//     color: $neutral-700;
-//     font-size: var(--scale500);
-//   }
-// }
+  &__goToEntry {
+    color: $neutral-700;
+    font-size: var(--scale500);
+  }
+
+  @include tablet() {
+    padding: var(--scale1300) var(--scale1000);
+  }
+}
 
 /* ABOUT */
 .mm-about {
