@@ -37,11 +37,11 @@ const educationItems = educationCollection[0].data
           <>
             <div class="mm-education__details">
               <div class="mm-education__location">{type}</div>
-              <div>
-                {date && formatDateRange(date.from ?? "", date.to ?? "") && (
-                  <span>{formatDateRange(date.from ?? "", date.to ?? "")}</span>
-                )}
-              </div>
+              {date && formatDateRange(date.from ?? "", date.to ?? "") && (
+                <div class="mm-education__date">
+                  {formatDateRange(date.from ?? "", date.to ?? "")}
+                </div>
+              )}
             </div>
             <ul class="mm-education__topics">
               {items.map((item) => (

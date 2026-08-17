@@ -1,0 +1,47 @@
+@use "../../../styles/shared" as *;
+
+.mm-education {
+  &__item {
+    padding: var(--scale500) 0;
+  }
+
+  &__category {
+    @include typography-(h3);
+
+    color: $text-headings;
+    margin-bottom: var(--scale400);
+  }
+
+  &__details {
+    @include typography-(paragraph-md);
+
+    color: $text-body;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--scale500);
+    text-transform: uppercase;
+  }
+
+  &__location {
+    font-weight: bold;
+  }
+
+  &__topics {
+    @include typography-(paragraph-md);
+
+    color: $text-body;
+    list-style-type: disc;
+    padding-bottom: var(--scale500);
+    padding-left: var(--scale400);
+  }
+
+  @include tablet() {
+    &__item {
+      padding: var(--scale800) 0;
+    }
+
+    &__topics {
+      padding-bottom: var(--scale800);
+    }
+  }
+}
