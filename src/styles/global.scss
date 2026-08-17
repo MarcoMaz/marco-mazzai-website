@@ -500,86 +500,74 @@ ul {
 /* ENTRY */
 .mm-entry {
   padding: var(--scale1000) var(--scale400);
-  // padding: var(--scale1300);
 
   &__date {
-    color: $primary-700;
+    @include typography-(paragraph-sm);
+
+    color: $text-secondary;
     display: flex;
-    font-size: rem(14);
     gap: var(--scale300);
     margin-bottom: var(--scale200);
   }
 
   &__kicker {
-    color: $neutral-700;
-    font-size: var(--scale400);
+    @include typography-(paragraph-md);
+
+    color: $text-body;
     margin-bottom: var(--scale200);
   }
 
   &__heading {
-    color: $neutral-800;
-    font-size: var(--scale600);
+    @include typography-(h1);
+
+    color: $text-headings;
     margin-bottom: var(--scale400);
-    text-transform: uppercase;
   }
 
+  .mm-chip-list {
+    margin-bottom: var(--scale500);
+  }
+
+  // Blog styling
   article {
     p,
     ul,
     ol {
-      margin-bottom: rem(20);
+      margin-bottom: var(--scale500);
     }
 
     h2,
     h3 {
-      margin-top: rem(32);
-      margin-bottom: rem(16);
+      margin-top: var(--scale800);
+      margin-bottom: var(--scale400);
     }
 
     li {
-      margin-bottom: rem(8);
+      margin-bottom: var(--scale200);
     }
   }
 
+  // Project styling
   &__content {
     padding: var(--scale500) 0;
 
     &--heading {
-      color: $neutral-800;
-      font-size: var(--scale700);
+      @include typography-(h2);
+
+      color: $text-headings;
       margin-bottom: var(--scale400);
-      text-transform: uppercase;
     }
 
     &--description {
-      color: $neutral-700;
-      font-size: var(--scale400);
+      @include typography-(md);
+
+      color: $text-body;
       margin-bottom: var(--scale400);
-    }
-
-    @include tablet() {
-      &__heading {
-        font-size: var(--scale800);
-      }
-
-      &__content {
-        padding: var(--scale800) 0;
-
-        &--heading {
-          font-size: var(--scale800);
-        }
-      }
-    }
-
-    @include desktop() {
-      &__heading {
-        font-size: var(--scale1000);
-      }
     }
   }
 
   &__divider {
-    border: $border-width-25 solid $neutral-300;
+    border: $border-width-25 solid $surface-subtle;
     margin: var(--scale500) 0;
 
     @include tablet() {
@@ -587,13 +575,12 @@ ul {
     }
   }
 
-  &__goToEntry {
-    color: $neutral-700;
-    font-size: var(--scale500);
-  }
-
   @include tablet() {
     padding: var(--scale1300) var(--scale1000);
+  }
+
+  @include desktop() {
+    padding: rem(80) var(--scale800);
   }
 }
 
