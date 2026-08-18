@@ -28,3 +28,8 @@
     @content;
   }
 }
+
+@mixin list-style {
+  list-style-type: disc;
+  padding-left: var(--scale400);
+}

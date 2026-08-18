@@ -43,9 +43,9 @@
   }
 
   &__tasks {
+    @include list-style;
+
     color: $text-body;
-    list-style-type: disc;
-    padding-left: var(--scale400);
   }
 
   @include tablet() {

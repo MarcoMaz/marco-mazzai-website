@@ -28,11 +28,10 @@
 
   &__topics {
     @include typography-(paragraph-md);
+    @include list-style;
 
     color: $text-body;
-    list-style-type: disc;
     padding-bottom: var(--scale500);
-    padding-left: var(--scale400);
   }
 
   @include tablet() {
