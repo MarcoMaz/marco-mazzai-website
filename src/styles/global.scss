@@ -91,16 +91,16 @@ ul {
 // LAYOUT
 // ============================================================
 
-// main {
-//   @include desktop() {
-//     z-index: 999;
-//     transition: margin-left 0.4s ease;
+main {
+  @include desktop() {
+    z-index: 999;
+    transition: margin-left 0.4s ease;
 
-//     &.--scrolled {
-//       margin-left: rem(272);
-//     }
-//   }
-// }
+    &.--scrolled {
+      margin-left: rem(272);
+    }
+  }
+}
 
 // Default section padding, responsive
 .mm-section {
