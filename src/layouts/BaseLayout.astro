@@ -79,8 +79,12 @@ const ogImageURL = new URL(image, siteOrigin);
     <script>
       // Toggle hero nav out and side nav in when hero scrolls out of view
       const hero = document.querySelector<HTMLElement>(".mm-hero");
-      const heroNav = document.querySelector<HTMLElement>(".mm-navigation-hero");
-      const sideNav = document.querySelector<HTMLElement>(".mm-navigation-side");
+      const heroNav = document.querySelector<HTMLElement>(
+        ".mm-navigation-desktop__hero-list",
+      );
+      const sideNav = document.querySelector<HTMLElement>(
+        ".mm-navigation-desktop__side",
+      );
       const mainEl = document.querySelector<HTMLElement>("main");
 
       const DESKTOP_MQ = window.matchMedia("(min-width: 1024px)");
@@ -145,7 +149,7 @@ const ogImageURL = new URL(image, siteOrigin);
 
         const heroLinks = [
           ...heroNav.querySelectorAll<HTMLAnchorElement>(
-            ".mm-navigation-hero__list-item a",
+            ".mm-navigation-desktop__hero-list-item a",
           ),
         ];
         const firstSideLink = sideNav.querySelector<HTMLAnchorElement>("a");
