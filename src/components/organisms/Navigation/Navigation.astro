@@ -23,71 +23,73 @@ const { navigationItems } = navigationCollection[0].data;
 const pathname = Astro.url.pathname;
 ---
 
-<!-- Hero Navigation: visible when hero is in view, fades out on scroll (desktop) -->
-<div class="mm-navigation-hero">
-  <!-- Mobile header: avatar + hamburger -->
-  <div class="mm-navigation-hero__mobile">
-    <Avatar />
-    <button
-      aria-label="Open navigation"
-      aria-expanded="false"
-      aria-controls="mm-navigation-hero-list"
-      class="mm-navigation-hero__hamburger"
-    >
-      <Icon
-        name="ph:list"
-        size={24}
-        aria-hidden="true"
-        class="mm-navigation-hero__icon-list"
-      />
-      <Icon
-        name="ph:x"
-        size={24}
-        aria-hidden="true"
-        class="mm-navigation-hero__icon-x"
-      />
-    </button>
+<nav aria-label="Site navigation">
+  <!-- Hero Navigation: visible when hero is in view, fades out on scroll (desktop) -->
+  <div class="mm-navigation-hero">
+    <!-- Mobile header: avatar + hamburger -->
+    <div class="mm-navigation-hero__topbar">
+      <Avatar />
+      <button
+        aria-label="Open navigation"
+        aria-expanded="false"
+        aria-controls="mm-navigation-hero-list"
+        class="mm-navigation-hero__hamburger"
+      >
+        <Icon
+          name="ph:list"
+          size={24}
+          aria-hidden="true"
+          class="mm-navigation-hero__icon-list"
+        />
+        <Icon
+          name="ph:x"
+          size={24}
+          aria-hidden="true"
+          class="mm-navigation-hero__icon-x"
+        />
+      </button>
+    </div>
+    <!-- Nav list: collapsible on mobile, corner-positioned on desktop -->
+    <ul id="mm-navigation-hero-list" class="mm-navigation-hero__list">
+      {
+        navigationItems.map(({ url, label }) => {
+          const isActive =
+            url === "/"
+              ? pathname === "/"
+              : url.startsWith("/") && pathname.startsWith(url);
+          return (
+            <li class="mm-navigation-hero__list-item">
+              <a href={url} aria-current={isActive ? "page" : undefined}>
+                {label}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
   </div>
-  <!-- Nav list: collapsible on mobile, corner-positioned on desktop -->
-  <ul id="mm-navigation-hero-list" class="mm-navigation-hero__list">
-    {
-      navigationItems.map(({ url, label }) => {
-        const isActive =
-          url === "/"
-            ? pathname === "/"
-            : url.startsWith("/") && pathname.startsWith(url);
-        return (
-          <li class="mm-navigation-hero__list-item">
-            <a href={url} aria-current={isActive ? "page" : undefined}>
-              {label}
-            </a>
-          </li>
-        );
-      })
-    }
-  </ul>
-</div>
 
-<!-- Side Navigation: offscreen left initially, slides in on scroll (desktop only) -->
-<nav class:list={["mm-navigation-side", { "--scrolled": !isHome }]} aria-label="Site navigation">
-  <Avatar />
-  <ul class="mm-navigation-side__list">
-    {
-      navigationItems.map(({ url, label }) => {
-        const isActive =
-          url === "/"
-            ? pathname === "/"
-            : url.startsWith("/") && pathname.startsWith(url);
-        return (
-          <li class="mm-navigation-side__list-item">
-            <a href={url} aria-current={isActive ? "page" : undefined}>
-              {label}
-            </a>
-          </li>
-        );
-      })
-    }
-  </ul>
+  <!-- Side Navigation: offscreen left initially, slides in on scroll (desktop only) -->
+  <div class:list={["mm-navigation-side", { "--scrolled": !isHome }]}>
+    <Avatar />
+    <ul class="mm-navigation-side__list">
+      {
+        navigationItems.map(({ url, label }) => {
+          const isActive =
+            url === "/"
+              ? pathname === "/"
+              : url.startsWith("/") && pathname.startsWith(url);
+          return (
+            <li class="mm-navigation-side__list-item">
+              <a href={url} aria-current={isActive ? "page" : undefined}>
+                {label}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
 </nav>
 
 <script>

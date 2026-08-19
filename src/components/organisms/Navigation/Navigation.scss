@@ -1,0 +1,229 @@
+@use "../../../styles/shared" as *;
+
+/* NAVIGATION — HERO */
+
+.mm-navigation-hero {
+  background-color: $neutral-black;
+  display: flex;
+  flex-direction: column;
+  padding: var(--scale800) var(--scale500);
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+
+  .mm-avatar {
+    height: var(--scale1050);
+    width: var(--scale1050);
+  }
+
+  &__topbar {
+    display: flex;
+    justify-content: space-between;
+
+    &:has(.mm-navigation-hero__hamburger[aria-expanded="true"]) {
+      margin-bottom: var(--scale800);
+    }
+  }
+
+  &__hamburger {
+    align-items: center;
+    background: var(--color-neutrals900);
+    color: $neutral-white;
+    display: flex;
+    height: var(--scale1100);
+    justify-content: center;
+    width: var(--scale1100);
+
+    &[aria-expanded="true"] {
+      .mm-navigation-hero__icon-x {
+        display: block;
+      }
+
+      .mm-navigation-hero__icon-list {
+        display: none;
+      }
+    }
+
+    &[aria-expanded="false"] {
+      .mm-navigation-hero__icon-x {
+        display: none;
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--scale300);
+  }
+
+  &.--mobile &__list {
+    display: none;
+
+    &.--open {
+      display: flex;
+    }
+  }
+
+  &__list-item a {
+    color: $neutral-white;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  &__list-item a:focus {
+    outline: $border-width-50 solid $neutral-white;
+  }
+
+  &.--mobile &__list.--open &__list-item {
+    border-radius: $border-radius-100;
+    display: inline-flex;
+    width: rem(276);
+
+    a {
+      display: inline-flex;
+      font-weight: bold;
+      padding: var(--scale200) var(--scale300);
+      width: rem(276);
+    }
+
+    a:focus {
+      border-radius: $border-radius-100;
+      outline: $border-width-50 solid $primary-300;
+    }
+  }
+
+  &.--mobile &__list.--open &__list-item:has(a[aria-current="page"]) {
+    background-color: $primary-300;
+
+    a {
+      color: $neutral-black;
+    }
+  }
+
+  @include tablet {
+    padding: var(--scale800) var(--scale1000);
+  }
+
+  @include desktop {
+    background-color: transparent;
+    transition:
+      opacity 0.4s ease,
+      visibility 0s 0s;
+    visibility: visible;
+
+    &__topbar {
+      display: none;
+    }
+
+    .mm-avatar {
+      display: none;
+    }
+
+    &__list-item {
+      position: fixed;
+
+      &:nth-of-type(1) {
+        top: rem(80);
+        left: rem(120);
+      }
+
+      &:nth-of-type(2) {
+        top: rem(80);
+        right: rem(120);
+      }
+
+      &:nth-of-type(3) {
+        bottom: rem(80);
+        left: rem(120);
+      }
+
+      &:nth-of-type(4) {
+        bottom: rem(80);
+        right: rem(120);
+      }
+    }
+
+    &.--scrolled {
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        opacity 0.4s ease,
+        visibility 0s 0.4s;
+      visibility: hidden;
+    }
+  }
+}
+
+/* NAVIGATION — SIDE */
+
+.mm-navigation-side {
+  &.--mobile {
+    display: none;
+  }
+
+  @include desktop {
+    background-color: var(--color-neutrals50);
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    padding: var(--scale800) var(--scale500);
+    position: fixed;
+    top: 0;
+    transform: translateX(-100%);
+    transition:
+      transform 0.4s ease,
+      opacity 0.4s ease,
+      visibility 0s 0.4s;
+    visibility: hidden;
+    pointer-events: none;
+    width: rem(272);
+    z-index: 100;
+
+    .mm-avatar {
+      display: flex;
+      height: var(--scale1100);
+      margin-bottom: var(--scale300);
+      width: var(--scale1100);
+    }
+
+    &__list {
+      display: flex;
+      flex-direction: column;
+      font-size: var(--scale500);
+      font-weight: bold;
+    }
+
+    &__list-item {
+      text-transform: uppercase;
+
+      a {
+        color: $neutral-700;
+        display: inline-flex;
+        padding: var(--scale200) var(--scale300);
+        text-decoration: none;
+        width: 100%;
+
+        &:focus {
+          outline: $border-width-50 solid $primary-default;
+        }
+      }
+
+      a[aria-current="page"] {
+        background-color: $primary-default;
+        color: $neutral-white;
+      }
+    }
+
+    &.--scrolled {
+      transform: translateX(0);
+      visibility: visible;
+      pointer-events: auto;
+      transition:
+        transform 0.4s ease,
+        opacity 0.4s ease,
+        visibility 0s 0s;
+    }
+  }
+}
