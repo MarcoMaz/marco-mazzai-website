@@ -90,14 +90,6 @@ const ogImageURL = new URL(image, siteOrigin);
       const DESKTOP_MQ = window.matchMedia("(min-width: 1024px)");
 
       if (hero && heroNav && sideNav && mainEl) {
-        // Side nav + main shift only once the hero is completely off screen
-        const observer = new IntersectionObserver(([entry]) => {
-          const scrolled = !entry.isIntersecting;
-          sideNav.classList.toggle("--scrolled", scrolled);
-          mainEl.classList.toggle("--scrolled", scrolled);
-        });
-        observer.observe(hero);
-
         // Cached instead of read on every scroll event, since reading it
         // right after the previous frame's style writes forces a synchronous
         // reflow. Kept in sync via ResizeObserver instead.
@@ -106,7 +98,8 @@ const ogImageURL = new URL(image, siteOrigin);
           heroHeight = hero.offsetHeight;
         }).observe(hero);
 
-        // Hero nav opacity tied 1:1 to scroll progress through the hero (desktop only)
+        // Hero nav opacity tied 1:1 to scroll progress through the hero
+        // (desktop only, runs every frame while scrolling).
         let scrollRaf = 0;
         const updateHeroNav = () => {
           if (!DESKTOP_MQ.matches) return;
@@ -115,14 +108,36 @@ const ogImageURL = new URL(image, siteOrigin);
           heroNav.style.opacity = String(ratio);
           heroNav.style.pointerEvents = ratio > 0 ? "" : "none";
         };
+
+        // Side nav/main "--scrolled" state only reflects the *settled* scroll
+        // position, not every intermediate frame: our own Tab-trap handlers
+        // scroll the page programmatically and set this class synchronously
+        // themselves (see below) so focus can land correctly mid-animation —
+        // recomputing it on every frame would fight that and revert it while
+        // the animated scroll is still in flight. Not an IntersectionObserver
+        // either: Chromium stops firing IntersectionObserver callbacks for the
+        // rest of the page's life after a single `scrollTo({ behavior:
+        // "smooth" })` call, which we trigger ourselves in those same
+        // handlers — that left the side nav stuck open after any later scroll.
+        let settleTimer = 0;
+        const updateScrolledState = () => {
+          if (!DESKTOP_MQ.matches) return;
+          const scrolled = window.scrollY >= heroHeight;
+          sideNav.classList.toggle("--scrolled", scrolled);
+          mainEl.classList.toggle("--scrolled", scrolled);
+        };
+
         window.addEventListener(
           "scroll",
           () => {
-            if (scrollRaf) return;
-            scrollRaf = requestAnimationFrame(() => {
-              scrollRaf = 0;
-              updateHeroNav();
-            });
+            if (!scrollRaf) {
+              scrollRaf = requestAnimationFrame(() => {
+                scrollRaf = 0;
+                updateHeroNav();
+              });
+            }
+            window.clearTimeout(settleTimer);
+            settleTimer = window.setTimeout(updateScrolledState, 100);
           },
           { passive: true },
         );
@@ -134,6 +149,7 @@ const ogImageURL = new URL(image, siteOrigin);
           } else {
             updateHeroNav();
           }
+          updateScrolledState();
         });
 
         // Shift+Tab back into the hero nav: scroll to top so it becomes visible
@@ -146,6 +162,7 @@ const ogImageURL = new URL(image, siteOrigin);
           window.scrollTo({ top: heroHeight, behavior: "instant" });
         }
         updateHeroNav();
+        updateScrolledState();
 
         const heroLinks = [
           ...heroNav.querySelectorAll<HTMLAnchorElement>(
@@ -159,6 +176,10 @@ const ogImageURL = new URL(image, siteOrigin);
             if (e.key === "Tab" && !e.shiftKey) {
               e.preventDefault();
               window.scrollTo({ top: heroHeight, behavior: "smooth" });
+              // Side nav is visibility:hidden until "--scrolled" is set, and a
+              // hidden element can't take focus — updateScrolledState() is
+              // debounced until scrolling settles, so it's set here
+              // synchronously, immediately before focus() is called.
               sideNav.classList.add("--scrolled");
               mainEl.classList.add("--scrolled");
               firstSideLink.focus({ preventScroll: true });
