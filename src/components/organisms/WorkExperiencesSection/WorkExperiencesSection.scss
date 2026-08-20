@@ -25,8 +25,7 @@
     }
 
     &:focus {
-      border-radius: $border-radius-50;
-      outline: $border-width-50 solid $border-focus;
+      @include focus-ring;
     }
   }
 

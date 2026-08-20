@@ -19,7 +19,7 @@
   }
 
   &:focus {
-    outline: $border-width-50 solid $surface-action;
+    @include focus-ring($surface-action);
   }
 
   &__icon {

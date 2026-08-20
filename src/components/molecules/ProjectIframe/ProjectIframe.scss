@@ -30,8 +30,9 @@
     transition: opacity 0.15s;
 
     &:focus {
+      @include focus-ring($surface-action);
+
       opacity: 1;
-      outline: $border-width-50 solid $surface-action;
       outline-offset: $border-width-25;
       transform: translate3d(rem(16), rem(16), 0);
     }

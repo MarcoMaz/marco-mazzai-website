@@ -145,8 +145,7 @@
         text-transform: uppercase;
 
         &:focus {
-          border-radius: $border-radius-50;
-          outline: $border-width-50 solid $neutral-white;
+          @include focus-ring($neutral-white);
         }
       }
     }

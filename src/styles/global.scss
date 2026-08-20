@@ -201,8 +201,7 @@ main {
     }
 
     a:focus {
-      border-radius: $border-radius-50;
-      outline: $border-width-50 solid $text-headings;
+      @include focus-ring;
     }
   }
 
@@ -326,7 +325,7 @@ main {
     }
 
     &--description {
-      @include typography-(md);
+      @include typography-(paragraph-md);
 
       color: $text-body;
       margin-bottom: var(--scale400);

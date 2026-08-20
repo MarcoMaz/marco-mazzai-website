@@ -5,12 +5,6 @@
   line-height: var(--typography-#{$level}-line-height);
 }
 
-@mixin mobile {
-  @media (min-width: 480px) {
-    @content;
-  }
-}
-
 @mixin tablet {
   @media (min-width: 768px) {
     @content;
@@ -23,13 +17,12 @@
   }
 }
 
-@mixin desktop-lg {
-  @media (min-width: 1440px) {
-    @content;
-  }
-}
-
 @mixin list-style {
   list-style-type: disc;
   padding-left: var(--scale400);
+}
+
+@mixin focus-ring($color: $border-focus) {
+  border-radius: $border-radius-50;
+  outline: $border-width-50 solid $color;
 }
