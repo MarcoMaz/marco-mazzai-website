@@ -1,0 +1,65 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import ChipList from "../../molecules/ChipList/ChipList.astro";
+import GoToEntry from "../../molecules/GoToEntry/GoToEntry.astro";
+import { formatDate } from "../../../lib/date";
+
+type BlogPost = CollectionEntry<"blog">;
+
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+
+const posts: BlogPost[] = await getCollection("blog");
+const currentIndex = posts.findIndex((post) => post.data.slug === slug);
+const post = posts[currentIndex];
+
+if (!post) {
+  throw new Error(`Blog post not found for slug "${slug}"`);
+}
+
+const prevPost = posts[currentIndex - 1];
+const nextPost = posts[currentIndex + 1];
+
+const prevEntry = prevPost
+  ? {
+      href: `/blog/${prevPost.data.slug}`,
+      heading: prevPost.data.heading,
+      date: prevPost.data.date,
+    }
+  : undefined;
+const nextEntry = nextPost
+  ? {
+      href: `/blog/${nextPost.data.slug}`,
+      heading: nextPost.data.heading,
+      date: nextPost.data.date,
+    }
+  : undefined;
+
+const { heading, kicker, date, chips } = post.data;
+const formattedDate: string = formatDate(date);
+
+const { Content } = await render(post);
+
+const getReadingTime = (content: string, wordsPerMinute = 200): number => {
+  const wordCount = content.trim().split(/\s+/).length;
+  return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
+};
+const readingTime: number = getReadingTime(post.body ?? "");
+---
+
+<section class="mm-entry">
+  <div class="mm-entry__date">
+    <span>{formattedDate}</span>
+    <span>{readingTime} min. read</span>
+  </div>
+  <p class="mm-entry__kicker">{kicker}</p>
+  <h1 class="mm-entry__heading">{heading}</h1>
+  <ChipList chips={chips} />
+  <article>
+    <Content />
+  </article>
+  <GoToEntry prevEntry={prevEntry} nextEntry={nextEntry} />
+</section>

@@ -1,86 +1,44 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import ProjectIframe from "../../components/molecules/ProjectIframe/ProjectIframe.astro";
-import { formatDateRange } from "../../lib/date";
+import ProjectEntry from "../../components/organisms/ProjectEntry/ProjectEntry.astro";
 import { PAGE_TITLES } from "../../content.config";
-import ChipList from "../../components/molecules/ChipList/ChipList.astro";
-import IconLink from "../../components/atoms/IconLink/IconLink.astro";
-import { Icon } from "astro-icon/components";
-import GoToEntry from "../../components/molecules/GoToEntry/GoToEntry.astro";
 
 type PetProjectEntry = CollectionEntry<"petProjects">;
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: () => Promise<
+  {
+    params: { id: string };
+    props: { heading: string; description: string; imageSrc: string };
+  }[]
+> = async () => {
   const entries: PetProjectEntry[] = await getCollection("petProjects");
-  const sorted = entries.sort((a, b) => a.data.order - b.data.order);
 
-  return sorted.map((entry, index) => ({
+  return entries.map((entry) => ({
     params: { id: entry.id },
     props: {
-      entry,
-      prevEntry: sorted[index - 1],
-      nextEntry: sorted[index + 1],
+      heading: entry.data.heading,
+      description: entry.data.description,
+      imageSrc: entry.data.image.src,
     },
   }));
 };
 
-const { entry, prevEntry, nextEntry } = Astro.props as {
-  entry: PetProjectEntry;
-  prevEntry: PetProjectEntry | undefined;
-  nextEntry: PetProjectEntry | undefined;
+const { id } = Astro.params as { id: string };
+const { heading, description, imageSrc } = Astro.props as {
+  heading: string;
+  description: string;
+  imageSrc: string;
 };
 
-const { heading, kicker, description, date, chips, githubUrl, preview, image } =
-  entry.data;
-
-const pageTitle = `${heading} ${PAGE_TITLES.blogSuffix}`;
-
-const GITHUB_LABEL: string = "Github";
-
-const ABOUT_THE_PROJECT_TITLE: string = "About the project";
+const pageTitle: string = `${heading} ${PAGE_TITLES.blogSuffix}`;
 ---
 
-<BaseLayout title={pageTitle} description={description} image={image.src} type="article">
-  <section class="mm-entry">
-    <div class="mm-entry__date">
-      {formatDateRange(date.from, date.to)}
-    </div>
-    <div class="mm-entry__kicker">{kicker}</div>
-    <h1 class="mm-entry__heading">{heading}</h1>
-    <ChipList chips={chips} />
-    <div class="mm-entry__content">
-      <h2 class="mm-entry__content--heading">
-        {ABOUT_THE_PROJECT_TITLE}
-      </h2>
-      <p class="mm-entry__content--description">{description}</p>
-      <IconLink href={githubUrl} target="_blank">
-        {GITHUB_LABEL}
-        <Icon name="ph:github-logo" slot="icon-left" />
-      </IconLink>
-    </div>
-    {
-      preview && (
-        <ProjectIframe
-          src={preview.url}
-          title={preview.title}
-          width={preview.width}
-          height={preview.height}
-        />
-      )
-    }
-    <hr class="mm-entry__divider" />
-    <GoToEntry
-      prevEntry={prevEntry && {
-        href: `/projects/${prevEntry.id}`,
-        heading: prevEntry.data.heading,
-        date: prevEntry.data.date,
-      }}
-      nextEntry={nextEntry && {
-        href: `/projects/${nextEntry.id}`,
-        heading: nextEntry.data.heading,
-        date: nextEntry.data.date,
-      }}
-    />
-  </section>
+<BaseLayout
+  title={pageTitle}
+  description={description}
+  image={imageSrc}
+  type="article"
+>
+  <ProjectEntry id={id} />
 </BaseLayout>

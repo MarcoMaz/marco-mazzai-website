@@ -2,6 +2,7 @@ import '../src/styles/global.scss';
 import '@fontsource/space-grotesk/400.css';
 import '@fontsource/space-grotesk/500.css';
 import '@fontsource/space-grotesk/700.css';
+import './preview.css';
 
 /** @type {import('@storybook-astro/framework').Preview} */
 const preview = {

@@ -1,0 +1,7 @@
+/* Storybook-only helper classes for story decorators. Not part of the
+   production stylesheet — decorator-returned HTML is sanitized and strips
+   inline `style` attributes, so decorators reference a class here instead. */
+.sb-dark-backdrop {
+  background: var(--neutral-black);
+  min-height: 100vh;
+}
