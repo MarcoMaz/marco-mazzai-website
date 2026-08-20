@@ -1,4 +1,4 @@
-import Navigation from './Navigation.astro';
+import Navigation from "./Navigation.astro";
 
 // Both the mobile bar and the desktop hero-list render on top of a dark
 // section in production (see HeroSection.scss) — without this backdrop the
@@ -7,14 +7,22 @@ const withDarkBackdrop = (Story: () => unknown) =>
   `<div class="sb-dark-backdrop">${Story()}</div>`;
 
 export default {
-  title: 'Organisms/Navigation',
+  title: "Organisms/Navigation",
   component: Navigation,
+  tags: ["autodocs"],
   decorators: [withDarkBackdrop],
+  argTypes: {
+    isHome: {
+      control: "boolean",
+      description:
+        "Whether the desktop side panel is hidden (home hero layout) or slid in (scrolled/inner-page layout).",
+    },
+  },
   parameters: {
     docs: {
       description: {
         component:
-          'Renders live navigation items and avatar from content collections. `isHome` is the only prop. The mobile/desktop split is a pure CSS media query (1024px) — widen the preview pane past that to see the Desktop stories; narrower shows the mobile bar.',
+          "Renders live navigation items and avatar from content collections. `isHome` is the only prop. The mobile/desktop split is a pure CSS media query (1024px) — widen the preview pane past that to see the Desktop stories; narrower shows the mobile bar.",
       },
     },
   },
@@ -31,14 +39,14 @@ export const MobileOpen = {
     isHome: true,
   },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
-    const list = canvasElement.querySelector('#mm-navigation-mobile-list');
+    const list = canvasElement.querySelector("#mm-navigation-mobile-list");
     const button = canvasElement.querySelector(
-      '.mm-navigation-mobile__hamburger',
+      ".mm-navigation-mobile__hamburger",
     );
 
-    list?.classList.add('--open');
-    button?.setAttribute('aria-expanded', 'true');
-    button?.setAttribute('aria-label', 'Close navigation');
+    list?.classList.add("--open");
+    button?.setAttribute("aria-expanded", "true");
+    button?.setAttribute("aria-label", "Close navigation");
   },
 };
 

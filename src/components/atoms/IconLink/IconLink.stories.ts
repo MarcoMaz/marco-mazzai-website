@@ -4,6 +4,25 @@ import { Icon } from "astro-icon/components";
 export default {
   title: "Atoms/IconLink",
   component: IconLink,
+  tags: ["autodocs"],
+  argTypes: {
+    href: {
+      control: "text",
+      description: "Destination URL.",
+    },
+    target: {
+      control: "text",
+      description: "Anchor `target`, e.g. `_blank` for external links.",
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'A text link with optional leading/trailing icon slots. Used for in-body links (e.g. "Read more", "Github") where `LinkButton` would be too heavy.',
+      },
+    },
+  },
 };
 
 export const Default = {
