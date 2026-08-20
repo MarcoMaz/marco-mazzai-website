@@ -1,0 +1,216 @@
+@use "../../../styles/shared" as *;
+
+/* NAVIGATION — MOBILE */
+
+.mm-navigation-mobile {
+  background-color: $neutral-black;
+  padding: var(--scale800) var(--scale500);
+  position: fixed;
+  width: 100%;
+
+  .mm-avatar {
+    height: var(--scale1050);
+    width: var(--scale1050);
+  }
+
+  &__topbar {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__hamburger {
+    align-items: center;
+    color: $neutral-white;
+    display: flex;
+    height: var(--scale1100);
+    justify-content: center;
+    width: var(--scale1100);
+
+    &[aria-expanded="true"] {
+      .mm-navigation-mobile__icon-x {
+        display: block;
+      }
+
+      .mm-navigation-mobile__icon-list {
+        display: none;
+      }
+    }
+
+    &[aria-expanded="false"] {
+      .mm-navigation-mobile__icon-x {
+        display: none;
+      }
+
+      .mm-navigation-mobile__icon-list {
+        display: block;
+      }
+    }
+  }
+
+  &__list {
+    display: none;
+    flex-direction: column;
+    gap: var(--scale300);
+    margin-top: var(--scale800);
+
+    &.--open {
+      display: flex;
+    }
+  }
+
+  &__list-item {
+    border-radius: $border-radius-100;
+
+    a {
+      @include typography-(h4);
+
+      display: inline-flex;
+      font-family: $fonts-primary;
+      color: $neutral-white;
+      padding: var(--scale200) var(--scale300);
+      text-decoration: none;
+      width: 100%;
+    }
+
+    a:focus {
+      background-color: $primary-300;
+      border-radius: $border-radius-100;
+      color: $neutral-black;
+      outline: none;
+    }
+
+    &:has(a[aria-current="page"]) {
+      background-color: $primary-300;
+
+      a {
+        color: $neutral-black;
+      }
+    }
+  }
+
+  @include tablet {
+    padding: var(--scale800) var(--scale1000);
+  }
+
+  @include desktop {
+    display: none;
+  }
+}
+
+/* NAVIGATION — DESKTOP */
+.mm-navigation-desktop {
+  display: none;
+
+  @include desktop {
+    display: block;
+
+    &__hero-list {
+      display: block;
+      transition:
+        opacity 0.4s ease,
+        visibility 0s 0s;
+      visibility: visible;
+    }
+
+    &__hero-list-item {
+      position: fixed;
+      z-index: 999;
+
+      &:nth-of-type(1) {
+        top: var(--scale1500);
+        left: var(--scale1600);
+      }
+
+      &:nth-of-type(2) {
+        top: var(--scale1500);
+        right: var(--scale1600);
+      }
+
+      &:nth-of-type(3) {
+        bottom: var(--scale1500);
+        left: var(--scale1600);
+      }
+
+      &:nth-of-type(4) {
+        bottom: var(--scale1500);
+        right: var(--scale1600);
+      }
+
+      a {
+        @include typography-(h2);
+
+        color: $neutral-white;
+        font-family: $fonts-primary;
+        text-decoration: none;
+        text-transform: uppercase;
+
+        &:focus {
+          @include focus-ring($neutral-white);
+        }
+      }
+    }
+
+    // SIDE //
+    &__side {
+      background-color: $neutral-white;
+      bottom: 0;
+      padding: var(--scale800) var(--scale500);
+      position: fixed;
+      top: 0;
+      transform: translateX(-100%);
+      transition:
+        transform 0.4s ease,
+        opacity 0.4s ease,
+        visibility 0s 0.4s;
+      visibility: hidden;
+      pointer-events: none;
+      width: rem(272);
+
+      &.--scrolled {
+        transform: translateX(0);
+        visibility: visible;
+        pointer-events: auto;
+        transition:
+          transform 0.4s ease,
+          opacity 0.4s ease,
+          visibility 0s 0s;
+      }
+
+      .mm-avatar {
+        height: var(--scale1100);
+        margin-bottom: var(--scale300);
+        width: var(--scale1100);
+      }
+    }
+
+    &__side-list {
+      display: flex;
+      flex-direction: column;
+      font-size: var(--scale500);
+      font-weight: bold;
+    }
+
+    &__side-list-item {
+      a {
+        @include typography-(h4);
+
+        color: $text-body;
+        font-family: $fonts-primary;
+        display: inline-flex;
+        margin: var(--scale100) 0;
+        padding: var(--scale200) var(--scale300);
+        text-decoration: none;
+        width: 100%;
+
+        &:focus {
+          outline: $border-width-50 solid $primary-default;
+        }
+      }
+
+      a[aria-current="page"] {
+        background-color: $primary-default;
+        color: $neutral-white;
+      }
+    }
+  }
+}

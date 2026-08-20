@@ -1,0 +1,108 @@
+@use "../../../styles/shared" as *;
+
+.mm-about {
+  &__intro {
+    margin-bottom: var(--scale500);
+  }
+
+  &__section {
+    margin-bottom: var(--scale500);
+
+    &--heading {
+      @include typography-(h2);
+
+      color: $text-headings;
+      margin-bottom: var(--scale400);
+    }
+
+    &--list {
+      @include list-style;
+    }
+  }
+
+  .mm-chip-list {
+    margin-bottom: var(--scale400);
+  }
+
+  // Accordion
+  wa-accordion {
+    .accordionItem {
+      align-items: center;
+      border-bottom: $border-width-25 solid $surface-subtle;
+      display: grid;
+      grid-template-areas:
+        "header addon"
+        "panel .";
+      grid-template-columns: 1fr auto;
+      padding: var(--scale500) 0;
+    }
+
+    .accordionItem__header {
+      grid-area: header;
+      position: relative;
+    }
+
+    .accordionItem__panel {
+      grid-area: panel;
+    }
+
+    .accordionItem__button {
+      @include typography-(h2);
+
+      color: $text-headings;
+
+      &::after {
+        content: "";
+        inset: 0;
+        position: absolute;
+        right: calc(
+          -1 * (var(--scale500) + var(--scale300))
+        ); // extend over addon width + item padding
+      }
+
+      &:focus-visible {
+        outline: none;
+
+        &::after {
+          @include focus-ring;
+
+          outline-offset: $border-width-50;
+        }
+      }
+    }
+
+    .accordionItem__addon {
+      align-items: center;
+      color: $icons-action;
+      display: flex;
+      grid-area: addon;
+      height: var(--scale500);
+      justify-content: center;
+      width: var(--scale500);
+    }
+
+    .mm-about__accordion--minus {
+      display: none;
+    }
+
+    .accordionItem--active {
+      .mm-about__accordion--plus {
+        display: none;
+      }
+      .mm-about__accordion--minus {
+        display: block;
+      }
+    }
+  }
+
+  @include tablet() {
+    grid-template-areas:
+      "heading"
+      "button"
+      "content";
+
+    &__intro {
+      margin-bottom: var(--scale800);
+    }
+  }
+}

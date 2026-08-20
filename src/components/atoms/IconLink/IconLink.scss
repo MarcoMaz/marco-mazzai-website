@@ -1,0 +1,24 @@
+@use "../../../styles/shared" as *;
+
+.mm-icon-link {
+  @include typography-(paragraph-md);
+
+  align-items: center;
+  color: $text-action;
+  display: inline-flex;
+  font-family: $fonts-secondary;
+  gap: var(--scale200);
+
+  svg {
+    height: var(--scale500);
+    width: var(--scale500);
+  }
+
+  &:hover {
+    color: $text-action-hover;
+  }
+
+  &:focus {
+    @include focus-ring;
+  }
+}

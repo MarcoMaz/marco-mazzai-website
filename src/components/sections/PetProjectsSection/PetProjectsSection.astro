@@ -1,0 +1,87 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import ChipList from "../../molecules/ChipList/ChipList.astro";
+import IconLink from "../../atoms/IconLink/IconLink.astro";
+import LinkButton from "../../atoms/LinkButton/LinkButton.astro";
+import { Icon } from "astro-icon/components";
+import { formatDateRange } from "../../../lib/date";
+
+type PetProjectEntry = CollectionEntry<"petProjects">;
+
+const entries: PetProjectEntry[] = await getCollection("petProjects");
+const sortedEntries = entries.sort((a, b) => a.data.order - b.data.order);
+const isHome = Astro.url.pathname === "/";
+
+const HEADLINE_LABEL: string = "Pet Projects";
+const SEE_ALL_PROJECTS_TEXT: string = "See all projects";
+
+const GITHUB_LABEL: string = "Github";
+
+const MOBILE_MEDIA_QUERY: string = "(max-width: 767px)";
+
+const toWebp = (src: string): string => src.replace(/\.\w+$/, ".webp");
+const toMobile = (src: string): string => src.replace(/(\.\w+)$/, "-mobile$1");
+---
+
+<section class="mm-section" id="projects">
+  <h2 class="mm-section__headline">{HEADLINE_LABEL}</h2>
+  {
+    isHome && (
+      <LinkButton class="mm-section__link-button" href="/about">
+        {SEE_ALL_PROJECTS_TEXT}
+      </LinkButton>
+    )
+  }
+  <ul>
+    {
+      sortedEntries.map((entry) => {
+        const { heading, kicker, description, date, chips, githubUrl, image } =
+          entry.data;
+
+        return (
+          <li class="mm-section-item mm-section-item__project-item">
+            <div class="mm-section-item__info">
+              <span class="mm-section-item__time">
+                {formatDateRange(date.from, date.to)}
+              </span>
+              <p class="mm-section-item__kicker">{kicker}</p>
+              <h3 class="mm-section-item__heading">
+                <a href={`/projects/${entry.id}`}>{heading}</a>
+              </h3>
+              <ChipList chips={chips} />
+              <p class="mm-section-item__preview">{description}</p>
+              <IconLink href={githubUrl} target="_blank">
+                {GITHUB_LABEL}
+                <Icon name="ph:github-logo" slot="icon-left" />
+              </IconLink>
+            </div>
+            <div class="mm-section-item__image">
+              <picture>
+                <source
+                  media={MOBILE_MEDIA_QUERY}
+                  srcset={toWebp(toMobile(image.src))}
+                  type="image/webp"
+                />
+                <source
+                  media={MOBILE_MEDIA_QUERY}
+                  srcset={toMobile(image.src)}
+                  type="image/png"
+                />
+                <source srcset={toWebp(image.src)} type="image/webp" />
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  width="389"
+                  height="325"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+            </div>
+            <hr class="mm-section-item__divider" />
+          </li>
+        );
+      })
+    }
+  </ul>
+</section>

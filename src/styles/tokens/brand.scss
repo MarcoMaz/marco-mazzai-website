@@ -57,11 +57,11 @@
   --color-teal800: #123131;
   --color-teal900: #091819;
   --fonts-headings-style-tanker: "Tanker";
-  --fonts-headings-weight-regular: "Regular";
+  --fonts-headings-weight-regular: 400;
   --fonts-paragraph-style-space-grotesk: "Space Grotesk";
-  --fonts-paragraph-weight-regular: "Regular";
-  --fonts-paragraph-weight-medium: "Medium";
-  --fonts-paragraph-weight-bold: "Bold";
+  --fonts-paragraph-weight-regular: 400;
+  --fonts-paragraph-weight-medium: 500;
+  --fonts-paragraph-weight-bold: 700;
   --scale0: 0;
   --scale25: #{rem(1)};
   --scale50: #{rem(2)};

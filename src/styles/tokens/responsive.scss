@@ -5,47 +5,38 @@
   // Typography — Display
   --typography-display-font-size: #{rem(32)};
   --typography-display-line-height: #{rem(40)};
-  --typography-display-paragraph-spacing: #{rem(32)};
 
   // Typography — H1
   --typography-h1-font-size: #{rem(32)};
   --typography-h1-line-height: #{rem(40)};
-  --typography-h1-paragraph-spacing: #{rem(32)};
 
   // Typography — H2
   --typography-h2-font-size: #{rem(28)};
   --typography-h2-line-height: #{rem(32)};
-  --typography-h2-paragraph-spacing: #{rem(20)};
 
   // Typography — H3
   --typography-h3-font-size: #{rem(24)};
   --typography-h3-line-height: #{rem(28)};
-  --typography-h3-paragraph-spacing: #{rem(20)};
 
   // Typography — H4
   --typography-h4-font-size: #{rem(20)};
   --typography-h4-line-height: #{rem(24)};
-  --typography-h4-paragraph-spacing: #{rem(20)};
 
   // Typography — Paragraph LG
   --typography-paragraph-lg-font-size: #{rem(20)};
   --typography-paragraph-lg-line-height: #{rem(24)};
-  --typography-paragraph-lg-paragraph-spacing: #{rem(20)};
 
   // Typography — Paragraph MD
   --typography-paragraph-md-font-size: #{rem(16)};
   --typography-paragraph-md-line-height: #{rem(24)};
-  --typography-paragraph-md-paragraph-spacing: #{rem(20)};
 
   // Typography — Paragraph SM
   --typography-paragraph-sm-font-size: #{rem(14)};
   --typography-paragraph-sm-line-height: #{rem(16)};
-  --typography-paragraph-sm-paragraph-spacing: #{rem(20)};
 
   // Typography — Paragraph XSM
   --typography-paragraph-xsm-font-size: #{rem(12)};
   --typography-paragraph-xsm-line-height: #{rem(16)};
-  --typography-paragraph-xsm-paragraph-spacing: #{rem(20)};
 
   // Layout — Section
   --layout-section-padding-x: #{rem(20)};
@@ -105,9 +96,6 @@
     // Typography — H2
     --typography-h2-font-size: #{rem(32)};
     --typography-h2-line-height: #{rem(40)};
-
-    // Typography — Paragraph MD (paragraph-spacing differs at desktop)
-    --typography-paragraph-md-paragraph-spacing: #{rem(24)};
 
     // Layout — Section
     --layout-section-padding-x: #{rem(80)};

@@ -1,77 +1,32 @@
 ---
 import { PAGE_TITLES } from "../../content.config";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import ChipList from "../../components/molecules/ChipList/ChipList.astro";
-import GoToEntry from "../../components/molecules/GoToEntry/GoToEntry.astro";
-import { getCollection, render, type CollectionEntry } from "astro:content";
-import { formatDate } from "../../lib/date";
+import BlogEntry from "../../components/templates/BlogEntry/BlogEntry.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
 
 type BlogPost = CollectionEntry<"blog">;
 
 export const getStaticPaths: () => Promise<
   {
     params: { slug: string };
-    props: { post: BlogPost; allPosts: BlogPost[] };
+    props: { heading: string; kicker: string };
   }[]
 > = async () => {
   const posts: BlogPost[] = await getCollection("blog");
 
   return posts.map((post) => ({
     params: { slug: post.data.slug },
-    props: { post, allPosts: posts },
+    props: { heading: post.data.heading, kicker: post.data.kicker },
   }));
 };
 
-const { post, allPosts } = Astro.props as {
-  post: BlogPost;
-  allPosts: BlogPost[];
-};
-
-const currentIndex: number = allPosts.findIndex((p) => p.id === post.id);
-const prevPost: BlogPost | undefined = allPosts[currentIndex - 1];
-const nextPost: BlogPost | undefined = allPosts[currentIndex + 1];
-
-const { Content } = await render(post);
+const { slug } = Astro.params as { slug: string };
+const { heading, kicker } = Astro.props as { heading: string; kicker: string };
 
 const blogSuffix = PAGE_TITLES.blogSuffix;
-const { heading, kicker, date, chips } = post.data;
 const pageTitle: string = `${heading} ${blogSuffix}`;
-const formattedDate: string = formatDate(date);
-
-const getReadingTime = (content: string, wordsPerMinute = 200): number => {
-  const wordCount = content.trim().split(/\s+/).length;
-  return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
-};
-const readingTime: number = getReadingTime(post.body ?? "");
-
-const prevEntry = prevPost
-  ? {
-      href: `/blog/${prevPost.data.slug}`,
-      heading: prevPost.data.heading,
-      kicker: prevPost.data.kicker,
-    }
-  : undefined;
-const nextEntry = nextPost
-  ? {
-      href: `/blog/${nextPost.data.slug}`,
-      heading: nextPost.data.heading,
-      kicker: nextPost.data.kicker,
-    }
-  : undefined;
 ---
 
 <BaseLayout title={pageTitle} description={kicker} type="article">
-  <section class="mm-entry">
-    <div class="mm-entry__date">
-      <span>{formattedDate}</span>
-      <span>{readingTime} min. read</span>
-    </div>
-    <p class="mm-entry__kicker">{kicker}</p>
-    <h1 class="mm-entry__heading">{heading}</h1>
-    <ChipList chips={chips} />
-    <article>
-      <Content />
-    </article>
-    <GoToEntry prevEntry={prevEntry} nextEntry={nextEntry} />
-  </section>
+  <BlogEntry slug={slug} />
 </BaseLayout>

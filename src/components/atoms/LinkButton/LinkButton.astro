@@ -1,0 +1,17 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  href: string;
+  class?: string;
+}
+
+const { href, class: className } = Astro.props;
+---
+
+<a class:list={['mm-link-button', className]} href={href}
+  ><slot />
+  <span class='mm-link-button__icon'>
+    <Icon name="ph:caret-right" />
+  </span>
+</a>

@@ -1,0 +1,82 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
+import ChipList from "../../molecules/ChipList/ChipList.astro";
+import GoToEntry from "../../molecules/GoToEntry/GoToEntry.astro";
+import IconLink from "../../atoms/IconLink/IconLink.astro";
+import ProjectIframe from "../../molecules/ProjectIframe/ProjectIframe.astro";
+import { formatDateRange } from "../../../lib/date";
+
+type PetProjectEntry = CollectionEntry<"petProjects">;
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+
+const entries: PetProjectEntry[] = (await getCollection("petProjects")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const currentIndex = entries.findIndex((entry) => entry.id === id);
+const entry = entries[currentIndex];
+
+if (!entry) {
+  throw new Error(`Project not found for id "${id}"`);
+}
+
+const prevEntryData = entries[currentIndex - 1];
+const nextEntryData = entries[currentIndex + 1];
+
+const prevEntry = prevEntryData
+  ? {
+      href: `/projects/${prevEntryData.id}`,
+      heading: prevEntryData.data.heading,
+      date: prevEntryData.data.date,
+    }
+  : undefined;
+const nextEntry = nextEntryData
+  ? {
+      href: `/projects/${nextEntryData.id}`,
+      heading: nextEntryData.data.heading,
+      date: nextEntryData.data.date,
+    }
+  : undefined;
+
+const { heading, kicker, description, date, chips, githubUrl, preview } =
+  entry.data;
+
+const GITHUB_LABEL: string = "Github";
+const ABOUT_THE_PROJECT_TITLE: string = "About the project";
+---
+
+<section class="mm-entry">
+  <div class="mm-entry__date">
+    {formatDateRange(date.from, date.to)}
+  </div>
+  <div class="mm-entry__kicker">{kicker}</div>
+  <h1 class="mm-entry__heading">{heading}</h1>
+  <ChipList chips={chips} />
+  <div class="mm-entry__content">
+    <h2 class="mm-entry__content--heading">
+      {ABOUT_THE_PROJECT_TITLE}
+    </h2>
+    <p class="mm-entry__content--description">{description}</p>
+    <IconLink href={githubUrl} target="_blank">
+      {GITHUB_LABEL}
+      <Icon name="ph:github-logo" slot="icon-left" />
+    </IconLink>
+  </div>
+  {
+    preview && (
+      <ProjectIframe
+        src={preview.url}
+        title={preview.title}
+        width={preview.width}
+        height={preview.height}
+      />
+    )
+  }
+  <hr class="mm-entry__divider" />
+  <GoToEntry prevEntry={prevEntry} nextEntry={nextEntry} />
+</section>

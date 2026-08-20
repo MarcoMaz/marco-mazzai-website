@@ -1,0 +1,56 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import { formatDateRange, type PartialDate } from "../../../lib/date";
+
+type EducationItem = {
+  category: "Frontend" | "Accessibility";
+  sections: Array<{
+    type:
+      | "Certifications"
+      | "Advanced Courses"
+      | "Expert Courses"
+      | "Conferences and Webinars";
+    date?: { from?: PartialDate; to?: PartialDate };
+    items: string[];
+  }>;
+};
+
+type EducationEntry = CollectionEntry<"education">;
+
+const educationCollection: EducationEntry[] = await getCollection("education");
+
+if (educationCollection.length === 0) {
+  throw new Error("Education not found");
+}
+
+const educationItems = educationCollection[0].data
+  .educationItems as EducationItem[];
+---
+
+<h2>Education</h2>
+<ul>
+  {
+    educationItems.map(({ category, sections }) => (
+      <li class="mm-education__item">
+        <h3 class="mm-education__category">{category}</h3>
+        {sections.map(({ type, date, items }) => (
+          <>
+            <div class="mm-education__details">
+              <div class="mm-education__location">{type}</div>
+              {date && formatDateRange(date.from ?? "", date.to ?? "") && (
+                <div class="mm-education__date">
+                  {formatDateRange(date.from ?? "", date.to ?? "")}
+                </div>
+              )}
+            </div>
+            <ul class="mm-education__topics">
+              {items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </>
+        ))}
+      </li>
+    ))
+  }
+</ul>

@@ -1,0 +1,58 @@
+@use "../../../styles/shared" as *;
+
+.mm-go-to-entry__link {
+  align-items: center;
+  display: flex;
+  gap: var(--scale200);
+  text-decoration: none;
+
+  svg {
+    color: $icons-action;
+    height: var(--scale500);
+    width: var(--scale500);
+  }
+}
+
+.mm-go-to-entry__info {
+  color: $text-action;
+  display: flex;
+  flex-direction: column;
+  gap: var(--scale200);
+
+  &--date {
+    @include typography-(paragraph-sm);
+  }
+
+  &--heading {
+    @include typography-(h4);
+
+    font-family: $fonts-primary;
+  }
+}
+
+.mm-go-to-entry {
+  display: flex;
+  flex-direction: column;
+  gap: var(--scale200);
+
+  a:focus {
+    @include focus-ring;
+  }
+
+  &:hover div {
+    color: $text-action-hover;
+  }
+
+  .mm-go-to-entry__link--next {
+    justify-content: end;
+  }
+
+  @include tablet() {
+    flex-direction: row;
+    gap: unset;
+
+    .mm-go-to-entry__link--next {
+      margin-left: auto;
+    }
+  }
+}
