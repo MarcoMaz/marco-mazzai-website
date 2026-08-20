@@ -1,7 +1,7 @@
 import AboutSection from './AboutSection.astro';
 
 export default {
-  title: 'Organisms/AboutSection',
+  title: 'Sections/AboutSection',
   component: AboutSection,
   parameters: {
     docs: {

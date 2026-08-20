@@ -1,7 +1,7 @@
 import BlogEntry from './BlogEntry.astro';
 
 export default {
-  title: 'Organisms/BlogEntry',
+  title: 'Templates/BlogEntry',
   component: BlogEntry,
   parameters: {
     docs: {

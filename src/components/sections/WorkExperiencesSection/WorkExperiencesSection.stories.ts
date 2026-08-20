@@ -1,7 +1,7 @@
 import WorkExperiencesSection from './WorkExperiencesSection.astro';
 
 export default {
-  title: 'Organisms/WorkExperiencesSection',
+  title: 'Sections/WorkExperiencesSection',
   component: WorkExperiencesSection,
   parameters: {
     docs: {

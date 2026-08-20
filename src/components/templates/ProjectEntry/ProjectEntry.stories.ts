@@ -1,7 +1,7 @@
 import ProjectEntry from './ProjectEntry.astro';
 
 export default {
-  title: 'Organisms/ProjectEntry',
+  title: 'Templates/ProjectEntry',
   component: ProjectEntry,
   parameters: {
     docs: {

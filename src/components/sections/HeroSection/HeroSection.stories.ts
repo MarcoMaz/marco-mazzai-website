@@ -1,7 +1,7 @@
 import HeroSection from './HeroSection.astro';
 
 export default {
-  title: 'Organisms/HeroSection',
+  title: 'Sections/HeroSection',
   component: HeroSection,
   parameters: {
     docs: {

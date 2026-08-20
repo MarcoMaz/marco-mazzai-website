@@ -9,9 +9,11 @@
 @use "../../components/molecules/ProjectIframe/ProjectIframe.scss";
 
 // Organisms
-@use "../../components/organisms/AboutSection/AboutSection.scss";
-@use "../../components/organisms/EducationSection/EducationSection.scss";
 @use "../../components/organisms/Footer/Footer.scss";
-@use "../../components/organisms/HeroSection/HeroSection.scss";
 @use "../../components/organisms/Navigation/Navigation.scss";
-@use "../../components/organisms/WorkExperiencesSection/WorkExperiencesSection.scss";
+
+// Sections
+@use "../../components/sections/AboutSection/AboutSection.scss";
+@use "../../components/sections/EducationSection/EducationSection.scss";
+@use "../../components/sections/HeroSection/HeroSection.scss";
+@use "../../components/sections/WorkExperiencesSection/WorkExperiencesSection.scss";

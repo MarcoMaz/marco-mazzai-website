@@ -1,7 +1,7 @@
 import BlogListSection from './BlogListSection.astro';
 
 export default {
-  title: 'Organisms/BlogListSection',
+  title: 'Sections/BlogListSection',
   component: BlogListSection,
   parameters: {
     docs: {
