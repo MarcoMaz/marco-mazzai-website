@@ -1,3 +1,5 @@
 @forward "./utils";
-@forward "./tokens/mapped";
+// See global.scss — tokens now come from the generated file, not tokens/mapped.
+// @forward "./tokens/mapped";
+@forward "./tokens/generated";
 @forward "./mixins";

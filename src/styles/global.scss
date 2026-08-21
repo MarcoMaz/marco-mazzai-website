@@ -4,10 +4,15 @@
 
 @use "./utils" as *;
 
-@use "./tokens/brand";
-@use "./tokens/alias";
-@use "./tokens/mapped" as *;
-@use "./tokens/responsive";
+// Tokens now come from @irenecvg/mm-design-tokens (see
+// scripts/generate-tokens.mjs, which regenerates tokens/generated.scss on
+// every `predev`/`prebuild`). The hand-authored files below are kept as a
+// local fallback/reference but are no longer wired in.
+// @use "./tokens/brand";
+// @use "./tokens/alias";
+// @use "./tokens/mapped" as *;
+// @use "./tokens/responsive";
+@use "./tokens/generated" as *;
 @use "./fonts";
 @use "./mixins" as *;
 @use "./components";

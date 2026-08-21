@@ -1,4 +1,6 @@
-@use "./tokens/mapped" as *;
+// See global.scss — tokens now come from the generated file, not tokens/mapped.
+// @use "./tokens/mapped" as *;
+@use "./tokens/generated" as *;
 
 @mixin typography-($level) {
   font-size: var(--typography-#{$level}-font-size);
