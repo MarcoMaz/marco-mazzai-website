@@ -1,4 +1,4 @@
-@use "./tokens/mapped" as *;
+@use "./tokens/generated" as *;
 
 @mixin typography-($level) {
   font-size: var(--typography-#{$level}-font-size);

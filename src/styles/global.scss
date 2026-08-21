@@ -3,11 +3,7 @@
 // ============================================================
 
 @use "./utils" as *;
-
-@use "./tokens/brand";
-@use "./tokens/alias";
-@use "./tokens/mapped" as *;
-@use "./tokens/responsive";
+@use "./tokens/generated" as *;
 @use "./fonts";
 @use "./mixins" as *;
 @use "./components";
